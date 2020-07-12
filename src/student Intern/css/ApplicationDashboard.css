@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@700&display=swap');
+
+
+.main-heading-page{
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    color:#4A00E0;
+}
+.container-main-box{
+    padding: 0;
+    overflow: hidden;
+}
+.container-inner-box{
+max-width: 90%;
+margin-top: 25px;
+border-radius: 10px;
+border: 1px solid #4A00E0;
+box-shadow: 0 0 8px  lightgrey;
+}
+
+.special-heading{
+    font-family: 'Poppins', sans-serif;
+    color:#4A00E0;
+    margin-top: 10px;
+    padding: 5px;
+    font-weight: 800;
+    text-decoration: solid;
+}
+
+@media (max-width : 860px) {
+    .headings{
+        display: none;
+    }
+    .main-hr{
+        display: none;
+    }
+}
+.btnstatus{
+    background-color: aquamarine;
+    color:#4A00E0;
+    font-weight: 800;
+    box-shadow: 4px 4px 6px lightgrey;
+}
+.btnfail{
+    background-color: lightgray;
+    color:black;
+    font-weight: 800;
+    box-shadow: 4px 4px 6px lightgrey;
+}
+.btnApply{
+    align-items: center;
+    background-color: white;
+    border:1px solid  #4A00E0;
+    color:#4A00E0;
+}
+.main-hr{
+    border:1px solid #4A00E0;
+}
+.sub-hr{
+    border:1px solid lightgrey;
+}
+
+.special-sub-heading{
+text-align: center;
+font-weight:700;
+}

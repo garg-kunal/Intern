@@ -46,8 +46,7 @@ export default class Form extends React.Component {
     render() {
         return (
             <div className="container-fluid main-container" >
-                <Navbar />
-                <br />
+                <br/>
                 <div className="container-fluid inner-container" data-aos="flip-right">
                     <div className="row"><h3 className="mx-auto heading">Personal Information</h3></div>
                     <br /><br /><br />

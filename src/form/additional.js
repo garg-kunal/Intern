@@ -25,7 +25,7 @@ export default class Additional extends React.Component {
         AOS.init();
 
         this.state = {
-            textArea: "",
+            textArea: "Additonal Information",
             editShow: false,
             dataShow: true,
             addSkill: false,
@@ -151,7 +151,7 @@ export default class Additional extends React.Component {
                                     <textarea rows="4" cols="50" className="form-control"
                                         value={this.state.textArea}
                                         onChange={(e) => { this.setState({ textArea: e.target.value }) }}
-                                    >Additonal Information</textarea>
+                                    ></textarea>
                                     <br />
                                 </div>
                                 <div style={{ padding: "10px", float: "right", display: "flex" }}>

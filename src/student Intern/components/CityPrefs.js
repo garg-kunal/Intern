@@ -31,7 +31,7 @@ class CityPrefs extends React.Component {
                     <input type="text" className="prefs1" name="city2" value={this.state.city2} onChange={this.valueChange} placeholder="Select your 2nd preference"/>
                     <input type="text" className="prefs1" name="city3" value={this.state.city3} onChange={this.valueChange} placeholder="Select your 3rd preference"/>
                     
-                    <label className="roleLabel roleLabel1"><input type="radio" name="workType" className="role" defaultChecked={this.state.workType}/>  Work From Home</label><br/>
+                    {/* <label className="roleLabel roleLabel1"><input type="radio" name="workType" className="role" defaultChecked={this.state.workType}/>  Work From Home</label><br/> */}
                     
                     <div className="buttons">
                         <button type="button" className="previous">Previous</button>

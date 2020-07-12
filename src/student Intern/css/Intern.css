@@ -1,0 +1,99 @@
+.container-main-box-intern{
+    padding: 0;
+    /* background-color: #4A00E0; */
+}
+.inner-box-intern{
+    padding-top: 25px;
+    padding-bottom:50px;
+    border-radius: 15px;
+    max-width: 90%;
+    height: auto;
+    background-color: white;
+
+}
+.intern-company{
+    color: #4A00E0;
+    text-decoration: solid;
+    font-weight: 900;
+    font-size: large;
+    font-size: 20px;
+}
+.intern-based{
+    font-size: larger;
+    font-weight: 800;
+}
+.intern-type{
+    font-size: medium;
+    font-weight: 500;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.card-intern{
+    box-shadow: 0 0 6px 6px lightgrey;
+    z-index: 50;
+    max-width: 90%;
+    max-height: 400px;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 30px;
+}
+
+.intern-head{
+    text-decoration: solid;
+    font-weight: 800;
+    font-size: 18px;
+}
+.intern-previous{
+    background-color: white;
+    color:#1697F2;
+    width: 200px;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+    border:1px solid #1697F2;
+}
+.intern-next{
+    background-color:#1697F2;
+    color:white;
+    align-content: center;
+    width: 200px;
+    text-align: center;
+    align-self: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    border-radius: 25px;
+    border:1px solid white;
+}
+.intern-details{
+    font-size: larger;
+    font-weight: 700;
+    color:#4A00E0;
+    padding-right:50px;
+}
+
+@media (max-width : 860px) {
+    .company-logo{
+        float: left;
+        padding-bottom: 10px;
+        margin-bottom: -20px;
+    }
+}
+@media (max-width : 560px) {
+    .company-logo{
+        float: left;
+        padding-bottom: 10px;
+        margin-bottom: -20px;
+    }
+}
+@media (max-width :1200px) {
+    .company-logo{
+        float: top-right;
+        padding-bottom: 10px;
+        margin-bottom: -20px;
+    }
+}
