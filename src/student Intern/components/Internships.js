@@ -255,7 +255,7 @@ export default class Internship extends React.Component {
                     </div>
                   
                 </div>
-               
+               <br/>
                <br/><br/> <div className="container row mx-auto" id="buttonsAll">
                         {this.state.prev ? <button className="btn btn-lg intern-previous mx-auto" onClick={() => { this.dec() }}>Previous</button> : null}
                     &nbsp;&nbsp;&nbsp;
