@@ -1,16 +1,16 @@
 .container-main-box-intern{
-    padding: 0;
+    padding-left: 10px;
     /* background-color: #4A00E0; */
 }
-.inner-box-intern{
-    padding-top: 25px;
-    padding-bottom:50px;
-    border-radius: 15px;
-    max-width: 90%;
-    height: auto;
-    background-color: white;
+/* .inner-box-intern{
 
-}
+    /* padding-top: 25px;
+    padding-bottom:50px; */
+    /* border-radius: 15px;
+    /* max-width: 90%; */
+    /* background-color: white;  */
+
+
 .intern-company{
     color: #4A00E0;
     text-decoration: solid;
@@ -18,9 +18,38 @@
     font-size: large;
     font-size: 20px;
 }
+/* .content-Div{
+  
+   Height:700px;
+} */
 .intern-based{
     font-size: larger;
     font-weight: 800;
+}
+.f-nav{  
+    z-index: 9999;
+    position: fixed;
+    left: 100px;
+    top: 40px;
+    width: 400px;
+    padding: 50px;
+    border:1px solid #4A00E0;
+}
+.f-nav1{  
+    position: absolute;
+    right:20px;
+    left: 1;
+    /* top: 0; */
+    width: 800px;
+}
+.f-nav2{  
+    position: sticky;
+    padding-top: 250px;
+    right:20px;
+    z-index: 9999;
+    /* left: 1; */
+    /* top: 0; */
+    /* width: 800px; */
 }
 .intern-type{
     font-size: medium;
@@ -31,10 +60,9 @@
 .card-intern{
     box-shadow: 0 0 6px 6px lightgrey;
     z-index: 50;
-    max-width: 90%;
-    max-height: 400px;
+    max-Width:100%; 
     padding: 10px;
-    margin: 10px;
+    margin: 20px;
     margin-bottom: 30px;
 }
 
@@ -46,6 +74,7 @@
 .intern-previous{
     background-color: white;
     color:#1697F2;
+    position: static;
     width: 200px;
     align-self: center;
     align-content: center;
@@ -56,7 +85,10 @@
     border-radius: 25px;
     border:1px solid #1697F2;
 }
+
 .intern-next{
+    margin-left:20px;
+    padding-left: 20px;
     background-color:#1697F2;
     color:white;
     align-content: center;
@@ -73,6 +105,7 @@
     font-size: larger;
     font-weight: 700;
     color:#4A00E0;
+    margin-bottom: -10px;
     padding-right:50px;
 }
 
@@ -81,7 +114,36 @@
         float: left;
         padding-bottom: 10px;
         margin-bottom: -20px;
+        display: none;
     }
+    .f-nav{  
+    
+        position: relative;
+      
+    }
+    .f-nav1{  
+       
+        position: relative;
+        
+    }
+    .content-Div{
+        overflow-Y:auto;
+     }
+    .intern-details{
+        font-size: small;
+        font-weight: 700;
+        color:#4A00E0;
+        margin-top: -30px;
+        padding-right:20px;
+    }
+    
+.intern-head{
+    text-decoration: solid;
+    font-weight: 800;
+    padding-top: 10px;
+    font-size: 12px;
+}
+   
 }
 @media (max-width : 560px) {
     .company-logo{
@@ -97,3 +159,68 @@
         margin-bottom: -20px;
     }
 }
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 20px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  
+  
+  
+  .slider::after {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    top:-4px;
+    background-color:#4A00E0;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+ 
+  /* input:checked +.round{
+      color: #4A00E0;
+      background-color: #4A00E0;
+  } */
+  
+  input:checked + .slider.round {
+    background-color: #ccc;
+    color:#4A00E0;
+    
+  }
+  /* input:active + .slider::after{
+      
+    color:#1697F2;
+  } */
+  
+  input:focus + .slider {
+    color:#4A00E0;
+    box-shadow: 0 0 1px lightgray;
+  }
+  
+  input:checked + .slider:after {
+    -webkit-transform: translateX(80px);
+    -ms-transform: translateX(80px);
+    transform: translateX(50px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 35px;
+  }
+  
+  .slider.round:after {
+    border-radius: 50%;
+  }

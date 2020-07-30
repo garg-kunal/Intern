@@ -17,14 +17,14 @@ function App() {
   return (
     <div>
       <Navbar/>
-      {/* <Form/> */}
-      {/* <Question/> */}
+      {/* <Form/>
+      <Question/> */}
       <Intern/>
-   <Dashobard/>
-       {/* <Screen1/>
-      <Screen2/>
-      <Screen3/><InternshipsData/>
-      <CityPrefs/>  */}
+   {/* <Dashobard/> */}
+        {/* <Screen1/> */}
+       {/* <Screen2/>  */}
+       {/* <Screen3/><InternshipsData/>  */}
+      {/* <CityPrefs/>   */}
      {/* <Form/>  */}
     </div>
   );
