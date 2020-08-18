@@ -1,7 +1,8 @@
 import React from 'react';
-import '../css/ApplicationDashboard.css';
-import arrow from '../images/baseline-arrow.png';
-import docs from '../images/docs.png';
+import '../assets/css/ApplicationDashboard.css';
+// import arrow from '../assets'
+import arrow from '../assets/images/baseline-arrow.png';
+import docs from '../assets/images/docs.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 export default class Dashboard extends React.Component {
@@ -54,27 +55,27 @@ export default class Dashboard extends React.Component {
                 </div>
 
 
-                <div className="container container-inner-box">
+                <div className="container-fluid container-inner-box">
 
-                    <div className="row headings">
+                    <div className="row  no-guuters headings">
                         <div className="col-md-2 col-lg-2 ">
-                            <p className="special-heading">Company <img src={arrow} height="30" /></p>
+                            <p className="special-heading">Company <img className="img-fluid" src={arrow} style={{height:"30px",width:"30px"}} /></p>
 
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">Profile <img src={arrow} height="30" /></p>
+                            <p className="special-heading">Profile <img className="img-fluid" src={arrow} style={{height:"30px",width:"30px"}}  /></p>
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">Review Application <img src={arrow} height="30" /></p>
+                            <p className="special-heading">Review Appli. <img className="img-fluid" src={arrow} style={{height:"30px",width:"30px"}} /></p>
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">Applied Date <img src={arrow} height="30" /></p>
+                            <p className="special-heading">Applied Date <img className="img-fluid" src={arrow} style={{height:"30px",width:"30px"}}  /></p>
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">No. of Applicants <img src={arrow} height="30" /></p>
+                            <p className="special-heading">No. of Appli.. <img className="img-fluid" src={arrow} style={{height:"30px",width:"30px"}}  /></p>
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">Application Status <img src={arrow} height="30" /></p>
+                            <p className="special-heading">Status <img className="img-fluid" src={arrow} style={{height:"30px",width:"30px"}} /></p>
                         </div>
 
                     </div>
@@ -87,14 +88,14 @@ export default class Dashboard extends React.Component {
                                 <div className="col-md-2 col-lg-2 ">
                                     <p className="special-sub-heading mx-auto"><img style={{ marginRight: "20px" }}
                                         src={docs}
-                                        className="img rounded-circle" height="40" width="40" />
+                                        className="img-fluid rounded-circle" style={{height:"30px",width:"30px"}}  />
                                         {item.company}</p>
                                 </div>
                                 <div className="col-md-2 col-lg-2  ">
                                     <p className="special-sub-heading mx-auto">{item.profile}</p>
                                 </div>
                                 <div className="col-md-2 col-lg-2  ">
-                                    <p className="special-sub-heading mx-auto"><img src={item.review} height="20" /></p>
+                                    <p className="special-sub-heading mx-auto"><img src={item.review} className="img-fluid" style={{height:"20px",width:"20px"}}  /></p>
                                 </div>
                                 <div className="col-md-2 col-lg-2  ">
                                     <p className="special-sub-heading mx-auto">{item.Applydate}</p>

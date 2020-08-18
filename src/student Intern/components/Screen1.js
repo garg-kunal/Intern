@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/header.css";
+import "../assets/css/header.css";
 
 class Screen1 extends React.Component{
     render() {

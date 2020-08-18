@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../assets/Merge..png";
-import "../css/internshipsData.css";
+import logo from "../assets/images/Merge..png";
+import "../assets/css/internshipsData.css";
 
 class CityPrefs extends React.Component {
     constructor() {

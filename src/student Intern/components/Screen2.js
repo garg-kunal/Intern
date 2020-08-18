@@ -1,14 +1,23 @@
 import React from "react";
-import logo from "../assets/Merge..png";
-import "../css/Screen2.css";
-
+import logo from "../assets/images/Merge..png";
+import axios from '../../setup';
+import "../assets/css/Screen2.css";
+import { Modal,Spinner } from 'react-bootstrap';
 class Screen2 extends React.Component {
     constructor() {
         super();
         this.state = {
-            other: ""
+            other: "",
+            message:"Loading....."
         }
     }
+    handleClose = () => {
+        this.setState({ show: false });
+    };
+
+    handleShow = () => {
+        this.setState({ show: true });
+    };
     changeColor = e => {
         var element = e.target;
         if (element.style.backgroundColor === "rgb(74, 0, 224)") {
@@ -25,15 +34,49 @@ class Screen2 extends React.Component {
             for (const labels of child.childNodes) {
                 for (const inputs of labels.getElementsByTagName('input')) {
                     if (inputs.checked) {
+                        // console.log(inputs.value);
                         boxes.push(inputs.value);
                     }
                 }
             }
         }
-        var others = document.getElementsByClassName("otherFields")[0];
-        boxes.push(others.value);
+        // var others = document.getElementsByClassName("otherFields")[0];
+        // boxes.push(others.value);
         console.log(boxes);
-
+        if (boxes.length === 0) alert("Please Checkout Technologies");
+        else {
+            this.setState({
+                message:"Loading...",
+                show: true
+            })
+            const data = {
+                skills: boxes
+            };
+            const headers = {
+                headers: {
+                    'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+            axios.post('/api/accounts/student/schedule_assessment', data, headers)
+                .then((res) => {
+                    if (res.data.status === 200)
+                        this.props.history.push('/intern_data');
+                    else if (res.data.status !== 200) {
+                        this.setState({
+                            message: res.data.status_message.message,
+                            show: true
+                        })
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                   this.setState({
+                       message:"Try Again Later"
+                   })
+                });
+        }
     }
     render() {
         var info = [
@@ -46,7 +89,7 @@ class Screen2 extends React.Component {
             return (
                 <div className="field d-flex flex-wrap">
                     <div className=" container row row-cols-2 ">
-                        <div className="col-md-3 col-lg-3 col-sm-2 col-xs-1">
+                        <div className="col-md-3 col-lg-3 col-sm-3 col-xs-1">
                             <span className="fieldName">{information.field + " :"}</span>
                         </div>
                         <div className="col-md-9 col-lg-9 col col-sm-10 col-xs-10">
@@ -66,24 +109,25 @@ class Screen2 extends React.Component {
                 </div>
                 <div className="container-fluid  innerBox">
                     <h4 >What tools do you use for your projects?</h4><br />
-                    <div className="inputs container">
+                    <div className="inputs container" >
                         {rows}
-                        <div className="row">
-                            <div className="col-md-1 col-lg-1 offset-md-1 ">
-                                <span><b>Others: </b></span>
-                                &nbsp;&nbsp;
-                            </div>
-                            <div className="col-md-9 col-lg-9">
-                                <input type="text" className="form-control" onChange={(e) => { this.setState({ other: e.target.value }) }} placeholder="Add Hardware, Software, etc." />
-                            </div>
-                        </div>
-
                         <div className="buttons">
                             <button type="button" onClick={this.printData} className="confirmation btn">Done</button>
                             <button type="button" className=" btn confirmation1">Cancel</button>
                         </div>
                     </div>
                 </div>
+                <Modal
+                    show={this.state.show}
+                    onHide={this.handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton />
+                    <Modal.Body>
+                       {this.state.message}
+                    </Modal.Body>
+                </Modal>
             </div>
         );
     }

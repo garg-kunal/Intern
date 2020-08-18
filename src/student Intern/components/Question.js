@@ -1,6 +1,6 @@
 import React from 'react';
-import '../css/question.css';
-import alert from '../images/alert.png'
+import '../assets/css/question.css';
+import alert from '../assets/images/alert.png'
 export default class Question extends React.Component {
     constructor() {
         super();
@@ -10,16 +10,27 @@ export default class Question extends React.Component {
             },
             {
                 question: "Which role of responsibility we require?"
-            }],
-            textarea: []
+            },
+            {
+                question: "Which role of responsibility we give you?"
+            }
+        ],
+            answers:[]
         }
 
     }
+    componentDidMount(){
+        var a="";
+        for(var i=0;i<this.state.questions.length;i++){
+           this.state.answers.push(a);
+        }
+    }
+    submit(){
+        console.log(this.state.answers)
+    }
     handle(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-
+        var val=e.target.value;
+        this.state.answers.splice(e.target.name, 1, val); 
     }
     render() {
         return (
@@ -31,25 +42,21 @@ export default class Question extends React.Component {
                     {this.state.questions.map((item, key) =>
                         <div>
                             &nbsp;&nbsp; <b>{key + 1}. {item.question}</b><br /><br />
-                            <textarea rows="10" cols="10" name={item.question}
+                            <textarea rows="10" cols="10" name={key} value={this.state.answers[key]}
                                 required className="form-control" placeholder="Enter your answer (250 words)"
-                                onChange={(e) => {
-                                    this.setState({
-                                        [e.target.name]: e.target.value
-                                    })
-                                    this.state.textarea.push([e.target.name]);
-                                    console.log(this.state.textarea[0].name)
-                                }}
-                            ></textarea>
+                                onChange={(e) => { this.handle(e) }}>
+                            </textarea>
                             <br />
-                            <div className="alert " style={{color:"red"}}>
-                                <img src={alert} alt="alert" height="20"/>
-                                &nbsp;&nbsp;<strong>This is required field.</strong> 
+                            <div className="alert " style={{ color: "red" }}>
+                                <img src={alert} alt="alert" height="20" />
+                                &nbsp;&nbsp;<strong>This is required field.</strong>
                             </div>
                             <br /><br /><br />
                         </div>)}
+                    <div className="row mx-auto">
+                        <button className="btn btn-primary mx-auto" onClick={() => { this.submit() }}>Submit</button>
+                    </div>
                 </div>
-
             </div>
         )
     }

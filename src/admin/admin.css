@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@700&display=swap');
+
+.admin-heading{
+    font-family: 'Poppins', sans-serif;
+    color:#4A00E0;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.admin-card{
+    box-shadow: 0 0 4px 4px cadetblue;
+    border:2px solid #4A00E0;
+    border-radius:20px;
+}
+.admin-card:hover{
+    cursor: pointer;
+}
+.card-company{
+    /* width: 1200px; */
+}
+
+.main-heading-page{
+    color: #4A00E0;
+    font-weight: 700;
+    font-size: 30px;
+    padding: 50px;
+}

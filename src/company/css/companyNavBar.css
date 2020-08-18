@@ -1,0 +1,76 @@
+.navBar {
+    background-color: #4A00E0!important;
+    height: 100px;
+    padding-left: 50px;
+}
+.navBarElements {
+    height: 100px;
+    line-height: 100px!important;
+}
+.navBar img {
+    height: 30px;
+}
+.userIcon {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    margin-right: 50px;
+}
+.navBar .navItems {
+    text-decoration: none;
+    color: white;
+    margin-left: 100px;
+}
+
+@media only screen and (max-width: 900px) {
+    .navBar {
+        height: 70px;
+        padding-left: 20px;
+    }
+    .navBarElements {
+        height: 70px;
+        line-height: 70px!important;
+    }
+    .navBar img {
+        height: 25px;
+    }
+    .userIcon {
+        position: absolute;
+        right: 0;
+        top: 25px;
+        margin-right: 20px;
+    }
+    .navBar .navItems {
+        font-size: 0.9em;
+        text-decoration: none;
+        color: white;
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .navBar {
+        height: 70px;
+        padding-left: 10px;
+    }
+    .navBarElements {
+        height: 70px;
+        line-height: 70px!important;
+    }
+    .navBar img {
+        height: 20px;
+    }
+    .userIcon {
+        position: absolute;
+        right: 0;
+        top: 25px;
+        margin-right: 20px;
+    }
+    .navBar .navItems {
+        font-size: 0.7em;
+        text-decoration: none;
+        color: white;
+        margin-left: 10px;
+    }
+}
+

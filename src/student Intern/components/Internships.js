@@ -1,14 +1,16 @@
 import React from 'react';
-import '../css/Intern.css';
+import '../assets/css/Intern.css';
 import $ from 'jquery';
-import date from '../images/calender.png';
-import rupee from '../images/rupee.png';
-import start from '../images/start.png';
-import unlimited from '../images/unlimited.png';
-import path from '../images/Path.png'
-import house from '../images/sydney-opera-house.png';
+import date from '../assets/images/calender.png';
+import rupee from '../assets/images/rupee.png';
+import start from '../assets/images/start.png';
+import unlimited from '../assets/images/unlimited.png';
+import path from '../assets/images/Path.png'
+import house from '../assets/images/sydney-opera-house.png';
+import {NavLink}  from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Navbar from '../quiz/navbar';
 export default class Internship extends React.Component {
     constructor() {
         super();
@@ -91,21 +93,43 @@ export default class Internship extends React.Component {
             ]
         }
         $("document").ready(function ($) {
-            var nav = $('#filters');
-            var intern = $('#internsAll');
-            var button=$('#buttonsAll');
-
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 100) {
-                    nav.addClass("f-nav");
-                    intern.addClass("f-nav1");
-                    button.addClass("f-nav1");
-                } else {
-                    nav.removeClass("f-nav");
-                    intern.removeClass("f-nav1");
-                    button.removeClass("f-nav1");
-                }
+            
+            $(window).on("resize", function (e) {
+                checkScreenSize();
             });
+            checkScreenSize();
+            function checkScreenSize(){
+                var newWindowWidth = $(window).width();
+                var nav = $('#filters');
+                var intern = $('#internsAll');
+                var button = $('#buttonsAll');
+                if (newWindowWidth > 1300) {
+                    $(window).scroll(function () {
+                        if ($(this).scrollTop() > 100) {
+                            nav.addClass("f-nav");
+                            intern.addClass("f-nav1");
+                            button.addClass("f-nav1");
+                        } else {
+                            nav.removeClass("f-nav");
+                            intern.removeClass("f-nav1");
+                            button.removeClass("f-nav1");
+                        }
+                    });
+                }
+                else{
+                    $(window).scroll(function () {
+                        if ($(this).scrollTop() > 100) {
+                            nav.removeClass("f-nav");
+                            intern.removeClass("f-nav1");
+                            button.removeClass("f-nav1");
+                        } 
+                    });
+    
+                }
+                
+            }
+
+           
         });
     }
 
@@ -153,48 +177,45 @@ export default class Internship extends React.Component {
     render() {
         return (
             <div className="container-fluid  container-main-box-intern">
+                {/* <Navbar/> */}
                 <br /><br /><br />
                 <div className="container-fluid">
                     <div className="row">
                         <p className="text-center mx-auto Intern-main-heading">
-                            Work From Home Internships
+                             Internships
                          </p>
                     </div>
                 </div>
                 <br /><br />
-                <div className="container">
+                <div className="container-fluid container-intern" >
                     <div className=" row">
-                        <div className="col-md-3 col-lg-3 col-sm-3 " id="filters" >
-                            <form class="form-inline">
-                                <input class="form-control " type="search" placeholder="Location" aria-label="Search" />
-                                <button class="btn" type="submit">Search</button>
-                            </form>
-                            <br />
-                            <div className=" mx-auto">
-                                Work From Home&nbsp;
-                            <label class="switch">
-                                    <input type="checkbox" />
-                                    <span class="slider round"></span>
-                                </label>
-                            </div><br />
-                            <div className=" mx-auto">
-                                Part Time&nbsp;
-                            <label class="switch">
-                                    <input type="checkbox" />
-                                    <span class="slider round"></span>
-                                </label>
-                            </div><br />
-                            <div className=" mx-auto">
-                                Full Time&nbsp;
-                            <label class="switch">
-                                    <input type="checkbox" />
-                                    <span class="slider round"></span>
-                                </label>
+                        <div className="col-md-3 col-lg-3 col-12 intern-filters" id="filters" >
+                                <input class="form-control form-filter" type="search" placeholder="Web Developer" aria-label="Search" />
+                            <div className=" mx-auto" style={{ margin: "30px" }}>
+
+                                <section class="slider-checkbox" style={{ fontSize: "20px" }}>
+                                    <input type="checkbox" value="home" onChange={(e) => {  }} id="1" />
+                                    <label class="label" for="1">Work From Home&nbsp;</label>
+                                </section>
+                            </div>
+                            <div className=" mx-auto"  >
+
+                                <section class="slider-checkbox" style={{ fontSize: "20px" }}>
+                                    <input type="checkbox" value="part" onChange={(e) => {  }} id="1" />
+                                    <label class="label" for="1">Part Time&nbsp;</label>
+                                </section>
+                            </div>
+                            <div className="mx-auto" style={{ margin: "30px" }}>
+                                <section class="slider-checkbox" style={{ fontSize: "20px" }}>
+                                    <input type="checkbox" value="full" onChange={(e) => {  }} id="1" />
+                                    <label class="label" for="1">Full Time&nbsp;</label>
+                                </section>
                             </div>
 
+                            <button className="btn btn-intern-search">Apply Filters</button>
 
                         </div>
-                        <div className="col-md-9 col-lg-9 col-sm-9 content-Div" id="internsAll" >
+                        <div className="col-md-8 col-lg-8 col-12" style={{ minWidth: "21rem" }} id="internsAll" >
                             {this.state.interns.map((item, key) => {
                                 if ((this.state.page * 6 <= key) && (this.state.page + 1) * 6 > key)
                                     return (<div className="card card-intern" key={key}>
@@ -215,7 +236,7 @@ export default class Internship extends React.Component {
                                             <br />
                                             <img src={house} className="img" height="30" alt="Home" />&nbsp;&nbsp;
                             <span className="intern-type">{item.workType}</span><br /><br />
-                                            <div className="row row-cols flex-wrap ">
+                                            <div className="row no-gutters">
                                                 <div className="col-md-3  col-lg-3 col-6">
                                                     <p className="intern-head ">Joining Date
                                     </p>
@@ -237,7 +258,12 @@ export default class Internship extends React.Component {
                                             </div>
                                             <br /><br />
                                             <div className="row" style={{ float: "right" }}>
-                                                <p className="intern-details"> Job Details <img src={path} className="im" height="20" alt="path" /></p>
+                                                <p className="intern-details"><NavLink to={{
+                                                    pathname:"/apply_intern",
+                                                    id:{
+                                                        key:5
+                                                    }
+                                                }}>Job Details </NavLink> <img src={path} className="im" height="20" alt="path" /></p>
                                             </div>
 
                                         </div>
@@ -248,23 +274,19 @@ export default class Internship extends React.Component {
                             }
 
                             )}
+                            <div className="container row mx-auto" id="buttonsAll">
+                                {this.state.prev ? <button className="btn btn-lg intern-previous mx-auto" onClick={() => { this.dec() }}>Previous</button> : null}
+                                {this.state.next ? <button className="btn  btn-lg intern-next mx-auto" onClick={() => { this.inc() }}>Next</button> : null}
+
+                            </div>
 
 
                         </div>
 
                     </div>
-                  
+
                 </div>
-               <br/>
-               <br/><br/> <div className="container row mx-auto" id="buttonsAll">
-                        {this.state.prev ? <button className="btn btn-lg intern-previous mx-auto" onClick={() => { this.dec() }}>Previous</button> : null}
-                    &nbsp;&nbsp;&nbsp;
-                    {this.state.next ? <button className="btn  btn-lg intern-next mx-auto" onClick={() => { this.inc() }}>Next</button> : null}
-
-                    </div>
-
-
-                <br /><br /><br />
+                <br />
 
             </div>
         )

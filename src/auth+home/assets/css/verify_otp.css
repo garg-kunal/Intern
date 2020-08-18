@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@700&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+h2{
+    color: rgba(74,0,224,0.7);
+    font-weight: bold!important;
+}
+.body-otp{
+    background-color: rgba(74,0,224,1);
+    background-image: url("../squarebg.jpeg");
+    background-position: right;
+    background-attachment: fixed;
+    height: 100vh;
+    /* background-size: cover; */
+}
+h1{
+    position : relative;
+    padding: 25px;
+    width: fit-content;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 34px;
+}
+.logo img{
+  margin-top: 40px;
+  margin-left: 40px;
+  height: 34px;
+  width: 100px;
+}
+.main {
+    text-align: center;
+    border-radius: 12px;
+    margin: auto;
+    margin-top: 2vh;
+    background-color: white;
+    width: 40vw;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding-top:3vh;
+}
+img{
+    width: 250px;
+    height: 180px;
+}
+.gridItem {
+    width: fit-content;
+    margin: auto;
+}
+.input {
+  padding-left: 50px;
+}
+input{
+    height: 44px;
+    font-size: 26px;
+    padding-left: 12px;
+    font-weight: 550;
+    margin-right: 50px;
+    width: 44px;
+    border: 0.9px solid rgba(0,0,0,0.5);
+}
+.submitotp{
+    color: white;
+    background-color: rgba(0,255,80,0.6);
+    border-radius: 50px;
+    height: 54px;
+    width: 46%;
+    font-size: 1.2em;
+    margin-top: 2vh;
+}
+.sent {
+  font-size: 1em;
+  color: rgba(0,0,0,0.6);
+  font-weight: 600;
+}
+.resend{
+    color: rgba(74,0,224,0.7);
+    font-size: 14px;
+    font-weight: bolder;
+    background-color: white;
+}
+
+@media (max-width:1300px) {
+    .main{
+        margin-top: 6vh;
+        width: 50vw;
+        grid-template-rows: 1fr 1fr 0.8fr;
+    }
+    img {
+        width: 280px;
+        height: 200px;
+    }
+    h2{
+        font-size: 28px;
+        font-weight: bolder;
+    }
+    .submitotp{
+        height: 54px;
+        width: 46%;
+        font-size: 1.2em;
+    }
+    .sent{
+        font-size: 1em;
+        color: rgba(0,0,0,0.6);
+        font-weight: 600;
+    }
+    .resend{
+        color: rgba(74,0,224,0.7);
+        background-color: white;
+        font-size: 14px;
+        font-weight: bolder;
+    }
+}
+@media (max-width:1100px) {
+    .main{
+        margin-top: 6vh;
+        width: 60vw;
+        grid-template-rows: 1fr 1fr 0.7fr;
+    }
+    .input {
+      padding-left: 30px;
+    }
+    input {
+      margin-right: 30px;
+    }
+}
+@media (max-width:840px) {
+    .input {
+      width: 100%;
+      padding-left: 30px;
+    }
+    .main{
+        grid-template-rows: 1fr 1fr 0.5fr;
+    }
+    img{
+        width: 240px;
+        height: 150px;
+    }
+    input {
+      margin-right: 30px;
+    }
+    .submitotp{
+        margin-top: 1vh;
+    }
+}
+.verify-otp-input{
+    width: 4rem;
+}
+@media (max-width:730px) {
+    .main{
+        margin-top: 6vh;
+        width: 70vw;
+        grid-template-rows: 1fr 1fr 0.5fr;
+    }
+    .verify-otp-input{
+        width: 3rem;
+        margin-left: 10px;
+        
+        padding-right: 10px;
+    }
+    .input {
+      padding-left: 30px;
+    }
+    input {
+      margin-right: 30px;
+    }
+    .sent{
+        font-size: 14px;
+    }
+}
+@media (max-width:650px) {
+    .main{
+        width: 80vw ;
+    }
+    img{
+        width: 230px;
+        height: 150px;
+    }
+}
+@media (max-width:520px) {
+    .main{
+        margin-top: 6vh!important;
+        width: 80vw;
+        grid-template-rows: 1fr 1fr 0.5fr;
+    }
+    .input {
+      padding-left: 20px;
+    }
+    input {
+      margin-right: 20px;
+    }
+    .sent{
+        font-size: 14px;
+    }
+}
+@media (max-width : 480px) {
+    h1{
+        font-size: 20px;
+    }
+    .main {
+        margin-top: 3vh;
+        width: 90vw;
+        grid-template-rows: 1fr 1fr  0.7fr;
+    }
+    img{
+        width: 200px;
+        height: 150px;
+    }
+    input{
+        height: 40px;
+        width: 40px;
+    }
+    .sent{
+        font-size: 14px;
+    }
+    h2{
+        font-size: 18px;
+    }
+    .submitotp{
+       width: 60%;
+    }
+    .resend{
+      margin-top: 10px;
+        color: rgba(74,0,224,1);
+    }
+}
+@media (max-width : 390px) {
+    .main {
+        margin-top: 15vh!important;
+        width: 90vw;
+        grid-template-rows: 0.8fr 0.8fr  0.4fr;
+    }
+    img{
+        width: 200px;
+        height: 150px;
+    }
+    input{
+        height: 30px;
+        width: 30px;
+        margin-right: 20px;
+    }
+    .input {
+      padding-left: 20px;
+    }
+    .sent{
+        font-size: 12px;
+    }
+    h2{
+        font-size: 20px;
+    }
+    .submitotp{
+       width: 60%;
+    }
+}
+@media (max-width : 390px) {
+    .main {
+        margin-top: 3vh;
+        width: 90vw;
+        height: 100%;
+        grid-template-rows: 0.8fr 0.8fr  0.3fr;
+    }
+    img{
+        width: 180px;
+        height: 120px;
+    }
+    input{
+        height: 30px;
+        width: 30px;
+        margin-right: 20px;
+    }
+    .input {
+      padding-left: 20px;
+    }
+    .sent{
+        font-size: 12px;
+    }
+    h2{
+        font-size: 16px;
+    }
+    .submitotp{
+       width: 60%;
+       height: 44px;
+    }
+    .sent {
+      font-size: 10px;
+    }
+    .resend {
+      font-size: 12px;
+    }
+    .third {
+      padding: 10px;
+    }
+}
+
+.partitioned {
+  padding-left: 15px;
+  letter-spacing: 40px;
+  border: 0;
+  margin-left: 13%;
+  background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 50px 1px;
+  background-repeat: repeat-x;
+  background-position-x: 35px;
+  width: 200px;
+}
