@@ -1,12 +1,12 @@
-import React from "react"
-import "../css/viewInternship.css"
-import arrow from "../assets/arrow.png"
-import companyLogo from "../assets/samsung.png"
-import home from "../assets/home.png"
-import start from "../assets/start-button.png"
-import calendar from "../assets/calendar.png"
-import rupee from "../assets/rupee.png"
-import applyBy from "../assets/unlimited.png"
+import React from "react";
+import '../../company/css/viewInternship.css';
+// import arrow from "../assets/arrow.png"
+// import companyLogo from "../assets/samsung.png"
+import home from '../assets/images/sydney-opera-house.png';
+import start from '../assets/images/start.png';
+import calendar from '../assets/images/calender.png';
+import rupee from '../assets/images/rupee.png';
+import applyBy from '../assets/images/unlimited.png';
 import Axios from '../../setup';
 
 class InternshipDetails extends React.Component {
@@ -18,12 +18,14 @@ class InternshipDetails extends React.Component {
             internshipPlace: "",
             internshipTime: "",
             city: "",
+            companyname:"",
             questions: [],
             startDate: "",
             exactDate: "",
             skills: [false, false, false],
             otherSkills: "",
             benefits: [],
+            companyAbout:"",
             stipend: "",
             currency: "",
             amount: "",
@@ -42,10 +44,9 @@ class InternshipDetails extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-        // alert(this.props.val)
-        Axios.get('/api/accounts/company/view_internship/' + this.props.val,headers)
+        Axios.get('/api/accounts/student/internship_details/' + this.props.val,headers)
             .then((res) => {
-                console.log(res.data.data)
+                console.log(res.data)
                 this.setState({
                     profile: res.data.data.profile,
                     internshipPlace: res.data.data.place,
@@ -56,11 +57,13 @@ class InternshipDetails extends React.Component {
                     exactDate: res.data.data.exactdate,
                     otherSkills: res.data.data.skills,
                     benefits: res.data.data.benefits,
+                    companyname:res.data.data.company,
                     stipend: res.data.data.stipend_type,
                     amount: res.data.data.stipend_amount,
                     responsibility: res.data.data.description,
                     days: res.data.data.duration,
-                    openings: res.data.data.openings
+                    openings: res.data.data.openings,
+                    companyAbout:res.data.data.about
                 })
 
             })
@@ -72,9 +75,11 @@ class InternshipDetails extends React.Component {
                 <div className="row">
                     <span className="work col-8">{this.state.profile}</span>
                     <div className="col-4">
-                        <img src={companyLogo} className="complogo" alt="" />
+                        <img src="https://marketbusinessnews.com/wp-content/uploads/2014/03/samsung-logo.jpg"
+                        style={{height:"60px",width:"120px"}}
+                         className="complogo" alt="" />
                     </div>
-                    <span className="company col-8">Samsung</span>
+                    <span className="company col-8">{this.state.companyname}</span>
                     <div className="workFrom col-12">
                         <img src={home} className="workImg img-fluid"
                         style={{ height: "30px", width: "30px" }} 
@@ -113,9 +118,9 @@ class InternshipDetails extends React.Component {
                 </div>
                 <div className="row aboutCompany">
                     <p className="about col-8">About Company</p>
-                    <a href="#" className="url col-10">http://samsung.com</a>
+                    {/* <a href="#" className="url col-10">http://samsung.com</a> */}
                     <p className="lead description">
-                        company description
+                       {this.state.companyAbout}
                     </p>
                 </div>
                 <div className="row aboutCompany">
@@ -168,20 +173,22 @@ class ViewInternship extends React.Component {
     componentDidMount() {
         console.log(this.props.location.id)
         if (this.props.location.id === undefined)
-            this.props.history.push('/company/dashboard');
+            this.props.history.push('/student/internships');
     }
     render() {
         return (
             <div className="container-fluid postInternship">
                 <h2 className="heading">Internship Details</h2>
-                {this.props.location.id === undefined ? (this.props.history.push('/company/dashboard')) :
+                {this.props.location.id === undefined ? (this.props.history.push('/student/internships')) :
                     <InternshipDetails val={this.props.location.id.key} />
                 }
 
-{/* 
+
                 <div className="col-12 text-center statusBtn">
-                    <button className="btn btn-primary" style={{ width: "400px" }} type="button">Open for Applications</button>
-                </div> */}
+                    <button className="btn btn-primary" 
+                    onClick={()=>{this.props.history.push('/student/intern_questions/'+this.props.location.id.key)}}
+                    style={{ width: "400px" }} type="button">Open for Applications</button>
+                </div>
             </div>
         )
     }

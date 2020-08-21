@@ -4,7 +4,7 @@ import cookie from "react-cookies";
 import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
 import '../assets/css/student_form.css';
-
+import axios from '../../setup';
 
 export class CompanyLogin extends Component {
   constructor(props) {
@@ -60,46 +60,26 @@ export class CompanyLogin extends Component {
   }
 
   handleSubmit(event) {
-    const endpoint = "/api/accounts/company/create";
-    const csrfToken = cookie.load("csrftoken");
-    const thisComp = this;
-    const lookupOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": csrfToken,
-        credentials: "include",
-      },
-      body: JSON.stringify(this.state),
-    };
-    if (csrfToken !== undefined) {
-      fetch(endpoint, lookupOptions)
-        .then(function (response) {
-          if (!response.ok) {
-            console.log(response);
-          }
-          return response.json();
-        })
-        .then(function (jsonData) {
-          console.log(jsonData);
-          if (jsonData["status"] === 201) {
-            thisComp.props.history.push(
-              "/verify_otp/" +
-              thisComp.state.mobile_number +
-              "/" +
-              thisComp.state.name
-            );
-          } else {
-            console.log(jsonData.status_message);
-            thisComp.setState({ messages: jsonData.status_message });
-            thisComp.handleShow();
-          }
-        })
-        .catch((error) => {
-          this.setState({ errorMessage: error.toString() });
-          console.error("Error: ", error);
-        });
+    const data={
+     email:this.state.email
     }
+    this.setState({
+      messages:[]
+    })
+    axios.post('/api/accounts/company/login',data)
+    .then((res) => {
+      console.log(res.data)
+      if (res.data.status === 200)
+        this.props.history.push('/verify/'+this.state.email);
+      else if (res.data.status !== 200)
+       this.state.messages.push(res.data.status_message.message);
+       this.setState({
+         show:true
+       })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
     event.preventDefault();
   }
 

@@ -29,7 +29,7 @@ export default class PastExpierence extends React.Component {
         this.state = {
             company: "",
             role: "",
-            updateid:"",
+            updateid: "",
             endDate: new Date(),
             startDate: new Date(),
             workLocation: "",
@@ -68,14 +68,20 @@ export default class PastExpierence extends React.Component {
 
     remove(value) {
         // student/delete_experience/
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         if (window.confirm(" Are You sure Delete? ")) {
-            axios.delete('/api/accounts/student/delete_experience/' + value)
-            .then((res) => { console.log(res.data); this.print(); })
-            .catch((err) => console.log(err));
+            axios.delete('/api/accounts/student/delete_experience/' + value, headers)
+                .then((res) => { console.log(res.data); this.print(); })
+                .catch((err) => console.log(err));
         } else {
             this.handleCloseModal();
         }
-        
 
     }
 
@@ -83,7 +89,6 @@ export default class PastExpierence extends React.Component {
     submit(e) {
         e.preventDefault();
         const data = {
-            mobile_number: "6395642409",
             organization: this.state.company,
             profile: this.state.role,
             type: this.state.workLocation,
@@ -91,8 +96,15 @@ export default class PastExpierence extends React.Component {
             enddate: this.state.endDate,
             description: this.state.describe
         }
-        axios.post('/api/accounts/student/add_experience', data)
-            .then((res) =>{ console.log(res);this.print();})
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.post('/api/accounts/student/add_experience', data, headers)
+            .then((res) => { console.log(res); this.print(); })
             .catch((err) => console.log(err));
 
         this.setState({
@@ -110,7 +122,14 @@ export default class PastExpierence extends React.Component {
 
     }
     print() {
-        axios.get('/api/accounts/student/view_experience/6395642409')
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.get('/api/accounts/student/view_experience', headers)
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -130,20 +149,27 @@ export default class PastExpierence extends React.Component {
     // 1
     edit() {
 
-// student/update_experience
-const data={
-    id:this.state.updateid,
-    organization: this.state.company,
-    profile: this.state.role,
-    type: this.state.workLocation,
-    startdate: this.state.startDate,
-    enddate: this.state.endDate,
-    description: this.state.describe
-    
-}
-axios.post('/api/accounts/student/update_experience',data)
-.then((res)=>{this.print();console.log(res.data)})
-.catch((err)=>console.log(err));
+        // student/update_experience
+        const data = {
+            id: this.state.updateid,
+            organization: this.state.company,
+            profile: this.state.role,
+            type: this.state.workLocation,
+            startdate: this.state.startDate,
+            enddate: this.state.endDate,
+            description: this.state.describe
+
+        }
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.post('/api/accounts/student/update_experience', data, headers)
+            .then((res) => { this.print(); console.log(res.data) })
+            .catch((err) => console.log(err));
         this.setState({
             editShow: false,
             dataShow: true,
@@ -151,16 +177,16 @@ axios.post('/api/accounts/student/update_experience',data)
             level: "",
             Skillname: ""
         })
-        
+
     }
     // 2
     editable(key) {
-    
+
         this.setState({
             editShow: true,
             dataShow: false,
             showModal: true,
-            updateid:this.state.expierence[key].id,
+            updateid: this.state.expierence[key].id,
             company: this.state.expierence[key].organization,
             role: this.state.expierence[key].profile,
             endDate: this.state.expierence[key].enddate,
@@ -211,13 +237,13 @@ axios.post('/api/accounts/student/update_experience',data)
                                 <div className="col-md-3" style={{ padding: "10px" }}>
                                     <button className="btn border-0" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.editable(key) }} >
-                                        <img src={edit}
+                                        <img src={edit} style={{height:"25px",width:"25px"}}
                                             height="30" alt="edit" className="img" />
                                     </button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                                     <button className="btn border-0" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.remove(item.id) }} >
-                                        <img src={remove}
+                                        <img src={remove}   style={{height:"25px",width:"25px"}}
                                             height="30" alt="edit" className="img" />
                                     </button>
 
@@ -254,25 +280,25 @@ axios.post('/api/accounts/student/update_experience',data)
                                         <div className="col-md-6">
                                             <label>Start Date</label>
                                             <DatePicker
-                                            className="form-control"
+                                                className="form-control"
                                                 selected={new Date(this.state.startDate)}
                                                 onChange={(date) => { this.setState({ startDate: date }) }}
                                             />
                                         </div>
                                         <div className="col-md-6">
                                             <label>Completed Year:</label> &nbsp;&nbsp;
-                                            {this.state.endDate === 'Working'?
-                                            <DatePicker
-                                                selected={new Date()}
-                                                className="form-control"
-                                                onChange={(date) => { this.setState({ endDate: date }) }}
-                                            />
-                                            :
-                                            <DatePicker
-                                                selected={new Date(this.state.endDate)}
-                                                className="form-control"
-                                                onChange={(date) => { this.setState({ endDate: date }) }}
-                                            />
+                                            {this.state.endDate === 'Working' ?
+                                                <DatePicker
+                                                    selected={new Date()}
+                                                    className="form-control"
+                                                    onChange={(date) => { this.setState({ endDate: date }) }}
+                                                />
+                                                :
+                                                <DatePicker
+                                                    selected={new Date(this.state.endDate)}
+                                                    className="form-control"
+                                                    onChange={(date) => { this.setState({ endDate: date }) }}
+                                                />
                                             }
                                         </div>
                                     </div>
@@ -324,6 +350,7 @@ axios.post('/api/accounts/student/update_experience',data)
                                 placeholder="e.g. Home,Officee" />
                             <br />
                             Currently Working: <input type="checkbox"
+                             style={{height:"15px"}}
                                 onChange={() => { this.checkBox() }} />
                             <br /><br />
                             <div className="row">

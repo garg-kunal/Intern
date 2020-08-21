@@ -152,7 +152,13 @@ class ViewInternship extends React.Component {
         super(props)
     }
     componentDidMount() {
-        this.next();
+        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt") === undefined) {
+
+            this.props.history.push('/login/student');
+        }
+        else {
+            this.next();
+        }
     }
     next() {
         if (this.props.location.id === undefined)

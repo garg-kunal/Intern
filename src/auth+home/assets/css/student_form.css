@@ -32,6 +32,11 @@
   height: 100vh;
   overflow: hidden;
 }
+.company-detail-main{
+   padding-right: 10px;
+    width: 80%;
+
+}
 .welcome-merge{
   padding-bottom: 120px;
   padding-left: 10px;
@@ -155,7 +160,7 @@ input, .industry {
   border: none;
   border-bottom: solid 1px black;
 }
-@media (max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
   .welcome .logo {
     font-size: 1.8em;
   }
@@ -195,7 +200,7 @@ input, .industry {
     line-height: 1.8em;
   }
 }
-@media (max-width: 900px) {
+@media only screen and (max-width: 900px) {
   .welcome .logo {
     font-size: 1.7em;
   }
@@ -216,7 +221,7 @@ input, .industry {
     padding-top: 6px;
   }
   .formSignUp {
-    padding: 30px;
+    padding: 10px;
   }
   .options {
     display: grid;
@@ -231,11 +236,17 @@ input, .industry {
     line-height: 1.6em;
   }
 }
-@media (max-width: 800px) {
+/* }
+@media only screen and (max-width: 800px) {
   .formSignUp {
     padding: 30px;
     padding-top: 150px;
   }
+  .company-detail-main{
+    padding-right: 10px;
+     max-width: 90%;
+ 
+ }
   .greetDiv {
     margin-top: 10vh;
   }
@@ -262,14 +273,22 @@ input, .industry {
     background-color: rgba(0,255,80,0.6);
     height: 50px;
   }
-}
-@media (max-width: 700px) {
+} */
+@media only screen and (max-width: 768px) {
   .welcome-merge{
     font-size: 22px;
     padding-left: 10px;
     padding-bottom: -30px;
     font-weight: 900;
   }
+  .company-logo-main{
+    height: 80px;
+    width: 80px;
+  }
+  .company-detail-main{
+    /* padding-right: 10px; */
+     max-width: 90%;
+ }
   .formSignUp {
     padding: 10px;
     padding-top: 100px;
@@ -310,7 +329,7 @@ input, .industry {
     height: 40px;
   }
 }
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   
   .signUp {
     display: grid;
@@ -397,8 +416,8 @@ input, .industry {
     color: rgba(0,255,80,0.6);
   }
 }
-
-@media (max-width: 374px) {
+/* 
+@media only screen and (max-width: 374px) {
   .spacing {
     text-align: center;
   }
@@ -421,4 +440,4 @@ input, .industry {
     padding-top: 4px;
     width: 95%;
   }
-}
+} */

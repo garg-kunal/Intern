@@ -58,20 +58,19 @@ class PostInternship extends React.Component {
             this.state.startDate.length === 0 ||
             this.state.stipend.length === 0 ||
             this.state.responsibility.length === 0 ||
-            this.state.otherSkills.length === 0) {
-            this.state.messages.push('Fields Required..');
-            this.setState({
-                show: true
-            })
+            this.state.otherSkills.length === 0){
+                this.state.messages.push('Fields Required..');
+                this.setState({
+                    show:true
+                })
 
-        }
-        else {
-            this.setState({
-                messages: []
-            })
+            }
+            else{
+                this.setState({
+                    messages:[]
+                })
 
             const data = {
-                mobile_number: "7599245269",
                 profile: this.state.profile,
                 place: this.state.internshipPlace,
                 time: this.state.internshipTime,
@@ -87,8 +86,52 @@ class PostInternship extends React.Component {
                 benefits: this.state.benefits,
                 questions: this.state.questions,
                 description: this.state.responsibility,
-                skills: this.state.otherSkills
+                skills: this.state.otherSkills,
+                id: this.props.location.id.key
             }
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+
+        axios.post('/api/accounts/company/add_internship', data, headers)
+            .then((res) => {
+                this.setState({
+                    messages: []
+                });
+                console.log(res.data);
+
+                if (res.data.status === 200) {
+                    this.state.messages.push("Internship Added");
+                    this.props.history.push("/company/intern/save_intern");
+                }
+                else {
+                    this.state.messages.push(res.data.status_message.message);
+                    this.setState({
+                        show: true
+                    })
+                }
+
+            })
+            .catch((err) => {
+                this.state.messages.push("Try Again After Sometime..");
+                this.setState({
+                    show: true
+                })
+
+            });
+        }
+
+    }
+    componentDidMount() {
+        if (this.props.location.id === undefined) {
+            alert("Try After Some Time");
+            this.props.history.push("/company/dashboard");
+        }
+        else {
             const headers = {
                 headers: {
                     'Authorization': "Token " + localStorage.getItem("merge_jwt"),
@@ -96,32 +139,23 @@ class PostInternship extends React.Component {
                     'Content-Type': 'application/json'
                 }
             }
-            axios.post('/api/accounts/company/add_internship', data, headers)
+            axios.get('/api/accounts/company/view_internship/' + this.props.location.id.key, headers)
                 .then((res) => {
+                    console.log(res.data.data)
                     this.setState({
-                        messages: []
-                    });
-                    console.log(res.data);
+                        profile: res.data.data.profile,
+                        city: res.data.data.location,
+                        otherSkills: res.data.data.skills,
+                        openings: res.data.data.openings,
+                        days: res.data.data.duration,
+                        responsibility: res.data.data.description
 
-                    if (res.data.status === 200) {
-                        this.state.messages.push("Internship Added");
-                        this.props.history.push("/company/intern/save_intern");
-                    }
-                    else {
-                        this.state.messages.push(res.data.status_message.message);
-                        this.setState({
-                            show: true
-                        })
-                    }
-
-                })
-                .catch((err) => {
-                    this.state.messages.push("Try Again After Sometime..");
-                    this.setState({
-                        show: true
+                    }, () => {
+                        console.log(this.state.openings);
+                        console.log(this.state.responsibility)
                     })
-
-                });
+                })
+                .catch((err) => console.log(err))
         }
     }
 
@@ -159,7 +193,8 @@ class PostInternship extends React.Component {
                 <input type="text" value={this.state.city} className="city form-control" placeholder="e.g. Bangalore"
                     onChange={(e) => { this.setState({ city: e.target.value }) }} />
                 <p className="head head3">Number Of Openings :</p>
-                <Openings methodFromParent={this.parentCollector} />
+                <input type="number" name="openings" value={this.state.openings} className="city form-control" placeholder="e.g. 20"
+                    onChange={(e) => { this.setState({ openings: e.target.value }) }} />
                 <p className="head head3">Internship Start Date :</p>
                 <StartDate methodFromParent={this.parentCollector} />
                 <p className="head head3">Internship Duration :</p>
@@ -169,7 +204,10 @@ class PostInternship extends React.Component {
 
                 {/* <Duration methodFromParent={this.parentCollector} /> */}
                 <p className="head head3">Intern's Responsibilities :</p>
-                <Responsibility methodFromParent={this.parentCollector} />
+                <textarea className="form-control" value={this.state.responsibility}
+                    cols="10" rows="1" onChange={(e) => { this.setState({ responsibility: e.target.value }) }} placeholder="Enter Text..." />
+
+                {/* <Responsibility methodFromParent={this.parentCollector} /> */}
                 <p className="head head3">Stipend :</p>
                 <Stipend methodFromParent={this.parentCollector} />
                 <p className="head head3">Benefits :</p>

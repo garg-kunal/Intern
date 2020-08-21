@@ -35,6 +35,14 @@ class Screen2 extends React.Component {
         console.log(boxes);
 
     }
+    componentDidCatch(){
+        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt")===undefined) {
+        
+            this.props.history.push('/login/student');
+        }
+        else {
+        }
+    }
     render() {
 
 

@@ -63,10 +63,17 @@ export default class Skills extends React.Component {
     // Delete the Skill
 
     Remove=(value)=> {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
     
         if (window.confirm(" Are You sure Delete? ")) {
             // /student/delete_skill/
-            axios.delete('/api/accounts/student/delete_skill/'+value)
+            axios.delete('/api/accounts/student/delete_skill/'+value,headers)
             .then((res)=>this.print())
             .catch((err)=>console.log(err))
             
@@ -75,8 +82,15 @@ export default class Skills extends React.Component {
         }
     }
     print(){
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
       
-        axios.get('/api/accounts/student/view_skills/6395642409')
+        axios.get('/api/accounts/student/view_skills',headers)
         .then((res)=>{
             this.setState({
                 skillsOut:res.data.data
@@ -92,11 +106,17 @@ export default class Skills extends React.Component {
     submit(e) {
         e.preventDefault();
         var data = {
-            mobile_number:"6395642409",
             skill: this.state.Skillname,
             level: this.state.level
         }
-        axios.post('/api/accounts/student/add_skill',data)
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.post('/api/accounts/student/add_skill',data,headers)
         .then((res)=>console.log(res.data))
         .catch((err)=>console.log(err))
         this.state.skillsOut.push(data);
@@ -117,9 +137,16 @@ export default class Skills extends React.Component {
             skill: this.state.Skillname,
             level: this.state.level
         }
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
 
         //student/update_skill/<int:id>
-        axios.post('/api/accounts/student/update_skill',data)
+        axios.post('/api/accounts/student/update_skill',data,headers)
         .then((res)=>this.print())
         .catch((err)=>console.log(err));
 
@@ -166,12 +193,12 @@ export default class Skills extends React.Component {
                                 <div className="col-md-3" style={{ padding: "10px" }}>
                                     <button className="btn border-0" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.editable(key) }} >
-                                        <img src={edit} height="30" alt="edit" className="img" />
+                                        <img src={edit} style={{height:"25px",width:"25px"}} alt="edit" className="img" />
                                     </button>
                                                &nbsp;&nbsp;&nbsp;&nbsp;
                                    <button className="btn border-0" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.Remove(item.id) }} >
-                                        <img src={remove} height="30" alt="edit" className="img" />
+                                        <img src={remove} style={{height:"25px",width:"25px"}} alt="edit" className="img" />
                                     </button>
 
 

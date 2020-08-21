@@ -49,7 +49,14 @@ export default class SchoolXII extends React.Component {
     }
 
     print() {
-        axios.get('/api/accounts/student/education/12/get/6395642409')
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.get('/api/accounts/student/education/12/get',headers)
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -92,8 +99,17 @@ export default class SchoolXII extends React.Component {
 
     remove() {
         // student/education/12/delete/<int:mobile_number>
+
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        
         if (window.confirm(" Are You sure Delete? ")) {
-        axios.delete('/api/accounts/student/education/12/delete/6395642409')
+        axios.delete('/api/accounts/student/education/12/delete',headers)
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -124,10 +140,16 @@ export default class SchoolXII extends React.Component {
 
     // Add Skill
     submit(e) {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         e.preventDefault();
         if (this.state.unCheck) {
             const data = {
-                mobile_number: "6395642409",
                 school: this.state.school,
                 board: this.state.board,
                 cgpa_percentage: this.state.marks,
@@ -136,7 +158,7 @@ export default class SchoolXII extends React.Component {
                 enddate: this.state.endDate
 
             }
-            axios.post('/api/accounts/student/education/12', data)
+            axios.post('/api/accounts/student/education/12', data,headers)
                 .then((res) => {
                     console.log(res.data)
                     alert(res.data.status_message.message);
@@ -150,7 +172,6 @@ export default class SchoolXII extends React.Component {
         }
         else {
             const data = {
-                mobile_number: "6395642409",
                 school: this.state.school,
                 board: this.state.board,
                 cgpa_percentage: this.state.marks,
@@ -159,7 +180,7 @@ export default class SchoolXII extends React.Component {
                 enddate: "Pursuing"
 
             }
-            axios.post('/api/accounts/student/education/12', data)
+            axios.post('/api/accounts/student/education/12', data,headers)
                 .then((res) => {
                     console.log(res.data);
                     // alert(res.data.status_message.message);
@@ -185,7 +206,14 @@ export default class SchoolXII extends React.Component {
             stream: this.state.stream,
             enddate: this.state.endDate
         }
-        axios.post('/api/accounts/student/education/12', data)
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.post('/api/accounts/student/education/12', data,headers)
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -253,12 +281,12 @@ export default class SchoolXII extends React.Component {
                                     <div className="col-md-3" style={{ padding: "10px" }}>
                                         <button className="btn border-0" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.editable() }} ><img src={edit}
-                                                height="30" alt="edit" className="img" />
+                                             style={{height:"25px",width:"25px"}} alt="edit" className="img" />
                                         </button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <button className="btn border-0" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.remove() }} ><img src={remove}
-                                                height="30" alt="edit" className="img" />
+                                              style={{height:"25px",width:"25px"}} alt="edit" className="img" />
                                         </button>
                                     </div>
 
@@ -300,7 +328,7 @@ export default class SchoolXII extends React.Component {
                                         <br />
                                         <div className="row">
                                             <div className="col-md-6">
-                                                <label>Start Date</label>
+                                                <label style={{fontSize:"20px"}}>Start Date</label>
                                                 <DatePicker
                                                     className="form-control"
                                                     selected={new Date(this.state.startDate)}
@@ -309,7 +337,7 @@ export default class SchoolXII extends React.Component {
                                                 <br /><br />
                                             </div>
                                             <div className="col-md-6">
-                                                <label>Complete Date:</label>
+                                                <label style={{fontSize:"20px"}}>Complete Date:</label>
                                                 {this.state.endDate === "Pursuing" ?
                                                     <DatePicker
                                                         className="form-control"
@@ -375,6 +403,7 @@ export default class SchoolXII extends React.Component {
                                         placeholder="e.g. 93% or 9.4 cgpa" />
                                     <br />
                                     Currently Studying: <input type="checkbox"
+                                    style={{height:"15px"}}
                                         onChange={() => { this.checkBox() }} />
                                     <br /><br />
                                     <div className="row">

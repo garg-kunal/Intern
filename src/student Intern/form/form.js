@@ -14,7 +14,7 @@ import Graduation from './educations/graduation';
 import Skills from './skills';
 import Additonal from './additional';
 import Potfolio from './portfolioLink';
-
+import axios from '../../setup';
 
 export default class Form extends React.Component {
 
@@ -33,14 +33,46 @@ export default class Form extends React.Component {
             portfolio: [],
             resume: [],
             showAdd: false,
+            check: false,
+            name: "",
+            mobile_number: "",
+            city: "",
+            email: "",
+        }
+    }
+    componentDidMount() {
+        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt") === undefined) {
+
+            this.props.history.push('/login/student');
+        }
+        else {
+            this.setState({ check: this.props.match.params.bool }, () => {
+                // alert(this.state.check);
+            });
+            const headers = {
+                headers: {
+                    'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+            axios.get('/api/accounts/student', headers)
+                .then((res) => {
+                    console.log(res.data);
+                    this.setState({
+                        email: res.data.data.email,
+                        name: res.data.data.name,
+                        mobile_number: res.data.data.mobile_number,
+                        city: res.data.data.city
+                    })
+                })
+                .catch((err) => console.log(err))
         }
     }
 
     imageHandler = (e) => {
         this.setState({
             picLink: e,
-            //picLink: URL.createObjectURL(e.target.files[0]),
-            //url: e.target.files[0]
         })
     }
 
@@ -51,7 +83,7 @@ export default class Form extends React.Component {
                 <div className="container-fluid inner-container" data-aos="fade-up" data-aos-easing="linear"
                     data-aos-duration="2500">
                     <div className="row"><h3 className="mx-auto heading">Personal Information</h3></div>
-                    <br /><br /><br />
+                    <br />
                     <div className="row">
                         <div className=" col-md-2 col-lg-2">
                             <img src={this.state.picLink || userpng}
@@ -71,10 +103,10 @@ export default class Form extends React.Component {
 
                         </div>
                         <div className="col-md-10 col-lg-10 username mx-auto">
-                            <h3><strong>HarshDeep Singh</strong></h3><br />
-                        email here<br />
-                        phn no here<br />
-                        changigarh<br />
+                            <h3><strong>{this.state.name}</strong></h3>
+                            {this.state.email}<br />
+                            {this.state.mobile_number}<br />
+                            {this.state.city}<br />
                             <hr></hr>
                         </div>
                     </div>
@@ -115,8 +147,13 @@ export default class Form extends React.Component {
 
                     <br /><br />
                     <div className="row mx-auto">
-                        <button className="btn btn-primary mx-auto " onClick={()=>{this.props.history.push('/internships')}}>
-                            Proceed</button>
+                        {this.state.check === 'true' ?
+                            <button className="btn btn-primary mx-auto " onClick={() => { this.props.history.push('/student/status') }}>
+                                Submit Application</button> :
+                            <button className="btn btn-primary mx-auto " onClick={() => { this.props.history.push('/student/internships') }}>
+                                Proceed</button>
+                        }
+
                     </div>
 
                 </div>

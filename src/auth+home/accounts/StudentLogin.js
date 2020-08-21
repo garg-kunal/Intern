@@ -5,6 +5,7 @@ import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
 import '../assets/css/student_form.css';
 import axios from '../../setup';
+import login from '../assets/draw.png';
 export class StudentLogin extends Component {
   constructor(props) {
     super(props);
@@ -51,26 +52,29 @@ export class StudentLogin extends Component {
     });
   }
 
- 
+
 
   handleSubmit(event) {
-    const data={
-      mobile_number:this.state.mobile_number,
+    const data = {
+      mobile_number: this.state.mobile_number,
     }
-    axios.post('/api/accounts/student/login',data)
-    .then((res) => {
-      console.log(res.data)
-      if (res.data.status === 200)
-        this.props.history.push('/login/verify_otp/'+this.state.mobile_number);
-      else if (res.data.status !== 200)
-       this.state.messages.push(res.data.status_message.message);
-       this.setState({
-         show:true
-       })
+    this.setState({
+      messages: []
     })
-    .catch((err) => {
-      console.log(err)
-    })
+    axios.post('/api/accounts/student/login', data)
+      .then((res) => {
+        console.log(res.data)
+        if (res.data.status === 200)
+          this.props.history.push('/login/verify_otp/' + this.state.mobile_number);
+        else if (res.data.status !== 200)
+          this.state.messages.push(res.data.status_message.message);
+        this.setState({
+          show: true
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     event.preventDefault();
   }
 
@@ -81,7 +85,7 @@ export class StudentLogin extends Component {
           <div className="col-md-6 col-lg-6 text-white violet_sq_bg">
             <Welcome />
           </div>
-          <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{padding:"10px"}}>
+          <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{ padding: "10px" }}>
             <nav className="navbar navbar-expand-lg">
               <ul className="navbar-nav">
                 <li className="nav-item px-sm-3 px-xs-2 ml-0">
@@ -115,9 +119,13 @@ export class StudentLogin extends Component {
                 </li>
               </ul>
             </nav>
+            <div className="row no-gutters mt-1">
+              <img src={login} style={{height:"300px",width:"400px"}} className="img-fluid mx-auto text-center" />
+            </div>
             <form onSubmit={this.handleSubmit}>
+
               <div className="ml-md-3">
-               
+
 
 
                 <div className="form-group form-content text-left mt-md-5">

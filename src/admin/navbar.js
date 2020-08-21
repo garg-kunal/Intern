@@ -25,7 +25,7 @@ const navbar = () => {
                 </ul>
                 <a className="nav-link" href="#" style={{ float: "right" }}><img src={user}
                     className="img img-fluid userpng"
-                    style={{ height: "40px", float: "right" }}
+                    style={{ height: "40px",width:"40px", float: "right" }}
                     alt="user" />
                 </a>
             </div>

@@ -6,7 +6,7 @@ import glassHour from "../assets/glassHour.png"
 import eye from "../assets/eye (5).png"
 import copy from "../assets/copy.png";
 import Axios from '../../setup';
-import { Link } from 'react-router-dom'
+import { Link,NavLink } from 'react-router-dom'
 class DashboardTitle extends React.Component {
 
     render() {
@@ -14,24 +14,24 @@ class DashboardTitle extends React.Component {
             <div className="row">
                 <div className="col-3 pl-0 pr-0 titleCol">
                     <p>Profile
-                    <img src={arrow} alt="" className="downArrow" /></p>
+                    <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} /></p>
                 </div>
                 <div className="col-2 col-sm-3 pl-0 pr-0 titleCol">
                     <p>Status
-                    <img src={arrow} alt="" className="downArrow" /></p>
+                    <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} /></p>
                 </div>
                 <div className="col-2 pl-0 pr-0 titleCol">
-                    <p>No. of Applicants
-                    <img src={arrow} alt="" className="downArrow" /></p>
+                    <p>View Applicants
+                    <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} /></p>
                 </div>
 
                 <div className="col-2 col-sm-2 pl-0 pr-0 titleCol">
                     <p>Action
-                    <img src={arrow} alt="" className="downArrow" /></p>
+                    <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} /></p>
                 </div>
                 <div className="col-2 col-sm-2 pl-0 pr-0 titleCol">
                     <p>Action
-                    <img src={arrow} alt="" className="downArrow" /></p>
+                    <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} /></p>
                 </div>
             </div>
         )
@@ -50,7 +50,14 @@ class CompanyDashBoard extends React.Component {
     }
 
     componentDidMount() {
-        Axios.get('/api/accounts/company/view_all_internships/7599245269')
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        Axios.get('/api/accounts/company/view_all_internships', headers)
             .then((res) => {
                 this.setState({
                     results: res.data.data
@@ -61,7 +68,7 @@ class CompanyDashBoard extends React.Component {
 
     }
     nextPage() {
-        if (this.state.pageNo < 3) {
+        if (this.state.pageNo * 5 < this.state.results.length) {
             this.setState({
                 pageNo: this.state.pageNo + 1
             })
@@ -98,7 +105,7 @@ class CompanyDashBoard extends React.Component {
     }
     render() {
         const Applications = this.state.results.map((item, key) => {
-            if (((key - (this.state.pageNo - 1) * 6) >= 0) && ((key - (this.state.pageNo - 1) * 6) < 6)) {
+            if (((key - (this.state.pageNo - 1) * 5) >= 0) && ((key - (this.state.pageNo - 1) * 5) < 5)) {
                 return (
                     <div className="row">
                         <div className="col-3 pl-0 pr-0 rowCol">
@@ -106,15 +113,25 @@ class CompanyDashBoard extends React.Component {
                         </div>
                         <div className="col-2 col-sm-3 pl-0 pr-0 rowCol">
                             <p className="status" style={{ backgroundColor: this.chooseColor(item.status) }}>{item.status}</p>
-                            <img src={(item.status === "N") ? glassHour : null} alt="" className="downArrow" />
+                            <img src={(item.status === "N") ? glassHour : null} alt="" style={{ height: "30px", width: "30px" }} className="downArrow" />
                         </div>
                         <div className="col-2 pl-0 pr-0 rowCol">
-                            <p>{item.applicants}</p>
+                            <NavLink 
+                            to={{
+                                pathname:"/company/applications",
+                                id:{
+                                    key:item.id
+                                }
+                            }}
+                             style={{color:"#4A00E0"}}>
+                                <p>{item.applicants}</p>
+                            </NavLink>
+
                         </div>
                         <div className="col-2 col-sm-2 pl-0 pr-0 rowCol">
-                            <Link
+                            <Link style={{ color: "blue" }}
                                 to={{
-                                    pathname: "/view_internship",
+                                    pathname: "/company/view_internship",
                                     id: {
                                         key: item.id
                                     }
@@ -123,7 +140,14 @@ class CompanyDashBoard extends React.Component {
                         </div>
                         <div className="col-2 col-sm-2 pl-0 pr-0 rowCol">
 
-                            <Link
+                            <Link style={{ color: "blue" }}
+                                to={{
+                                    pathname: "/company/edit_intern",
+                                    id: {
+                                        key: item.id
+                                    }
+                                }}
+
                             >Edit Internship</Link>
 
 
@@ -148,7 +172,7 @@ class CompanyDashBoard extends React.Component {
                 </div>
                 <div className="container text-center nextPage">
                     <button type="button" className="left" onClick={this.prevPage}> {"<"} </button>
-                    <span className="currentPage">{this.state.pageNo + "/3"}</span>
+                    <span className="currentPage">{this.state.pageNo}</span>
                     <button type="button" className="right" onClick={this.nextPage}> {">"} </button>
                 </div>
             </div>

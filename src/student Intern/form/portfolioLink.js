@@ -66,9 +66,16 @@ export default class Portfolio extends React.Component {
     // Delete the Skill
 
     remove(key) {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         //student/delete_portfolio
         if (window.confirm(" Are You sure Delete? ")) {
-            axios.delete('/api/accounts/student/delete_portfolio/' + key)
+            axios.delete('/api/accounts/student/delete_portfolio/' + key,headers)
                 .then((res) => this.print())
                 .catch((err) => console.log(err));
 
@@ -82,11 +89,17 @@ export default class Portfolio extends React.Component {
     // Add Skill
     submit(e) {
         e.preventDefault();
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         const data = {
-            mobile_number: "6395642409",
             link: this.state.link
         }
-        axios.post('/api/accounts/student/portfolio', data)
+        axios.post('/api/accounts/student/portfolio', data,headers)
             .then((res) => this.print())
             .catch((err) => console.log(err));
         this.setState({
@@ -97,7 +110,14 @@ export default class Portfolio extends React.Component {
     }
     print() {
         //6395642409
-        axios.get('/api/accounts/student/get_portfolio/6395642409')
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.get('/api/accounts/student/get_portfolio',headers)
             .then((res) => {
                 console.log(res.data.data);
                 this.setState({
@@ -114,8 +134,15 @@ export default class Portfolio extends React.Component {
             id:this.state.updateid,
             link:this.state.link
         }
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
 
-        axios.post('/api/accounts/student/update_portfolio', data)
+        axios.post('/api/accounts/student/update_portfolio', data,headers)
             .then((res) => {
                 console.log(res.data)
                 this.print();
@@ -160,11 +187,13 @@ export default class Portfolio extends React.Component {
                                 <div className="col-md-3" style={{ padding: "10px" }}>
                                     <button className="btn border-0" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.editable(key) }} ><img src={edit}
+                                        style={{height:"25px",width:"25px"}}
                                             height="30" alt="edit" className="img" /></button>
 
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <button className="btn border-0" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.remove(item.id) }} ><img src={remove}
+                                        style={{width:"25px",height:"25px"}}
                                             height="30" alt="edit" className="img" /></button>
                                 </div>
 

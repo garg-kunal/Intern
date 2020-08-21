@@ -10,7 +10,20 @@
     margin-bottom: 40px;
 }
 
+.application-text{
+    font-size: 18px;
+    font-weight: 500;
+}
+.btn-prev-applications{
+    color: #4A00E0;
+    background-color: white;
+    border:1px solid #4A00E0;
+}
+.btn-next-applications{
+    color: white;
+    background-color: #4A00E0;
 
+}
 
 .downArrow {
     margin-left: 6px;

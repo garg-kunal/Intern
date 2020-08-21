@@ -1,7 +1,6 @@
 import React from "react";
-import logo from "../assets/Merge..png";
-import glassHour from "../assets/glassHour2.png";
-import "../css/saveInternship.css";
+import glassHour from '../company/assets/glassHour2.png'
+// import "../css/saveInternship.css";
 
 class ReviewInternship extends React.Component {
     render() {
@@ -10,8 +9,9 @@ class ReviewInternship extends React.Component {
                 <div className="one">
                     <img src={glassHour} className="img-fluid" alt="" style={{width:"100px",height:"100px"}} />
                 </div>
-                <p className="lead success">Your internship has been submitted for review.<br/> We will get back to you within 48 working hours.<br/> Thank you for your patience.</p>
-                <button type="button" onClick={()=>{this.props.history.push('/company/dashboard')}}
+                <p className="lead success">Your Company details has been submitted for review.<br/> We will get back to you within 12-24 working hours.<br/> Thank you for your patience.</p>
+                <button type="button"
+                onClick={()=>{this.props.history.push('/')}}
                  className="btn btn-primary closeScreen col-4">Close</button>
             </div>
         )

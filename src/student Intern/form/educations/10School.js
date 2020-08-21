@@ -46,7 +46,14 @@ export default class SchoolX extends React.Component {
 
     }
     print() {
-        axios.get('/api/accounts/student/education/10/get/6395642409')
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.get('/api/accounts/student/education/10/get', headers)
             .then((res) => {
                 this.setState({
                     ListShow: true,
@@ -92,38 +99,60 @@ export default class SchoolX extends React.Component {
     // Delete the Skill
 
     remove() {
-        axios.delete('/api/accounts/student/education/10/delete/6395642409')
-            .then((res) => {
-                console.log(res);
-                this.setState({
-                    ListShow: false,
-                    board: "",
-                    class: "Senior Secondary X",
-                    school: "",
-                    marks: "",
-                    endDate: new Date(),
-                    startDate: new Date(),
-                    describe: "",
-                    unCheck: false
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        if (window.confirm("Are you sure want to delete")) {
+            axios.delete('/api/accounts/student/education/10/delete',headers)
+                .then((res) => {
+                    console.log(res);
+                    this.setState({
+                        ListShow: false,
+                        board: "",
+                        class: "Senior Secondary X",
+                        school: "",
+                        marks: "",
+                        endDate: new Date(),
+                        startDate: new Date(),
+                        describe: "",
+                        unCheck: false
+                    })
                 })
+                .catch((err) => console.log(err));
+        }
+        else {
+            this.setState({
+                buttonShow: false,
+                dataShow: true,
             })
-            .catch((err) => console.log(err));
+            this.handleCloseModal();
+        }
 
     }
 
     // Add Skill
     submit(e) {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         e.preventDefault();
         if (this.state.unCheck) {
             const data = {
-                mobile_number: "6395642409",
                 school: this.state.school,
                 board: this.state.board,
                 cgpa_percentage: this.state.marks,
                 startdate: this.state.startDate,
                 enddate: "Pursuing"
             }
-            axios.post('/api/accounts/student/education/10', data)
+            axios.post('/api/accounts/student/education/10', data,headers)
                 .then((res) => {
                     alert(res.data.status_message.message);
                     this.print();
@@ -136,14 +165,13 @@ export default class SchoolX extends React.Component {
         }
         else {
             const data = {
-                mobile_number: "6395642409",
                 school: this.state.school,
                 board: this.state.board,
                 cgpa_percentage: this.state.marks,
                 startdate: this.state.startDate,
                 enddate: this.state.endDate
             }
-            axios.post('/api/accounts/student/education/10', data)
+            axios.post('/api/accounts/student/education/10', data,headers)
                 .then((res) => {
                     alert(res.data.status_message.message);
                     this.print();
@@ -166,15 +194,21 @@ export default class SchoolX extends React.Component {
     // Modal Show functions 
     // 1
     edit() {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         const data = {
-            mobile_number: "6395642409",
             school: this.state.school,
             board: this.state.board,
             cgpa_percentage: this.state.marks,
             startdate: this.state.startDate,
             enddate: this.state.endDate
         }
-        axios.post('/api/accounts/student/education/10', data)
+        axios.post('/api/accounts/student/education/10', data,headers)
             .then((res) => {
                 alert(res.data.status_message.message);
 
@@ -228,20 +262,21 @@ export default class SchoolX extends React.Component {
                                     <div className="col-md-3" style={{ padding: "10px" }}>
                                         <button className="btn border-0" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.editable() }} >
-                                            <img src={edit} height="30"
+                                            <img src={edit}  style={{width:"25px",height:"25px"}}
                                                 alt="edit" className="img" />
                                         </button>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                                         <button className="btn border-0" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.remove() }} ><img src={remove}
-                                                height="30" alt="edit" className="img" />
+                                            style={{height:"25px",width:"25px"}}
+                                                alt="edit" className="img" />
                                         </button>
                                     </div>
 
                                 </div> : null}
                             <div className="row">
                                 <div class="col-md-12 col-lg-12">
-                                    <br/><br/>
+                                    <br /><br />
                                     <High />
                                 </div>
                             </div>
@@ -273,9 +308,9 @@ export default class SchoolX extends React.Component {
                                             <div className="col-md-6 col-lg-6">
                                                 <label>Start Date</label>
                                                 <DatePicker
-                                                    
+
                                                     className="form-control"
-                                                   
+
                                                     selected={new Date(this.state.startDate)}
                                                     onChange={(date) => { this.setState({ startDate: date }) }}
                                                 />
@@ -283,20 +318,20 @@ export default class SchoolX extends React.Component {
                                             <div className="col-md-6 col-lg-6">
 
                                                 <label> Completion Date:</label>
-                                                {this.state.endDate === "Pursuing"?
-                                                <DatePicker
-                                                    className="form-control"
-                                                    selected={new Date()}
-                                                    onChange={(date) => { this.setState({ endDate: date }) }}
-                                                />
-                                                :
-                                                <DatePicker
-                                                    className="form-control"
-                                                    selected={new Date(this.state.endDate)}
-                                                    onChange={(date) => { this.setState({ endDate: date }) }}
-                                                />
+                                                {this.state.endDate === "Pursuing" ?
+                                                    <DatePicker
+                                                        className="form-control"
+                                                        selected={new Date()}
+                                                        onChange={(date) => { this.setState({ endDate: date }) }}
+                                                    />
+                                                    :
+                                                    <DatePicker
+                                                        className="form-control"
+                                                        selected={new Date(this.state.endDate)}
+                                                        onChange={(date) => { this.setState({ endDate: date }) }}
+                                                    />
                                                 }
-                                                
+
                                             </div> <br /><br />
 
                                         </div>
@@ -342,13 +377,14 @@ export default class SchoolX extends React.Component {
                                         placeholder="e.g. 93% or 9.4 cgpa" />
                                     <br />
                                     Currently Studying: <input type="checkbox"
+                                    style={{height:"15px"}}
                                         onChange={() => { this.checkBox() }} />
                                     <br /><br />
                                     <div className="row">
                                         <div className="col-md-6">
                                             <label>Start Date</label>
                                             <DatePicker
-                                               
+
                                                 className="form-control"
                                                 selected={this.state.startDate}
                                                 onChange={(date) => { this.setState({ startDate: date }) }}
@@ -358,9 +394,9 @@ export default class SchoolX extends React.Component {
                                             {this.state.unCheck ? null :
                                                 <div><label>Completion Date:</label> &nbsp;&nbsp;
                                             <DatePicker
-                                                        
+
                                                         className="form-control"
-                                                       
+
                                                         selected={this.state.endDate}
                                                         onChange={(date) => { this.setState({ endDate: date }) }}
                                                     />

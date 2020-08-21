@@ -18,8 +18,10 @@ class Openings extends React.Component {
     }
     render() {
         return (
-            <input type="number" name="openings" className="city" placeholder="e.g. 20" onChange={this.openings} />
-        )
+            <input type="number" name="openings" value={this.state.openings}
+             className="city form-control" placeholder="e.g. 20" onChange={this.openings} />
+       
+       )
     }
 }
 

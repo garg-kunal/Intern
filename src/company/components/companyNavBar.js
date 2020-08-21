@@ -36,9 +36,6 @@ class CompanyNavBar extends React.Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav mx-auto">
-                        <li className="nav-item active">
-                            <NavLink className="nav-link" style={{ color: "white" }} to="/company">Home <span className="sr-only">(current)</span></NavLink>
-                        </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" style={{ color: "white" }} to="/company/dashboard">Dashboard</NavLink>
                         </li>
@@ -48,9 +45,9 @@ class CompanyNavBar extends React.Component {
 
                     </ul>
                     <a className="nav-link" href="#" style={{ float: "right" }}><img src={user}
-                        className="img img-fluid userpng"
+                        className="img-fluid userpng"
                         onClick={this.showProfile}
-                        style={{ height: "40px", float: "right" }}
+                        style={{ height: "30px",width:"30px", float: "right" }}
                         alt="user" />
                         <ProfileBox show={this.state.showProfile} />
                     </a>

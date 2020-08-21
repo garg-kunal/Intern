@@ -8,7 +8,7 @@
     border: none;
     font-family: 'Poppins', sans-serif;
 }
-.main{
+.main-score{
     width: 100% !important;
     background-color: #4A00E0!important;
     height: 100vh;
@@ -128,7 +128,7 @@
     p {
       font-size: 1em;
     }
-    .btn-intern{
+    .btn-intern-status{
         font-size: 10px;
     }
 }

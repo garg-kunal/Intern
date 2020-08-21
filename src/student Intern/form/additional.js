@@ -64,14 +64,22 @@ export default class Additional extends React.Component {
     // Delete the Skill
 
     remove() {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         if (window.confirm(" Are You sure Delete? ")) {
-            axios.delete('/api/accounts/student/delete_bio/6395642409')
+            axios.delete('/api/accounts/student/delete_bio', headers)
                 .then((res) => {
                     console.log(res.data);
                     alert("Deleted Succesfully");
                     this.setState({
                         buttonShow: true,
                         dataShow: false,
+                        textArea:''
                     })
                 })
 
@@ -90,14 +98,20 @@ export default class Additional extends React.Component {
     // Add Skill
     submit(e) {
         e.preventDefault();
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         if (this.state.textArea.length > 500)
             alert("Too large Information");
         else {
             var data = {
-                mobile_number: "6395642409",
                 bio: this.state.textArea
             }
-            axios.post('/api/accounts/student/add_bio', data)
+            axios.post('/api/accounts/student/add_bio', data, headers)
                 .then((res) => {
                     console.log(res.data);
                     this.setState({
@@ -116,13 +130,22 @@ export default class Additional extends React.Component {
         }
     }
     print() {
-        axios.get('/api/accounts/student/view_bio/6395642409')
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.get('/api/accounts/student/view_bio', headers)
             .then((res) => {
-                this.setState({
-                    dataShow: true,
-                    buttonShow: false,
-                    textOut: res.data.data
-                })
+                if (res.data.data.length !== 0) {
+                    this.setState({
+                        dataShow: true,
+                        buttonShow: false,
+                        textOut: res.data.data
+                    })
+                }
             })
             .catch((err) => {
                 console.log(err);
@@ -136,14 +159,20 @@ export default class Additional extends React.Component {
     // Modal Show functions 
     // 1
     edit() {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         if (this.state.textArea.length > 500)
             alert("Too large Information");
         else {
             var data = {
-                mobile_number: "6395642409",
                 bio: this.state.textArea
             }
-            axios.post('/api/accounts/student/add_bio', data)
+            axios.post('/api/accounts/student/add_bio', data, headers)
                 .then((res) => {
                     console.log(res.data);
 
@@ -175,7 +204,7 @@ export default class Additional extends React.Component {
             editShow: true,
             dataShow: false,
             showModal: true,
-            textArea:this.state.textOut
+            textArea: this.state.textOut
         })
 
     }
@@ -196,11 +225,13 @@ export default class Additional extends React.Component {
                             <div className="col-md-3" style={{ padding: "10px" }}>
                                 <button className="btn border-0" style={{ backgroundColor: "white" }}
                                     onClick={() => { this.editable() }} ><img src={edit}
+                                        style={{ height: "25px", width: "25px" }}
                                         height="30" alt="edit" className="img" /></button>
 
                             &nbsp;&nbsp;&nbsp;&nbsp;
                                 <button className="btn border-0" style={{ backgroundColor: "white" }}
                                     onClick={() => { this.remove() }} ><img src={remove}
+                                        style={{ height: "25px", width: "25px" }}
                                         height="30" alt="edit" className="img" /></button>
                             </div>
 
@@ -231,6 +262,7 @@ export default class Additional extends React.Component {
                                     Update
                                         </button>&nbsp;&nbsp;
                                         <button className="btn btnedit"
+
                                     onClick={() => { this.handleCloseModal() }}>Cancel</button>
 
                             </div>

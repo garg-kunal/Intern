@@ -16,13 +16,13 @@ const Main = () => {
                     <div className="col-md-6 col-lg-6 col-6 ">
                       <div className="card text-center admin-card">
                           <br/>
-                          <p className="admin-heading"><NavLink to="/admin/internship">INTERNSHIP</NavLink></p>
+                          <p className="admin-heading"><NavLink className="text-primary" to="/admin/internship">INTERNSHIP</NavLink></p>
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-6 col-6">
                       <div className="card text-center admin-card">
                           <br/>
-                          <p className="admin-heading"><NavLink to="/admin/companies">COMPANIES</NavLink></p>
+                          <p className="admin-heading text-primary"><NavLink className="text-primary" to="/admin/companies">COMPANIES</NavLink></p>
                       </div>
                     </div>
                 </div>

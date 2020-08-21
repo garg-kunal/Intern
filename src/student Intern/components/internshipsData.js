@@ -66,11 +66,21 @@ class InternshipsData extends React.Component {
             })
         }
     }
+    componentDidMount(){
+        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt")===undefined) {
+        
+            this.props.history.push('/login/student');
+        }
+        else {
+            // alert("login")
+        }
+        
+    }
 
     render() {
         return (
             <div className="container-fluid main-box main-box-location">
-                <div className="logo" style={{ marginBottom: "10px", paddingTop: "15px" }}>
+                <div className="logo" style={{ marginBottom: "10px", paddingTop: "35px" }}>
                     <img src={logo} className="img img-fluid" />
                 </div>
                 <form className="dataForm form-group">

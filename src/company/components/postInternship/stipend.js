@@ -50,19 +50,19 @@ class Stipend extends React.Component {
             <div className="stipendType container-fluid">
                 <div className="availableProfiles stipend">
                     <label className="col-12 col-sm-6">
-                        <input type="radio" className="" name="stipend" value="Paid" onChange={this.stipendType}/>  
+                        <input type="radio" className=""  style={{height:"15px"}} name="stipend" value="Paid" onChange={this.stipendType}/>  
                         Paid
                     </label>
                     <label className="col-12 col-sm-6">
-                        <input type="radio" className="" name="stipend" value="Performance Based" onChange={this.stipendType}/>  
+                        <input type="radio" className=""  style={{height:"15px"}} name="stipend" value="Performance Based" onChange={this.stipendType}/>  
                         Performance Based
                     </label>
                     <label className="col-12 col-sm-6">
-                        <input type="radio" className="" name="stipend" value="Unpaid" onChange={this.stipendType}/>  
+                        <input type="radio" className=""  style={{height:"15px"}} name="stipend" value="Unpaid" onChange={this.stipendType}/>  
                         Unpaid
                     </label>
                     <label className="col-12 col-sm-6">
-                        <input type="radio" className="" name="stipend" value="Negotiable" onChange={this.stipendType}/>  
+                        <input type="radio" className=""  style={{height:"15px"}} name="stipend" value="Negotiable" onChange={this.stipendType}/>  
                         Negotiable
                     </label>
                 </div>            

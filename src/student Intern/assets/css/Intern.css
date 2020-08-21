@@ -5,6 +5,7 @@
 .container-intern{
 max-width: 80%;
 
+
 }
 .intern-company{
     color: #4A00E0;
@@ -14,19 +15,30 @@ max-width: 80%;
     font-size: 20px;
 }
 .intern-filters{
-    padding:30px;
-    height: 550px;
-    margin-top: 40px;
-    margin: 40px;
-    border-radius: 20px;
-    /* border: 2px solid #4A00E0; */
+    padding:40px;
+    margin-left: 50px;
+    margin-right: 10px;
+    height: 70vh;
+    box-sizing: border-box;
+    box-shadow: 0 0 6px 6px lightgrey;
+}
+.card-intern-student{
+    max-width: 38rem;
+}
+.card-intern{
+    box-shadow: 0 0 6px 6px lightgrey;
+    z-index: 50;
+    width: 41rem;
+    padding-left: 0;
+    padding: 10px;
+    margin-bottom: 30px;
 }
 .btn-intern-search{
     background-color: white;
     color: #4A00E0;
     border-radius: 20px;
     width: 150px;
-    margin: 50px;
+    margin: 20px;
     border: 1px solid #4A00E0;
 }
 .btn-intern-search:hover{
@@ -39,24 +51,24 @@ max-width: 80%;
     font-weight: 800;
 }
 .f-nav{  
-    z-index: 9999;
+    z-index: 5555;
     position: fixed;
     top: 40px;
-    padding: 30px;
-    width: 280px;
-    height: 600px;
-    border-radius: 20px;
+    padding:40px;
+    padding-right: 60px;
+    height: 83vh;
+    margin-left: 40px;
+    margin-right: 50px;
+    width: 350px;
 }
 .f-nav1{  
     position: absolute;
     right:200px;
     left: 1;
-    width: 680px;
+    width: 660px;
 }
 .f-nav2{  
-    position: sticky;
-    padding-top: 250px;
-    right:20px;
+  
 }
 .intern-type{
     font-size: medium;
@@ -64,51 +76,38 @@ max-width: 80%;
     padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
-.card-intern{
-    box-shadow: 0 0 6px 6px lightgrey;
-    z-index: 50;
-    max-Width:100%; 
-    padding: 10px;
-    margin: 15px;
-    margin-bottom: 30px;
-}
+
 
 .intern-head{
     text-decoration: solid;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 15px;
 }
 .intern-previous{
     background-color: white;
-    color:#1697F2;
-    /* position: static; */
-    width: 200px;
-    align-self: center;
-    align-content: center;
-    text-align: center;
-    align-items: center;
-    padding: 10px;
-    margin-left: 30px;
-    margin-bottom: 20px;
-    border-radius: 25px;
+    /* width: 150px; */
+    /* padding: 10px; */
+    margin-left: 250px;
     margin-top: 70px;
-    border:1px solid #1697F2;
+    margin-bottom: 40px;
+    /* margin-top: 10px; */
+    height: 20px;
+    transform: rotateY(180deg);
 }
-
+.label-filter{
+    font-size: 15px;
+    font-weight: 700;
+}
 .intern-next{
-    margin-left:20px;
+   border: 1px solid white;
+    background-color: white;
     margin-top: 70px;
-    padding-left: 20px;
-    background-color:#1697F2;
-    color:white;
-    width: 200px;
-    text-align: center;
-    align-self: center;
-    padding: 10px;
-    margin-bottom: 20px;
-    align-items: center;
-    border-radius: 25px;
-    border:1px solid white;
+    /* padding: 10px; */
+    height: 20px;
+    /* margin-top: 10px; */
+    margin-bottom: 40px;
+   
+   
 }
 .intern-details{
     font-size: larger;
@@ -157,6 +156,12 @@ max-width: 80%;
         margin-bottom: -20px;
     }
 }
+.form-filter{
+    border-radius: 0px;
+    width: 300px;
+    margin-left: 20px;
+}
+
 @media (max-width :1200px) {
     .company-logo{
         float: top-right;
@@ -227,13 +232,13 @@ max-width: 80%;
     content:"";
     box-sizing: border-box;
     font-family: "FontAwesome", sans-serif;
-    padding-left: 23px;
+    padding-left: 21px;
     font-size: 12px;
     line-height: 20px;
     background-color: #888;
     left: 0px;
-    top: 0px;
-    height: 18px;
+    top: 2px;
+    height: 16px;
     width: 40px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -245,6 +250,7 @@ max-width: 80%;
     background: #fff;
     left: 1px;
     top: 1px;
+    border: 1px solid #4A00E0;
     height: 18px;
     width: 20px;
   }

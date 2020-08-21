@@ -2,13 +2,21 @@ import React from "react";
 import logo from "../assets/images/Merge..png";
 import axios from '../../setup';
 import "../assets/css/Screen2.css";
-import { Modal,Spinner } from 'react-bootstrap';
+import { Modal, Spinner } from 'react-bootstrap';
 class Screen2 extends React.Component {
     constructor() {
         super();
         this.state = {
             other: "",
-            message:"Loading....."
+            array: [],
+            info: [],
+            boxes: [],
+            frontEnd: [],
+            backend: [],
+            database: [],
+            server: [],
+            message: "Loading.....",
+
         }
     }
     handleClose = () => {
@@ -22,35 +30,46 @@ class Screen2 extends React.Component {
         var element = e.target;
         if (element.style.backgroundColor === "rgb(74, 0, 224)") {
             element.style.backgroundColor = "#9F9F9F";
-        } else {
+        }
+        else if (element.style.backgroundColor === "#228B22") {
+            element.style.backgroundColor = "#228B22"
+        }
+        else if (element.style.backgroundColor === "#FF0000") {
+            element.style.backgroundColor = "#FF0000"
+        }
+        else {
             element.style.backgroundColor = "rgb(74, 0, 224)";
+        }
+    }
+    addSkill(e) {
+        if (e.target.checked)
+            this.state.boxes.push(e.target.value);
+        else {
+            const index = this.state.boxes.indexOf(e.target.value);
+            if (index > -1) {
+                this.state.boxes.splice(index, 1);
+            }
         }
     }
     printData = e => {
         e.preventDefault();
-        var boxes = [];
-        var ele = document.getElementsByClassName("field");
-        for (const child of ele) {
-            for (const labels of child.childNodes) {
-                for (const inputs of labels.getElementsByTagName('input')) {
-                    if (inputs.checked) {
-                        // console.log(inputs.value);
-                        boxes.push(inputs.value);
-                    }
-                }
-            }
-        }
-        // var others = document.getElementsByClassName("otherFields")[0];
-        // boxes.push(others.value);
-        console.log(boxes);
-        if (boxes.length === 0) alert("Please Checkout Technologies");
+        console.log(this.state.boxes);
+        if (this.state.boxes.length === 0){
+            this.setState({
+                message:"Please Checkout Technologies"
+            },()=>{
+                this.setState({
+                    show:true
+                })
+            })
+        } 
         else {
             this.setState({
-                message:"Loading...",
+                message: "Loading...",
                 show: true
             })
             const data = {
-                skills: boxes
+                skills: this.state.boxes
             };
             const headers = {
                 headers: {
@@ -72,36 +91,66 @@ class Screen2 extends React.Component {
                 })
                 .catch((err) => {
                     console.log(err);
-                   this.setState({
-                       message:"Try Again Later"
-                   })
+                    this.setState({
+                        message: "Try Again Later"
+                    })
                 });
         }
     }
+    componentDidMount() {
+        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt")===undefined) {
+        
+            this.props.history.push('/login/student');
+        }
+        else {
+            const headers = {
+                headers: {
+                    'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+            axios.get('/api/accounts/student/tested_skills', headers)
+                .then((res) => {
+                    console.log(res.data);
+                    this.setState({
+                        array: res.data.data,
+                        frontEnd: res.data.frontend,
+                        backend: res.data.backend,
+                        database: res.data.database,
+                        server: res.data.server
+
+                    })
+                })
+                .catch((err) => console.log(err));
+        }
+    }
+    pass(){
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.get("/api/accounts/student/check_skills",headers)
+        .then((res)=>{
+            console.log(res.data);
+            if(res.data.status===200)
+                this.props.history.push("/student/resume_form/false");
+            else{
+                this.setState({
+                    message:res.data.status_message.message
+                },()=>{
+                    this.setState({
+                        show:true
+                    })
+                })
+            }    
+        })
+        .catch((err)=>console.log(err));
+    }
     render() {
-        var info = [
-            { id: 1, field: "Front End", option1: "HTML", option2: "CSS", option3: "jQuery" },
-            { id: 2, field: "Back End", option1: "Python", option2: "Node", option3: "PHP" },
-            { id: 3, field: "Database", option1: "MySQL", option2: "MongoDB", option3: "FireStore" },
-            { id: 4, field: "Server", option1: "AWS", option2: "GCP", option3: "Azure" }
-        ];
-        const rows = info.map((information) => {
-            return (
-                <div className="field d-flex flex-wrap">
-                    <div className=" container row row-cols-2 ">
-                        <div className="col-md-3 col-lg-3 col-sm-3 col-xs-1">
-                            <span className="fieldName">{information.field + " :"}</span>
-                        </div>
-                        <div className="col-md-9 col-lg-9 col col-sm-10 col-xs-10">
-                            <label className="checkLabel " onClick={this.changeColor}><input type="checkbox" className="check"
-                                name={information.id + "field1"} value={information.option1} />{information.option1}</label>
-                            <label className="checkLabel" onClick={this.changeColor}><input type="checkbox" className="check" name={information.id + "field2"} value={information.option2} />{information.option2}</label>
-                            <label className="checkLabel" onClick={this.changeColor}><input type="checkbox" className="check" name={information.id + "field3"} value={information.option3} />{information.option3}</label>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
         return (
             <div className="container-fluid main-box">
                 <div className="logo">
@@ -110,12 +159,125 @@ class Screen2 extends React.Component {
                 <div className="container-fluid  innerBox">
                     <h4 >What tools do you use for your projects?</h4><br />
                     <div className="inputs container" >
-                        {rows}
-                        <div className="buttons">
-                            <button type="button" onClick={this.printData} className="confirmation btn">Done</button>
-                            <button type="button" className=" btn confirmation1">Cancel</button>
+                        <div className="row no-gutters">
+                            <div className="col-md-3 mx-auto">
+                                <h4 className="text-center" style={{ color: "black" }}> Frontend:</h4>
+                            </div>
+                            <div className="col-md-9 mx-auto">
+                                <div className="container flew-wrap d-flex flex-row">
+                                    {this.state.frontEnd.map((item, key) =>
+                                        <div className="col-md-3 col-lg-3 mx-auto">
+                                            {item.status === 'R' || item.status === 'A' ?
+                                                <label className="checkLabel" style={{ backgroundColor: item.color }}
+                                                >
+                                                    {item.skill}
+                                                </label>
+                                                :
+                                                <label className="checkLabel" style={{ backgroundColor: item.color }}
+                                                    onClick={this.changeColor}>
+                                                    <input type="checkbox"
+                                                        onChange={(e) => { this.addSkill(e) }}
+                                                        className="check"
+                                                        name={item.skill} value={item.skill} />
+                                                    {item.skill}
+                                                </label>
+                                            }</div>
+                                    )}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className="row no-gutters">
+                            <div className="col-md-3 mx-auto">
+                                <h4 className="text-center" style={{ color: "black" }}> Backend:</h4>
+                            </div>
+                            <div className="col-md-9 mx-auto">
+                                <div className="container flew-wrap d-flex flex-row">
+                                    {this.state.backend.map((item, key) =>
+                                        <div className="col-md-3 col-lg-3 mx-auto">
+                                            {item.status === 'R' || item.status === 'A' ?
+                                                <label className="checkLabel" style={{ backgroundColor: item.color }}
+                                                >
+                                                    {item.skill}
+                                                </label>
+                                                :
+                                                <label className="checkLabel" style={{ backgroundColor: item.color }}
+                                                    onClick={this.changeColor}>
+                                                    <input type="checkbox"
+                                                        onChange={(e) => { this.addSkill(e) }}
+                                                        className="check"
+                                                        name={item.skill} value={item.skill} />
+                                                    {item.skill}
+                                                </label>
+                                            }</div>
+                                    )}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="row no-gutters">
+                            <div className="col-md-3 mx-auto">
+                                <h4 className="text-center" style={{ color: "black" }}> Database:</h4>
+                            </div>
+                            <div className="col-md-9 mx-auto">
+                                <div className="container flew-wrap d-flex flex-row">
+                                    {this.state.database.map((item, key) =>
+                                        <div className="col-md-3 col-lg-3 mx-auto">
+                                            {item.status === 'R' || item.status === 'A' ?
+                                                <label className="checkLabel" style={{ backgroundColor: item.color }}
+                                                >
+                                                    {item.skill}
+                                                </label>
+                                                :
+                                                <label className="checkLabel" style={{ backgroundColor: item.color }}
+                                                    onClick={this.changeColor}>
+                                                    <input type="checkbox"
+                                                        onChange={(e) => { this.addSkill(e) }}
+                                                        className="check"
+                                                        name={item.skill} value={item.skill} />
+                                                    {item.skill}
+                                                </label>
+                                            }</div>
+                                    )}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="row no-gutters">
+                            <div className="col-md-3 mx-auto">
+                                <h4 className="text-center" style={{ color: "black" }}> Server:</h4>
+                            </div>
+                            <div className="col-md-9 mx-auto">
+                                <div className="container flew-wrap d-flex flex-row">
+                                    {this.state.server.map((item, key) =>
+                                        <div className="col-md-3 col-lg-3 mx-auto">
+                                            {item.status === 'R' || item.status === 'A' ?
+                                                <label className="checkLabel" style={{ backgroundColor: item.color }}
+                                                >
+                                                    {item.skill}
+                                                </label>
+                                                :
+                                                <label className="checkLabel" style={{ backgroundColor: item.color }}
+                                                    onClick={this.changeColor}>
+                                                    <input type="checkbox"
+                                                        onChange={(e) => { this.addSkill(e) }}
+                                                        className="check"
+                                                        name={item.skill} value={item.skill} />
+                                                    {item.skill}
+                                                </label>
+                                            }</div>
+                                    )}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+                    <div className="buttons">
+                        <button type="button" onClick={this.printData} className="confirmation btn">Done</button>
+                        <button type="button" onClick={()=>{this.pass()}} className=" btn confirmation1">Cancel</button>
+                    </div>
+
                 </div>
                 <Modal
                     show={this.state.show}
@@ -125,10 +287,10 @@ class Screen2 extends React.Component {
                 >
                     <Modal.Header closeButton />
                     <Modal.Body>
-                       {this.state.message}
+                        {this.state.message}
                     </Modal.Body>
                 </Modal>
-            </div>
+            </div >
         );
     }
 }

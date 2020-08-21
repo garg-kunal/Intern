@@ -42,9 +42,7 @@
     .innerBox{
         max-width: 85%;
     }
-    .main-box{
-        height: auto;
-    }
+    
     .checkLabel{
      width: 50px;
      padding: 6px;
@@ -58,7 +56,7 @@
         max-width: 85%;
     }
     .main-box{
-        height: auto;
+        height: 110vh;
     }
     .checkLabel{
         
@@ -73,12 +71,10 @@
     .innerBox{
         max-width: 85%;
     }
-    .main-box{
-        height: auto;
-    }
+   
     .checkLabel{
        
-        width: 70px;
+        width: 30px;
         padding: 6px;
         font-size: 9px;
         font-weight: 700;
@@ -111,11 +107,11 @@
     display:inline-block;
     border-radius: 20px;
     text-align: center;
-    width: 90px;
+    width: 130px;
     padding: 10px;
     font-size: 14px;
     font-weight: 700;
-    margin-left: 30px;
+    margin-left: 10px;
     color: white;
     background-color: #9F9F9F;
 }

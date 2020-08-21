@@ -30,9 +30,18 @@ import Home from './auth+home/home';
 import Thanku from './auth+home/ThankYou';
 import Companyregister from './auth+home/accounts/CompanyRegister';
 import verifyotp from './auth+home/VerifyOTP';
+import verify from './auth+home/verifyCompany';
 import Studentlogin from './auth+home/accounts/StudentLogin';
 import Companylogin from './auth+home/accounts/CompanyLogin';
+import Companydetail from './auth+home/accounts/companydetails';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import Savecompany from './auth+home/Savecompany';
+import ViewResume from './student Intern/form/viewResume';
+import comOtp from './auth+home/comOtp';
+import ViewIntern from './student Intern/components/viewIntern';
+import Adminlogin from './auth+home/accounts/Admin'
+
+
 
 function Student() {
   return (
@@ -40,16 +49,19 @@ function Student() {
       <Route path="/student" component={Navbar} />
       <Route component={Internships} path="/student/internships" exact />
       <Route component={Screen2} path="/test_skills" exact />
-      <Route path="/student/resume_form" component={Form} exact />
+      <Route path="/student/resume_form/:bool" component={Form} exact />
       <Route component={Screen3} path="/test_score" exact />
       <Route component={Screen4} path="/student/status" exact />
       <Route component={Studentdashboard} path="/student/dashboard" exact />
-      <Route component={Cityprefs} path="/student/city_pereference" exact />
+      <Route component={Cityprefs} path="/student/city_preference" exact />
       <Route component={Instructions} path="/quiz/instructions" exact />
       <Route component={Quiz} path="/quiz" exact />
-      <Route component={Questions} path="/student/intern_questions" exact />
+      <Route component={Questions} path="/student/intern_questions/:id" exact />
       <Route component={Interndata} path="/intern_data" exact />
       <Route component={Applyintern} path="/student/apply_intern" exact />
+      <Route component={ViewResume} path="/resume" exact />
+      <Route component={ViewIntern} path="/student/view_intern" exact />
+      
     </div>
   )
 }
@@ -60,9 +72,15 @@ function App() {
       <Route component={Companyregister} path="/create_account/company" exact />
       <Route component={Studentlogin} path="/login/student" exact />
       <Route component={Companylogin} path="/login/company" exact />
+      <Route component={Companydetail} path="/create/company_detail/:email" exact />
       <Route component={verifyotp} path="/login/verify_otp/:mobile_number" exact />
+      <Route component={verify} path="/login/verify/:email" exact />
       <Route component={Thanku} path="/login/thnku" exact />
-      <Route component={Home} path="/home" exact />
+      <Route component={Home} path="/" exact />
+      <Route component={Savecompany} path="/save_company" exact />
+      <Route component={comOtp} path="/verify/:email" exact />
+      <Route component={Adminlogin} path="/login/admin" exact />
+
 
 
       <Route component={Admincom} path="/admin/companies" exact />
@@ -72,7 +90,7 @@ function App() {
 
       <Company />
       <Student />
-
+      
     </Router>
 
 

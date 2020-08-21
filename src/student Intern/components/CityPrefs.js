@@ -19,6 +19,14 @@ class CityPrefs extends React.Component {
     valueChange = e => {
         this.setState({[e.target.name] : e.target.value})
     }
+    componentDidMount(){
+        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt")===undefined) {
+        
+            this.props.history.push('/login/student');
+        }
+        else {
+        }
+    }
     render() {
         return (
             <div className="box">

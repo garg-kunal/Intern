@@ -25,7 +25,7 @@ class InternshipType extends React.Component {
                 <div className="row">
                 <p className="typeIntern text-center col-12 col-md-2">Place</p>
                     <label className="col-12 col-sm-6 col-md-5">
-                        <input type="radio" className="" name="internshipPlace" value="Regular ( In Office / On Field )" onChange={this.internshipType}/>  
+                        <input type="radio" className="" name="internshipPlace" value="Regular" onChange={this.internshipType}/>  
                         Regular(In Office/On Field)
                     </label>
                     <label className="col-12 col-sm-6 col-md-5">

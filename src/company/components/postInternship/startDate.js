@@ -28,7 +28,7 @@ class StartDate extends React.Component {
         return (
             <div className="startDate container-fluid">
                 <label className="">
-                    <input type="radio" className="" name="startDate" value="Immediately ( Within 20 Days )" onChange={this.startDate}/>  
+                    <input type="radio" className="" name="startDate" value="Immediately" onChange={this.startDate}/>  
                     Immediately ( Within 20 Days )
                 </label>
                 <label className="">

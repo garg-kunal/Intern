@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import cookie from "react-cookies";
 import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
 import '../assets/css/student_form.css';
-
+import axios from '../../setup';
 
 export class CompanyRegister extends Component {
   constructor(props) {
@@ -60,57 +60,45 @@ export class CompanyRegister extends Component {
   }
 
   handleSubmit(event) {
-    const endpoint = "/api/accounts/company/create";
-    const csrfToken = cookie.load("csrftoken");
-    const thisComp = this;
-    const lookupOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": csrfToken,
-        credentials: "include",
-      },
-      body: JSON.stringify(this.state),
-    };
-    if (csrfToken !== undefined) {
-      fetch(endpoint, lookupOptions)
-        .then(function (response) {
-          if (!response.ok) {
-            console.log(response);
-          }
-          return response.json();
-        })
-        .then(function (jsonData) {
-          console.log(jsonData);
-          if (jsonData["status"] === 201) {
-            thisComp.props.history.push(
-              "/verify_otp/" +
-              thisComp.state.mobile_number +
-              "/" +
-              thisComp.state.name
-            );
-          } else {
-            console.log(jsonData.status_message);
-            thisComp.setState({ messages: jsonData.status_message });
-            thisComp.handleShow();
-          }
-        })
-        .catch((error) => {
-          this.setState({ errorMessage: error.toString() });
-          console.error("Error: ", error);
-        });
+    
+    const data = {
+      email: this.state.email,
+      name: this.state.name,
+      mobile_number: this.state.mobile_number,
+      company_type: this.state.company_type
     }
+    this.setState({
+      messages:[]
+    })
+   
+    axios.post('/api/accounts/company/create', data)
+      .then((res) => {
+        console.log(res.data.status_message.message)
+        if (res.data.status === 201)
+          this.props.history.push('/login/verify/' + this.state.email);
+        else if (res.data.status !== 201)
+        this.state.messages.push(res.data.status_message.message)
+        this.setState({
+          show:true
+        })
+        
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+
     event.preventDefault();
   }
 
   render() {
     return (
-      <div className="container-fluid" style={{padding:"0"}}>
+      <div className="container-fluid" style={{ padding: "0" }}>
         <div className="row no-gutters">
           <div className="col-md-6 col-lg-6 text-white violet_sq_bg">
             <Welcome />
           </div>
-          <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{paddingRight:"10px"}}>
+          <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{ paddingRight: "10px" }}>
             <nav className="navbar navbar-expand-lg">
               <ul className="navbar-nav">
                 <li className="nav-item px-sm-3 px-xs-2 ml-0">
@@ -182,7 +170,7 @@ export class CompanyRegister extends Component {
                       className="form-control industry"
                       name="industry"
                       id="select"
-                      style={{ borderRadius: "0", border: "1px solid lightgrey",fontSize:"20px", padding: "3px" }}
+                      style={{ borderRadius: "0", border: "1px solid lightgrey", fontSize: "20px", padding: "3px" }}
                       onChange={this.handleTypeChange}
                       value={this.state.company_type}
                       required
@@ -232,9 +220,9 @@ export class CompanyRegister extends Component {
                   }}
                   className="btn btn-lg col-5 pull-right"
                 >
-                <NavLink to="/login/company"> Sign In</NavLink>
-                 
-                  </button>
+                  <NavLink to="/login/company"> Sign In</NavLink>
+
+                </button>
                 <button
                   type="submit"
                   style={{
@@ -257,13 +245,7 @@ export class CompanyRegister extends Component {
             >
               <Modal.Header closeButton />
               <Modal.Body>
-                <ul style={{ listStyleType: "none" }}>
-                  {Object.keys(this.state.messages).map(
-                    (message_key, index) => (
-                      <li key={index}>{this.state.messages[message_key]}</li>
-                    )
-                  )}
-                </ul>
+               {this.state.messages}
               </Modal.Body>
             </Modal>
           </div>

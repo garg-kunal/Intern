@@ -13,7 +13,7 @@ export class StudentRegister extends Component {
       email: "",
       mobile_number: "",
       city: "",
-      messages: [],
+      messages:["Loading..Please Wait"],
       show: false,
     };
 
@@ -58,22 +58,32 @@ export class StudentRegister extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    // this.state.messages.push("Loading...Please wait");
+    this.setState({
+      show: true
+    })
     const data = {
       email: this.state.email,
       name: this.state.name,
       mobile_number: this.state.mobile_number,
       city: this.state.city
     }
+    
     axios.post('/api/accounts/student/create', data)
       .then((res) => {
-        console.log(res.data)
+        this.setState({
+          messages:[]
+        })
+        console.log(res.data);
         if (res.data.status === 201)
           this.props.history.push('/login/verify_otp/'+this.state.mobile_number);
         else if (res.data.status !== 201)
-         this.state.messages.push(res.data.status_message.message);
+           {
+             this.state.messages.push(res.data.status_message.message)
          this.setState({
            show:true
          })
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -224,7 +234,7 @@ export class StudentRegister extends Component {
             >
               <Modal.Header closeButton />
               <Modal.Body>
-                <ul style={{ listStyleType: "none" }}>
+              <ul style={{ listStyleType: "none" }}>
                   {Object.keys(this.state.messages).map(
                     (message_key, index) => (
                       <li key={index}>{this.state.messages[message_key]}</li>

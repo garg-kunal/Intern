@@ -1,6 +1,7 @@
 import React from 'react';
 //import './top.css';
 import user from '../form/images/user.png';
+import { NavLink } from 'react-router-dom';
 const navbar = () => {
     return (
         <nav className="navbar navbar-student navbar-expand-lg">
@@ -15,17 +16,17 @@ const navbar = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item nav-link-student">
-                        <a className="nav-link " href="#">Home</a>
+                        <NavLink className="nav-link " to="/student/internships">Internships</NavLink>
                     </li>
                     <li className="nav-item nav-link-student ">
-                        <a className="nav-link " href="#">Dashboard</a>
+                        <NavLink className="nav-link " to="/student/dashboard" >Dashboard</NavLink>
                     </li>
                     <li className="nav-item nav-link-student">
-                        <a className="nav-link" href="#">Services</a>
+                        <NavLink className="nav-link" to="/student/resume_form/false">Resume</NavLink>
                     </li>
-                    <li className="nav-item nav-link-student">
+                    {/* <li className="nav-item nav-link-student">
                         <a className="nav-link" href="#">Contact Us</a>
-                    </li>
+                    </li> */}
                     <li className="nav-item nav-link-student">
                         <a className="nav-link" href="#">
                             <img src={user}

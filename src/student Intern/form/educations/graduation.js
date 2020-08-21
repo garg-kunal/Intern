@@ -73,7 +73,15 @@ export default class Graduation extends React.Component {
         })
     }
     print() {
-        axios.get('/api/accounts/student/education/grad/get/6395642409')
+        
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.get('/api/accounts/student/education/grad/get',headers)
             .then((res) => {
                 console.log(res.data.data);
                 this.setState({
@@ -92,8 +100,16 @@ export default class Graduation extends React.Component {
     // Delete the Skill
 
     remove() {
+        
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         if (window.confirm(" Are You sure Delete? ")) {
-            axios.delete('/api/accounts/student/education/grad/delete/6395642409')
+            axios.delete('/api/accounts/student/education/grad/delete',headers)
                 .then((res) => {
                     console.log(res.data);
                     this.setState({
@@ -125,9 +141,16 @@ export default class Graduation extends React.Component {
     // Add Skill
     submit(e) {
         e.preventDefault();
+        
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
         if (this.state.unCheck) {
             const data = {
-                mobile_number: "6395642409",
                 university: this.state.college,
                 branch: this.state.stream,
                 cgpa_percentage: this.state.marks,
@@ -135,7 +158,7 @@ export default class Graduation extends React.Component {
                 enddate: this.state.endDate
 
             }
-            axios.post('/api/accounts/student/education/grad', data)
+            axios.post('/api/accounts/student/education/grad', data,headers)
                 .then((res) => {
                     alert(res.data.status_message.message);
                     this.print();
@@ -148,7 +171,6 @@ export default class Graduation extends React.Component {
         }
         else {
             const data = {
-                mobile_number: "6395642409",
                 university: this.state.college,
                 branch: this.state.stream,
                 cgpa_percentage: this.state.marks,
@@ -156,7 +178,7 @@ export default class Graduation extends React.Component {
                 enddate: "Pursuing"
 
             }
-            axios.post('/api/accounts/student/education/grad', data)
+            axios.post('/api/accounts/student/education/grad', data,headers)
                 .then((res) => {
                     console.log(res.data);
                     this.setState({
@@ -180,14 +202,21 @@ export default class Graduation extends React.Component {
     // 1
     edit() {
         const data = {
-            mobile_number: "6395642409",
             university: this.state.college,
             branch: this.state.stream,
             cgpa_percentage: this.state.marks,
             startdate: this.state.startDate,
             enddate: this.state.endDate
         }
-        axios.post('/api/accounts/student/education/grad', data)
+        
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        axios.post('/api/accounts/student/education/grad', data,headers)
             .then((res) => {
                 alert(res.data.status_message.message);
                 this.print();
@@ -255,7 +284,7 @@ export default class Graduation extends React.Component {
                                     <div className="col-md-3" style={{ padding: "10px" }}>
                                         <button className="btn border-0" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.editable() }} ><img src={edit}
-                                                height="30" alt="edit" className="img" /></button>
+                                                style={{height:"25px",width:"25px"}} alt="edit" className="img" /></button>
 
                             &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -263,7 +292,7 @@ export default class Graduation extends React.Component {
 
                                             <button className="btn border-0" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.remove() }} ><img src={remove}
-                                                height="30" alt="edit" className="img" /></button>
+                                                style={{height:"25px",width:"25px"}} alt="edit" className="img" /></button>
                                     </div>
 
                                 </div> : null}
@@ -301,7 +330,7 @@ export default class Graduation extends React.Component {
                                         <br />
                                         <div className="row">
                                             <div className="col-md-6">
-                                                <label>Start Date</label>
+                                                <label  style={{fontSize:"18px"}}>Start Date</label>
                                                 <DatePicker
                                                     className="form-control"
                                                     selected={new Date(this.state.startDate)}
@@ -310,7 +339,7 @@ export default class Graduation extends React.Component {
                                                 <br /><br />
                                             </div>
                                             <div className="col-md-6">
-                                                <label>Complete Date:</label>
+                                                <label style={{fontSize:"18px"}}>Complete Date:</label>
                                                 {this.state.endDate === "Pursuing" ?
                                                     <DatePicker
                                                         className="form-control"
@@ -369,11 +398,12 @@ export default class Graduation extends React.Component {
                                     <br />
 
                                     Currently Studying: <input type="checkbox"
+                                    style={{height:"15px"}}
                                         onChange={() => { this.checkBox() }} />
                                     <br /><br />
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <label>Start Year</label>
+                                            <label  style={{fontSize:"18px"}}>Start Year</label>
                                             <DatePicker
                                                 className="form-control"
                                                 selected={this.state.startDate}
@@ -382,7 +412,7 @@ export default class Graduation extends React.Component {
                                         </div>
                                         <div className="col-md-6">
                                             {this.state.unCheck ?
-                                                <div><label>Completed Year:</label> &nbsp;&nbsp;
+                                                <div><label  style={{fontSize:"18px"}}>Completed Year:</label> &nbsp;&nbsp;
                                             <DatePicker
                                                         className="form-control"
                                                         selected={this.state.endDate}
