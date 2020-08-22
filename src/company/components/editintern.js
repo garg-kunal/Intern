@@ -91,7 +91,7 @@ class PostInternship extends React.Component {
             }
         const headers = {
             headers: {
-                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
@@ -134,7 +134,7 @@ class PostInternship extends React.Component {
         else {
             const headers = {
                 headers: {
-                    'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                    'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }

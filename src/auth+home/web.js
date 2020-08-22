@@ -34,7 +34,7 @@ export default class Card2 extends React.Component {
     render() {
         return (
             <div className="card-intern-main mx-auto" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="2500"  >
-               <h2 className="card-tech-heading" style={{color:"black"}}>Internship Available:</h2>
+               <h2 className="card-tech-heading" style={{color:"black"}}>Internship Available</h2>
                 <div className="row no-gutters">
                     <div className="col-md-6 col-lg-6 card-web-outer">
                         <div className="card card-tech-inner mx-auto" >

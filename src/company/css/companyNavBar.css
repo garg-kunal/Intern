@@ -1,11 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@700&display=swap');
+
 .navBar {
-    background-color: #4A00E0!important;
     height: 100px;
     padding-left: 50px;
 }
 .navBarElements {
     height: 100px;
     line-height: 100px!important;
+}
+.company-navbar-heading-merge{
+    font-family: 'Spartan', sans-serif;
+    color: #4A00E0;
+    font-size: 25px;
+    padding-left: 20px;
+}
+.companny-navbar-nav-link-subitem{
+    color: black;
+    margin-left: 50px;
+    font-weight: 500;
+}
+.userpng-company-navbar{
+    color: #4A00E0;
+    height:30px;
+    width:30px;
 }
 .navBar img {
     height: 30px;

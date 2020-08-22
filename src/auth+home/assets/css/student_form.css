@@ -19,6 +19,18 @@
   padding: 10px;
   margin: 0;
 }
+.btn-sign-up-home-main-page-land{
+  background-color: white;
+   color: #4A00E0;
+   border-radius: 30px;
+   float: right;
+   border: 2px solid #4A00E0;
+}
+.btn-sign-up-home-main-page-land:hover{
+  background-color: #4A00E0;
+  color:white;
+  border: 0;
+}
 .welcome-form {
   background-image: url('../squarebg.jpeg');
   background-repeat: no-repeat;
@@ -40,6 +52,9 @@
 .welcome-merge{
   padding-bottom: 120px;
   padding-left: 10px;
+  color: white;
+  font-size: 28px;
+  font-weight: 500;
   font-family: 'Spartan', sans-serif;
 }
 .welcome-logo-online-1{
@@ -49,6 +64,7 @@
 .col-logo-online{
   padding: 25px;
   margin: 10;
+  color: white;
 }
 .welcome .logo {
   font-size: 2em;
@@ -274,12 +290,24 @@ input, .industry {
     height: 50px;
   }
 } */
+
+.option-company-main{
+  font-size: 15px;
+  padding: 5px;
+}
+.login-img-main-home{
+  height: 300px;
+  width: 350px;
+}
 @media only screen and (max-width: 768px) {
   .welcome-merge{
     font-size: 22px;
     padding-left: 10px;
     padding-bottom: -30px;
     font-weight: 900;
+  }
+  .welcome-screen-mobile,.welcome-logo-online{
+    display: none;
   }
   .company-logo-main{
     height: 80px;
@@ -293,11 +321,25 @@ input, .industry {
     padding: 10px;
     padding-top: 100px;
   }
+  .login-img-main-home{
+    height: 250px;
+    width: 300px;
+    padding-right: 10px;
+  }
+.option-company-main{
+  font-size: 12px;
+  padding: 5px;
+}
   .welcome-form{
-    height: 80vh;
+    height: 15vh;
+  }
+  .sign-up-heading-main{
+    font-size:18px ;
   }
   .welcome-merge{
-    padding-bottom: 50px;
+    font-size: 24px;
+    font-weight: 600;
+    /* padding-bottom: 50px; */
   }
   .message {
     font-size: 1.2em;

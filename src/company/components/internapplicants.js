@@ -26,7 +26,7 @@ export default class Applicants extends React.Component {
 
         const headers = {
             headers: {
-                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
@@ -54,8 +54,8 @@ export default class Applicants extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <h3 className="text-center mt-4" style={{ color: "#4A00E0" }}>INTERN APPLICANTS</h3>
+            <div className="container-fluid" style={{marginTop:"100px"}}>
+                <h3 className="text-center mt-4" style={{ color: "#4A00E0" }}>Intern Applicants</h3>
                 <div className="container mt-5">
                     <div className="card">
                         <div className="row mt-3">
@@ -125,9 +125,9 @@ export default class Applicants extends React.Component {
 
                     </div>
                     <div className="row mt-5">
-                        <button onClick={() => { this.prev() }} className="btn mx-auto btn-prev-applications">Back</button>
-                        {this.state.page}
-                        <button onClick={() => { this.next() }} className="btn mx-auto btn-next-applications">Next</button>
+                        <button onClick={() => { this.prev() }} className="btn  btn-prev-applications">Back</button>
+                        &nbsp;&nbsp;&nbsp;<span style={{fontSize:"25px"}} >{this.state.page}</span>&nbsp;&nbsp;&nbsp;
+                        <button onClick={() => { this.next() }} className="btn btn-next-applications">Next</button>
                     </div>
 
                 </div>

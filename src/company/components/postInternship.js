@@ -71,7 +71,6 @@ class PostInternship extends React.Component {
             })
 
             const data = {
-                mobile_number: "7599245269",
                 profile: this.state.profile,
                 place: this.state.internshipPlace,
                 time: this.state.internshipTime,
@@ -91,7 +90,7 @@ class PostInternship extends React.Component {
             }
             const headers = {
                 headers: {
-                    'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                    'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
@@ -145,96 +144,100 @@ class PostInternship extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid postInternship">
-                <p className="heading">Post Internships</p>
-                <p className="head head2">Internship Details :</p>
-                <p className="head head3">Profile :</p>
-                <input type="text" value={this.state.profile}
-                    style={{ padding: "10px" }}
-                    className="form-control" onChange={(e) => { this.setState({ profile: e.target.value }) }}
-                    required placeholder="e.g. Web Developer" />
-                <p className="head head3">Internship type :</p>
-                <InternshipType methodFromParent={this.parentCollector} />
-                <p className="head head3">City / Cities :</p>
-                <input type="text" value={this.state.city} className="city form-control" placeholder="e.g. Bangalore"
-                    onChange={(e) => { this.setState({ city: e.target.value }) }} />
-                <p className="head head3">Number Of Openings :</p>
-                <Openings methodFromParent={this.parentCollector} />
-                <p className="head head3">Internship Start Date :</p>
-                <StartDate methodFromParent={this.parentCollector} />
-                <p className="head head3">Internship Duration :</p>
-                <input type="text"
-                    value={this.state.days} required
-                    style={{ padding: "7px" }} className="form-control col-lg-12 col-md-12" placeholder="e.g. 1 month || 2 Weeks " onChange={(e) => { this.setState({ days: e.target.value }) }} />
-
-                {/* <Duration methodFromParent={this.parentCollector} /> */}
-                <p className="head head3">Intern's Responsibilities :</p>
-                <Responsibility methodFromParent={this.parentCollector} />
-                <p className="head head3">Stipend :</p>
-                <Stipend methodFromParent={this.parentCollector} />
-                <p className="head head3">Benefits :</p>
-                <div className="profileContainer container-fluid">
-                    <div className="availableProfiles row">
-                        <label className="col-12 col-sm-6">
-                            <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits0" value="Certificate" onChange={this.benefit} />
+            <div className="container-fluid  mb-5 pb-5" style={{paddingTop:"120px"}}>
+               
+                <div className="container-fluid postInternship">
+                <br/><br/>
+                    <p className="heading">Post Internships</p>
+                    <p className="head head2">Internship Details</p>
+                    <p className="head head3">Profile :</p>
+                    <input type="text" value={this.state.profile}
+                        style={{ padding: "10px", height: "50px" }}
+                        className="form-control  city"
+                        onChange={(e) => { this.setState({ profile: e.target.value }) }}
+                        required placeholder="e.g. Web Developer" />
+                    <p className="head head3">Internship type :</p>
+                    <InternshipType methodFromParent={this.parentCollector} />
+                    <p className="head head3">City / Cities :</p>
+                    <input type="text" value={this.state.city} className="city form-control" placeholder="e.g. Bangalore"
+                        onChange={(e) => { this.setState({ city: e.target.value }) }} />
+                    <p className="head head3">Number Of Openings :</p>
+                    <Openings methodFromParent={this.parentCollector} />
+                    <p className="head head3">Internship Start Date :</p>
+                    <StartDate methodFromParent={this.parentCollector} />
+                    <p className="head head3">Internship Duration :</p>
+                    <input type="text"
+                        value={this.state.days} required
+                        className="form-control city col-lg-12 col-md-12"
+                        placeholder="e.g. 1 month || 2 Weeks " onChange={(e) => { this.setState({ days: e.target.value }) }} />
+                    <p className="head head3">Intern's Responsibilities :</p>
+                    <Responsibility methodFromParent={this.parentCollector} />
+                    <p className="head head3">Stipend :</p>
+                    <Stipend methodFromParent={this.parentCollector} />
+                    <p className="head head3">Benefits :</p>
+                    <div className="profileContainer container-fluid">
+                        <div className="availableProfiles row">
+                            <label className="col-12 col-sm-6">
+                                <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits0" value="Certificate" onChange={this.benefit} />
                         Certificate
                     </label>
-                        <label className="col-12 col-sm-6">
-                            <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits1" value="Letter Of Recommendation" onChange={this.benefit} />
+                            <label className="col-12 col-sm-6">
+                                <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits1" value="Letter Of Recommendation" onChange={this.benefit} />
                         Letter Of Recommendation
                     </label>
-                        <label className="col-12 col-sm-6">
-                            <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits2" value="Bonus" onChange={this.benefit} />
+                            <label className="col-12 col-sm-6">
+                                <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits2" value="Bonus" onChange={this.benefit} />
                         Bonus
                     </label>
-                        <label className="col-12 col-sm-6">
-                            <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits3" value="Flexible  Work Hours" onChange={this.benefit} />
+                            <label className="col-12 col-sm-6">
+                                <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits3" value="Flexible  Work Hours" onChange={this.benefit} />
                         Flexible  Work Hours
                     </label>
-                        <label className="col-12 col-sm-6">
-                            <input type="checkbox" className="ben" style={{ height: "15px" }} name="benefits4" value="Free Snacks And Beverages" onChange={this.benefit} />
+                            <label className="col-12 col-sm-6">
+                                <input type="checkbox" className="ben" style={{ height: "15px" }} name="benefits4" value="Free Snacks And Beverages" onChange={this.benefit} />
                         Free Snacks And Beverages
                     </label>
-                        <label className="col-12 col-sm-6">
-                            <input type="checkbox" className="ben" style={{ height: "15px" }} name="benefits5" value="Informal Dress Code" onChange={this.benefit} />
+                            <label className="col-12 col-sm-6">
+                                <input type="checkbox" className="ben" style={{ height: "15px" }} name="benefits5" value="Informal Dress Code" onChange={this.benefit} />
                         Informal Dress Code
                     </label>
-                        <label className="col-12 col-sm-6">
-                            <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits6" value="Others" onChange={this.benefit} />
+                            <label className="col-12 col-sm-6">
+                                <input type="checkbox" style={{ height: "15px" }} className="ben" name="benefits6" value="Others" onChange={this.benefit} />
                         Others
                     </label>
+                        </div>
                     </div>
-                </div>
-                {/* <Benefits methodFromParent={this.parentCollector} /> */}
-                <p className="head head3">Skills Required :</p>
-                <input type="text"
-                    value={this.state.otherSkills}
-                    onChange={(e) => { this.setState({ otherSkills: e.target.value }) }}
-                    className="form-control" required placeholder="Add Hardware, Software, etc." />
+                    {/* <Benefits methodFromParent={this.parentCollector} /> */}
+                    <p className="head head3">Skills Required :</p>
+                    <input type="text"
+                        value={this.state.otherSkills}
+                        onChange={(e) => { this.setState({ otherSkills: e.target.value }) }}
+                        className="form-control city" required placeholder="Add Hardware, Software, etc." />
 
-                {/* <Skills methodFromParent={this.parentCollector} domain={this.state.profile} /> */}
-                <p className="head head3">Evaluation Questions :</p>
-                <Questions methodFromParent={this.parentCollector} />
-                <div className="save container">
-                    <button type="button" onClick={this.showAll} className="proceed col-10 col-sm-6 text-center">Post Internship</button>
+                    {/* <Skills methodFromParent={this.parentCollector} domain={this.state.profile} /> */}
+                    <p className="head head3">Evaluation Questions :</p>
+                    <Questions methodFromParent={this.parentCollector} />
+                    <div className="save container">
+                        <button type="button" onClick={this.showAll} className="proceed col-10 col-sm-6 text-center">Post Internship</button>
+                    </div>
+                    <Modal
+                        show={this.state.show}
+                        onHide={this.handleClose}
+                        backdrop="static"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton />
+                        <Modal.Body>
+                            <ul style={{ listStyleType: "none" }}>
+                                {Object.keys(this.state.messages).map(
+                                    (message_key, index) => (
+                                        <li key={index}>{this.state.messages[message_key]}</li>
+                                    )
+                                )}
+                            </ul>
+                        </Modal.Body>
+                    </Modal>
                 </div>
-                <Modal
-                    show={this.state.show}
-                    onHide={this.handleClose}
-                    backdrop="static"
-                    keyboard={false}
-                >
-                    <Modal.Header closeButton />
-                    <Modal.Body>
-                        <ul style={{ listStyleType: "none" }}>
-                            {Object.keys(this.state.messages).map(
-                                (message_key, index) => (
-                                    <li key={index}>{this.state.messages[message_key]}</li>
-                                )
-                            )}
-                        </ul>
-                    </Modal.Body>
-                </Modal>
             </div>
         )
     }

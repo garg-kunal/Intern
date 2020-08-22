@@ -23,11 +23,11 @@ export default class Home extends React.Component {
     render() {
         return (
             <div className="container-fluid main-welcome">
-                <div className="welcome">
+                <div className="welcome bg-light">
                     <Navbar />
                     <Main />
                 </div>
-                <br /><br /><br /><br /><br /><br /><br /><br/><br/>
+                <br /><br /><br /><br /><br /><br /><br/><br/>
                 <div className="container-fluid hit-back" style={{ padding: "0" }}>
                     <Card2 /><br />
                 </div>
@@ -38,7 +38,7 @@ export default class Home extends React.Component {
                         <div className="row">
                             <div
                             data-aos="fade-right"  data-aos-easing="linear" data-aos-duration="1000"
-                             className="col-md-7 col-lg-7 col-12" >
+                             className="col-md-7 col-lg-7 col-12 " >
                                 <h2 style={{ color: "white" }} className="card-tech-main-intern-heading">How it works</h2>
                                 <br /><br />
                                 <img src={one} alt="one" className=" img-fluid img-name" /><br /><br />

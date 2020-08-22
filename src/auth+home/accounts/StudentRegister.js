@@ -106,7 +106,7 @@ export class StudentRegister extends Component {
               <ul className="navbar-nav">
                 <li className="nav-item px-sm-3 px-xs-2 ml-0">
                   <h3
-                    className="font-weight-bolder"
+                    className="font-weight-bolder sign-up-heading-main"
                     style={{
                       color: "#4A00E0"
                     }}
@@ -120,7 +120,7 @@ export class StudentRegister extends Component {
                 <li
                   className="nav-item px-3 font-weight-bolder"
                   style={{
-                    color: "#4A00E0",
+                    color: "black",
                     borderBottom: "solid 2px #4A00E0",
                   }}
                 >
@@ -129,7 +129,7 @@ export class StudentRegister extends Component {
                 <li className="nav-item px-3 font-weight-bolder">
                   <Link
                     to="/create_account/company"
-                    style={{ color: "#4A00E0" }}
+                    style={{ color: "black" }}
                   >
                     Company
                     </Link>
@@ -148,7 +148,7 @@ export class StudentRegister extends Component {
                     maxLength="128"
                     required
                     id="id_name"
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
                     onChange={this.handleNameChange}
                     value={this.state.name}
                   />
@@ -163,7 +163,7 @@ export class StudentRegister extends Component {
                     maxLength="254"
                     required
                     id="id_email"
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
                     onChange={this.handleEmailChange}
                     value={this.state.email}
                   />
@@ -178,7 +178,7 @@ export class StudentRegister extends Component {
                     pattern="^\d{10}$"
                     maxLength="16"
                     required
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
                     id="id_mobile_number"
                     onChange={this.handleNumberChange}
                     value={this.state.mobile_number}
@@ -193,7 +193,7 @@ export class StudentRegister extends Component {
                     placeholder="City"
                     pattern="^[a-zA-Z0-9\s]+$"
                     maxLength="64"
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
                     required
                     id="id_city"
                     onChange={this.handleCityChange}
@@ -209,18 +209,13 @@ export class StudentRegister extends Component {
                   }}
                   className="btn btn-lg col-5 pull-right"
                 >
-                <NavLink to="/login/student"> Sign In</NavLink>
+                <NavLink style={{color:"white"}} to="/login/student"> Login</NavLink>
                  
                   </button>
                 <button
                   type="submit"
-                  style={{
-                    backgroundColor: "#89EA91",
-                    color: "white",
-                    borderRadius: "30px",
-                    float: "right"
-                  }}
-                  className="btn btn-lg col-5 pull-right"
+                  
+                  className="btn btn-lg btn-sign-up-home-main-page-land col-5 pull-right"
                 >
                   Sign Up
                   </button>

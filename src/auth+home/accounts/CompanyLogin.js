@@ -5,7 +5,7 @@ import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
 import '../assets/css/student_form.css';
 import axios from '../../setup';
-
+import login from '../assets/draw.png';
 export class CompanyLogin extends Component {
   constructor(props) {
     super(props);
@@ -60,42 +60,42 @@ export class CompanyLogin extends Component {
   }
 
   handleSubmit(event) {
-    const data={
-     email:this.state.email
+    const data = {
+      email: this.state.email
     }
     this.setState({
-      messages:[]
+      messages: []
     })
-    axios.post('/api/accounts/company/login',data)
-    .then((res) => {
-      console.log(res.data)
-      if (res.data.status === 200)
-        this.props.history.push('/verify/'+this.state.email);
-      else if (res.data.status !== 200)
-       this.state.messages.push(res.data.status_message.message);
-       this.setState({
-         show:true
-       })
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    axios.post('/api/accounts/company/login', data)
+      .then((res) => {
+        console.log(res.data)
+        if (res.data.status === 200)
+          this.props.history.push('/verify/' + this.state.email);
+        else if (res.data.status !== 200)
+          this.state.messages.push(res.data.status_message.message);
+        this.setState({
+          show: true
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     event.preventDefault();
   }
 
   render() {
     return (
-      <div className="container-fluid" style={{padding:"0"}}>
+      <div className="container-fluid" style={{ padding: "0" }}>
         <div className="row no-gutters">
           <div className="col-md-6 col-lg-6 text-white violet_sq_bg">
             <Welcome />
           </div>
-          <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{padding:"10px"}}>
+          <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{ padding: "10px" }}>
             <nav className="navbar navbar-expand-lg">
               <ul className="navbar-nav">
                 <li className="nav-item px-sm-3 px-xs-2 ml-0">
                   <h3
-                    className="font-weight-bolder"
+                    className="font-weight-bolder sign-up-heading-main"
                     style={{
                       color: "#4A00E0",
                     }}
@@ -108,7 +108,7 @@ export class CompanyLogin extends Component {
                 <li className="nav-item px-3 font-weight-bolder">
                   <Link
                     to="/login/student"
-                    style={{ color: "#4A00E0" }}
+                    style={{ color: "black" }}
                   >
                     Student
                     </Link>
@@ -116,7 +116,7 @@ export class CompanyLogin extends Component {
                 <li
                   className="nav-item px-3 font-weight-bolder"
                   style={{
-                    color: "#4A00E0",
+                    color: "black",
                     borderBottom: "solid 2px #4A00E0",
                   }}
                 >
@@ -124,15 +124,18 @@ export class CompanyLogin extends Component {
                   </li>
               </ul>
             </nav>
+            <div className="row no-gutters mt-1">
+              <img src={login}  className="img-fluid login-img-main-home mx-auto text-center" />
+            </div>
             <form onSubmit={this.handleSubmit}>
               <div className="ml-md-3">
-                
+
 
                 <div className="form-group form-content text-left mt-md-5">
                   <input
                     type="email"
                     name="email"
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"300", border: "1px solid lightgrey" }}
                     className="form-control"
                     placeholder="Company E-mail ID"
                     maxLength="254"
@@ -143,17 +146,17 @@ export class CompanyLogin extends Component {
                   />
                 </div>
 
-               
-                
+
+
                 <button
                   type="submit"
                   style={{
-                    backgroundColor: "#89EA91",
+                    backgroundColor: "#4A00E0",
                     color: "white",
                     borderRadius: "30px",
                     float: "right"
                   }}
-                  className="btn btn-lg col-5 pull-right"
+                  className="btn btn-lg  col-5 pull-right"
                 >
                   Sign In
                   </button>

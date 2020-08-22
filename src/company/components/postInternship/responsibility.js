@@ -18,7 +18,7 @@ class Responsibility extends React.Component {
     }
     render() {
         return (
-            <textarea  className="form-control " cols="10" rows="3" onChange={this.addResp} placeholder="Enter Text..." />
+            <textarea  className="form-control profile-input-form"  cols="5" rows="3" onChange={this.addResp} placeholder="Enter Text..." />
        
        )
     }

@@ -52,7 +52,7 @@ class CompanyDashBoard extends React.Component {
     componentDidMount() {
         const headers = {
             headers: {
-                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
@@ -170,10 +170,11 @@ class CompanyDashBoard extends React.Component {
                     <hr />
                     {Applications}
                 </div>
-                <div className="container text-center nextPage">
-                    <button type="button" className="left" onClick={this.prevPage}> {"<"} </button>
-                    <span className="currentPage">{this.state.pageNo}</span>
-                    <button type="button" className="right" onClick={this.nextPage}> {">"} </button>
+                <br/>
+                <div className="container row  nextPage">
+                    <button type="button" className="left text-center" onClick={this.prevPage}> {"<"} </button>
+                    <span className="currentPage text-center">{this.state.pageNo}</span>
+                    <button type="button" className="right text-center" onClick={this.nextPage}> {">"} </button>
                 </div>
             </div>
         )

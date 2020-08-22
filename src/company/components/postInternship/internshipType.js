@@ -22,7 +22,7 @@ class InternshipType extends React.Component {
         return (
             <div className="placeTime container-fluid">
                 
-                <div className="row">
+                <div className="row mt-4">
                 <p className="typeIntern text-center col-12 col-md-2">Place</p>
                     <label className="col-12 col-sm-6 col-md-5">
                         <input type="radio" className="" name="internshipPlace" value="Regular" onChange={this.internshipType}/>  

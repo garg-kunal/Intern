@@ -52,7 +52,7 @@ export class CompanyRegister extends Component {
         }
         const headers = {
             headers: {
-                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }

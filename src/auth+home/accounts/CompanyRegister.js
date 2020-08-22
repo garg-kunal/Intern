@@ -98,12 +98,12 @@ export class CompanyRegister extends Component {
           <div className="col-md-6 col-lg-6 text-white violet_sq_bg">
             <Welcome />
           </div>
-          <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{ paddingRight: "10px" }}>
+          <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{ padding: "10px" }}>
             <nav className="navbar navbar-expand-lg">
               <ul className="navbar-nav">
                 <li className="nav-item px-sm-3 px-xs-2 ml-0">
                   <h3
-                    className="font-weight-bolder"
+                    className="font-weight-bolder sign-up-heading-main"
                     style={{
                       color: "#4A00E0",
                     }}
@@ -116,7 +116,7 @@ export class CompanyRegister extends Component {
                 <li className="nav-item px-3 font-weight-bolder">
                   <Link
                     to="/create_account/student"
-                    style={{ color: "#4A00E0" }}
+                    style={{ color: "black" }}
                   >
                     Student
                     </Link>
@@ -124,7 +124,7 @@ export class CompanyRegister extends Component {
                 <li
                   className="nav-item px-3 font-weight-bolder"
                   style={{
-                    color: "#4A00E0",
+                    color: "black",
                     borderBottom: "solid 2px #4A00E0",
                   }}
                 >
@@ -143,7 +143,7 @@ export class CompanyRegister extends Component {
                     maxLength="128"
                     required
                     id="id_name"
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
                     onChange={this.handleNameChange}
                     value={this.state.name}
                   />
@@ -153,7 +153,7 @@ export class CompanyRegister extends Component {
                   <input
                     type="email"
                     name="email"
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
                     className="form-control"
                     placeholder="Company E-mail ID"
                     maxLength="254"
@@ -170,28 +170,28 @@ export class CompanyRegister extends Component {
                       className="form-control industry"
                       name="industry"
                       id="select"
-                      style={{ borderRadius: "0", border: "1px solid lightgrey", fontSize: "20px", padding: "3px" }}
+                      style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey", fontSize: "20px", padding: "3px" }}
                       onChange={this.handleTypeChange}
                       value={this.state.company_type}
                       required
                     >
-                      <option style={{ display: "None" }} value="">
+                      <option  className="option-company-main" value="">
                         Industry
                         </option>
-                      <option>E-commerce</option>
-                      <option>Saas</option>
-                      <option>Fintech</option>
-                      <option>Web Dev./Marketing Agency</option>
-                      <option>Services</option>
-                      <option>Media & Entertainment</option>
-                      <option>Food & Beverage</option>
-                      <option>Automobile</option>
-                      <option>Hyperlocal</option>
-                      <option>Logistics</option>
-                      <option>Fashion</option>
-                      <option>Agritech</option>
-                      <option>Non-Profit</option>
-                      <option>Others</option>
+                      <option className="option-company-main">E-commerce</option>
+                      <option  className="option-company-main">Saas</option>
+                      <option  className="option-company-main">Fintech</option>
+                      <option  className="option-company-main">Web Dev./Marketing Agency</option>
+                      <option  className="option-company-main">Services</option>
+                      <option  className="option-company-main">Media & Entertainment</option>
+                      <option  className="option-company-main">Food & Beverage</option>
+                      <option  className="option-company-main">Automobile</option>
+                      <option  className="option-company-main">Hyperlocal</option>
+                      <option  className="option-company-main">Logistics</option>
+                      <option  className="option-company-main">Fashion</option>
+                      <option  className="option-company-main">Agritech</option>
+                      <option  className="option-company-main">Non-Profit</option>
+                      <option  className="option-company-main">Others</option>
                     </select>
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export class CompanyRegister extends Component {
                     pattern="^\d{10}$"
                     maxLength="16"
                     required
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
                     id="id_mobile_number"
                     onChange={this.handleNumberChange}
                     value={this.state.mobile_number}
@@ -220,18 +220,13 @@ export class CompanyRegister extends Component {
                   }}
                   className="btn btn-lg col-5 pull-right"
                 >
-                  <NavLink to="/login/company"> Sign In</NavLink>
+                  <NavLink  style={{color:"white"}} to="/login/company"> Login</NavLink>
 
                 </button>
                 <button
                   type="submit"
-                  style={{
-                    backgroundColor: "#89EA91",
-                    color: "white",
-                    borderRadius: "30px",
-                    float: "right"
-                  }}
-                  className="btn btn-lg col-5 pull-right"
+                  
+                  className="btn btn-lg btn-sign-up-home-main-page-land col-5 pull-right"
                 >
                   Sign Up
                   </button>

@@ -37,13 +37,13 @@ class InternshipDetails extends React.Component {
     componentDidMount() {
         const headers = {
             headers: {
-                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }
         // alert(this.props.val)
-        Axios.get('/api/accounts/company/view_internship/' + this.props.val,headers)
+        Axios.get('/api/accounts/company/view_internship/' + this.props.val, headers)
             .then((res) => {
                 console.log(res.data.data)
                 this.setState({
@@ -71,52 +71,58 @@ class InternshipDetails extends React.Component {
             <div className="container-fluid details">
                 <div className="row">
                     <span className="work col-8">{this.state.profile}</span>
-                    <div className="col-4">
+                    <div className="col-4 pt-3">
                         <img src={companyLogo} className="complogo" alt="" />
                     </div>
-                    <span className="company col-8">Samsung</span>
-                    <div className="workFrom col-12">
+                    <span className="company col-8">
                         <img src={home} className="workImg img-fluid"
-                        style={{ height: "30px", width: "30px" }} 
-                         alt="" />
-                        <p className="workType">{this.state.internshipPlace}</p>
+                            alt="" />&nbsp;{this.state.internshipPlace}</span>
+                    <div className="workFrom col-12">
+                        {/* <p className="workType">{this.state.internshipPlace}</p> */}
                     </div>
                 </div>
-                <div className="infoA row">
-                    <div className="col-6 col-md-3">
-                        <span className="infoQ">Joining Date</span><br />
-                        <img src={start} style={{ height: "30px", width: "30px" }}
-                            className="img-fluid" alt="" />
+                <br/>
+                <div className="row no-gutters">
+                    <div className="col-6 col-md-3  col-lg-3 mx-auto">
+                        <span className="infoQ">
+                            <img src={start} style={{ height: "30px", width: "30px" }}
+                                className="img-fluid" alt="" />&nbsp;
+                            Joining Date</span><br/>
                         <p className="workType work2">{this.state.startDate}</p>
                     </div>
-                    <div className="col-6 col-md-3">
-                        <span className="infoQ">Duration</span><br />
-                        <img src={calendar} className="img-fluid" 
-                        style={{ height: "30px", width: "30px" }}
-                        alt="" />
+                    <div className="col-6 col-md-3  col-lg-3 mx-auto">
+                        <span className="infoQ">
+                            <img src={calendar} className="img-fluid"
+                                style={{ height: "30px", width: "30px" }}
+                                alt="" />&nbsp;
+                            Duration</span><br />
+
                         <p className="workType work2">{this.state.days}</p>
                     </div>
-                    <div className="col-6 col-md-3">
-                        <span className="infoQ">Stipend</span><br />
-                        <img src={rupee} className="img-fluid "
-                        
-                        style={{ height: "30px", width: "30px" }} alt="" />
+                    <div className="col-6 col-md-3 col-lg-3 mx-auto">
+                        <span className="infoQ">
+                            <img src={rupee} className="img-fluid"
+                                style={{ height: "25px", width: "25px" }} alt="" />
+                                &nbsp;
+                            Stipend</span><br />
+
                         <p className="workType work2">{this.state.stipend} &nbsp;&nbsp;{this.state.amount}</p>
                     </div>
-                    <div className="col-6 col-md-3">
-                        <span className="infoQ">Apply By</span><br />
-                        <img src={applyBy}
-                        style={{ height: "30px", width: "30px" }}
-                         className="img-fluid" alt="" />
+                    <div className="col-6 col-md-3  col-lg-3 mx-auto">
+                        <span className="infoQ">
+                            <img src={applyBy}
+                                style={{ height: "20px", width: "30px" }}
+                                className="img-fluid" alt="" />&nbsp;
+                            Apply By</span><br />
                         <p className="workType work2">{this.state.exactDate}</p>
                     </div>
                 </div>
                 <div className="row aboutCompany">
                     <p className="about col-8">About Company</p>
                     <a href="#" className="url col-10">http://samsung.com</a>
-                    <p className="lead description">
+                    {/* <p className="lead description">
                         company description
-                    </p>
+                    </p> */}
                 </div>
                 <div className="row aboutCompany">
                     <p className="about col-11">About the  {this.state.internshipPlace} internship</p>
@@ -151,7 +157,7 @@ class InternshipDetails extends React.Component {
                     <p className="about col-10">Benefits</p>
                     <div className=" container skillsReq d-flex flex-row flex-wrap">
                         {this.state.benefits.map((item, key) =>
-                            <p className="col-sm-6 col-12" >{item}</p>
+                            <p className="col-sm-6 col-md-5 col-12" >{item}</p>
                         )}
                     </div>
                 </div>
@@ -172,13 +178,14 @@ class ViewInternship extends React.Component {
     }
     render() {
         return (
-            <div className="container-fluid postInternship">
-                <h2 className="heading">Internship Details</h2>
+            <div className="container-fluid viewInternship pb-5" style={{ marginTop: "50px" }}>
+                <br /><br />
+                <p className="heading">Internship Details</p>
                 {this.props.location.id === undefined ? (this.props.history.push('/company/dashboard')) :
                     <InternshipDetails val={this.props.location.id.key} />
                 }
 
-{/* 
+                {/* 
                 <div className="col-12 text-center statusBtn">
                     <button className="btn btn-primary" style={{ width: "400px" }} type="button">Open for Applications</button>
                 </div> */}

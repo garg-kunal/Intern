@@ -11,9 +11,9 @@ export default class Main extends React.Component {
         super();
         AOS.init();
     }
-   
+
     componentDidMount() {
-       
+
         new WOW.WOW().init();
     }
     render() {
@@ -22,18 +22,19 @@ export default class Main extends React.Component {
                 <div className="card-body" data-aos="fade-up" data-aos-duration="500">
                     <div class="row">
                         <div className="col-12 laptop-img-mobile ">
-                                <img src={welcome} alt="" 
-                                 className="justify-content-center img-fluid laptop-guy" 
-                                 />
-                           
+                            <img src={welcome} alt=""
+                                className="justify-content-center img-fluid laptop-guy"
+                            />
+
                         </div>
                         <div className="col-md-7 col-lg-7" >
                             <p className="welcome-heading display-4">
-                                Work with experts who can deliver world-class service<br /><br />
+                                Work with experts who can </p>
+                            <p className="welcome-heading-2 display-4"> deliver world-class service<br /><br />
                                 <button className="btn btn-intern">Get Internships</button>
                                 <br />
                             </p>
-                           
+
                             <p className=" card-intern-text" style={{ color: "black" }}>
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
                                 been the industry's standard dummy text ever since the 1500s;
@@ -42,8 +43,8 @@ export default class Main extends React.Component {
                         </div>
                         <div className="col-md-5 col-lg-5 laptop-img">
                             <img src={welcome} alt=""
-                             className="img img-fluid laptop-guy wow bounce"
-                             data-wow-iteration="100" data-wow-duration="4s" />
+                                className="img img-fluid laptop-guy wow bounce"
+                                data-wow-iteration="100" data-wow-duration="4s" />
                         </div>
 
                     </div>

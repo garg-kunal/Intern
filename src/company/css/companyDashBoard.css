@@ -16,6 +16,7 @@
 }
 .btn-prev-applications{
     color: #4A00E0;
+    margin-left: 500px;
     background-color: white;
     border:1px solid #4A00E0;
 }
@@ -35,7 +36,7 @@
     padding-top: 20px;
     font-size: 1em;
     font-weight: 500;
-    color: #4A00E0;
+    color: black;
 }
 
 
@@ -71,18 +72,31 @@ hr {
     outline: 0 !important;
 }
 .nextPage {
-    margin: 20px 0;
+    /* margin: 20px 0; */
 }
-.left, .right {
+.left {
     border: solid 1px transparent;
-    font-size: 26px;
+    font-size: 36px;
+    padding: 5px;
+    font-weight: 800;
+    color: #4A00E0;
+    margin-left: 710px;
+    background-color: transparent;
+}
+.right{
+    border: solid 1px transparent;
+    font-size: 36px;
+    padding: 5px;
     font-weight: 800;
     color: #4A00E0;
     background-color: transparent;
+
 }
 .currentPage {
+    padding-top: 13px;
     font-size: 24px;
     font-weight: 600;
+    text-align: center;
 }
 .left:hover {
     outline: none;

@@ -16,39 +16,37 @@ class CompanyNavBar extends React.Component {
             showProfile: !prevState.showProfile
         }))
     }
-    //  {/* <nav className="navBar">
-    //             <div className="navBarElements">
-    //                 <img src={logo} alt=""/>
-    //                 <a href="" className="navItems">Home</a>
-    //                 <a href="" className="navItems">Post Internships</a>
-    //                 <a href="" className="navItems">Dashboard</a>
-    //                 <img className="userIcon" src={userIcon} onClick={this.showProfile} alt=""/>
-    //             </div>
-    //             <ProfileBox show={this.state.showProfile}/>
-    //         </nav> */}
+
     render() {
         return (
 
-            <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#4A00E0" }} >
-                <NavLink className="navbar-brand" to="/company"><strong style={{ color: "white", paddingLeft: "20px", fontSize: "25px" }}>Merge.</strong></NavLink>
+            <nav className="navbar navbar-expand-lg  fixed-top bg-light" style={{ backgroundColor: "#4A00E0" }} >
+                <NavLink className="navbar-brand" to="/company">
+                    <strong className="company-navbar-heading-merge">Merge.</strong>
+                </NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav mx-auto">
+                    <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <NavLink className="nav-link" style={{ color: "white" }} to="/company/dashboard">Dashboard</NavLink>
+                            <NavLink className="nav-link companny-navbar-nav-link-subitem" to="/company/dashboard">Dashboard</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" style={{ color: "white" }} to="/company/post_intern">Post Intern</NavLink>
+                            <NavLink className="nav-link companny-navbar-nav-link-subitem" to="/company/post_intern">Post Internship</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="nav-link companny-navbar-nav-link-subitem" to="/">
+                                <img src={user}
+                                    className="img-fluid userpng-company-navbar"
+                                    onClick={this.showProfile}
+                                    alt="user" />
+                            </NavLink>
                         </li>
 
                     </ul>
-                    <a className="nav-link" href="#" style={{ float: "right" }}><img src={user}
-                        className="img-fluid userpng"
-                        onClick={this.showProfile}
-                        style={{ height: "30px",width:"30px", float: "right" }}
-                        alt="user" />
+                    <a className="nav-link" href="#" style={{ float: "right" }}>
+
                         <ProfileBox show={this.state.showProfile} />
                     </a>
                 </div>

@@ -1,12 +1,12 @@
 import React, { Component, useState } from "react";
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import cookie from "react-cookies";
 import { Modal } from "react-bootstrap";
 import merge from './assets/Merge..png';
 import otp from './assets/otp.png'
 import './assets/css/verify_otp.css'
 import Axios from "../setup";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 export class VerifyOTP extends Component {
   constructor(props) {
     super(props);
@@ -64,44 +64,43 @@ export class VerifyOTP extends Component {
   }
 
   handleSubmit(event) {
-    const data={
-      otp:this.state.otp,
-      mobile_number:this.state.mobile_number,
-      account_type:"student"
+    const data = {
+      otp: this.state.otp,
+      mobile_number: this.state.mobile_number,
+      account_type: "student"
     }
-    Axios.post('/api/accounts/verify_otp',data)
-    .then((res)=>{
-      console.log(res.data);
-      if(res.data.status===200){
-        localStorage.setItem('merge_jwt',res.data.jwt);
-         this.props.history.push('/test_skills');
-      }
-      else if(res.data.status!==200)
-         {
-           this.state.messages.push(res.data.status_message.message)
-           this.setState({
-             show:true
-           })
-         }   
-    })
-    .catch((err)=>console.log(err))
-   
+    Axios.post('/api/accounts/verify_otp', data)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.status === 200) {
+          localStorage.setItem('merge_jwt', res.data.jwt);
+          this.props.history.push('/test_skills');
+        }
+        else if (res.data.status !== 200) {
+          this.state.messages.push(res.data.status_message.message)
+          this.setState({
+            show: true
+          })
+        }
+      })
+      .catch((err) => console.log(err))
+
     event.preventDefault();
   }
 
   handleResendSubmit(event) {
-    const data={
-      mobile_number:this.state.mobile_number,
+    const data = {
+      mobile_number: this.state.mobile_number,
     }
-    Axios.post('/api/accounts/resend_otp',data)
-    .then((res)=>{
-      this.state.messages.push(res.data.status_message.message);
-      this.setState({
-        show:true
+    Axios.post('/api/accounts/resend_otp', data)
+      .then((res) => {
+        this.state.messages.push(res.data.status_message.message);
+        this.setState({
+          show: true
+        })
       })
-    })
-    .catch((err)=>console.log(err))
-   
+      .catch((err) => console.log(err))
+
     event.preventDefault();
   }
 
@@ -115,132 +114,128 @@ export class VerifyOTP extends Component {
 
   render() {
     return (
-      <div className="VerifyOTP vh-100 body-otp" >
-        <div className="container-fluid vh-100 violet_sq_bg">
-          <div className="row px-3">
-
-            <h2 style={{ color: "white", paddingTop: "20px" }}>
-              <NavLink to="/">
-                Merge.
+      <div className="container-fluid body-otp " >
+        <div className="container-fluid">
+          <div className="row px-2">
+            <h2 style={{ color: "white", paddingTop: "20px", fontFamily: "'Spartan', sans-serif" }}>
+              <NavLink to="/" className="merge-verify-otp mb-3" style={{ color: "white",fontFamily: "'Spartan', sans-serif" }}>
+              Merge.
               </NavLink>
             </h2>
 
+        </div>
+        <div
+          className="otp-box-home bg-white col-md-8 col-lg-6 col-sm-10 col-11 verify-otp-mobile mx-auto"
+          style={{ borderRadius: "20px" }}
+        >
+          <div className="row">
+            <div className="mt-3 mx-auto">
+              <img src={otp} className="img-fluid otp-image-verify" />
+            </div>
           </div>
-          <div
-            className="bg-white col-sm-6 col-10 mx-auto"
-            style={{ borderRadius: "30px" }}
-          >
-            <div className="row">
-              <div className="mt-3 mx-auto">
-                <img src={otp} className="img-fluid" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="mx-auto">
-                <form onSubmit={this.handleSubmit}>
-                  <h2 className="m-3 text-violet text-center" style={{ fontSize: "25px" }}>
-                    OTP Verification
+          <div className="row ">
+            <div className="mx-auto">
+              <form onSubmit={this.handleSubmit}>
+                <h2 className="m-3 text-violet text-center" style={{ fontSize: "25px" }}>
+                  OTP Verification
                   </h2>
-                  <div style={{ display: "flex" }} className="mt-3">
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <input
-                        id="otp_dig_1"
-                        className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
-                        maxLength="1"
-                        required
-                        onChange={this.handleOTPChange}
-                        style={{  textAlign: "center" }}
-                      />
+                <div style={{ display: "flex" }} className="mt-3">
+                  <div style={{ display: "flex", alignItems: "center" }} className="mx-auto">
+                    <input
+                      id="otp_dig_1"
+                      className="verify-otp-input text-center"
+                      type="text"
+                      pattern="\d*"
+                      maxLength="1"
+                      required
+                      onChange={this.handleOTPChange}
+                      style={{ textAlign: "center" }}
+                    />
 
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <input
-                        id="otp_dig_2"
-                        className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
-                        maxLength="1"
-                        required
-                        onChange={this.handleOTPChange}
-                        style={{ textAlign: "center" }}
-                      />
-                      {/* <span>-</span> */}
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <input
-                        id="otp_dig_3"
-                        className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
-                        maxLength="1"
-                        required
-                        onChange={this.handleOTPChange}
-                        style={{ textAlign: "center" }}
-                      />
-                      {/* <span>-</span> */}
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <input
-                        id="otp_dig_4"
-                        className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
-                        maxLength="1"
-                        required
-                        onChange={this.handleOTPChange}
-                        style={{  textAlign: "center" }}
-                      />
-                    </div>
                   </div>
-                  <br/>
-                  <div className="row mx-auto">
-                    <button
-                      className="btn btn-secondary mt-md-5 mx-auto text-center "
-                      style={{ borderRadius: "30px", width: "200px", alignSelf: "center" }}
-                      type="submit"
-                    >
-                      SUBMIT
-                  </button>
+                  <div style={{ display: "flex", alignItems: "center" }} className="mx-auto">
+                    <input
+                      id="otp_dig_2"
+                      className="verify-otp-input text-center"
+                      type="text"
+                      pattern="\d*"
+                      maxLength="1"
+                      required
+                      onChange={this.handleOTPChange}
+                      style={{ textAlign: "center" }}
+                    />
+
                   </div>
-                </form>
-              </div>
-            </div>
-            <div className="row">
-              <div className="mx-auto mt-3">
-                OTP sent to: {this.state.mobile_number}
-                <form onSubmit={this.handleResendSubmit}>
+                  <div style={{ display: "flex", alignItems: "center" }} className="mx-auto">
+                    <input
+                      id="otp_dig_3"
+                      className="verify-otp-input text-center"
+                      type="text"
+                      pattern="\d*"
+                      maxLength="1"
+                      required
+                      onChange={this.handleOTPChange}
+                      style={{ textAlign: "center" }}
+                    />
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center" }} className="mx-auto">
+                    <input
+                      id="otp_dig_4"
+                      className="verify-otp-input text-center"
+                      type="text"
+                      pattern="\d*"
+                      maxLength="1"
+                      required
+                      onChange={this.handleOTPChange}
+                      style={{ textAlign: "center" }}
+                    />
+                  </div>
+                </div>
+                <div className="row mx-auto">
                   <button
-                    className="btn text-violet bg-transparent mx-auto"
-                    style={{ fontSize: "1.1em",paddingLeft:"40px", fontWeight: "800", color: "#4A00E0", marginTop: "-40px" }}
+                    className="btn btn-secondary btn-submit-verify mt-md-5 mx-auto text-center "
                     type="submit"
                   >
-                    Resend OTP
+                    SUBMIT
                   </button>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
-            <Modal
-              show={this.state.show}
-              onHide={this.handleClose}
-              backdrop="static"
-              keyboard={false}
-            >
-              <Modal.Header closeButton />
-              <Modal.Body>
-                <ul style={{ listStyleType: "none" }}>
-                  {Object.keys(this.state.messages).map(
-                    (message_key, index) => (
-                      <li key={index}>{this.state.messages[message_key]}</li>
-                    )
-                  )}
-                </ul>
-              </Modal.Body>
-            </Modal>
           </div>
+          <div className="row">
+            <div className="mx-auto mt-3">
+              OTP sent to: {this.state.mobile_number}
+              <form onSubmit={this.handleResendSubmit}>
+                <button
+                  className="btn text-violet bg-transparent mx-auto"
+                  style={{ fontSize: "1.1em", paddingLeft: "40px", fontWeight: "800", color: "#4A00E0", marginTop: "-40px" }}
+                  type="submit"
+                >
+                  Resend OTP
+                  </button>
+              </form>
+            </div>
+          </div>
+          <Modal
+            show={this.state.show}
+            onHide={this.handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton />
+            <Modal.Body>
+              <ul style={{ listStyleType: "none" }}>
+                {Object.keys(this.state.messages).map(
+                  (message_key, index) => (
+                    <li key={index}>{this.state.messages[message_key]}</li>
+                  )
+                )}
+              </ul>
+            </Modal.Body>
+          </Modal>
         </div>
       </div>
+      </div >
     );
   }
 }

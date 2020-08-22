@@ -12,26 +12,26 @@ export class Header extends Component {
             <ul className="navbar-nav  text-white">
               <li className="nav-item px-lg-4 px-md-1 d-none d-lg-block">
                 <div className="navbar-brand navbar-brand-home" to="/">
-                  <h2 style={{ color: "white",fontFamily: "'Spartan', sans-serif" }}>Merge.</h2>
+                  <h2 className="home-main-merge">Merge.</h2>
                 </div>
               </li>
               <li className="nav-item nav-item-home  mr-auto">
-                <a className="nav-link" href="#">
+                <NavLink style={{color:"black"}} className="nav-link" to="/">
                   Home
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item nav-item-home  nav-hide md-auto">
-                <a className="nav-link" href="#">
+                <NavLink style={{color:"black"}} className="nav-link" to="/">
                   About
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item nav-item-home  nav-hide md-auto">
-                <a className="nav-link" href="#">
-                  <NavLink to="/create_account/student">Register/Login</NavLink>
-                </a>
+               
+                  <NavLink className="nav-link"  style={{color:"black"}} to="/create_account/student">Register/Login</NavLink>
+              
               </li>
               <li className="nav-item signup-nav  mx-auto">
-                  <NavLink className="nav-link" to="/create_account/student/">
+                  <NavLink style={{color:"black"}} className="nav-link" to="/create_account/student/">
                     Register/Login
                 </NavLink>
                 

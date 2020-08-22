@@ -90,7 +90,7 @@ export class StudentLogin extends Component {
               <ul className="navbar-nav">
                 <li className="nav-item px-sm-3 px-xs-2 ml-0">
                   <h3
-                    className="font-weight-bolder"
+                    className="font-weight-bolder sign-up-heading-main"
                     style={{
                       color: "#4A00E0",
                     }}
@@ -103,7 +103,7 @@ export class StudentLogin extends Component {
                 <li
                   className="nav-item px-3 font-weight-bolder"
                   style={{
-                    color: "#4A00E0",
+                    color: "black",
                     borderBottom: "solid 2px #4A00E0",
                   }}
                 >
@@ -112,7 +112,7 @@ export class StudentLogin extends Component {
                 <li className="nav-item px-3 font-weight-bolder">
                   <Link
                     to="/login/company"
-                    style={{ color: "#4A00E0" }}
+                    style={{ color: "black" }}
                   >
                     Company
                     </Link>
@@ -120,7 +120,8 @@ export class StudentLogin extends Component {
               </ul>
             </nav>
             <div className="row no-gutters mt-1">
-              <img src={login} style={{height:"300px",width:"400px"}} className="img-fluid mx-auto text-center" />
+              <img src={login}
+              className="img-fluid mx-auto text-center login-img-main-home" />
             </div>
             <form onSubmit={this.handleSubmit}>
 
@@ -137,7 +138,7 @@ export class StudentLogin extends Component {
                     pattern="^\d{10}$"
                     maxLength="12"
                     required
-                    style={{ borderRadius: "0", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
                     id="id_mobile_number"
                     onChange={this.handleNumberChange}
                     value={this.state.mobile_number}
@@ -146,7 +147,7 @@ export class StudentLogin extends Component {
                 <button
                   type="submit"
                   style={{
-                    backgroundColor: "#89EA91",
+                    backgroundColor: "#4A00E0",
                     color: "white",
                     borderRadius: "30px",
                     float: "right"
