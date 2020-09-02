@@ -47,51 +47,43 @@ export default class Form extends React.Component {
         }
     }
     componentDidMount() {
-        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt") === undefined) {
-            this.props.history.push('/login/student');
+
+        if (this.props.location.id === undefined) {
+            this.state.messages.push("Please Try Again Later");
+            alert("Try Again Later")
+            this.setState({
+                show: true
+            }, () => {
+                window.history.back();
+            })
         }
+
         else {
-            if (this.props.location.id === undefined) {
-                this.state.messages.push("Please Try Again Later");
-                alert("Try Again Later")
-                this.setState({
-                    show: true
-                }, () => {
-                    window.history.back();
-                })
+            console.log(this.props.location.id.key);
 
-            }
-            else {
-                const headers = {
-                    headers: {
-                        'Authorization': "Token " + localStorage.getItem("merge_jwt"),
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                }
-                axios.get('/api/accounts/student/review_application/' + this.props.location.id.key, headers)
-                    .then((res) => {
-                        console.log(res.data.data);
-                        this.setState({
-                            data: res.data.data,
-                            skills: res.data.data.skills,
-                            portfolio: res.data.data.portfolio,
-                            pastexperience: res.data.data.experience,
-                            questions: res.data.data.questions,
-                            answers: res.data.data.answers,
-                            edu10: res.data.data.edu10,
-                            edu12: res.data.data.edu12,
-                            grad: res.data.data.grad
+            axios.get('/api/accounts/student/review_application/' + this.props.location.id.key)
+                .then((res) => {
 
-                        }, () => {
-                            console.log(res.data.data.edu10)
-                            console.log(this.state.pastexperience)
-                        })
+                    this.setState({
+                        data: res.data.data,
+                        skills: res.data.data.skills,
+                        portfolio: res.data.data.portfolio,
+                        pastexperience: res.data.data.experience,
+                        questions: res.data.data.questions,
+                        answers: res.data.data.answers,
+                        edu10: res.data.data.edu10,
+                        edu12: res.data.data.edu12,
+                        grad: res.data.data.grad
+
+                    }, () => {
+                        console.log(res.data.data.edu10)
+                        console.log(this.state.pastexperience)
                     })
-                    .catch((err) => console.log(err));
-            }
+                })
+                .catch((err) => console.log(err));
         }
     }
+
 
     imageHandler = (e) => {
         this.setState({
@@ -102,12 +94,15 @@ export default class Form extends React.Component {
     render() {
         return (
             <div className="container-fluid main-container" >
+                <div className="row no-gutters">
+                    <button className="btn ml-5 mt-2" onClick={()=>{window.history.back()}} style={{background:"transparent",color:"#4A00E0"}}> Back</button>
+                   </div>
                 <br />
                 <div className="container-fluid inner-container" data-aos="fade-up" data-aos-easing="linear"
                     data-aos-duration="2500">
                     <div className="row"><h3 className="mx-auto heading">Student Information</h3></div>
                     <div className="row">
-                        <div className=" col-md-2 col-lg-2">
+                        <div className=" col-md-2 col-lg-2 pt-4">
                             <img src={this.state.picLink || userpng}
                                 alt="user" className="img-fluid"
                                 Height="180" width="180"
@@ -122,20 +117,19 @@ export default class Form extends React.Component {
                             <hr></hr>
                         </div>
                     </div>
-                    <br /><br /><br />
+
                     <div className="row">
-                        <div className="col-md-2">
-                            <label className="labels">Education:</label>
+                        <div className="col-md-3">
+                            <label className="labels label-education">Education:</label>
                         </div>
 
-                        <div className="col-md-10">
+                        <div className="col-md-9">
                             {/* <p className="education-pt"><button className="btn btnEdu" onClick={()=>{}} >+ Add Education</button></p> */}
                             {Object.getOwnPropertyNames(this.state.edu10).length >= 1 ?
                                 <div>
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                        </div>
-                                        <div className="col-md-6" style={{ fontSize: "20px" }}>
+                                    <div className="row  no-gutters student-10-data">
+                                        <div className="col-md-1"></div>
+                                        <div className="col-md-8 col-9 student-data-form">
                                             <b>School:  </b> &nbsp;{this.state.edu10.school}<br />
                                             <b>Board:  </b>&nbsp; {this.state.edu10.board}<br />
                                             <b>CLass:  </b>&nbsp;X<br />
@@ -150,10 +144,9 @@ export default class Form extends React.Component {
                             <br />
                             {Object.getOwnPropertyNames(this.state.edu12).length >= 1 ?
                                 <div>
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                        </div>
-                                        <div className="col-md-6" style={{ fontSize: "20px" }}>
+                                    <div className="row no-gutters student-10-data">
+                                        <div className="col-md-1"></div>
+                                        <div className="col-md-8 col-9 student-data-form" >
                                             <b>School:  </b> &nbsp;{this.state.edu12.school}<br />
                                             <b>Board:  </b>&nbsp; {this.state.edu12.board}<br />
                                             <b>CLass:  </b>&nbsp;X11<br />
@@ -169,10 +162,9 @@ export default class Form extends React.Component {
 
                             {Object.getOwnPropertyNames(this.state.grad).length >= 1 ?
                                 <div>
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                        </div>
-                                        <div className="col-md-6" style={{ fontSize: "20px" }}>
+                                    <div className="row no-gutters student-10-data">
+                                        <div className="col-md-1"></div>
+                                        <div className="col-md-8 col-9 student-data-form" >
                                             <b>Branch:  </b> &nbsp;{this.state.grad.branch}<br />
                                             <b>University:  </b>&nbsp; {this.state.grad.university}<br />
                                             <b>Marks:  </b>&nbsp;{this.state.grad.cgpa_percentage}<br />
@@ -191,50 +183,42 @@ export default class Form extends React.Component {
                     </div>
 
                     <hr />
-                    <br /><br />
+                    <br />
                     <div className="row">
                         <div className="col-md-3">
-                            <h3>Past Expierence:</h3>
+                            <label className="labels label-education">Past Expierence:</label>
                         </div>
-                        <div className="col-md-9">
+                        <div className="col-md-9 ">
                             {this.state.pastexperience.map((item, key) =>
                                 <div className="card skill-card border-0" style={{ paddingBottom: "15px" }}>
-                                    <div className="col-md-3">
-
+                                    <div className="row no-gutters student-10-data">
+                                        <div className="col-md-1"></div>
+                                        <div className="col-md-8 col-9 student-data-form">
+                                            <b>Organization: </b>{item.organization}<br />
+                                            <b>Role: </b>{item.profile}<br />
+                                            <b>Internship Type: </b>{item.internship_type}<br />
+                                            <b>Start Date: </b>{item.startdate}<br />
+                                            <b>End Date: </b>{item.enddate}<br />
+                                            <b>Description: </b>{item.description}<br />
+                                        </div>
                                     </div>
-                                    <div className="col-md-6" style={{ fontSize: "20px" }}>
-                                        <b>Organization: </b>{item.organization}<br />
-                                        <b>Role: </b>{item.profile}<br />
-                                        <b>Internship Type: </b>{item.internship_type}<br />
-                                        <b>Start Date: </b>{item.startdate}<br />
-                                        <b>End Date: </b>{item.enddate}<br />
-                                        <b>Description: </b>{item.description}<br />
-                                    </div>
-
-                                    <div className="col-md-3" style={{ padding: "10px" }}>
-
-
-                                    </div>
-
-
                                 </div>)}
                         </div>
                     </div>
 
                     <hr />
 
-                    <br /><br /><br />
-                    <div className="row">
+                    <br />
+                    <div className="row no-gutters ">
                         <div className="col-md-3">
-                            <h3>Skills:</h3>
+                            <label className="labels label-education">Skills:</label>
                         </div>
                         <div className="col-md-9">
                             {this.state.skills.map((item, key) =>
                                 <div className="card skill-card border-0" style={{ paddingBottom: "15px" }}>
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                        </div>
-                                        <div className="col-md-6" style={{ fontSize: "20px" }}>
+                                    <div className="row no-gutters student-10-data">
+                                        <div className="col-md-1"></div>
+                                        <div className="col-md-8 col-p student-data-form">
                                             <b>Skill:  </b>{item.skill} <br></br>
                                             <b>Level: </b>{item.level}
                                         </div>
@@ -244,19 +228,17 @@ export default class Form extends React.Component {
                         </div>
                     </div>
 
-
-                    <br /><br /><hr />
-                    <div className="row">
+                    <hr />
+                    <div className="row no-gutters ">
                         <div className="col-md-3">
-                            <h3>Portfolio:</h3>
+                            <label className="labels label-education">Portfolio:</label>
                         </div>
                         <div className="col-md-9">
                             {this.state.portfolio.map((item, key) =>
                                 <div className="card skill-card border-0" style={{ paddingBottom: "15px" }}>
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                        </div>
-                                        <div className="col-md-6" style={{ fontSize: "20px" }}>
+                                    <div className="row no-gutters student-10-data pt-2">
+                                        <div className="col-md-1"></div>
+                                        <div className="col-md-8 col-9 student-data-form" >
                                             <b>{key}:  </b>{item.link} <br></br>
 
                                         </div>
@@ -265,25 +247,31 @@ export default class Form extends React.Component {
                             )}
                         </div>
                     </div>
-                    <br /><br /><br />
+
                     <hr />
-                    <div className="row">
+                    <div className="row no-gutters  student-10-data">
                         <div className="col-md-3">
-                            <h3>Additional:</h3>
+                            <label className="labels label-education">Additional:</label>
                         </div>
-                        <div className="col-md-9  col-lg-9">
-                            <p>  {this.state.data.bio}</p>
+                        {/* <div className="col-md-1"></div> */}
+                        <div className="col-md-8  col-lg-8 student-data-form">
+                            {this.state.data.bio}
                         </div>
                     </div>
                     <hr />
                     <br />
-                    {/* Qiestins render here */}
+                    <label className=" labels label-education">Questions And Answers:</label>
+                    <br /><br />
                     <div className="">
                         {this.state.questions.map((item, key) =>
-                            <div>
-                                <div className="">
-                                    <h4 className="">{item}</h4>
-                                    <p>{this.state.answers[key]}</p>
+                            <div className="">
+                                <div className="row no-gutters">
+                                    {/* <div className="col-md-1"></div> */}
+                                    <div className="col-md-6 ml-3">
+                                        <h4 className="student-data-form"><b>Q. &nbsp;</b>{item}</h4>
+                                        <p className="student-data-form"><b>A. &nbsp;</b>{this.state.answers[key]}</p>
+                                    </div>
+
                                 </div>
                                 <br />
                             </div>

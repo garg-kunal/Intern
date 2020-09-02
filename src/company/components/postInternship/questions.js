@@ -13,10 +13,14 @@ class Questions extends React.Component {
     }
     InputField() {
         return (
-            <textarea type="text" name="extraQ" placeholder="Enter the question here..." className="extra"/>
-        ) 
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;
+                     <input type="text" name="extraQ" placeholder="Enter the question here..." className="form-control" /></span>
+            </button>
+
+        )
     }
-    
+
     addQuestion(e) {
         var qno = e.target.name[e.target.name.length - 1]
         var question = e.target.value
@@ -24,7 +28,7 @@ class Questions extends React.Component {
         allQuestions[qno] = question
         this.setState((prevState) => ({
             questions: allQuestions
-            
+
         }), () => {
             this.props.methodFromParent("questions", this.state.questions)
         })
@@ -46,12 +50,12 @@ class Questions extends React.Component {
             <div class="questions container-fluid">
                 <p>
                     Question 1 will be asked to every applicant by default.
-                    You can ask more questions as well. 
+                    You can ask more questions as well.
                 </p>
-                <p>
-                    <b>Question 1.</b> Why we should hire you?
+                <p className="city" style={{ border: "none" }}>
+                    <b >Question 1.</b> Why we should hire you?
                 </p>
-               
+
                 <button className="addMore" onClick={this.addInputField}><b>+</b> Add questions</button>
             </div>
         )

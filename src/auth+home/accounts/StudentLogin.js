@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import cookie from "react-cookies";
 import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
@@ -78,6 +78,12 @@ export class StudentLogin extends Component {
     event.preventDefault();
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('merge_jwt')) {
+      this.props.history.push("/test_skills");
+    }
+  }
+
   render() {
     return (
       <div className="container-fluid" style={{ padding: "0" }}>
@@ -121,15 +127,12 @@ export class StudentLogin extends Component {
             </nav>
             <div className="row no-gutters mt-1">
               <img src={login}
-              className="img-fluid mx-auto text-center login-img-main-home" />
+                className="img-fluid mx-auto text-center login-img-main-home" />
             </div>
             <form onSubmit={this.handleSubmit}>
 
               <div className="ml-md-3">
-
-
-
-                <div className="form-group form-content text-left mt-md-5">
+                <div className="form-group form-content text-left">
                   <input
                     type="text"
                     name="mobile_number"
@@ -138,12 +141,13 @@ export class StudentLogin extends Component {
                     pattern="^\d{10}$"
                     maxLength="12"
                     required
-                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0", color: "black", fontWeight: "200", border: "1px solid lightgrey" }}
                     id="id_mobile_number"
                     onChange={this.handleNumberChange}
                     value={this.state.mobile_number}
                   />
                 </div>
+             
                 <button
                   type="submit"
                   style={{

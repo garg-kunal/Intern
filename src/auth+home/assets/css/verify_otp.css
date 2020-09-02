@@ -166,6 +166,9 @@ input{
 
 }
 @media (max-width:730px) {
+    .body-otp{
+        height: 110vh;
+    }
     .main{
         margin-top: 6vh;
         width: 70vw;

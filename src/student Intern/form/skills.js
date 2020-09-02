@@ -9,15 +9,17 @@ import ReactModal, { setAppElement } from 'react-modal';
 
 const customStyles = {
     content: {
-        border: "2px solid #4A00E0",
+        // border: "2px solid #4A00E0",
         backgroundColor: "white",
-        width: "500px",
+        width: "80%",
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        borderRadius:'20px',
+        transform: 'translate(-50%, -50%)',
+        boxShadow:'0 0 4px 8px lightgrey'
     }
 };
 
@@ -28,7 +30,7 @@ export default class Skills extends React.Component {
         this.state = {
             level: "Beginner",
             Skillname: "",
-            updateid:"",
+            updateid: "",
             editShow: false,
             dataShow: true,
             addSkill: false,
@@ -47,7 +49,8 @@ export default class Skills extends React.Component {
             editShow: false,
             dataShow: true,
             buttonShow: true,
-            addSkill: false
+            addSkill: false,
+            Skillname:""
         });
     }
     show() {
@@ -62,7 +65,7 @@ export default class Skills extends React.Component {
 
     // Delete the Skill
 
-    Remove=(value)=> {
+    Remove = (value) => {
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt"),
@@ -70,18 +73,18 @@ export default class Skills extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-    
+
         if (window.confirm(" Are You sure Delete? ")) {
             // /student/delete_skill/
-            axios.delete('/api/accounts/student/delete_skill/'+value,headers)
-            .then((res)=>this.print())
-            .catch((err)=>console.log(err))
-            
+            axios.delete('/api/accounts/student/delete_skill/' + value, headers)
+                .then((res) => this.print())
+                .catch((err) => console.log(err))
+
         } else {
             this.handleCloseModal();
         }
     }
-    print(){
+    print() {
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt"),
@@ -89,16 +92,16 @@ export default class Skills extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-      
-        axios.get('/api/accounts/student/view_skills',headers)
-        .then((res)=>{
-            this.setState({
-                skillsOut:res.data.data
+
+        axios.get('/api/accounts/student/view_skills', headers)
+            .then((res) => {
+                this.setState({
+                    skillsOut: res.data.data
+                })
             })
-        })
-        .catch((err)=>console.log(err));
+            .catch((err) => console.log(err));
     }
-    componentDidMount(){
+    componentDidMount() {
         this.print();
     }
 
@@ -116,10 +119,10 @@ export default class Skills extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-        axios.post('/api/accounts/student/add_skill',data,headers)
-        .then((res)=>console.log(res.data))
-        .catch((err)=>console.log(err))
-        this.state.skillsOut.push(data);
+        axios.post('/api/accounts/student/add_skill', data, headers)
+            .then((res) => console.log(res.data))
+            .catch((err) => console.log(err))
+        // this.state.skillsOut.push(data);
         this.setState({
             addSkill: false,
             buttonShow: true,
@@ -132,8 +135,8 @@ export default class Skills extends React.Component {
     // Modal Show functions 
     // 1
     edit() {
-        const data={
-            id:this.state.updateid,
+        const data = {
+            id: this.state.updateid,
             skill: this.state.Skillname,
             level: this.state.level
         }
@@ -146,9 +149,9 @@ export default class Skills extends React.Component {
         }
 
         //student/update_skill/<int:id>
-        axios.post('/api/accounts/student/update_skill',data,headers)
-        .then((res)=>this.print())
-        .catch((err)=>console.log(err));
+        axios.post('/api/accounts/student/update_skill', data, headers)
+            .then((res) => this.print())
+            .catch((err) => console.log(err));
 
         this.setState({
             editShow: false,
@@ -156,7 +159,7 @@ export default class Skills extends React.Component {
             showModal: false,
             level: "Beginner",
             Skillname: "",
-            updateid:""
+            updateid: ""
         })
 
 
@@ -169,7 +172,7 @@ export default class Skills extends React.Component {
             editShow: true,
             dataShow: false,
             showModal: true,
-            updateid:this.state.skillsOut[value].id,
+            updateid: this.state.skillsOut[value].id,
             Skillname: this.state.skillsOut[value].skill,
             level: "Beginner"
         })
@@ -177,28 +180,26 @@ export default class Skills extends React.Component {
     }
     render() {
         return (
-            <div>
-                <label className="labels"> Skill: </label>
+            <div >
+
 
                 {this.state.skillsOut.map((item, key) =>
                     <div className="card skill-card border-0" style={{ paddingBottom: "15px" }}>
                         {this.state.dataShow ?
-                            <div className="row">
-                                <div className="col-md-3">
-                                </div>
-                                <div className="col-md-6" style={{ fontSize: "20px" }}>
+                            <div className="row no-gutters student-10-data">
+                                <div className="col-md-8  col-9 student-data-form">
                                     <b>Skill:  </b>{item.skill} <br></br>
                                     <b>Level: </b>{item.level}
                                 </div>
-                                <div className="col-md-3" style={{ padding: "10px" }}>
-                                    <button className="btn border-0" style={{ backgroundColor: "white" }}
+                                <div className="col-md-3 col-lg-3 col-3 " style={{ padding: "10px",paddingTop:"0" }}>
+                                    <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.editable(key) }} >
-                                        <img src={edit} style={{height:"25px",width:"25px"}} alt="edit" className="img" />
+                                        <img src={edit}  alt="edit" className="img-fluid  btn-edit-student" />
                                     </button>
-                                               &nbsp;&nbsp;&nbsp;&nbsp;
-                                   <button className="btn border-0" style={{ backgroundColor: "white" }}
+                                               
+                                   <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.Remove(item.id) }} >
-                                        <img src={remove} style={{height:"25px",width:"25px"}} alt="edit" className="img" />
+                                        <img src={remove}  alt="edit" className="img-fluid  btn-delete-student" />
                                     </button>
 
 
@@ -222,7 +223,7 @@ export default class Skills extends React.Component {
                                     <br />
                                     <select className="dropdown form-control"
                                         onChange={(e) => { this.setState({ level: e.target.value }) }}
-                                       >
+                                    >
                                         <option value="Begginner" >Beginner</option>
                                         <option value="Intermediate">Intermediate</option>
                                         <option value="Expert">Expert</option>
@@ -278,11 +279,9 @@ export default class Skills extends React.Component {
                     </ReactModal> : null}
                 {this.state.buttonShow ?
                     <div className="row" >
-                        <div className="col-md-2"></div>
-                        <div className="col-md-8">
-                            <button className="btn btns" onClick={() => { this.show() }}>+ Add Skills</button>
-                        </div>
+                        <button className="btn btns" onClick={() => { this.show() }}>+ Add Skills</button>
                     </div>
+
                     : null}
 
             </div>

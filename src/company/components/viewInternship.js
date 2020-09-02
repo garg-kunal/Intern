@@ -14,6 +14,7 @@ class InternshipDetails extends React.Component {
         super(props)
         this.state = {
             profile: "",
+            website:"",
             otherProfile: "",
             internshipPlace: "",
             internshipTime: "",
@@ -22,7 +23,7 @@ class InternshipDetails extends React.Component {
             startDate: "",
             exactDate: "",
             skills: [false, false, false],
-            otherSkills: "",
+            otherSkills: [],
             benefits: [],
             stipend: "",
             currency: "",
@@ -47,6 +48,7 @@ class InternshipDetails extends React.Component {
             .then((res) => {
                 console.log(res.data.data)
                 this.setState({
+                    website:res.data.data.website,
                     profile: res.data.data.profile,
                     internshipPlace: res.data.data.place,
                     internshipTime: res.data.data.time,
@@ -68,32 +70,32 @@ class InternshipDetails extends React.Component {
     }
     render() {
         return (
-            <div className="container-fluid details">
+              <div className="container-fluid details">
                 <div className="row">
-                    <span className="work col-8">{this.state.profile}</span>
+                    <span className="work col-8">{this.state.profile}
+                    </span>
                     <div className="col-4 pt-3">
-                        <img src={companyLogo} className="complogo" alt="" />
+                        <img src={companyLogo}
+                         className="complogo" alt="" />
                     </div>
                     <span className="company col-8">
                         <img src={home} className="workImg img-fluid"
-                            alt="" />&nbsp;{this.state.internshipPlace}</span>
-                    <div className="workFrom col-12">
-                        {/* <p className="workType">{this.state.internshipPlace}</p> */}
-                    </div>
+                            alt="" />&nbsp;{this.state.internshipPlace}
+                    </span>
                 </div>
                 <br/>
                 <div className="row no-gutters">
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
-                            <img src={start} style={{ height: "30px", width: "30px" }}
-                                className="img-fluid" alt="" />&nbsp;
-                            Joining Date</span><br/>
+                            <img src={start} 
+                                className="img-fluid  details-icons" alt="" />&nbsp;
+                            Joining Date</span><br />
                         <p className="workType work2">{this.state.startDate}</p>
                     </div>
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
-                            <img src={calendar} className="img-fluid"
-                                style={{ height: "30px", width: "30px" }}
+                            <img src={calendar} className="img-fluid  details-icons"
+                              
                                 alt="" />&nbsp;
                             Duration</span><br />
 
@@ -101,8 +103,8 @@ class InternshipDetails extends React.Component {
                     </div>
                     <div className="col-6 col-md-3 col-lg-3 mx-auto">
                         <span className="infoQ">
-                            <img src={rupee} className="img-fluid"
-                                style={{ height: "25px", width: "25px" }} alt="" />
+                            <img src={rupee} className="img-fluid details-icons paisa"
+                               alt="" />
                                 &nbsp;
                             Stipend</span><br />
 
@@ -111,33 +113,34 @@ class InternshipDetails extends React.Component {
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
                             <img src={applyBy}
-                                style={{ height: "20px", width: "30px" }}
-                                className="img-fluid" alt="" />&nbsp;
+                               
+                                className="img-fluid  details-icons paisa" alt="" />&nbsp;
                             Apply By</span><br />
-                        <p className="workType work2">{this.state.exactDate}</p>
+                        <p className="workType work2">{this.state.exactDate.length===0?"With In 10Days":this.state.exactDate}</p>
                     </div>
                 </div>
                 <div className="row aboutCompany">
                     <p className="about col-8">About Company</p>
-                    <a href="#" className="url col-10">http://samsung.com</a>
-                    {/* <p className="lead description">
-                        company description
-                    </p> */}
+                    <a href={this.state.website} target="_blank" className="url col-10">{this.state.website}</a>
                 </div>
+                <br/>
                 <div className="row aboutCompany">
-                    <p className="about col-11">About the  {this.state.internshipPlace} internship</p>
-                    <p className="lead description">Selected interns day to day responsibilities include :</p>
+                    <p className="about col-11">About the {this.state.internshipPlace} internship</p>
+                    <p className="lead description lead-descp-1">Selected interns day to day responsibilities include :</p>
                     <p className="lead description">
                         {this.state.responsibility}
                     </p>
                 </div>
                 <div className="row aboutCompany">
-                    <p className="about col-10">Skills Required</p>
+                    <p className="about-skills about col-10">Skills Required</p>
 
-                    <div className="row container skillsReq">
-                        {this.state.otherSkills}
+                    <div className="container-fluid skillsReq d-flex flex-row flex-wrap">
+                        {this.state.otherSkills.map((item, key) =>
+                            <p className="col-4  col-md-2" >{item}</p>
+                        )}
                     </div>
                 </div>
+                <br/>
                 <div className="row aboutCompany">
                     <p className="about col-11">Who can apply for this Internship :</p>
                     <p className="lead description">Only those can apply who :<br />
@@ -154,13 +157,14 @@ class InternshipDetails extends React.Component {
                    </p>
                 </div>
                 <div className="row aboutCompany">
-                    <p className="about col-10">Benefits</p>
-                    <div className=" container skillsReq d-flex flex-row flex-wrap">
+                    <p className="about about-benefit col-10">Benefits</p>
+                    <div className="container-fluid skillsReq d-flex flex-row flex-wrap">
                         {this.state.benefits.map((item, key) =>
-                            <p className="col-sm-6 col-md-5 col-12" >{item}</p>
+                            <p className="col-6  col-md-4" >{item}</p>
                         )}
                     </div>
                 </div>
+                <br/><br/>
             </div>
         )
     }
@@ -178,7 +182,7 @@ class ViewInternship extends React.Component {
     }
     render() {
         return (
-            <div className="container-fluid viewInternship pb-5" style={{ marginTop: "50px" }}>
+            <div className="container-fluid viewInternship pb-5" style={{ marginTop: "60px" }}>
                 <br /><br />
                 <p className="heading">Internship Details</p>
                 {this.props.location.id === undefined ? (this.props.history.push('/company/dashboard')) :

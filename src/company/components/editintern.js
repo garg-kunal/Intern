@@ -148,11 +148,11 @@ class PostInternship extends React.Component {
                         otherSkills: res.data.data.skills,
                         openings: res.data.data.openings,
                         days: res.data.data.duration,
-                        responsibility: res.data.data.description
+                        responsibility: res.data.data.description,
+                        internshipPlace:res.data.data.place
 
                     }, () => {
-                        console.log(this.state.openings);
-                        console.log(this.state.responsibility)
+                        
                     })
                 })
                 .catch((err) => console.log(err))
@@ -179,13 +179,13 @@ class PostInternship extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid postInternship">
+            <div className="container-fluid postInternship" style={{ paddingTop: "120px" }}>
                 <p className="heading">Post Internships</p>
                 <p className="head head2">Internship Details :</p>
                 <p className="head head3">Profile :</p>
                 <input type="text" value={this.state.profile}
                     style={{ padding: "10px" }}
-                    className="form-control" onChange={(e) => { this.setState({ profile: e.target.value }) }}
+                    className="form-control city" onChange={(e) => { this.setState({ profile: e.target.value }) }}
                     required placeholder="e.g. Web Developer" />
                 <p className="head head3">Internship type :</p>
                 <InternshipType methodFromParent={this.parentCollector} />
@@ -200,11 +200,11 @@ class PostInternship extends React.Component {
                 <p className="head head3">Internship Duration :</p>
                 <input type="text"
                     value={this.state.days} required
-                    style={{ padding: "7px" }} className="form-control col-lg-12 col-md-12" placeholder="e.g. 1 month || 2 Weeks " onChange={(e) => { this.setState({ days: e.target.value }) }} />
+                    style={{ padding: "7px" }} className="form-control city col-lg-12 col-md-12" placeholder="e.g. 1 month || 2 Weeks " onChange={(e) => { this.setState({ days: e.target.value }) }} />
 
                 {/* <Duration methodFromParent={this.parentCollector} /> */}
                 <p className="head head3">Intern's Responsibilities :</p>
-                <textarea className="form-control" value={this.state.responsibility}
+                <textarea className="form-control city" value={this.state.responsibility}
                     cols="10" rows="1" onChange={(e) => { this.setState({ responsibility: e.target.value }) }} placeholder="Enter Text..." />
 
                 {/* <Responsibility methodFromParent={this.parentCollector} /> */}
@@ -248,7 +248,7 @@ class PostInternship extends React.Component {
                 <input type="text"
                     value={this.state.otherSkills}
                     onChange={(e) => { this.setState({ otherSkills: e.target.value }) }}
-                    className="form-control" required placeholder="Add Hardware, Software, etc." />
+                    className="form-control city" required placeholder="Add Hardware, Software, etc." />
 
                 {/* <Skills methodFromParent={this.parentCollector} domain={this.state.profile} /> */}
                 <p className="head head3">Evaluation Questions :</p>

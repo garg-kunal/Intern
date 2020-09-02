@@ -58,7 +58,8 @@ export class VerifyOTP extends Component {
     this.setState(
       { otp: otp_dig_1 + otp_dig_2 + otp_dig_3 + otp_dig_4 },
       () => {
-        console.log(this.state);
+        document.getElementById("submit-otp").disabled=false;
+        document.getElementById("submit-otp").style.background="#4A00E0";
       }
     );
   }
@@ -71,7 +72,7 @@ export class VerifyOTP extends Component {
     }
     Axios.post('/api/accounts/verify_otp',data)
     .then((res)=>{
-      console.log(res.data);
+      
       if(res.data.status===200){
         localStorage.setItem('merge_jwt_c',res.data.jwt);
          this.props.history.push('/company/dashboard');
@@ -91,7 +92,7 @@ export class VerifyOTP extends Component {
 
   handleResendSubmit(event) {
     const data={
-      mobile_number:this.state.mobile_number,
+    email:this.state.email
     }
     Axios.post('/api/accounts/resend_otp',data)
     .then((res)=>{
@@ -107,7 +108,7 @@ export class VerifyOTP extends Component {
 
   componentDidMount() {
     const { email } = this.props.match.params;
-    console.log(this.props.match.params);
+    document.getElementById("submit-otp").disabled=true;
     this.setState({ email: email });
   }
 
@@ -193,7 +194,7 @@ export class VerifyOTP extends Component {
                     </div>
                   </div>
                   <div className="row mx-auto">
-                  <button
+                  <button id="submit-otp"
                     className="btn btn-secondary btn-submit-verify mt-md-5 mx-auto text-center "
                     type="submit"
                   >

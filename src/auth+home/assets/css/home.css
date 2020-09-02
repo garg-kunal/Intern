@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
+/* font-family: 'Spartan', sans-serif; */
 .welcome{
    
     background-repeat: no-repeat;
@@ -31,11 +31,11 @@
 .main-welcome{
     padding: 0;
 }
-.navbar-nav{
+.navbar-nav-home{
     display: inline-flex;
 }
 .glyphicon{
-    color: white;
+    color: black;
 }
 .login-handle{
     border-radius:25px;
@@ -69,7 +69,7 @@
     letter-spacing: 2px;
 }
 
-.btn-intern{
+.btn-intern,.btn-intern-mobile{
     background-color: #4A00E0;
     color: white;
     text-align: center;
@@ -78,20 +78,24 @@
     padding: 10px;
     border-radius: 10px;
 }
+.btn-intern-mobile{
+    display: none;
+}
 
 .card-intern-main{
   width: 70%;
   padding-top: 150px;
   margin-top: 30px;
-  margin-bottom: -10px;
+  padding-bottom: 18px;
+  /* margin-bottom: -10px; */
   border-radius: 25px;
   background-color: white;
   box-shadow:   0px -10px 6px #999894;
-  /* box-shadow: 0 0  6px 3px rgb(143, 126, 126); */
+
 }
 .hit-back{
     background: linear-gradient(white 50%,#3A2C60 50%);
-    margin-top: 240px;
+    margin-top: 360px;
 }
 
 
@@ -110,12 +114,13 @@
 .img-name{
     height: 40px;
     width: 40px;
+    /* margin-bottom: -100px; */
+}
+.img-name-mobile{
+    display: none;
 }
 .card-tech-inner{
-    border-radius: 50%;
-    padding: 40px;
     width: 10rem;
-    box-shadow: 0 0 4px 4px lightgrey;
 }
 .card-tech-heading{
     margin-top: -90px;
@@ -131,7 +136,7 @@
 .nav-item-home{
     font-size: 18px;
     color: black;
-    padding-left: 55px;
+    padding-left: 15px;
 }
 .navbar-brand-home{
     padding-right: 420px;
@@ -140,25 +145,22 @@
 
 .welcome-heading{
     margin-top: 20px;
-    margin-top: 20px;
-    /* padding: 25px; */
     letter-spacing: 2;
     padding-left: 50px;
     color: black;
-    font-size: 2em;
-    font-family: 'Spartan', sans-serif;
-    font-style:'Poppins', sans-serif;;
+    font-size: 1.8em;
+    font-style:'Poppins', sans-serif;
     font-weight: 800;
 }
 
 .welcome-heading-2{
-    margin-top: 5px;
+    margin-top: -10px;
     padding-bottom: 10px;
     letter-spacing: 2;
     padding-left: 50px;
     color: black;
-    font-size: 2em;
-    font-style: ;
+    font-size: 1.8em;
+    font-style:'Poppins', sans-serif;
     font-weight: 800;
 }
 .laptop-img{
@@ -200,13 +202,14 @@
 .get-info p{
     padding-top: 30px;
     font-size: 18px;
+    font-weight: 400;
 }
 
 .astro-img{
     padding-top: 150px;
     padding-right: -20px;
-    height: 525px;
-    width: 425px;
+    height: 505px;
+    width: 405px;
 }
 .online-logo-footer{
     /* height: 85px; */
@@ -246,6 +249,18 @@
 }
 .laptop-img-mobile{
     display: none;
+}
+.footer-telegram-home-page{
+    margin-top: 30px;
+    padding-top: 8px;
+    width: 340px;
+    background-color: white;
+    border-radius: 30px;
+    padding-left: 30px;
+    padding: 7px;
+    font-size: 12px;
+    margin-left: 20px;
+
 }
 @media only screen and (max-width: 1200px) {
     
@@ -313,7 +328,7 @@
    
 }
 
-.navbar-nav {
+.navbar-nav{
     flex-direction: row;
     padding: 0%;
   }
@@ -326,33 +341,50 @@
 .intern-content{
     padding-top: 10px;
     font-weight: 400;
-    font-size: 22x;
+    font-size: 22x !important;
 }
+
 @media only screen and (max-width: 768px) {
     
     .welcome-heading{
-        font-size: 2.0rem;
+        font-size: 20px;
+        /* font-weight: 500; */
+    }
+    .welcome-heading-2{
+        font-size: 1.8rem;
     }
     .signup-nav{
+        margin-left: -50px;
         display: inline;
+        margin-top: 12px;
     }
     .mobile-merge{
         display: contents;
         padding-left: -10px;
         font-family: 'Spartan', sans-serif;
     }
-    .intern-content-heading{
-        padding-left: 40px;
+    .intern-content-heading-0{
+        /* padding-left:60px; */
+        font-size: 20px;
+    }
+    .intern-content-heading-1{
+        /* padding-left:8px; */
+        font-size: 20px;
+    }
+    .intern-content-heading-2{
+        /* padding-left: 40px; */
         font-size: 20px;
     }
     .card-tech-inner{
-        border-radius: 50%;
-        padding: 20px;
+      
+        padding: 5px;
         width: 7rem;
-        box-shadow: 0 0 4px 4px lightgrey;
+        
     }
     .intern-content{
-        font-size: 15px;
+        font-size: 16px;
+        /* margin-left: -15px; */
+        padding-right: 20px;
         font-weight: 500;
     }
    
@@ -371,7 +403,8 @@
         display: none;
     }
     .hit-back{
-        margin-top: 330px;
+        margin-top: 570px;
+        height: 150vh;
     }
     .card-tech-body-main{
      height: auto;
@@ -386,14 +419,16 @@
         padding-bottom: 20px;
         margin-top: -180px;
         padding-top: 120px;
+        box-shadow:0 0 6px 4px #999894;
     }
     .card-intern-text{
         display: none;
     }
     .card-body-main{
-        margin-bottom: 100px;
-        height: 90vh;
+        margin-bottom: 120px;
+        height: auto;
         width: 90%;
+        box-shadow:0 0 6px 4px #999894;
     }
     .get-info{
         padding-top: 20px;
@@ -409,21 +444,37 @@
     .get-img-false{
         display: block;
     }
+
+    .home-main-footer-right-side{
+        margin-left: 10px;
+    }
+    .home-footer-logo-heading{
+        color: black;
+       margin-left: 25px;
+       font-size: 26px;
+    }
+    .home-footer-main-heading{
+        margin-left: 30px;
+    }
+    .home-footer-main{
+        margin-left: 30px;
+
+    }
     .card-web-outer{
         padding: 5px;
-
     }
     .nav-item-home{
         padding: 10px;
     }
-    .signup-nav{
-        padding: 10px;
-    }
+   
     .card-tech-main-intern-heading{
-        font-weight: 200;
-        padding-left: 90px;
+        font-weight: 400;
+        font-size: 20px;
+        margin-top: -120px;
+        padding-left: 80px;
     }
     .card-tech-heading{
+        margin-left: -30px;
         text-align: center;
         font-size: 22px;
     }
@@ -431,6 +482,7 @@
         padding: 10px;
     }
     .card-main-footer{
+        height: 100vh;
         margin-top: -60px;
         padding: 10px;
     }
@@ -438,10 +490,12 @@
         display: none;
     }
     .img-name{
-        height: 50px;
-        width: 50px;
-        margin-left: 110px;
+        /* display: none; */
+        height: 30px;
+        width: 30px;
+        margin-left: 130px;
     }
+   
 
     .img-dot{
         display: none;
@@ -452,30 +506,30 @@
     }
     .laptop-guy{
         margin-top: -20px;
-        padding-left: 70px;
-        height:270px;
-        width: 290px;
+        margin-left: -20px;
+        height:290px;
+        width: 310px;
     }
    .btn-intern{
+       display: none;
        font-size: 20px;
-       margin-left: 30px;
+       margin-left: 18px;
    }
-    
-.logo-youtube{
-    border-radius: 50px;
-    background-color: #4A00E0;
-    border:3px solid white;
-    margin-left: 20px;
-    margin-right: 10px;
-    transform: scale(1);
-    max-height: 50px;
-}.web-tech-card-inner-size{
-    font-size: 16px;
+   .btn-intern-mobile{
+    display: block;
+    font-size: 20px;
+    /* margin-left: 18px; */
+}
+.fa{
+font-size: 30px !important;
 }
 
- .intern-content{
-     padding-right: 10px;
- }  
+ 
+.web-tech-card-inner-size{
+    font-size: 14px;
+}
+
+  
 }
 
 @media only screen and (max-width: 600px) {
@@ -483,27 +537,50 @@
     .welcome-heading{
         font-size: 1.7rem;
     }
+    .welcome-heading-2{
+        font-size: 1.7rem;
+    }
     .navbar {
         flex-direction: row;
         padding: 2px;
         font-weight: 800;
       }
+      .card-tech-main-intern-heading{
+        font-weight: 400;
+        font-size: 20px;
+        margin-top: -100px;
+        padding-left: 60px;
+    }
      .navbar ul li{
         font-size: 15px;
         font-weight: 800;
       }
+      .img-name{
+        /* display: none; */
+        height: 30px;
+        width: 30px;
+        margin-left: 120px !important;
+    }
+    .intern-content-heading-0{
+        /* padding-left:60px; */
+        font-size: 20px;
+        padding-right: 1px;
+    }
+    .intern-content-heading-1{
+        /* padding-left:8px; */
+        font-size: 20px;
+        padding-right: 2px;
+    }
+    .intern-content-heading-2{
+        /* padding-left: 40px; */
+        font-size: 20px;
+        padding-right: 2px;
+    }
+    .card-body-intern-main{
+        /* padding: -1px; */
+    }
     
     
-.logo-youtube{
-    border-radius: 50px;
-    background-color: #4A00E0;
-    border:3px solid white;
-    margin-left: 10px;
-    margin-right: 10px;
-    transform: scale(0.8);
-    max-height: 45px;
-}
-
 }
 
 @media only screen and (max-width: 450px) {
@@ -512,16 +589,10 @@
         font-size: 1.4rem;
     }
     
-   
-.logo-youtube{
-    border-radius: 50px;
-    background-color: #4A00E0;
-    border:3px solid white;
-    margin-left: 10px;
-    transform: scale(1.1);
-    max-height: 40px;
-}
-   
+    .welcome-heading-2{
+        font-size: 1.4rem;
+    }
+    
    
 }
 
@@ -532,28 +603,24 @@
     .welcome-heading{
         font-size: 1.5rem;
     }
+    
+    .welcome-heading-2{
+        font-size: 1.5rem;
+        margin-top: -15px;
+        padding-left: 15px;
+    }
     .btn-intern{
-        width: 160px;
+        width: 210px;
+        /* margin-left: -2px; */
         font-size: 18px;
     }
+    .img-name{
+        /* display: none; */
+        height: 30px;
+        width: 30px;
+        margin-left: 95px !important;
+    }
   
-    .logo-telegram{
-        background-color: white;
-        border-radius: 30px;
-        transform: scale(0.8);
-        max-height: 60px;
-    }
-    
-.logo-youtube{
-    border-radius: 50px;
-    background-color: #4A00E0;
-    border:3px solid white;
-    margin-left: 10px;
-    max-height: 45px;
-    transform: scale(1.1);
-}
-    .tele-img{
-        transform: scale(0.6);
-    }
+   
    
 }

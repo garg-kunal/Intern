@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Spartan:wght@700&display=swap');
-* {
+.welcome-logo-online{
   margin: 0;
   padding: 0;
   outline: none;
@@ -58,7 +57,7 @@
   font-family: 'Spartan', sans-serif;
 }
 .welcome-logo-online-1{
-  padding-top: 140px;
+  padding-top: 120px;
   padding-left: 30px;
 }
 .col-logo-online{
@@ -297,7 +296,7 @@ input, .industry {
 }
 .login-img-main-home{
   height: 300px;
-  width: 350px;
+  width: 300px;
 }
 @media only screen and (max-width: 768px) {
   .welcome-merge{
@@ -323,7 +322,7 @@ input, .industry {
   }
   .login-img-main-home{
     height: 250px;
-    width: 300px;
+    width: 250px;
     padding-right: 10px;
   }
 .option-company-main{

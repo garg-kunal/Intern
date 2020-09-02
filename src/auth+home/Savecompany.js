@@ -11,7 +11,9 @@ class ReviewInternship extends React.Component {
                 </div>
                 <p className="lead success">Your Company details has been submitted for review.<br/> We will get back to you within 12-24 working hours.<br/> Thank you for your patience.</p>
                 <button type="button"
-                onClick={()=>{this.props.history.push('/')}}
+                onClick={()=>{
+                    localStorage.removeItem("merge_jwt_c");
+                    this.props.history.push('/')}}
                  className="btn btn-primary closeScreen col-4">Close</button>
             </div>
         )

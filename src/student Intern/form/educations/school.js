@@ -9,15 +9,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from '../../../setup';
 const customStyles = {
     content: {
-        border: "2px solid #4A00E0",
+        // border: "2px solid #4A00E0",
         backgroundColor: "white",
-        width: "500px",
+        width: "80%",
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        borderRadius: '20px',
+        transform: 'translate(-50%, -50%)',
+        boxShadow: '0 0 4px 8px lightgrey'
     }
 };
 
@@ -56,7 +58,7 @@ export default class SchoolXII extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-        axios.get('/api/accounts/student/education/12/get',headers)
+        axios.get('/api/accounts/student/education/12/get', headers)
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -107,35 +109,35 @@ export default class SchoolXII extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-        
-        if (window.confirm(" Are You sure Delete? ")) {
-        axios.delete('/api/accounts/student/education/12/delete',headers)
-            .then((res) => {
-                console.log(res.data);
-                this.setState({
-                    ListShow: false,
-                    board: "",
-                    class: "Senior Secondary X11",
-                    school: "",
-                    marks: "",
-                    endDate: new Date(),
-                    startDate: new Date(),
-                    stream: "",
-                    unCheck: true
-                })
-                this.print();
-            })
-            .catch((err) => console.log(err));
-    }
-    else{
-        this.setState({
-            buttonShow: false,
-            dataShow: true,
-        })
-        this.handleCloseModal();
 
+        if (window.confirm(" Are You sure Delete? ")) {
+            axios.delete('/api/accounts/student/education/12/delete', headers)
+                .then((res) => {
+                    console.log(res.data);
+                    this.setState({
+                        ListShow: false,
+                        board: "",
+                        class: "Senior Secondary X11",
+                        school: "",
+                        marks: "",
+                        endDate: new Date(),
+                        startDate: new Date(),
+                        stream: "",
+                        unCheck: true
+                    })
+                    this.print();
+                })
+                .catch((err) => console.log(err));
+        }
+        else {
+            this.setState({
+                buttonShow: false,
+                dataShow: true,
+            })
+            this.handleCloseModal();
+
+        }
     }
-}
 
 
     // Add Skill
@@ -158,7 +160,7 @@ export default class SchoolXII extends React.Component {
                 enddate: this.state.endDate
 
             }
-            axios.post('/api/accounts/student/education/12', data,headers)
+            axios.post('/api/accounts/student/education/12', data, headers)
                 .then((res) => {
                     console.log(res.data)
                     alert(res.data.status_message.message);
@@ -180,7 +182,7 @@ export default class SchoolXII extends React.Component {
                 enddate: "Pursuing"
 
             }
-            axios.post('/api/accounts/student/education/12', data,headers)
+            axios.post('/api/accounts/student/education/12', data, headers)
                 .then((res) => {
                     console.log(res.data);
                     // alert(res.data.status_message.message);
@@ -198,7 +200,6 @@ export default class SchoolXII extends React.Component {
     // 1
     edit() {
         const data = {
-            mobile_number: "6395642409",
             school: this.state.school,
             board: this.state.board,
             cgpa_percentage: this.state.marks,
@@ -213,7 +214,7 @@ export default class SchoolXII extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-        axios.post('/api/accounts/student/education/12', data,headers)
+        axios.post('/api/accounts/student/education/12', data, headers)
             .then((res) => {
                 console.log(res.data);
                 this.setState({
@@ -229,7 +230,7 @@ export default class SchoolXII extends React.Component {
                 alert("Try Again After SomeTime")
             });
 
-       
+
 
     }
     // 2
@@ -265,35 +266,37 @@ export default class SchoolXII extends React.Component {
                     <div>
                         <div className=" skill-card border-0" style={{ paddingBottom: "15px" }}>
                             {this.state.dataShow ?
-                                <div className="row">
-                                    <div className="col-md-3">
-                                    </div>
-                                    <div className="col-md-6" style={{ fontSize: "20px" }}>
-                                        <b>School:  </b> &nbsp;{this.state.school}<br />
-                                        <b>Board:  </b>&nbsp; {this.state.board}<br />
-                                        <b>Stream:  </b>&nbsp; {this.state.stream}<br />
-                                        <b>CLass:  </b>&nbsp;{this.state.class}<br />
-                                        <b>Marks:  </b>&nbsp;{this.state.marks}<br />
-                                        <b>Start Date:  </b>&nbsp; {this.state.startDate}<br />
-                                        <b>End Date:  </b>&nbsp; {this.state.endDate}
+                                <div className="row  no-gutters student-10-data">
+
+                                    <div className="col-md-8  col-9 student-data-form" >
+                                        <b>{this.state.class}</b><br/>
+                                        {this.state.school}<br />
+                                        {this.state.board}<br />
+                                        {this.state.stream}<br />
+
+                                        {this.state.marks}<br />
+                                        {this.state.startDate}<br />
+                                        {this.state.endDate}
 
                                     </div>
-                                    <div className="col-md-3" style={{ padding: "10px" }}>
-                                        <button className="btn border-0" style={{ backgroundColor: "white" }}
-                                            onClick={() => { this.editable() }} ><img src={edit}
-                                             style={{height:"25px",width:"25px"}} alt="edit" className="img" />
+
+                                    <div className="col-md-3 col-3" style={{ padding: "10px", paddingTop: "0" }}>
+                                        <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
+                                            onClick={() => { this.editable() }} >
+                                            <img src={edit}
+                                                alt="edit" className="img-fluid  btn-edit-student" />
                                         </button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button className="btn border-0" style={{ backgroundColor: "white" }}
+
+                                        <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.remove() }} ><img src={remove}
-                                              style={{height:"25px",width:"25px"}} alt="edit" className="img" />
+                                                alt="edit" className="img-fluid  btn-delete-student" />
                                         </button>
                                     </div>
 
                                 </div> : null}
                             <div className="row">
                                 <div class="col-md-12 col-lg-12">
-                                    <br/><br/>
+                                    <br />
                                     <Graduation />
                                 </div>
                             </div>
@@ -325,10 +328,10 @@ export default class SchoolXII extends React.Component {
                                             onChange={(e) => { this.setState({ marks: e.target.value }) }}
                                             placeholder="e.g. marks" />
                                         <br />
-                                        <br />
+
                                         <div className="row">
                                             <div className="col-md-6">
-                                                <label style={{fontSize:"20px"}}>Start Date</label>
+                                                <label className="date-label-resume" >Start Date:</label>&nbsp;&nbsp;
                                                 <DatePicker
                                                     className="form-control"
                                                     selected={new Date(this.state.startDate)}
@@ -337,7 +340,7 @@ export default class SchoolXII extends React.Component {
                                                 <br /><br />
                                             </div>
                                             <div className="col-md-6">
-                                                <label style={{fontSize:"20px"}}>Complete Date:</label>
+                                                <label className="date-label-resume">Complete Date:</label>&nbsp;&nbsp;
                                                 {this.state.endDate === "Pursuing" ?
                                                     <DatePicker
                                                         className="form-control"
@@ -403,12 +406,12 @@ export default class SchoolXII extends React.Component {
                                         placeholder="e.g. 93% or 9.4 cgpa" />
                                     <br />
                                     Currently Studying: <input type="checkbox"
-                                    style={{height:"15px"}}
+                                        style={{ height: "15px" }}
                                         onChange={() => { this.checkBox() }} />
                                     <br /><br />
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <label>Start Date</label>
+                                            <label className="date-label-resume">Start Date:</label>&nbsp;&nbsp;
                                             <DatePicker
                                                 className="form-control"
                                                 selected={this.state.startDate}
@@ -417,7 +420,7 @@ export default class SchoolXII extends React.Component {
                                         </div>
                                         <div className="col-md-6">
                                             {this.state.unCheck ?
-                                                <div><label>Completed Date:</label> &nbsp;&nbsp;
+                                                <div><label className="date-label-resume">Completed Date:</label> &nbsp;&nbsp;
                                             <DatePicker
                                                         className="form-control"
                                                         selected={this.state.endDate}
@@ -429,7 +432,7 @@ export default class SchoolXII extends React.Component {
 
                                     <div style={{ padding: "10px", float: "right", display: "flex" }}>
                                         <button className="btn btnedit" style={{ borderRadius: "15px" }}
-                                            onClick={(e) => { this.submit(e) }} align="right">Add Secondary(XII) Education</button>
+                                            onClick={(e) => { this.submit(e) }} align="right">Save</button>
                             &nbsp;&nbsp;
                             <button className="btn btnedit"
                                             onClick={() => { this.handleCloseModal() }}>Cancel</button>

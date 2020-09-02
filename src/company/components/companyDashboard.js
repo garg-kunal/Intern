@@ -50,6 +50,7 @@ class CompanyDashBoard extends React.Component {
     }
 
     componentDidMount() {
+        if(localStorage.getItem("merge_jwt_c")){
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
@@ -59,6 +60,7 @@ class CompanyDashBoard extends React.Component {
         }
         Axios.get('/api/accounts/company/view_all_internships', headers)
             .then((res) => {
+                console.log(res.data)
                 this.setState({
                     results: res.data.data
                 })
@@ -67,6 +69,10 @@ class CompanyDashBoard extends React.Component {
             .catch((err) => console.log(err));
 
     }
+    else{
+        this.props.history.push("/login/company");
+    }
+}
     nextPage() {
         if (this.state.pageNo * 5 < this.state.results.length) {
             this.setState({
@@ -163,7 +169,7 @@ class CompanyDashBoard extends React.Component {
             }
         });
         return (
-            <div className="container-fluid text-center">
+            <div className="container-fluid text-center" style={{marginTop:"90px"}}>
                 <h2 className="heading">Dashboard</h2>
                 <div className="container  board">
                     <DashboardTitle />
@@ -173,7 +179,7 @@ class CompanyDashBoard extends React.Component {
                 <br/>
                 <div className="container row  nextPage">
                     <button type="button" className="left text-center" onClick={this.prevPage}> {"<"} </button>
-                    <span className="currentPage text-center">{this.state.pageNo}</span>
+                    <span className="currentPage text-center mt-1">{this.state.pageNo}</span>
                     <button type="button" className="right text-center" onClick={this.nextPage}> {">"} </button>
                 </div>
             </div>

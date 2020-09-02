@@ -1,89 +1,89 @@
-import React from "react"
+import React from 'react';
 
-class Skills extends React.Component {
-    constructor() {
-        super()
+import Select from 'react-select';
+// import { colourOptions } from '../data';
+
+// type State = {
+//   value: [{ [string]: string }],
+// };
+const colourOptions = [
+    { value: 'skills', label: 'SKill', color: '#00B8D9', isFixed: true },
+    { value: 'css', label: 'CSS', color: '#00B8D9' },
+    { value: 'html', label: 'HTML', color: '#0052CC' },
+    { value: 'python', label: 'Python', color: '#5243AA' },
+    { value: 'django', label: 'django', color: '#FF5630 ' },
+    { value: 'jquery', label: 'Jquery', color: '#FF8B00' },
+    { value: 'js', label: 'Javascript', color: '#FFC400' },
+
+];
+
+const styles = {
+    multiValue: (base, state) => {
+        return state.data.isFixed ? { ...base, backgroundColor: 'gray' } : base;
+    },
+    multiValueLabel: (base, state) => {
+        return state.data.isFixed
+            ? { ...base, fontWeight: 'bold', color: 'white', paddingRight: 6 }
+            : base;
+    },
+    multiValueRemove: (base, state) => {
+        return state.data.isFixed ? { ...base, display: 'none' } : base;
+    },
+};
+
+const orderOptions = values => {
+
+    return values.filter(v => v.isFixed).concat(values.filter(v => !v.isFixed));
+};
+
+export default class FixedOptions extends React.Component {
+
+    constructor(props) {
+        super(props);
         this.state = {
-            skills: [false, false, false],
-            otherSkills: []
+            value: [colourOptions[0]]
         }
-        this.addAnotherSkill = this.addAnotherSkill.bind(this)
-        this.removeSkill = this.removeSkill.bind(this)
-        this.changeColor = this.changeColor.bind(this)
+
+
+        this.onChange = this.onChange.bind(this);
     }
-    addAnotherSkill(e) {
-        e.persist()
-        if(e.keyCode == 13) {
-            var skillField = document.getElementsByName("otherSkills")[0].value
-            this.setState((prevState) => ({ 
-                otherSkills: [ ...prevState.otherSkills, skillField]
-            }), () => {
-                this.props.methodFromParent("otherSkills", this.state.otherSkills)
-            })
-            document.getElementsByName("otherSkills")[0].value = ""   
+
+    onChange(value, { action, removedValue }) {
+        switch (action) {
+            case 'remove-value':
+            case 'pop-value':
+                if (removedValue.isFixed) {
+                    return;
+                }
+                break;
+            case 'clear':
+                value = colourOptions.filter(v => v.isFixed);
+                break;
         }
+        value = orderOptions(value);
+
+        this.setState({
+            value: value,
+        },
+            () => {
+
+                this.props.methodFromParent("otherSkills", this.state.value)
+            });
     }
-    removeSkill(e) {
-        var recentSkills = this.state.otherSkills
-        var i = 0
-        for(const c of recentSkills){
-            if(c === e.target.value) {
-                break
-            }
-            i = i + 1
-        }
-        recentSkills.splice(i,1)
-        this.setState((prevState) => ({
-            otherSkills: recentSkills
-        }), () => {
-            this.props.methodFromParent("otherSkills", this.state.otherSkills)
-        })
-    }
-    changeColor(e){
-        e.persist()
-        var element = e.target.parentNode;
-        if(element.style.backgroundColor === "rgb(74, 0, 224)") {
-            element.style.backgroundColor = "#9F9F9F";
-        } else {
-            element.style.backgroundColor = "rgb(74, 0, 224)";
-        }
-        var skillNo = e.target.name[e.target.name.length - 1] - 1
-        var skillArray = this.state.skills
-        skillArray[skillNo] = !skillArray[skillNo]
-        this.setState((prevState) => ({
-            skills: skillArray
-        }), () => {
-            this.props.methodFromParent("skills", this.state.skills)
-        })
-    }
+
     render() {
-        var info = [
-            {id: 1, field: "Front End Development", option1: "HTML", option2: "CSS", option3: "jQuery"},
-            {id: 2, field: "Back End Development", option1: "Python", option2: "Node", option3: "PHP"},
-            {id: 3, field: "Database", option1: "MySQL", option2: "MongoDB", option3: "FireStore"},
-            {id: 4,field: "Server", option1: "AWS", option2: "GCP", option3: "Azure"}
-        ];
-        const rows = info.map((information) => {
-            if(information.field === this.props.domain)
-            return (
-                <div className="field">
-                    <label className="checkLabel"><input type="checkbox" className="check" name={information.id+"field1"} onChange={this.changeColor} value={information.option1}/>{information.option1}</label>
-                    <label className="checkLabel"><input type="checkbox" className="check" name={information.id+"field2"} onChange={this.changeColor} value={information.option2}/>{information.option2}</label>
-                    <label className="checkLabel"><input type="checkbox" className="check" name={information.id+"field3"} onChange={this.changeColor} value={information.option3}/>{information.option3}</label>
-                </div>
-            );
-        });
         return (
-            <div className="cityDiv container-fluid profileContainer">
-                <div className="">
-                    {rows}
-                    <span className="fieldName">Others :</span>
-                    <input type="text" name="otherSkills" className="otherFields" placeholder="Add Hardware, Software, etc."/>
-                    
-                </div>
-            </div>
-        )
+            <Select
+                value={this.state.value}
+                isMulti
+                styles={styles}
+                isClearable={this.state.value.some(v => !v.isFixed)}
+                name="colors"
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={this.onChange}
+                options={colourOptions}
+            />
+        );
     }
 }
-
-export default Skills

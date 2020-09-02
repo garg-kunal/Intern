@@ -5,7 +5,7 @@ import img3 from './assets/bg-12.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import WOW from 'wowjs'
-
+import { Link } from 'react-router-dom';
 export default class Main extends React.Component {
     constructor() {
         super();
@@ -20,24 +20,40 @@ export default class Main extends React.Component {
         return (
             <div className="card card-body-main mx-auto">
                 <div className="card-body" data-aos="fade-up" data-aos-duration="500">
-                    <div class="row">
+                    <div class="row mx-auto">
                         <div className="col-12 laptop-img-mobile ">
                             <img src={welcome} alt=""
                                 className="justify-content-center img-fluid laptop-guy"
                             />
 
                         </div>
-                        <div className="col-md-7 col-lg-7" >
-                            <p className="welcome-heading display-4">
-                                Work with experts who can </p>
-                            <p className="welcome-heading-2 display-4"> deliver world-class service<br /><br />
-                                <button className="btn btn-intern">Get Internships</button>
-                                <br />
-                            </p>
+                        <div className="col-md-7 col-lg-7 col-12" >
+                           
+                            <p className="welcome-heading">
+                                An AI-Based platform for Tech Internships </p>
+                            <p className="welcome-heading-2">
 
+                                <button
+                                    className="btn btn-intern">
+                                    <Link to="/create_account/student" style={{ color: "white", textDecoration: "none" }}>
+                                        Apply Here
+                                    </Link>
+                                </button>
+
+
+                            </p>
+                            <div className="row mx-auto">
+                                <button
+                                    className="btn btn-intern-mobile mx-auto text-center">
+                                    <Link to="/create_account/student" style={{ color: "white", textDecoration: "none" }}>
+                                        Apply Here
+                                    </Link>
+                                </button>
+                            </div>
+                            <br />
                             <p className=" card-intern-text" style={{ color: "black" }}>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                been the industry's standard dummy text ever since the 1500s;
+                                Making the Internship process easier for students with
+                                the skill-based assessment platform.
                         </p>
 
                         </div>

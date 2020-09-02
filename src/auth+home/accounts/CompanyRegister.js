@@ -60,7 +60,7 @@ export class CompanyRegister extends Component {
   }
 
   handleSubmit(event) {
-    
+
     const data = {
       email: this.state.email,
       name: this.state.name,
@@ -68,20 +68,20 @@ export class CompanyRegister extends Component {
       company_type: this.state.company_type
     }
     this.setState({
-      messages:[]
+      messages: []
     })
-   
+
     axios.post('/api/accounts/company/create', data)
       .then((res) => {
         console.log(res.data.status_message.message)
         if (res.data.status === 201)
           this.props.history.push('/login/verify/' + this.state.email);
         else if (res.data.status !== 201)
-        this.state.messages.push(res.data.status_message.message)
+          this.state.messages.push(res.data.status_message.message)
         this.setState({
-          show:true
+          show: true
         })
-        
+
       })
       .catch((err) => {
         console.log(err)
@@ -134,7 +134,7 @@ export class CompanyRegister extends Component {
             </nav>
             <form onSubmit={this.handleSubmit}>
               <div className="ml-md-3">
-                <div className="form-group form-content text-left mt-md-5">
+                <div className="form-group form-content text-left mt-md-3">
                   <input
                     type="text"
                     name="name"
@@ -143,17 +143,17 @@ export class CompanyRegister extends Component {
                     maxLength="128"
                     required
                     id="id_name"
-                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0", color: "black", fontWeight: "200", border: "1px solid lightgrey" }}
                     onChange={this.handleNameChange}
                     value={this.state.name}
                   />
                 </div>
 
-                <div className="form-group form-content text-left mt-md-5">
+                <div className="form-group form-content text-left mt-md-3">
                   <input
                     type="email"
                     name="email"
-                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0", color: "black", fontWeight: "200", border: "1px solid lightgrey" }}
                     className="form-control"
                     placeholder="Company E-mail ID"
                     maxLength="254"
@@ -164,39 +164,39 @@ export class CompanyRegister extends Component {
                   />
                 </div>
 
-                <div className="form-group form-content text-left mt-md-5">
+                <div className="form-group form-content text-left mt-md-3">
                   <div className="form-group form-content text-left">
                     <select
                       className="form-control industry"
                       name="industry"
                       id="select"
-                      style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey", fontSize: "20px", padding: "3px" }}
+                      style={{ borderRadius: "0", color: "black", fontWeight: "200", border: "1px solid lightgrey", fontSize: "20px", padding: "3px" }}
                       onChange={this.handleTypeChange}
                       value={this.state.company_type}
                       required
                     >
-                      <option  className="option-company-main" value="">
+                      <option className="option-company-main" value="">
                         Industry
                         </option>
                       <option className="option-company-main">E-commerce</option>
-                      <option  className="option-company-main">Saas</option>
-                      <option  className="option-company-main">Fintech</option>
-                      <option  className="option-company-main">Web Dev./Marketing Agency</option>
-                      <option  className="option-company-main">Services</option>
-                      <option  className="option-company-main">Media & Entertainment</option>
-                      <option  className="option-company-main">Food & Beverage</option>
-                      <option  className="option-company-main">Automobile</option>
-                      <option  className="option-company-main">Hyperlocal</option>
-                      <option  className="option-company-main">Logistics</option>
-                      <option  className="option-company-main">Fashion</option>
-                      <option  className="option-company-main">Agritech</option>
-                      <option  className="option-company-main">Non-Profit</option>
-                      <option  className="option-company-main">Others</option>
+                      <option className="option-company-main">Saas</option>
+                      <option className="option-company-main">Fintech</option>
+                      <option className="option-company-main">Web Dev./Marketing Agency</option>
+                      <option className="option-company-main">Services</option>
+                      <option className="option-company-main">Media & Entertainment</option>
+                      <option className="option-company-main">Food & Beverage</option>
+                      <option className="option-company-main">Automobile</option>
+                      <option className="option-company-main">Hyperlocal</option>
+                      <option className="option-company-main">Logistics</option>
+                      <option className="option-company-main">Fashion</option>
+                      <option className="option-company-main">Agritech</option>
+                      <option className="option-company-main">Non-Profit</option>
+                      <option className="option-company-main">Others</option>
                     </select>
                   </div>
                 </div>
 
-                <div className="form-group form-content text-left mt-md-5">
+                <div className="form-group form-content text-left mt-md-3">
                   <input
                     type="text"
                     name="mobile_number"
@@ -205,32 +205,28 @@ export class CompanyRegister extends Component {
                     pattern="^\d{10}$"
                     maxLength="16"
                     required
-                    style={{ borderRadius: "0",color:"black",fontWeight:"200", border: "1px solid lightgrey" }}
+                    style={{ borderRadius: "0", color: "black", fontWeight: "200", border: "1px solid lightgrey" }}
                     id="id_mobile_number"
                     onChange={this.handleNumberChange}
                     value={this.state.mobile_number}
                   />
                 </div>
-                <button
-                  style={{
-                    backgroundColor: "#4A00E0",
-                    color: "white",
-                    borderRadius: "30px",
-                    float: "left"
-                  }}
-                  className="btn btn-lg col-5 pull-right"
-                >
-                  <NavLink  style={{color:"white"}} to="/login/company"> Login</NavLink>
-
-                </button>
-                <button
-                  type="submit"
-                  
-                  className="btn btn-lg btn-sign-up-home-main-page-land col-5 pull-right"
-                >
-                  Sign Up
+                <div className="container row no-gutters">
+                  <div className=" mx-auto text-center">
+                    Already Have An Account?
+                  <NavLink style={{ color: "#4A00E0" }} to="/login/company">&nbsp;&nbsp; Login.</NavLink>
+                  </div>
+                </div>
+                <br />
+                <div className="row mx-auto no-gutters">
+                  <button
+                    type="submit"
+                    className="btn btn-lg btn-sign-up-home-main-page-land col-5 mx-auto">
+                    Sign Up
                   </button>
+                </div>
               </div>
+
             </form>
             <Modal
               show={this.state.show}
@@ -240,12 +236,12 @@ export class CompanyRegister extends Component {
             >
               <Modal.Header closeButton />
               <Modal.Body>
-               {this.state.messages}
+                {this.state.messages}
               </Modal.Body>
             </Modal>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

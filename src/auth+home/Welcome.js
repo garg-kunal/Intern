@@ -7,11 +7,13 @@ export class Welcome extends Component {
   render() {
     return (
       <div className="container-fluid welcome-form" style={{ margin: "0" }}>
-        <NavLink to="/">
-          <p className="welcome-merge">
+
+        <p className="welcome-merge">
+          <NavLink to="/" className="welcome-merge" style={{ color: "white",textDecoration:"none", }}>
             Merge.
+            </NavLink>
         </p>
-        </NavLink>
+
         <div className="welcome-screen-mobile">
           <h3 className="mt-md-3 ml-md-2 d-md-block d-none" style={{ fontWeight: "600" }}>Welcome,</h3>
           <h4 className="mt-md-3 ml-md-2 d-md-none" style={{ fontWeight: "600" }}>Welcome,</h4>

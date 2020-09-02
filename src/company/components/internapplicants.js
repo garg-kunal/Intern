@@ -51,7 +51,46 @@ export default class Applicants extends React.Component {
         })
 
     }
-
+approve(id){
+    const headers = {
+        headers: {
+            'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }
+    const data={
+        id:id
+    }
+  axios.post('/api/accounts/company/internship/approve_applicant',data,headers)
+  .then((res)=>{
+      if(res.data.status===200){
+          alert(res.data.status_message.message);
+      }
+      else  alert(res.data.status_message.message);
+  })
+  .catch((err)=>console.log(err))
+}
+reject(id){
+    const headers = {
+        headers: {
+            'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }
+    const data={
+        id:id
+    }
+  axios.post('/api/accounts/company/internship/reject_applicant',data,headers)
+  .then((res)=>{
+      if(res.data.status===200){
+          alert(res.data.status_message.message);
+      }
+      else  alert(res.data.status_message.message);
+  })
+  .catch((err)=>console.log(err))
+}
     render() {
         return (
             <div className="container-fluid" style={{marginTop:"100px"}}>
@@ -98,6 +137,7 @@ export default class Applicants extends React.Component {
                                 <div className="col-md-3 col-lg-3">
                                     <p className="text-center application-text">
                                         <NavLink
+                                         
                                             to={{
                                                 pathname: "/resume",
                                                 id: {
@@ -109,12 +149,15 @@ export default class Applicants extends React.Component {
                                 </div>
                                 <div className="col-md-2 col-lg-2">
                                     <p className="text-center">
-                                        <button className="btn btn-success">Approve</button>
+                                        <button onClick={()=>{this.approve(item.id)}}
+                                        className="btn btn-success">Approve</button>
                                     </p>
                                 </div>
                                 <div className="col-md-2 col-lg-2">
                                     <p className="text-center">
-                                        <button className="btn btn-danger">
+                                        <button 
+                                        onClick={()=>{this.reject(item.id)}}
+                                        className="btn btn-danger">
                                             Reject
                                         </button>
                                     </p>

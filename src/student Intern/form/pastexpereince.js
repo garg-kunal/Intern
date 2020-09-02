@@ -7,19 +7,23 @@ import DatePicker from "react-datepicker";
 import axios from '../../setup';
 
 import "react-datepicker/dist/react-datepicker.css";
+import { queries } from '@testing-library/react';
 const customStyles = {
     content: {
-        border: "2px solid #4A00E0",
+        // border: "2px solid #4A00E0",
         backgroundColor: "white",
-        width: "600px",
+        width: "80%",
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         height: '90%',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-    }
+        borderRadius:'20px',
+        transform: 'translate(-50%, -50%)',
+        boxShadow:'0 0 4px 8px lightgrey'
+    },
+   
 };
 
 export default class PastExpierence extends React.Component {
@@ -217,34 +221,32 @@ export default class PastExpierence extends React.Component {
     render() {
         return (
             <div>
-                <label className="labels"> Past Experience: </label>
 
                 {this.state.expierence.map((item, key) =>
                     <div className="card skill-card border-0" style={{ paddingBottom: "15px" }}>
                         {this.state.dataShow ?
-                            <div className="row">
-                                <div className="col-md-3">
-                                </div>
-                                <div className="col-md-6" style={{ fontSize: "20px" }}>
-                                    <b>Organization: </b>{item.organization}<br />
-                                    <b>Role: </b>{item.profile}<br />
-                                    <b>Internship Type: </b>{item.internship_type}<br />
-                                    <b>Start Date: </b>{item.startdate}<br />
-                                    <b>End Date: </b>{item.enddate}<br />
-                                    <b>Description: </b>{item.description}<br />
+                            <div className="row no-gutters student-10-data">
+                             
+                                <div className="col-md-8 col-9 student-data-form">
+                                <b>{item.profile}</b><br />
+                                    <i>Organization: </i>{item.organization}<br />
+                                    <i>Internship Type:</i> {item.internship_type}<br />
+                                    <i> Start Date:</i> {item.startdate}<br />
+                                    <i> End Date:</i> {item.enddate}<br />
+                                    <i> Description:</i> {item.description}<br />
                                 </div>
 
-                                <div className="col-md-3" style={{ padding: "10px" }}>
-                                    <button className="btn border-0" style={{ backgroundColor: "white" }}
+                                <div className="col-md-3 col-3" style={{ padding: "10px",paddingTop:"0" }}>
+                                    <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.editable(key) }} >
-                                        <img src={edit} style={{height:"25px",width:"25px"}}
-                                            height="30" alt="edit" className="img" />
+                                        <img src={edit} 
+                                            height="30" alt="edit" className="img-fluid  btn-edit-student" />
                                     </button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button className="btn border-0" style={{ backgroundColor: "white" }}
+                           
+                                    <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.remove(item.id) }} >
-                                        <img src={remove}   style={{height:"25px",width:"25px"}}
-                                            height="30" alt="edit" className="img" />
+                                        <img src={remove} 
+                                            height="30" alt="edit" className="img-fluid  btn-delete-student" />
                                     </button>
 
 
@@ -261,42 +263,42 @@ export default class PastExpierence extends React.Component {
                             >
 
                                 <div style={{ fontSize: "20px" }}>
-                                    <input type="text" className="form-control"
+                                    <input type="text" className="form-control resume-form-input"
                                         value={this.state.company}
                                         onChange={(e) => { this.setState({ company: e.target.value }) }}
                                         placeholder="e.g. Merge." />
                                     <br />
-                                    <input type="text" className="form-control"
+                                    <input type="text" className="form-control  resume-form-input"
                                         value={this.state.role}
                                         onChange={(e) => { this.setState({ role: e.target.value }) }}
                                         placeholder="e.g. Web Developer" />
                                     <br />
-                                    <input type="text" className="form-control"
+                                    <input type="text" className="form-control  resume-form-input"
                                         value={this.state.workLocation}
                                         onChange={(e) => { this.setState({ workLocation: e.target.value }) }}
                                         placeholder="e.g. Home,Officee" />
                                     <br />
-                                    <div className="row">
+                                    <div className="row no-gutters">
                                         <div className="col-md-6">
-                                            <label>Start Date</label>
+                                            <label style={{ fontSize: "18px" }}>Start Date:</label>&nbsp;&nbsp;
                                             <DatePicker
-                                                className="form-control"
+                                                className="form-control  resume-form-input"
                                                 selected={new Date(this.state.startDate)}
                                                 onChange={(date) => { this.setState({ startDate: date }) }}
                                             />
                                         </div>
                                         <div className="col-md-6">
-                                            <label>Completed Year:</label> &nbsp;&nbsp;
+                                            <label style={{ fontSize: "18px" }}>Completed Year:</label> &nbsp;&nbsp;
                                             {this.state.endDate === 'Working' ?
                                                 <DatePicker
                                                     selected={new Date()}
-                                                    className="form-control"
+                                                    className="form-control  resume-form-input"
                                                     onChange={(date) => { this.setState({ endDate: date }) }}
                                                 />
                                                 :
                                                 <DatePicker
                                                     selected={new Date(this.state.endDate)}
-                                                    className="form-control"
+                                                    className="form-control  resume-form-input"
                                                     onChange={(date) => { this.setState({ endDate: date }) }}
                                                 />
                                             }
@@ -350,12 +352,13 @@ export default class PastExpierence extends React.Component {
                                 placeholder="e.g. Home,Officee" />
                             <br />
                             Currently Working: <input type="checkbox"
-                             style={{height:"15px"}}
-                                onChange={() => { this.checkBox() }} />
+                            className="pt-2"
+                                style={{ height: "15px" }}
+                                onChange={() => { this.checkBox() }} /> 
                             <br /><br />
-                            <div className="row">
+                            <div className="row no-gutters">
                                 <div className="col-md-6">
-                                    <label>Start Year</label>
+                                    <label style={{ fontSize: "18px" }}>Start Year:</label>&nbsp;&nbsp;
                                     <DatePicker
                                         className="form-control"
                                         selected={this.state.startDate}
@@ -364,7 +367,7 @@ export default class PastExpierence extends React.Component {
                                 </div>
                                 <div className="col-md-6">
                                     {this.state.unCheck ?
-                                        <div><label>Completed Year:</label> &nbsp;&nbsp;
+                                        <div><label style={{ fontSize: "18px" }}>Completed Year:</label> &nbsp;&nbsp;
                                             <DatePicker
                                                 className="form-control"
                                                 selected={this.state.endDate}
@@ -374,14 +377,14 @@ export default class PastExpierence extends React.Component {
                                 </div>
                             </div> <br /><br />
                             <label>Description:(optional)</label>
-                            <textarea className="form-control" rows="2" cols="5"
+                            <textarea className="form-control" 
                                 value={this.state.describe}
                                 onChange={(e) => { this.setState({ describe: e.target.value }) }}>
                             </textarea>
                             <br />
                             <div style={{ padding: "10px", float: "right", display: "flex" }}>
                                 <button className="btn btnedit" style={{ borderRadius: "15px" }}
-                                    onClick={(e) => { this.submit(e) }} align="right">Add Experience</button>
+                                    onClick={(e) => { this.submit(e) }} align="right">Add</button>
                             &nbsp;&nbsp;
                             <button className="btn btnedit"
                                     onClick={() => { this.handleCloseModal() }}>Cancel</button>
@@ -391,11 +394,10 @@ export default class PastExpierence extends React.Component {
                     </ReactModal> : null}
                 {this.state.buttonShow ?
                     <div className="row" >
-                        <div className="col-md-2"></div>
-                        <div className="col-md-8">
-                            <button className="btn btns" onClick={() => { this.show() }}>+ Add Experience</button>
-                        </div>
+
+                        <button className="btn btns" onClick={() => { this.show() }}>+ Add Experience</button>
                     </div>
+
                     : null}
 
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import user from '../../student Intern/assets/images/user.png';
+import user from '../../student Intern/assets/images/Merge..png';
 import "../css/companyNavBar.css"
 import ProfileBox from "./profileBox"
 import { NavLink } from "react-router-dom";
@@ -20,9 +20,10 @@ class CompanyNavBar extends React.Component {
     render() {
         return (
 
-            <nav className="navbar navbar-expand-lg  fixed-top bg-light" style={{ backgroundColor: "#4A00E0" }} >
+            <nav className="navbar navbar-expand-lg navbar-light  fixed-top bg-light" style={{ backgroundColor: "#4A00E0" }} >
                 <NavLink className="navbar-brand" to="/company">
-                    <strong className="company-navbar-heading-merge">Merge.</strong>
+                    <img src={user} alt="Merge." className="img-fluid merge-logo-all-student" />
+
                 </NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -35,20 +36,19 @@ class CompanyNavBar extends React.Component {
                         <li className="nav-item">
                             <NavLink className="nav-link companny-navbar-nav-link-subitem" to="/company/post_intern">Post Internship</NavLink>
                         </li>
-                        <li>
-                            <NavLink className="nav-link companny-navbar-nav-link-subitem" to="/">
-                                <img src={user}
-                                    className="img-fluid userpng-company-navbar"
-                                    onClick={this.showProfile}
-                                    alt="user" />
-                            </NavLink>
+                        {/* &nbsp;&nbsp;&nbsp; */}
+                        <li className="nav-item">
+                            <button
+                                className="btn companny-navbar-nav-link-subitem" style={{ background: "transparent" }}
+                                onClick={() => {
+                                    localStorage.removeItem("merge_jwt_c");
+                                    this.props.history.push("/login/company");
+                                }}
+                            >Logout</button>
+
                         </li>
 
                     </ul>
-                    <a className="nav-link" href="#" style={{ float: "right" }}>
-
-                        <ProfileBox show={this.state.showProfile} />
-                    </a>
                 </div>
             </nav >
         )

@@ -42,26 +42,26 @@ export class CompanyRegister extends Component {
 
 
     handleSubmit(event) {
+        const form =new FormData();
+        form.append("address", this.state.address);
+        form.append("website", this.state.website);
+        form.append("location", this.state.location);
+        form.append("about", this.state.about);
+        form.append("spoc", this.state.contact_person);
+        // form.append("image", this.state.logo);
 
-        const data = {
-            address: this.state.address,
-            website: this.state.website,
-            location: this.state.location,
-            about: this.state.about,
-            spoc: this.state.contact_person
-        }
+
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                "Content-Type": "multipart/form-data",
             }
         }
         this.setState({
             messages: []
         })
 
-        axios.post('/api/accounts/company/save_details', data, headers)
+        axios.post('/api/accounts/company/save_details', form, headers)
             .then((res) => {
                 console.log(res.data.status_message.message)
                 if (res.data.status === 200)
@@ -83,7 +83,7 @@ export class CompanyRegister extends Component {
     componentDidMount() {
         const headers = {
             headers: {
-                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
@@ -91,6 +91,7 @@ export class CompanyRegister extends Component {
         console.log(this.props.match.params);
         axios.get('/api/accounts/company/get_details', headers)
             .then((res) => {
+                console.log(res.data)
                 this.setState({
                     email: res.data.data.email,
                     company_name: res.data.data.name,
@@ -105,21 +106,21 @@ export class CompanyRegister extends Component {
 
     render() {
         return (
-            <div className="container-fluid" style={{padding:"0"}}>
-            <Navbar />
+            <div className="container-fluid" style={{ padding: "0" }}>
+                <Navbar />
                 <div className="container mt-3 mx-auto company-detail-main" >
-                    
+
                     <form onSubmit={this.handleSubmit}>
                         <div className="">
                             <div className="row no-gutters">
-                                <div className="col-md-4 col-lg-4 col-12 ">
+                                <div className="col-md-3 col-lg-3 col-12 ">
                                     <div className="form-group">
                                         <img src={this.state.logo || logo1} style={{ height: "160px", width: "170px", border: "1px solid #4A00E0" }}
                                             className="img-fluid company-logo-main" alt="logo" />
                                         <ImagePicker
                                             extensions={['jpg', 'jpeg', 'png']}
                                             dims={{ minWidth: 100, maxWidth: 5000, minHeight: 100, maxHeight: 5000 }}
-                                            onChange={base64 => { this.setState({ logo: base64 }) }}
+                                            onChange={(base64) => { this.setState({ logo: base64 }) }}
                                             onError={errMsg => (alert(errMsg))}
                                         >
                                             <button className="btn btns text-center mx-auto">
@@ -129,11 +130,11 @@ export class CompanyRegister extends Component {
                                     </div>
                                 </div>
                                 <div className="col-md-7 col-lg-7 col-12">
-                                    <div className="mt-3">
-                                        <b>Company:</b>&nbsp;&nbsp;{this.state.company_name}<br />
-                                        <b>Email:</b> &nbsp;&nbsp;{this.state.email}<br />
-                                        <b>Registered Mobile No:</b> &nbsp;&nbsp;{this.state.mobile_number}<br />
-                                        <b>Company Type:</b> &nbsp;&nbsp;{this.state.company_type}<br />
+                                    <div className="mt-2">
+                                      <b>Company:</b>&nbsp;&nbsp;{this.state.company_name}<br/>
+                                         <b>Email:</b> &nbsp;&nbsp;{this.state.email}<br/>
+                                          <b>Registered Mobile No:</b> &nbsp;&nbsp;{this.state.mobile_number}<br/>
+                                         <b>Company Type:</b> &nbsp;&nbsp;{this.state.company_type}<br/>
                                     </div>
 
                                 </div>
@@ -206,7 +207,7 @@ export class CompanyRegister extends Component {
                                     placeholder="Contact Person Name"
                                     required
                                     style={{ borderRadius: "0", border: "1px solid lightgrey" }}
-                                    id="id_mobile_number"
+                                  
                                     onChange={(e) => { this.setState({ contact_person: e.target.value }) }}
                                     value={this.state.contact_person}
                                 />

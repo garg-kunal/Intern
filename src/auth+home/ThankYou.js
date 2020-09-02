@@ -9,8 +9,8 @@ export class ThankYou extends Component {
       <div className="ThankYou vh-100 body-thanku ">
         <div className="container-fluid vh-100 violet_sq_bg">
           <div className="row px-3">
-            <h2 style={{ color: "white" }}>
-              <NavLink to="/">Merge.</NavLink>
+            <h2 >
+              <NavLink to="/" style={{ color: "white" }}>Merge.</NavLink>
             </h2>
           </div>
           <div
@@ -34,7 +34,7 @@ export class ThankYou extends Component {
           </div>
           <div className="row p-3 col-sm-4 col-10 mx-auto mt-2 text-center">
             <div className="col">
-              <a
+              <a style={{ color: "white" }}
                 href="https://www.instagram.com/mergeintern"
                 className=""
                 target="_blank"
@@ -43,7 +43,7 @@ export class ThankYou extends Component {
               </a>
             </div>
             <div className="col">
-              <a
+              <a style={{ color: "white" }}
                 href="https://twitter.com/merge_intern"
                 className=""
                 target="_blank"
@@ -52,7 +52,7 @@ export class ThankYou extends Component {
               </a>
             </div>
             <div className="col">
-              <a
+              <a style={{ color: "white" }}
                 href="https://www.youtube.com/channel/UCORJBqq-0tusMhTmCxaxEww/"
                 className=""
                 target="_blank"
@@ -61,7 +61,7 @@ export class ThankYou extends Component {
               </a>
             </div>
             <div className="col">
-              <a
+              <a style={{ color: "white" }}
                 href="https://www.linkedin.com/company/mergeintern"
                 className=""
                 target="_blank"

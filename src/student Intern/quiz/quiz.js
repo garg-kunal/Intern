@@ -6,11 +6,13 @@ import { history, Redirect, withRouter } from 'react-router-dom'
 import Navbar from './navbarQuiz';
 import axios from '../../setup';
 import Score from '../components/Screen3';
+import Mobile from './Mobilequiz';
 class Quiz extends React.Component {
     constructor() {
         super();
         this.state = {
             isTabActive: "",
+            skills:[],
             timer: 30,
             answer: [],
             option: "",
@@ -24,14 +26,14 @@ class Quiz extends React.Component {
             optionC: "",
             optionD: "",
             showBtn: true,
-            score:""
+            score: ""
 
 
         }
-        document.addEventListener("visibilitychange", function () {
+        window.addEventListener("visibilitychange", function () {
             var d = document.hidden ? "true" : "false";
             if (d == "false") {
-                //   window.location.href="http://localhost:3000/test_skills";
+                localStorage.removeItem("merge_test");
                 window.location.href = "/test_skills";
             }
         });
@@ -51,22 +53,14 @@ class Quiz extends React.Component {
     }
 
     nextQuestion() {
-        var radioButton = document.getElementById("a");
-        radioButton.checked = false;
-        var radioButton = document.getElementById("b");
-        radioButton.checked = false;
-        var radioButton = document.getElementById("c");
-        radioButton.checked = false;
-        var radioButton = document.getElementById("d");
-        radioButton.checked = false;
+
         this.state.answer.push(this.state.option);
         if (this.state.i === this.state.questions.length) {
-            this.setState({
-                showBtn: false
-            })
+            
             const data = {
                 answers: this.state.correct_answers,
-                user_answers: this.state.answer
+                user_answers: this.state.answer,
+                skills:this.state.skills
             }
             const headers = {
                 headers: {
@@ -78,13 +72,14 @@ class Quiz extends React.Component {
             axios.post('/api/accounts/assessment', data, headers)
                 .then((res) => {
                     this.setState({
-                        i: this.state.i + 10
+                        i:0,
                     }, () => {
                         console.log(res.data.score);
                         this.setState({
-                            score:res.data.score
+                            score: res.data.score
                         })
-                        // this.props.history.push("test_score")
+                        localStorage.removeItem('merge_test');
+                        this.props.history.push("test_skills");
                     });
 
 
@@ -93,6 +88,14 @@ class Quiz extends React.Component {
                 .catch((err) => console.log(err));
         }
         else {
+            var radioButton = document.getElementById("a");
+            radioButton.checked = false;
+            var radioButton = document.getElementById("b");
+            radioButton.checked = false;
+            var radioButton = document.getElementById("c");
+            radioButton.checked = false;
+            var radioButton = document.getElementById("d");
+            radioButton.checked = false;
             this.setState({
                 question: this.state.questions[this.state.i].question,
                 optionA: this.state.questions[this.state.i].a,
@@ -115,6 +118,10 @@ class Quiz extends React.Component {
 
             this.props.history.push('/login/student');
         }
+        else if (localStorage.getItem("merge_test") === null || localStorage.getItem("merge_jwt") === undefined) {
+
+            this.props.history.push('/test_skills');
+        }
         else {
 
             const headers = {
@@ -126,7 +133,9 @@ class Quiz extends React.Component {
             }
             axios.get('/api/accounts/assessment', headers)
                 .then((res) => {
+                    console.log(res.data)
                     this.setState({
+                        skills:res.data.skills,
                         questions: res.data.questions,
                         correct_answers: res.data.answers,
                         question: res.data.questions[this.state.i].question,
@@ -161,16 +170,17 @@ class Quiz extends React.Component {
 
         return (
             <div>
+
                 {this.state.showBtn ?
-                    <div className="container-fluid container-fluid-main-quiz">
+                    <div className="container-fluid container-fluid-main-quiz" style={{backgroundColor:"white"}}>
                         <Navbar />
-                        <p className="display-5" style={{ padding: "20px", color: "black" }}>
-                            <strong>Your Multiple Choice Questions Are Here:</strong></p>
-                        <div className="container">
-                            <div className="row no-gutters">
-                                <div className="col-md-4 col-lg-4 col-6" style={{ color: "#4A00E0", fontWeight: "900" }}>ALL THE BEST!!!</div>
-                                <div className="col-md-4 col-lg-4 ol-6">Question:<b>{this.state.i}/{this.state.questions.length}</b></div>
-                                <div className="col-md-4 col-lg-4 col-6" >Timer:
+                        {/* <p className="display-5" style={{ padding: "20px", color: "black" }}> */}
+                        {/* <strong>Your Multiple Choice Questions Are Here:</strong></p> */}
+                        <div className="container mt-4">
+                            <div className="row">
+                                <div className="col-md-4 col-lg-4 col-6 mx-auto text-center" style={{ color: "#4A00E0", fontSize: "22px", fontWeight: "900" }}>ALL THE BEST!!!</div>
+                                <div className="col-md-4 col-lg-4 col-6  mx-auto text-center" style={{ fontSize: "22px", fontWeight: "900" }}>Question:<b>{this.state.i}/{this.state.questions.length}</b></div>
+                                <div className="col-md-4 col-lg-4 col-6  mx-auto text-center" style={{ fontSize: "22px", fontWeight: "900" }}>Timer:
                           <b>{this.state.timer}</b>
                                 </div>
                             </div>
@@ -185,7 +195,7 @@ class Quiz extends React.Component {
                                         <b style={{ fontWeight: "500", fontSize: "20px" }}>
                                             &nbsp;&nbsp;&nbsp;&nbsp; {this.state.question}
                                         </b></div><br />
-                                    <div className="row">
+                                    <div className="row pt-2">
 
                                         <div class="radiobtn-quiz">
                                             <input type="radio" id="a"
@@ -194,7 +204,8 @@ class Quiz extends React.Component {
                                             <label for="a">{this.state.optionA}</label>
                                         </div>
                                     </div>
-                                    <div className="row">
+
+                                    <div className="row pt-2">
                                         <div class="radiobtn-quiz">
                                             <input type="radio" id="b" unchecked
                                                 onClick={(e) => { this.answer(e) }}
@@ -205,7 +216,7 @@ class Quiz extends React.Component {
 
 
 
-                                    <div className="row">
+                                    <div className="row pt-2">
 
                                         <div class="radiobtn-quiz">
                                             <input type="radio" id="c" unchecked
@@ -214,7 +225,8 @@ class Quiz extends React.Component {
                                             <label for="c">{this.state.optionC}</label>
                                         </div>
                                     </div>
-                                    <div className="row">
+
+                                    <div className="row pt-2">
                                         <div class="radiobtn-quiz">
                                             <input type="radio" id="d" unchecked
                                                 onClick={(e) => { this.answer(e) }}
@@ -238,7 +250,7 @@ class Quiz extends React.Component {
                         </div>
                     </div >
 
-                    : <Score  value={this.state.score}/>
+                    : <Score value={this.state.score} />
                 }
             </div>
 

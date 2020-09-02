@@ -8,16 +8,19 @@ import 'aos/dist/aos.css';
 import axios from '../../setup';
 const customStyles = {
     content: {
-        border: "2px solid #4A00E0",
+        // border: "2px solid #4A00E0",
         backgroundColor: "white",
-        width: "500px",
+        width: "80%",
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        borderRadius: '20px',
+        transform: 'translate(-50%, -50%)',
+        boxShadow: '0 0 4px 8px lightgrey'
     }
+     
 };
 
 export default class Additional extends React.Component {
@@ -79,7 +82,7 @@ export default class Additional extends React.Component {
                     this.setState({
                         buttonShow: true,
                         dataShow: false,
-                        textArea:''
+                        textArea: ''
                     })
                 })
 
@@ -211,28 +214,26 @@ export default class Additional extends React.Component {
     render() {
         return (
             <div>
-                <label className="labels"> ADDITIONAL <br />INFORMATION: </label>
-
 
                 <div className="skill-card border-0" style={{ paddingBottom: "15px" }}>
                     {this.state.dataShow ?
-                        <div className="row">
-                            <div className="col-md-3">
-                            </div>
-                            <div className="col-md-6" style={{ fontSize: "20px" }}>
+                        <div className="row no-gutters student-10-data">
+
+                            <div className="col-md-8 col-9  student-data-form" >
                                 {this.state.textOut}
                             </div>
-                            <div className="col-md-3" style={{ padding: "10px" }}>
-                                <button className="btn border-0" style={{ backgroundColor: "white" }}
-                                    onClick={() => { this.editable() }} ><img src={edit}
-                                        style={{ height: "25px", width: "25px" }}
-                                        height="30" alt="edit" className="img" /></button>
 
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                <button className="btn border-0" style={{ backgroundColor: "white" }}
+                            <div className="col-md-3 col-3" style={{ padding: "10px",paddingTop:"0" }}>
+                                <button className="btn border-0  btn-edit-student-main" style={{ backgroundColor: "white" }}
+                                    onClick={() => { this.editable() }} ><img src={edit}
+                                      
+                                        height="30" alt="edit" className="img-fluid  btn-edit-student" /></button>
+
+                          
+                                <button className="btn border-0  btn-edit-student-main" style={{ backgroundColor: "white" }}
                                     onClick={() => { this.remove() }} ><img src={remove}
-                                        style={{ height: "25px", width: "25px" }}
-                                        height="30" alt="edit" className="img" /></button>
+                                    className="img-fluid  btn-delete-student"
+                                        height="30" alt="edit" /></button>
                             </div>
 
 
@@ -248,7 +249,7 @@ export default class Additional extends React.Component {
                         >
 
                             <div style={{ fontSize: "20px" }}>
-                                <label>Description:(optional)</label>
+                                <label className="date-label-resume-descp">Description:(optional)</label>
                                 <textarea rows="4" cols="50"
                                     className="form-control"
                                     value={this.state.textArea}
@@ -275,14 +276,14 @@ export default class Additional extends React.Component {
                 </div>
 
                 {this.state.addSkill ?
-                    <div data-aos="fade-down-right">
+                    <div >
                         <ReactModal
                             isOpen={this.state.showModal}
                             contentLabel="Update"
 
                             style={customStyles}>
-                            <label>Description:(optional)</label>
-                            <textarea rows="4" cols="50" className="form-control"
+                            <label className="date-label-resume-descp">Description:(optional)</label>
+                            <textarea rows="2" cols="5" className="form-control"
                                 value={this.state.textArea}
                                 placeholder="Don't More than 500 words"
                                 onChange={(e) => { this.setState({ textArea: e.target.value }) }}
@@ -299,11 +300,10 @@ export default class Additional extends React.Component {
                     </div> : null}
                 {this.state.buttonShow ?
                     <div className="row" >
-                        <div className="col-md-2"></div>
-                        <div className="col-md-8">
-                            <button className="btn btns" onClick={() => { this.show() }}>+ Add Additonal</button>
-                        </div>
+
+                        <button className="btn btns" onClick={() => { this.show() }}>+ Add Additonal</button>
                     </div>
+
                     : null}
 
             </div>

@@ -90,21 +90,21 @@ export default class Question extends React.Component {
     }
     render() {
         return (
-            <div className="container-fluid containerFluid">
+            <div className="container-fluid containerFluid" style={{marginTop:"60px"}}>
                 <br />
 
                 <div className="container containerInner mb-4"><br />
-                    <div className="row"><p className="mx-auto display-5">Evalaute Quuestions</p></div>
+                    <div className="row"><p className="mx-auto display-5">Evalaute Questions</p></div>
                     {this.state.questions.map((item, key) =>
                         <div>
-                            &nbsp;&nbsp; <b>{key + 1}. {item}</b><br /><br />
+                            &nbsp;&nbsp; <b style={{fontSize:"18px"}}>{key + 1}. {item}</b><br /><br />
                             <textarea rows="4" cols="10" name={key} value={this.state.answers[key]}
                                 required className="form-control" placeholder="Enter your answer (150 words)"
                                 onChange={(e) => { this.handle(e) }}>
                             </textarea>
                             <br />
                             <div className="alert " style={{ color: "red" }}>
-                                <img src={alert} alt="alert" style={{ height: "30px", width: "30px" }} />
+                                <img src={alert} alt="alert" style={{ height: "20px", width: "20px" }} />
                                 &nbsp;&nbsp;<strong>This is required field.</strong>
                             </div>
                             <br /><br /><br />

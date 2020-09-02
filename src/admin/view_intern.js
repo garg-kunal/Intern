@@ -1,31 +1,28 @@
-import React from "react";
-import '../../company/css/viewInternship.css';
-import home from '../assets/images/sydney-opera-house.png';
-import start from '../assets/images/start.png';
-import calendar from '../assets/images/calender.png';
-import rupee from '../assets/images/rupee.png';
-import applyBy from '../assets/images/unlimited.png';
-import Axios from '../../setup';
-
+import React from "react"
+import arrow from "../company/assets/arrow.png";
+import companyLogo from "../company/assets/samsung.png"
+import home from "../company/assets/home.png"
+import start from "../company/assets/start-button.png"
+import calendar from "../company/assets/calendar.png"
+import rupee from "../company/assets/rupee.png"
+import applyBy from "../company/assets/unlimited.png";
+import Axios from '../setup'
 
 class InternshipDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             profile: "",
-            website: "",
             otherProfile: "",
             internshipPlace: "",
             internshipTime: "",
             city: "",
-            companyname: "",
             questions: [],
             startDate: "",
             exactDate: "",
             skills: [false, false, false],
-            otherSkills: "",
+            otherSkills: [],
             benefits: [],
-            companyAbout: "",
             stipend: "",
             currency: "",
             amount: "",
@@ -33,22 +30,23 @@ class InternshipDetails extends React.Component {
             responsibility: "",
             days: "",
             month: "",
+            website: "",
             openings: ""
         }
     }
     componentDidMount() {
         const headers = {
             headers: {
-                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Authorization': "Token " + localStorage.getItem("admin_jwt"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }
-        Axios.get('/api/accounts/student/internship_details/' + this.props.val, headers)
+        // alert(this.props.val)
+        Axios.get('/api/accounts/admin/view_internship/' + this.props.val, headers)
             .then((res) => {
-                console.log(res.data)
+                console.log(res.data.data)
                 this.setState({
-                    website: res.data.data.website,
                     profile: res.data.data.profile,
                     internshipPlace: res.data.data.place,
                     internshipTime: res.data.data.time,
@@ -58,13 +56,12 @@ class InternshipDetails extends React.Component {
                     exactDate: res.data.data.exactdate,
                     otherSkills: res.data.data.skills,
                     benefits: res.data.data.benefits,
-                    companyname: res.data.data.company,
                     stipend: res.data.data.stipend_type,
                     amount: res.data.data.stipend_amount,
                     responsibility: res.data.data.description,
                     days: res.data.data.duration,
                     openings: res.data.data.openings,
-                    companyAbout: res.data.data.about
+                    website: res.data.data.website
                 })
 
             })
@@ -72,23 +69,25 @@ class InternshipDetails extends React.Component {
     }
     render() {
         return (
-            <div className="container-fluid details" style={{backgroundColor:"white"}}>
+            <div className="container-fluid details">
                 <div className="row">
                     <span className="work col-8">{this.state.profile}
                     </span>
                     <div className="col-4 pt-3">
-                        <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fwilcity.com%2Fwp-content%2Fuploads%2F2018%2F12%2Fsample-logo-design-png-3.png&imgrefurl=https%3A%2F%2Fwilcity.com%2Fsample-logo-design-png-3%2F&tbnid=BkFMxNmdfU_vVM&vet=12ahUKEwiBxqWn67_rAhXZhUsFHYaCA9gQMygAegUIARC5AQ..i&docid=j6kTKg3npIA05M&w=707&h=355&q=logo%20sample%20png&ved=2ahUKEwiBxqWn67_rAhXZhUsFHYaCA9gQMygAegUIARC5AQ" className="complogo" alt="" />
+                        <img src={companyLogo}
+                            className="complogo" alt="" />
                     </div>
                     <span className="company col-8">
                         <img src={home} className="workImg img-fluid"
                             alt="" />&nbsp;{this.state.internshipPlace}
                     </span>
                 </div>
-                <br/>
+                <br />
+                <br />
                 <div className="row no-gutters">
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
-                            <img src={start} 
+                            <img src={start}
                                 className="img-fluid  details-icons" alt="" />&nbsp;
                             Joining Date</span><br />
                         <p className="workType work2">{this.state.startDate}</p>
@@ -96,7 +95,7 @@ class InternshipDetails extends React.Component {
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
                             <img src={calendar} className="img-fluid  details-icons"
-                              
+
                                 alt="" />&nbsp;
                             Duration</span><br />
 
@@ -105,7 +104,7 @@ class InternshipDetails extends React.Component {
                     <div className="col-6 col-md-3 col-lg-3 mx-auto">
                         <span className="infoQ">
                             <img src={rupee} className="img-fluid details-icons paisa"
-                               alt="" />
+                                alt="" />
                                 &nbsp;
                             Stipend</span><br />
 
@@ -114,17 +113,17 @@ class InternshipDetails extends React.Component {
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
                             <img src={applyBy}
-                               
+
                                 className="img-fluid  details-icons paisa" alt="" />&nbsp;
                             Apply By</span><br />
-                        <p className="workType work2">{this.state.exactDate.length===0?"With In 10Days":this.state.exactDate}</p>
+                        <p className="workType work2">{this.state.exactDate.length === 0 ? "With In 10 Days" : this.state.exactDate}</p>
                     </div>
                 </div>
                 <div className="row aboutCompany">
                     <p className="about col-8">About Company</p>
                     <a href={this.state.website} target="_blank" className="url col-10">{this.state.website}</a>
                 </div>
-                <br/>
+                <br />
                 <div className="row aboutCompany">
                     <p className="about col-11">About the {this.state.internshipPlace} internship</p>
                     <p className="lead description lead-descp-1">Selected interns day to day responsibilities include :</p>
@@ -135,11 +134,14 @@ class InternshipDetails extends React.Component {
                 <div className="row aboutCompany">
                     <p className="about-skills about col-10">Skills Required</p>
 
-                    <div className="row container skillsReq">
-                        {this.state.otherSkills}
+                    <div className="container-fluid skillsReq d-flex flex-row flex-wrap">
+                        {this.state.otherSkills.map((item, key) =>
+                            <p className="col-4  col-md-2" >{item}</p>
+                        )}
                     </div>
                 </div>
-                <br/>
+
+                <br />
                 <div className="row aboutCompany">
                     <p className="about col-11">Who can apply for this Internship :</p>
                     <p className="lead description">Only those can apply who :<br />
@@ -159,13 +161,12 @@ class InternshipDetails extends React.Component {
                     <p className="about about-benefit col-10">Benefits</p>
                     <div className=" container skillsReq d-flex flex-row flex-wrap">
                         {this.state.benefits.map((item, key) =>
-                            <p className="col-md-4 col-6" >{item}</p>
+                            <p className="col-sm-6 col-md-5 col-12" >{item}</p>
                         )}
                     </div>
                 </div>
-                <br/><br/>
-            </div>
-        )
+                <br /><br />
+            </div>)
     }
 }
 
@@ -177,26 +178,18 @@ class ViewInternship extends React.Component {
     componentDidMount() {
         console.log(this.props.location.id)
         if (this.props.location.id === undefined)
-            this.props.history.push('/student/internships');
-    }
-    next() {
-        if (this.props.location.id === undefined)
-            this.props.history.push('/internships');
-        else
-            return <InternshipDetails val={this.props.location.id.key} />
+            this.props.history.push('/admin/internship');
     }
     render() {
         return (
-            <div className="container-fluid viewInternship pb-5" style={{marginTop:"60px"}}>
-                <h2 className="heading">Internship Details</h2>
-                {this.next()}
+            <div className="container-fluid viewInternship pb-5" style={{ marginTop: "-30px" }}>
+                <br /><br />
+                <p className="heading">Internship Details</p>
+                {this.props.location.id === undefined ? (this.props.history.push('/company/dashboard')) :
+                    <InternshipDetails val={this.props.location.id.key} />
+                }
 
 
-                <div className="col-12 text-center mx-auto statusBtn">
-                    <button className="btn btn-primary col-6 text-center mx-auto"
-                        onClick={() => { this.props.history.push('/student/intern_questions/' + this.props.location.id.key) }}
-                       type="button">Open for Applications</button>
-                </div>
             </div>
         )
     }

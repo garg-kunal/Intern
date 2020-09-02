@@ -8,15 +8,17 @@ import 'aos/dist/aos.css';
 import axios from '../../setup';
 const customStyles = {
     content: {
-        border: "2px solid #4A00E0",
+        // border: "2px solid #4A00E0",
         backgroundColor: "white",
-        width: "500px",
+        width: "80%",
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        borderRadius:'20px',
+        transform: 'translate(-50%, -50%)',
+        boxShadow:'0 0 4px 8px lightgrey'
     }
 };
 
@@ -172,29 +174,26 @@ export default class Portfolio extends React.Component {
     render() {
         return (
             <div>
-                <label className="labels"> PORTFOLIO:<br /> </label>
                 {this.state.linkOut.map((item, key) =>
                     <div className="card skill-card border-0" style={{ paddingBottom: "15px" }}>
 
                         {this.state.dataShow ?
-                            <div className="row" >
+                            <div className="row no-gutters student-10-data" >
 
-                                <div className="col-md-3">
+                                <div className="col-md-8 col-9  student-data-form">
+                                  <b>{key}: &nbsp;&nbsp;</b> {item.link}
                                 </div>
-                                <div className="col-md-6" style={{ fontSize: "20px" }}>
-                                    <b>{key}: &nbsp;&nbsp;</b> {item.link}
-                                </div>
-                                <div className="col-md-3" style={{ padding: "10px" }}>
-                                    <button className="btn border-0" style={{ backgroundColor: "white" }}
+                                <div className="col-md-3 col-3" style={{ padding: "10px",paddingTop:"0" }}>
+                                    <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.editable(key) }} ><img src={edit}
-                                        style={{height:"25px",width:"25px"}}
-                                            height="30" alt="edit" className="img" /></button>
+                                     
+                                            height="30" alt="edit" className="img-fluid  btn-edit-student"  /></button>
 
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button className="btn border-0" style={{ backgroundColor: "white" }}
+                          
+                            <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.remove(item.id) }} ><img src={remove}
-                                        style={{width:"25px",height:"25px"}}
-                                            height="30" alt="edit" className="img" /></button>
+                                       
+                                            height="30" alt="edit"  className="img-fluid  btn-delete-student"  /></button>
                                 </div>
 
                             </div> : null}
@@ -246,11 +245,10 @@ export default class Portfolio extends React.Component {
                     </ReactModal> : null}
                 {this.state.buttonShow ?
                     <div className="row" >
-                        <div className="col-md-2"></div>
-                        <div className="col-md-8">
-                            <button className="btn btns" onClick={() => { this.show() }}>+ Add Additonal</button>
+                       
+                            <button className="btn btns" onClick={() => { this.show() }}>+ Add Links</button>
                         </div>
-                    </div>
+                  
                     : null}
 
             </div>

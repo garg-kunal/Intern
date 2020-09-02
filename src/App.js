@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 
 import Form from './student Intern/form/form';
@@ -39,14 +39,15 @@ import Savecompany from './auth+home/Savecompany';
 import ViewResume from './student Intern/form/viewResume';
 import comOtp from './auth+home/comOtp';
 import ViewIntern from './student Intern/components/viewIntern';
-import Adminlogin from './auth+home/accounts/Admin'
-
-
+import Adminlogin from './auth+home/accounts/Admin';
+import Error404 from './auth+home/accounts/404';
+import ViewInternCom from './admin/view_intern';
+import Drawer from './student Intern/quiz/Drawer';
 
 function Student() {
   return (
     <div>
-      <Route path="/student" component={Navbar} />
+      <Route path="/student" component={Drawer} />
       <Route component={Internships} path="/student/internships" exact />
       <Route component={Screen2} path="/test_skills" exact />
       <Route path="/student/resume_form/:bool" component={Form} exact />
@@ -61,38 +62,44 @@ function Student() {
       <Route component={Applyintern} path="/student/apply_intern" exact />
       <Route component={ViewResume} path="/resume" exact />
       <Route component={ViewIntern} path="/student/view_intern" exact />
-      
+
     </div>
   )
 }
 function App() {
   return (
-    <Router >
-      <Route component={Studentregister} path="/create_account/student" exact />
-      <Route component={Companyregister} path="/create_account/company" exact />
-      <Route component={Studentlogin} path="/login/student" exact />
-      <Route component={Companylogin} path="/login/company" exact />
-      <Route component={Companydetail} path="/create/company_detail/:email" exact />
-      <Route component={verifyotp} path="/login/verify_otp/:mobile_number" exact />
-      <Route component={verify} path="/login/verify/:email" exact />
-      <Route component={Thanku} path="/login/thnku" exact />
-      <Route component={Home} path="/" exact />
-      <Route component={Savecompany} path="/save_company" exact />
-      <Route component={comOtp} path="/verify/:email" exact />
-      <Route component={Adminlogin} path="/login/admin" exact />
+    <Suspense fallback="Loading....">
+      <Router >
+        {/* <Switch> */}
+        <Route component={Studentregister} path="/create_account/student" exact />
+        <Route component={Companyregister} path="/create_account/company" exact />
+        <Route component={Studentlogin} path="/login/student" exact />
+        <Route component={Companylogin} path="/login/company" exact />
+        <Route component={Companydetail} path="/create/company_detail/:email" exact />
+        <Route component={verifyotp} path="/login/verify_otp/:mobile_number" exact />
+        <Route component={verify} path="/login/verify/:email" exact />
+        <Route component={Thanku} path="/login/thnku" exact />
+        <Route component={Home} path="/" exact />
+        <Route component={Savecompany} path="/save_company" exact />
+        <Route component={comOtp} path="/verify/:email" exact />
+        <Route component={Adminlogin} path="/login/admin" exact />
+        <Route component={ViewInternCom} path="/view_intern" exact/>
+
+
+          <Route component={Admincom} path="/admin/companies" exact />
+          <Route component={Admin} path="/admin" exact />
+        <Route component={Adminintern} path="/admin/internship" exact />
 
 
 
-      <Route component={Admincom} path="/admin/companies" exact />
-      <Route component={Admin} path="/admin" exact />
-      <Route component={Adminintern} path="/admin/internship" exact />
+        <Company />
+        <Student />
+        <Route path='/404' component={Error404} />
+        {/* <Redirect from='*' to='/404' /> */}
+        {/* </Switch> */}
 
-
-      <Company />
-      <Student />
-      
-    </Router>
-
+      </Router>
+    </Suspense>
 
 
   );

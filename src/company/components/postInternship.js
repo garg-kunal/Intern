@@ -10,6 +10,11 @@ import StartDate from "./postInternship/startDate"
 import Stipend from "./postInternship/stipend";
 import { Redirect } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
+import Skills from './postInternship/skills';
+// import { fluid } from 'semantic-ui-css/semantic.min.css';
+import { Dropdown } from 'semantic-ui-react'
+
+
 class PostInternship extends React.Component {
     constructor() {
         super();
@@ -23,12 +28,12 @@ class PostInternship extends React.Component {
             startDate: "",
             exactDate: "",
             skills: [false, false, false],
-            otherSkills: "",
+            otherSkills: [],
             benefits: [],
             stipend: "",
             currency: "",
             amount: "",
-            messages: ['Loading..'],
+            message: 'Loading..',
             payDuration: "",
             responsibility: "",
             days: "",
@@ -48,7 +53,10 @@ class PostInternship extends React.Component {
     handleShow = () => {
         this.setState({ show: true });
     };
+
     showAll() {
+       
+
         if (this.state.profile.length === 0 ||
             this.state.internshipPlace.length === 0 ||
             this.state.internshipTime.length === 0 ||
@@ -57,19 +65,21 @@ class PostInternship extends React.Component {
             this.state.openings.length === 0 ||
             this.state.startDate.length === 0 ||
             this.state.stipend.length === 0 ||
-            this.state.responsibility.length === 0 ||
-            this.state.otherSkills.length === 0) {
-            this.state.messages.push('Fields Required..');
+            this.state.responsibility.length === 0) {
             this.setState({
-                show: true
+                message: "Fields Required..."
+            }, () => {
+                this.setState({
+                    show: true
+                })
             })
+
 
         }
         else {
-            this.setState({
-                messages: []
-            })
-
+           
+            console.log(this.state)
+        
             const data = {
                 profile: this.state.profile,
                 place: this.state.internshipPlace,
@@ -88,6 +98,7 @@ class PostInternship extends React.Component {
                 description: this.state.responsibility,
                 skills: this.state.otherSkills
             }
+            // /console.log(this.state.otherSkills.splice(0, value.length - 3));
             const headers = {
                 headers: {
                     'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
@@ -95,33 +106,60 @@ class PostInternship extends React.Component {
                     'Content-Type': 'application/json'
                 }
             }
+
             axios.post('/api/accounts/company/add_internship', data, headers)
                 .then((res) => {
+                    console.log(res.data)
                     this.setState({
-                        messages: []
+                        message: ''
                     });
-                    console.log(res.data);
+                    // console.log(res.data);
 
                     if (res.data.status === 200) {
-                        this.state.messages.push("Internship Added");
+                        this.setState({
+                            message: "Imternship Added"
+                        },()=>{
+                            this.setState({
+                                show:true
+                            })
+                        })
                         this.props.history.push("/company/intern/save_intern");
                     }
                     else {
-                        this.state.messages.push(res.data.status_message.message);
                         this.setState({
-                            show: true
+                            message: res.data.status_message.message
+                        }, () => {
+                            this.setState({
+                                show: true
+                            })
                         })
+
                     }
 
                 })
                 .catch((err) => {
-                    this.state.messages.push("Try Again After Sometime..");
                     this.setState({
-                        show: true
+                        message: "Try Again Later"
+                    }, () => {
+                        this.setState({
+                            show: true
+                        })
                     })
+
 
                 });
         }
+
+
+
+
+    }
+    componentDidMount() {
+        if (localStorage.getItem("merge_jwt_c")) {
+
+        }
+        else
+            this.props.history.push("/login/company");
     }
 
 
@@ -144,10 +182,10 @@ class PostInternship extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid  mb-5 pb-5" style={{paddingTop:"120px"}}>
-               
+            <div className="container-fluid  mb-5 pb-5" style={{ paddingTop: "120px" }}>
+
                 <div className="container-fluid postInternship">
-                <br/><br/>
+                    <br /><br />
                     <p className="heading">Post Internships</p>
                     <p className="head head2">Internship Details</p>
                     <p className="head head3">Profile :</p>
@@ -209,12 +247,9 @@ class PostInternship extends React.Component {
                     </div>
                     {/* <Benefits methodFromParent={this.parentCollector} /> */}
                     <p className="head head3">Skills Required :</p>
-                    <input type="text"
-                        value={this.state.otherSkills}
-                        onChange={(e) => { this.setState({ otherSkills: e.target.value }) }}
-                        className="form-control city" required placeholder="Add Hardware, Software, etc." />
 
-                    {/* <Skills methodFromParent={this.parentCollector} domain={this.state.profile} /> */}
+                    {/* <Dropdown id="val" placeholder='Skills' className="form-control city"  multiple selection options={options} /> */}
+                    <Skills methodFromParent={this.parentCollector} />
                     <p className="head head3">Evaluation Questions :</p>
                     <Questions methodFromParent={this.parentCollector} />
                     <div className="save container">
@@ -228,13 +263,7 @@ class PostInternship extends React.Component {
                     >
                         <Modal.Header closeButton />
                         <Modal.Body>
-                            <ul style={{ listStyleType: "none" }}>
-                                {Object.keys(this.state.messages).map(
-                                    (message_key, index) => (
-                                        <li key={index}>{this.state.messages[message_key]}</li>
-                                    )
-                                )}
-                            </ul>
+                            {this.state.message}
                         </Modal.Body>
                     </Modal>
                 </div>

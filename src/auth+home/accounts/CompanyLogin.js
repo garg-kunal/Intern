@@ -82,6 +82,11 @@ export class CompanyLogin extends Component {
       })
     event.preventDefault();
   }
+  componentDidMount(){
+    if(localStorage.getItem('merge_jwt_c')){
+      this.props.history.push("/company/dashboard");
+    }
+  }
 
   render() {
     return (

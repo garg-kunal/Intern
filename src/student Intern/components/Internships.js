@@ -37,6 +37,11 @@ export default class Internship extends React.Component {
                 }
             ]
         }
+
+
+        
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+
         $("document").ready(function ($) {
 
             $(window).on("resize", function (e) {
@@ -48,9 +53,9 @@ export default class Internship extends React.Component {
                 var nav = $('#filters');
                 var intern = $('#internsAll');
                 var button = $('#buttonsAll');
-                if (newWindowWidth > 1380) {
+                if (newWindowWidth>1250) {
                     $(window).scroll(function () {
-                        if ($(this).scrollTop() > 100) {
+                        if ($(this).scrollTop() > 150) {
                             nav.addClass("f-nav");
                             intern.addClass("f-nav1");
                             button.addClass("f-nav2");
@@ -63,11 +68,11 @@ export default class Internship extends React.Component {
                 }
                 else {
                     $(window).scroll(function () {
-                        if ($(this).scrollTop() > 100) {
+                      
                             nav.removeClass("f-nav");
                             intern.removeClass("f-nav1");
-                            button.removeClass("f-nav1");
-                        }
+                            button.removeClass("f-nav2");
+                        
                     });
 
                 }
@@ -154,7 +159,7 @@ export default class Internship extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid  container-main-box-intern">
+            <div className="container-fluid  container-main-box-intern  pt-5" style={{marginTop:"50px"}}>
                 {/* <Navbar/> */}
                 <br />
                 <div className="container-fluid">
@@ -165,8 +170,8 @@ export default class Internship extends React.Component {
                     </div>
                 </div>
                 <div className="container-fluid container-intern" >
-                    <div className="row ">
-                        <div className="col-md-4 col-lg-4 col-12 intern-filters" id="filters" >
+                    <div className="row no-gutters">
+                        <div className="col-md-3 col-lg-3  col-12 intern-filters" id="filters" >
                             <h4 className="mx-auto text-center mb-3">Filters</h4>
                             <label className="label-filter ml-3">Category</label>
                             <input class="form-control form-filter" type="search" placeholder="e.g. Web Developer" aria-label="Search" />
@@ -190,50 +195,50 @@ export default class Internship extends React.Component {
                             </div>
 
                         </div>
-                        <div className="col-md-8 col-lg-8 col-12 card-intern-student" id="internsAll" >
+                        <div className="col-md-9 col-lg-9  col-12 card-intern-student" id="internsAll" >
                             {this.state.interns.map((item, key) => {
                                 if ((this.state.page * 6 <= key) && (this.state.page + 1) * 6 > key)
                                     return (<div className="card card-intern" key={key}>
-                                        <div className="card-body" data-aos="zoom-in" data-aos-duration="3000">
+                                        <div className="card-body" data-aos="zoom-in" data-aos-duration="1000">
                                             <div className="row flex-wrap">
-                                                <div className="col-md-4 col-6">
+                                                <div className="col-md-6 col-12">
                                                     <b className="intern-based">{item.profile}</b><br />
                                                     <b className="intern-company">{item.company}</b>
 
                                                 </div>
-                                                <div className="col-md-4 col-6"></div>
+                                                <div className="col-md-2 col-2"></div>
                                                 <div className="col-md-4">
                                                     <img src={item.logo}
-                                                        align="right" style={{ float: "top-right" }} style={{ height: "70px", width: "100px" }}
+                                                        align="right" style={{ float: "top-right" }} style={{ height: "100px", width: "100px" }}
                                                         alt="company logo" className="img company-logo" />
                                                 </div>
                                             </div>
-                                            <br />
-                                            <img src={house} className="img-fluid" style={{ height: "30px", width: "30px" }} alt="Home" />&nbsp;&nbsp;
-                            <span className="intern-type">{item.place}</span><br /><br />
+                                            <p className="house">
+                                            <img src={house} className="img-fluid" style={{ height: "20px", width: "20px" }} alt="Home" />
+                                            <span className="intern-type">{item.place}</span></p>
                                             <div className="row no-gutters">
-                                                <div className="col-md-3  col-lg-3 col-6">
+                                                <div className="col-md-3  col-lg-3 col-6  mx-auto">
                                                     <p className="intern-head ">
-                                                        <img src={start} className="img-fluid" style={{ height: "20px", width: "20px" }} alt="Start" />&nbsp;Joining Date
+                                                        <img src={start} className="img-fluid details-icons " alt="Start" />&nbsp;Joining Date
                                     </p>
                                                     {item.joiningdate}
                                                 </div>
-                                                <div className="col-md-3  col-lg-3 col-6">
+                                                <div className="col-md-3  col-lg-3 col-6  mx-auto">
                                                     <p className="intern-head">
-                                                        <img src={date} className="img-fluid" style={{ height: "20px", width: "20px" }} alt="Duration" />&nbsp;Duration
+                                                        <img src={date} className="img-fluid details-icons " alt="Duration" />&nbsp;Duration
                                     </p>
                                                     {item.duration}
                                                 </div>
                                                 <div className="col-md-3  col-lg-3 col-6  mx-auto">
-                                                    <p className="intern-head mx-auto">  <img src={rupee} className="img-fluid" style={{ height: "20px", width: "20px" }} alt="Rupee" />&nbsp;
+                                                    <p className="intern-head mx-auto">  <img src={rupee} className="img-fluid details-icons "  alt="Rupee" />&nbsp;
                                                         Stipend</p>
-                                                 {item.stipend_amount}
+                                                 {item.stipend_type}
                                                 </div>
                                                 <div className="col-md-3  col-lg-3 col-6 mx-auto">
                                                     <p className="intern-head">
-                                                        <img src={unlimited} className="img-fluid" style={{ height: "20px", width: "24px" }} alt="Apply Date" />&nbsp;
+                                                        <img src={unlimited} className="img-fluid details-icons paisa" alt="Apply Date" />&nbsp;
                                                         Apply By</p>
-                                                  {item.exactdate}
+                                                  {item.joiningdate}
                                                 </div>
                                             </div>
             <br/>
@@ -247,7 +252,7 @@ export default class Internship extends React.Component {
                                                         }
 
                                                     }}>Job Details </NavLink>
-                                                    <img src={path} className="img-fluid" style={{ height: "15px", width: "15px" }} alt="path" /></p>
+                                                    <img src={path} className="img-fluid" style={{ height: "10px", width: "10px" }} alt="path" /></p>
                                             </div>
 
                                         </div>
@@ -258,13 +263,13 @@ export default class Internship extends React.Component {
                             }
 
                             )}
-                            <div className="row" id="buttonsAll">
+                            <div className="row " id="buttonsAll">
                                 {this.state.prev ?
                                     <button className="btn intern-previous" onClick={() => { this.dec() }}>
                                         <img src={path} style={{ height: "15px", width: "15px" }} />
                                     </button> :
                                     <button className="btn intern-previous"></button>}
-                                <b style={{ marginTop: "75px" }}>{this.state.page}</b>
+                                <b className="page-no-intern">{this.state.page}</b>
 
                                 {this.state.next ? <button className="btn intern-next pull-right" onClick={() => { this.inc() }}>
                                     <img src={path} style={{ height: "15px", width: "15px" }} />

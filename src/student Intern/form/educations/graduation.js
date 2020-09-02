@@ -9,15 +9,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from '../../../setup';
 const customStyles = {
     content: {
-        border: "2px solid #4A00E0",
+        // border: "2px solid #4A00E0",
         backgroundColor: "white",
-        width: "480px",
+        width: "80%",
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        borderRadius: '20px',
+        transform: 'translate(-50%, -50%)',
+        boxShadow: '0 0 4px 8px lightgrey'
     }
 };
 
@@ -73,7 +75,7 @@ export default class Graduation extends React.Component {
         })
     }
     print() {
-        
+
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt"),
@@ -81,7 +83,7 @@ export default class Graduation extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-        axios.get('/api/accounts/student/education/grad/get',headers)
+        axios.get('/api/accounts/student/education/grad/get', headers)
             .then((res) => {
                 console.log(res.data.data);
                 this.setState({
@@ -100,7 +102,7 @@ export default class Graduation extends React.Component {
     // Delete the Skill
 
     remove() {
-        
+
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt"),
@@ -109,7 +111,7 @@ export default class Graduation extends React.Component {
             }
         }
         if (window.confirm(" Are You sure Delete? ")) {
-            axios.delete('/api/accounts/student/education/grad/delete',headers)
+            axios.delete('/api/accounts/student/education/grad/delete', headers)
                 .then((res) => {
                     console.log(res.data);
                     this.setState({
@@ -141,7 +143,7 @@ export default class Graduation extends React.Component {
     // Add Skill
     submit(e) {
         e.preventDefault();
-        
+
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt"),
@@ -158,7 +160,7 @@ export default class Graduation extends React.Component {
                 enddate: this.state.endDate
 
             }
-            axios.post('/api/accounts/student/education/grad', data,headers)
+            axios.post('/api/accounts/student/education/grad', data, headers)
                 .then((res) => {
                     alert(res.data.status_message.message);
                     this.print();
@@ -178,7 +180,7 @@ export default class Graduation extends React.Component {
                 enddate: "Pursuing"
 
             }
-            axios.post('/api/accounts/student/education/grad', data,headers)
+            axios.post('/api/accounts/student/education/grad', data, headers)
                 .then((res) => {
                     console.log(res.data);
                     this.setState({
@@ -208,7 +210,7 @@ export default class Graduation extends React.Component {
             startdate: this.state.startDate,
             enddate: this.state.endDate
         }
-        
+
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt"),
@@ -216,7 +218,7 @@ export default class Graduation extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
-        axios.post('/api/accounts/student/education/grad', data,headers)
+        axios.post('/api/accounts/student/education/grad', data, headers)
             .then((res) => {
                 alert(res.data.status_message.message);
                 this.print();
@@ -271,34 +273,32 @@ export default class Graduation extends React.Component {
                     <div>
                         <div className="skill-card border-0" style={{ paddingBottom: "15px" }}>
                             {this.state.dataShow ?
-                                <div className="row">
-                                    <div className="col-md-3">
+                                <div className="row no-gutters student-10-data">
+
+                                    <div className="col-md-8 col-9 student-data-form">
+                                       <b>{this.state.stream}</b><br />
+                                        {this.state.college}<br />
+
+                                        {this.state.marks}<br />
+                                        {this.state.startDate}<br />
+                                        {this.state.endDate}
                                     </div>
-                                    <div className="col-md-6" style={{ fontSize: "20px" }}>
-                                        <b>College:  </b> &nbsp;{this.state.college}<br />
-                                        <b>Stream:  </b>&nbsp; {this.state.stream}<br />
-                                        <b>Marks:  </b>&nbsp;{this.state.marks}<br />
-                                        <b>Start Date:  </b>&nbsp; {this.state.startDate}<br />
-                                        <b>End Date:  </b>&nbsp; {this.state.endDate}
-                                    </div>
-                                    <div className="col-md-3" style={{ padding: "10px" }}>
-                                        <button className="btn border-0" style={{ backgroundColor: "white" }}
+
+                                    <div className="col-md-3 col-3" style={{ padding: "10px", paddingTop: "0" }}>
+                                        <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.editable() }} ><img src={edit}
-                                                style={{height:"25px",width:"25px"}} alt="edit" className="img" /></button>
-
-                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                alt="edit" className="img-fluid btn-edit-student" /></button>
 
 
-
-                                            <button className="btn border-0" style={{ backgroundColor: "white" }}
+                                        <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                             onClick={() => { this.remove() }} ><img src={remove}
-                                                style={{height:"25px",width:"25px"}} alt="edit" className="img" /></button>
+                                                alt="edit" className="img-fluid btn-delete-student " /></button>
                                     </div>
 
                                 </div> : null}
                             <div className="row">
                                 <div class="col-md-12 col-lg-12">
-                                    <br /><br />
+                                    <br />
                                     <i className="text-success" > All Right Education Section</i>
                                 </div>
                             </div>
@@ -329,17 +329,17 @@ export default class Graduation extends React.Component {
                                         <br />
                                         <br />
                                         <div className="row">
-                                            <div className="col-md-6">
-                                                <label  style={{fontSize:"18px"}}>Start Date</label>
+                                            <div className="col-md-6 col-lg-6">
+                                                <label style={{ fontSize: "18px" }}>Start Date:</label>&nbsp;&nbsp;
                                                 <DatePicker
                                                     className="form-control"
                                                     selected={new Date(this.state.startDate)}
                                                     onChange={(date) => { this.setState({ startDate: date }) }}
                                                 />
-                                                <br /><br />
+                                                <br />
                                             </div>
-                                            <div className="col-md-6">
-                                                <label style={{fontSize:"18px"}}>Complete Date:</label>
+                                            <div className="col-md-6 col-lg-6">
+                                                <label style={{ fontSize: "18px" }}>Complete Date:</label>&nbsp;&nbsp;
                                                 {this.state.endDate === "Pursuing" ?
                                                     <DatePicker
                                                         className="form-control"
@@ -355,8 +355,7 @@ export default class Graduation extends React.Component {
                                             </div>
                                         </div>
 
-
-                                        <br /><br />
+                                        <br />
                                     </div>
                                     <div style={{ padding: "10px", float: "right", display: "flex" }}>
                                         <button className="btn btnedit" onClick={() => { this.edit() }}>
@@ -398,12 +397,12 @@ export default class Graduation extends React.Component {
                                     <br />
 
                                     Currently Studying: <input type="checkbox"
-                                    style={{height:"15px"}}
+                                        style={{ height: "15px" }}
                                         onChange={() => { this.checkBox() }} />
                                     <br /><br />
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <label  style={{fontSize:"18px"}}>Start Year</label>
+                                            <label style={{ fontSize: "18px" }}>Start Year:</label>&nbsp;&nbsp;
                                             <DatePicker
                                                 className="form-control"
                                                 selected={this.state.startDate}
@@ -412,7 +411,7 @@ export default class Graduation extends React.Component {
                                         </div>
                                         <div className="col-md-6">
                                             {this.state.unCheck ?
-                                                <div><label  style={{fontSize:"18px"}}>Completed Year:</label> &nbsp;&nbsp;
+                                                <div><label style={{ fontSize: "18px" }}>Completed Year:</label> &nbsp;&nbsp;
                                             <DatePicker
                                                         className="form-control"
                                                         selected={this.state.endDate}

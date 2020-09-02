@@ -34,47 +34,57 @@ export default class Card2 extends React.Component {
     render() {
         return (
             <div className="card-intern-main mx-auto" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="2500"  >
-               <h2 className="card-tech-heading" style={{color:"black"}}>Internship Available</h2>
+                <h2 className="card-tech-heading" style={{ color: "black" }}> Available Internships</h2>
                 <div className="row no-gutters">
-                    <div className="col-md-6 col-lg-6 card-web-outer">
-                        <div className="card card-tech-inner mx-auto" >
-                            <div className="card-img-top  text-center rounded-circle" >
-                                <img src={ui} className="img-responsive img-fluid" />
-                            </div>
+                    {/* one start */}
 
-                        </div><br />
-                        <h3 className="text-center web-tech-card-inner-size">UI/UX Design</h3>
-                    </div>
                     <div className="col-md-6 col-lg-6 card-web-outer">
-                        <div className="card card-tech-inner mx-auto ">
-                            <div className="card-img-top rounded-circle">
-                                <img src={front} className="img img-fluid" />
-                            </div>
-                        </div><br/>
-                        <h3 className="text-center web-tech-card-inner-size">Front End Development</h3>
-                    </div>
-                </div>
-                <div className="row no-gutters">
-                    <div className="col-md-6 col-lg-6 card-web-outer">
-                        <div className="card card-tech-inner mx-auto">
+                        <div className="card border-0 card-tech-inner mx-auto">
                             <div className="card-img-top ">
-                                <img src={backend} className="img img-fluid mx-auto" />
+                                <img src={fullstack} className="img-fluid" />
                             </div>
-                           
-                        </div><br/>
-                        <h3 className="text-center web-tech-card-inner-size">Back End Development</h3>
+                            <br />
+                            <h3 className="text-center web-tech-card-inner-size">Full Stack Development</h3>
+                        </div>
                     </div>
+
+                    {/* one end */}
                     <div className="col-md-6 col-lg-6 card-web-outer">
-                        <div className="card card-tech-inner mx-auto">
-                            <div className="card-img-top rounded-circle">
-                                <img src={fullstack} className="img img-fluid" />
+                        <div className="card border-0 card-tech-inner mx-auto ">
+                            <div className="card-img-top">
+                                <img src={front} className="img-fluid" />
                             </div>
-                            
-                        </div><br/>
-                        <h3 className="text-center web-tech-card-inner-size">Full Stack Development</h3>
+                            <br />
+                            <h3 className="text-center web-tech-card-inner-size">Front End Development</h3>
+                        </div>
                     </div>
                 </div>
+                <div className="row no-gutters">
+                    <div className="col-md-6 col-lg-6 card-web-outer">
+                        <div className="card border-0 card-tech-inner mx-auto">
+                            <div className="card-img-top ">
+                                <img src={backend} className=" img-fluid " />
+                            </div>
+                            <br />
+                            <h3 className="text-center web-tech-card-inner-size">Back End Development</h3>
+                        </div>
+                    </div>
 
+                    {/* fourth */}
+                    <div className="col-md-6 col-lg-6 card-web-outer">
+                        <div className="card border-0 card-tech-inner mx-auto" >
+                            <div className="card-img-top  text-center" >
+                                <img src={ui} className="img-fluid" />
+                            </div>
+                            <br />
+                            <h3 className="text-center web-tech-card-inner-size">UI/UX Design</h3>
+                        </div>
+                    </div>
+
+
+
+                    {/* fourth end */}
+                </div>
 
             </div>
         )

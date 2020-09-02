@@ -66,7 +66,7 @@ export class AdminLogin extends Component {
             .then((res) => {
                 console.log(res.data)
                 if (res.data.status === 200){
-                    localStorage.setItem("admin_jwt",res.data.token);
+                    localStorage.setItem("admin_jwt",res.data.jwt);
                     this.props.history.push('/admin');
                 }
                 else if (res.data.status !== 200)

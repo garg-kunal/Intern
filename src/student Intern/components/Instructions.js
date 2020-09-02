@@ -1,7 +1,8 @@
 import React from "react";
-import logo from "../assets/images/Merge..png";
+import Mobile from '../quiz/Mobilequiz';
+import logo from "../assets/images/Merge.-1.png";
 import "../assets/css/Screen2.css";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect, withRouter } from 'react-router-dom';
 class Screen2 extends React.Component {
     constructor() {
         super();
@@ -35,50 +36,90 @@ class Screen2 extends React.Component {
         console.log(boxes);
 
     }
-    componentDidCatch(){
-        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt")===undefined) {
-        
+    componentDidMount() {
+        if (localStorage.getItem("merge_jwt") === null || localStorage.getItem("merge_jwt") === undefined) {
+
             this.props.history.push('/login/student');
         }
         else {
+            document.getElementById("start-test").disabled = true;
         }
+    }
+    check(e) {
+        if (e.target.checked) {
+            document.getElementById("start-test").disabled = false;
+        }
+        else {
+            document.getElementById("start-test").disabled = true;
+        }
+
+    }
+    move() {
+        // alert("Hello")
+        localStorage.setItem("merge_test", true);
+        // return <Redirect to="/quiz" />;
+
+        this.props.history.push("/quiz");
     }
     render() {
 
 
         return (
-            <div className="container-fluid main-box-instructions">
-                <div className="logo">
-                    <img src={logo} className="img img-fluid" />
+            <div className="container-fluid" style={{ padding: "0" }}>
+                <div className="mobile-view-quiz">
+                    <Mobile />
                 </div>
-                <div className="container-fluid"
-                    style={{ backgroundColor: "white", padding: "60px", maxWidth: "70%", borderRadius: "50px" }}>
-                    <h2 className="mx-auto text-center" style={{ fontWeight: "1000" }}><b>Instructions</b></h2><br />
 
-                    <ul className="justify-content-center mx-auto" style={{ justifyContent: "center" }} >
-                        <li style={{ fontSize: "20px", fontWeight: "400", padding: "20px" }}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
+                <div className="container-fluid main-box-instructions ">
+                    <nav className="navbar navbar-expand-lg navbar-light " style={{ background: "transparent" }}>
+                        <img src={logo} className="img-fluid merge-logo-all-student" />
+
+                    </nav>
+
+
+                    <div className="container-fluid instruction-box-main mx-auto">
+                        <h2 className="mx-auto text-center" style={{ fontWeight: "1000" }}><b>Instructions</b></h2>
+                        <p className="text-right step1">3/3 </p>
+                        <ul className="justify-content-center mx-auto text-left" style={{ listStyle: "none" }} >
+                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                                <b>1.</b> To save your answer press "NEXT" button.
                         </li>
-                        <li style={{ fontSize: "20px", fontWeight: "400", padding: "20px" }}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                                <b>2.</b> For each question alloted time is 30 seconds.
                         </li>
-                        <li style={{ fontSize: "20px", fontWeight: "400", padding: "20px" }}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                                <b>3.</b> Assessment test has 30 questions for every selected skill.
+
                         </li>
-                        <li style={{ fontSize: "20px", fontWeight: "400", padding: "20px" }}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                                <b>4.</b> Switching the tab or changing the browser will lead to disqualification.
                         </li>
-                        <li style={{ fontSize: "20px", fontWeight: "400", padding: "20px" }}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                                <b>5.</b>After clearing at least one skill, you can apply for internships.
                         </li>
-                    </ul>
-                    <center><button className="btn btn-sm-primary btn-primary" style={{ width: "150px" }}>
-                        <NavLink to="/quiz">Proceed</NavLink>
-                    </button></center>
+                        </ul>
+                        <div className="row no-gutters">
+                            <input type="checkbox"
+                                onClick={(e) => { this.check(e) }}
+                                style={{ height: "20px" }} id="vehicle1" name="vehicle1" value="Bike" />
+                            <label style={{ fontSize: "16px", marginLeft: "-50px" }} className="text-left" for="vehicle1"> I agree mentioned above all Instructions. </label>
+
+                        </div>
+                        <br />
+                        <center>
+                            <button id="start-test" className="btn btn-sm-primary btn-primary"
+                                onClick={() => {
+                                    this.move();
+                                }}>
+                                Proceed
+                            </button>
+                        </center>
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default Screen2;
+export default withRouter(Screen2);

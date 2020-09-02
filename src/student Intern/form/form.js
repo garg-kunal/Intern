@@ -38,6 +38,7 @@ export default class Form extends React.Component {
             mobile_number: "",
             city: "",
             email: "",
+            state:""
         }
     }
     componentDidMount() {
@@ -63,7 +64,8 @@ export default class Form extends React.Component {
                         email: res.data.data.email,
                         name: res.data.data.name,
                         mobile_number: res.data.data.mobile_number,
-                        city: res.data.data.city
+                        city: res.data.data.city,
+                        state:res.data.data.state
                     })
                 })
                 .catch((err) => console.log(err))
@@ -78,14 +80,16 @@ export default class Form extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid main-container" >
+            <div className="container-fluid main-container" style={{marginTop:"60px"}}>
                 <br />
                 <div className="container-fluid inner-container" data-aos="fade-up" data-aos-easing="linear"
                     data-aos-duration="2500">
-                    <div className="row"><h3 className="mx-auto heading">Personal Information</h3></div>
+                    <div className="row">
+                        <h3 className="mx-auto heading-form-student">Personal Information</h3>
+                    </div>
                     <br />
                     <div className="row">
-                        <div className=" col-md-2 col-lg-2">
+                        <div className="col-md-2 col-lg-2 col-4 pt-3 form-img-student">
                             <img src={this.state.picLink || userpng}
                                 alt="user" className="img-fluid"
                                 Height="180" width="180"
@@ -96,56 +100,79 @@ export default class Form extends React.Component {
                                 onChange={base64 => { this.imageHandler(base64) }}
                                 onError={errMsg => (alert(errMsg))}
                             >
-                                <button className="btn btns text-center">
+                                <p className="btns-add-image text-center mx-auto">
                                     + Add Image
-    </button>
+    </p>
                             </ImagePicker>
 
                         </div>
-                        <div className="col-md-10 col-lg-10 username mx-auto">
-                            <h3><strong>{this.state.name}</strong></h3>
+                        <div className="col-md-10 col-lg-10 col-8 username mx-auto">
+                            <h3 className="student-name"><strong>{this.state.name}</strong></h3>
                             {this.state.email}<br />
                             {this.state.mobile_number}<br />
-                            {this.state.city}<br />
+                         {this.state.city}({this.state.state})<br />
                             <hr></hr>
                         </div>
                     </div>
-                    <br /><br /><br />
-                    <div className="row">
-                        <div className="col-md-2">
-                            <label className="labels">Education:</label>
+
+                    <div className="row ">
+                        <div className="col-md-3 col-lg-3 col-12">
+                            <label className="labels label-education ">Education:</label>
                         </div>
 
-                        <div className="col-md-10">
-                            {/* <p className="education-pt"><button className="btn btnEdu" onClick={()=>{}} >+ Add Education</button></p> */}
-                            <div>
-                                <p className="education-pt"><SchoolX /></p>
-                                {/* <p className="education-pt"><SchoolXII /></p>
-                                <p className="education-pt"><Graduation /></p>
-                                <p className="education-pt"><PostGrad /></p>
-                                <p className="education-pt"><Phd /></p> */}
-
-                            </div>
-
+                        <div className="col-md-9 col-lg-9 col-12">
+                            <p className="education-pt"><SchoolX /></p>
                         </div>
                     </div>
 
                     <hr />
-                    <br /><br />
-                    <Past />
+                   
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 col-12">
+                            <label className="labels label-education ">Past Experience:</label>
+                        </div>
+
+                        <div className="col-md-9 col-lg-9 col-12">
+                            <p className="education-pt"><Past /></p>
+                        </div>
+                    </div>
                     <hr />
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 col-12">
+                            <label className="labels label-education">Skills:</label>
+                        </div>
+                        <div className="col-md-9 col-lg-9 col-12">
+                            <p className="education-pt"><Skills/></p>
+                        </div>
+                    </div>
 
-                    <br /><br /><br />
-
-                    <Skills />
-                    <br /><br /><hr />
-                    <Potfolio />
-                    <br /><br /><br />
                     <hr />
-                    <Additonal />
+                    <br />
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 col-12">
+                            <label className="labels label-education ">Portfolio:</label>
+                        </div>
 
+                        <div className="col-md-9 col-lg-9 col-12">
+                            <p className="education-pt"><Potfolio/></p>
+                        </div>
+                    </div>
 
-                    <br /><br />
+                    
+                    <br />
+                    <hr />
+                    <div className="row">
+                        <div className="col-md-3 col-lg-3 col-12">
+                            <label className="labels label-education ">Additional:</label>
+                        </div>
+
+                        <div className="col-md-9 col-lg-9 col-12">
+                            <p className="education-pt"><Additonal/></p>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
                     <div className="row mx-auto">
                         {this.state.check === 'true' ?
                             <button className="btn btn-primary mx-auto " onClick={() => { this.props.history.push('/student/status') }}>

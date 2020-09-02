@@ -31,8 +31,7 @@ export default class Dashboard extends React.Component {
         this.setState({ show: true });
     };
     prev() {
-
-        if (this.state.page === 1 || this.state.page === 0) {
+        if (this.state.page === 0 || this.state.page<0) {
             this.setState({
                 messages: []
             }, () => {
@@ -43,14 +42,14 @@ export default class Dashboard extends React.Component {
 
             });
         }
-        else {
+        else  {
             this.setState({
                 application: [],
                 page: this.state.page - 1
             }, () => {
-                for (var i = this.state.page * 1; i < (this.state.page + 1) * 1; i++) {
+                for (var i = this.state.page * 5; i < ((this.state.page + 1) * 5 && this.state.applications.length); i++) {
                     this.state.application.push(this.state.applications[i]);
-                    console.log(this.state.application)
+                    console.log(this.state.application);
                 }
             })
         }
@@ -59,7 +58,7 @@ export default class Dashboard extends React.Component {
     next() {
 
 
-        if (this.state.applications.length === this.state.page * 1) {
+        if (this.state.applications.length === this.state.page * 5 || this.state.applications.length <= this.state.page * 5 ) {
             this.setState({
                 messages: []
             }, () => {
@@ -76,7 +75,7 @@ export default class Dashboard extends React.Component {
                 application: []
             }, () => {
 
-                for (var i = this.state.page * 1; i < (this.state.page + 1) * 1; i++) {
+                for (var i = this.state.page * 5; i <( (this.state.page + 1) * 5 && this.state.applications.length); i++) {
                     this.state.application.push(this.state.applications[i]);
                     console.log(this.state.application);
                     this.setState({
@@ -105,7 +104,6 @@ export default class Dashboard extends React.Component {
             // student/internship/view_applied
             axios.get('/api/accounts/student/internship/view_applied', headers)
                 .then((res) => {
-                    console.log(res.data);
                     this.setState({
                         applications: res.data.data
                     }, () => {
@@ -119,14 +117,14 @@ export default class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid container-main-box">
-                <div className="container mt-3">
+            <div className="container-fluid container-main-box" style={{marginTop:"40px"}}>
+                <div className="container mt-5">
                     <div className="row">
                         <div className="col-md-4 col-lg-4 "></div>
                         <div className="col-md-4 col-lg-4  mx-auto">
-                            <p className=" main-heading-page  mx-auto">My Applications</p></div>
+                            <p className=" main-heading-page text-center  mx-auto">My Applications</p></div>
                         <div className="offset-lg-2 col-md-2 col-lg-2  ">
-                            <NavLink className="btnApply" to="/student/internships" >Apply More</NavLink>
+                            {/* <NavLink className="btnApply" to="/student/internships" >Apply More</NavLink> */}
                         </div>
                     </div>
                 </div>
@@ -135,23 +133,23 @@ export default class Dashboard extends React.Component {
                 <div className="container-fluid container-inner-box mb-5">
                     <div className="row  no-guuters headings">
                         <div className="col-md-2 col-lg-2 ">
-                            <p className="special-heading">Company <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
+                            <p className="special-heading text-center mx-auto">Company <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
 
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">Profile <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
+                            <p className="special-heading text-center mx-auto">Profile <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">Review Appli. <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
+                            <p className="special-heading text-center  mx-auto">Review Appli. <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">Applied Date <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
+                            <p className="special-heading text-center  mx-auto">Applied Date <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">No. of Appli.. <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
+                            <p className="special-heading text-center mx-auto">No. of Appli.. <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
                         </div>
                         <div className="col-md-2 col-lg-2  ">
-                            <p className="special-heading">Status <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
+                            <p className="special-heading text-center  mx-auto">Status <img className="img-fluid" src={arrow} style={{ height: "30px", width: "30px" }} /></p>
                         </div>
 
                     </div>
@@ -210,6 +208,7 @@ export default class Dashboard extends React.Component {
                     onHide={this.handleClose}
                     backdrop="static"
                     keyboard={false}
+                    style={{marginTop:"60px"}}
                 >
                     <Modal.Header closeButton />
                     <Modal.Body>

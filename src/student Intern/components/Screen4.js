@@ -13,7 +13,7 @@ class Screen4 extends React.Component{
     }
     render() {
         return (
-                <div className="grid container mt-5">
+                <div className="grid container" style={{marginTop:"120px"}}>
                     <div className="one">
                         <img src={checkImg} alt="status" className="img-fluid" style={{height:"100px",width:"100px"}} /><br/>
                     </div>
@@ -23,7 +23,7 @@ class Screen4 extends React.Component{
                         <p style={{fontStyle: "oblique"}}>You can track it's status on your dashboard</p>
                     </div>
                     <div className="three">
-                        <NavLink to="/student/dashboard"   className="btn btn-intern-status">Go to internship search</NavLink>
+                        <NavLink to="/student/dashboard"   className="btn btn-intern-status">Go to Dashboard</NavLink>
                     </div>
                 </div>
         );

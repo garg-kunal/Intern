@@ -18,6 +18,9 @@ class InternshipType extends React.Component {
             this.props.methodFromParent("internshipTime", this.state.internshipTime)
         })
     }
+    componentDidMount(){
+       
+    }
     render() {
         return (
             <div className="placeTime container-fluid">

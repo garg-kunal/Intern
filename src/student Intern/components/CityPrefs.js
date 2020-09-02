@@ -34,7 +34,8 @@ class CityPrefs extends React.Component {
                     <img src={logo}/>
                 </div>
                 <div className="dataForm">
-                    <h5>Select your preferences of cities :</h5>
+                    <h5>Select your preferences of cities : </h5>
+                    
                     <input type="text" className="prefs1" name="city1" onChange={this.valueChange} value={this.state.city1} placeholder="Select your 1st preference"/>
                     <input type="text" className="prefs1" name="city2" value={this.state.city2} onChange={this.valueChange} placeholder="Select your 2nd preference"/>
                     <input type="text" className="prefs1" name="city3" value={this.state.city3} onChange={this.valueChange} placeholder="Select your 3rd preference"/>
