@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ImagePicker } from 'react-file-picker'
 import Navbar from '../quiz/navbar';
-import userpng from './images/NoPath.png';
+import userpng from '../../assets/images/NoPath.png';
 import Past from './pastexpereince';
 import Phd from './educations/Phd';
 import SchoolX from './educations/10School';
@@ -38,7 +38,7 @@ export default class Form extends React.Component {
             mobile_number: "",
             city: "",
             email: "",
-            state:""
+            state: "",
         }
     }
     componentDidMount() {
@@ -59,13 +59,14 @@ export default class Form extends React.Component {
             }
             axios.get('/api/accounts/student', headers)
                 .then((res) => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     this.setState({
                         email: res.data.data.email,
                         name: res.data.data.name,
                         mobile_number: res.data.data.mobile_number,
                         city: res.data.data.city,
-                        state:res.data.data.state
+                        state: res.data.data.state,
+                        picLink:res.data.data.photo
                     })
                 })
                 .catch((err) => console.log(err))
@@ -76,11 +77,32 @@ export default class Form extends React.Component {
         this.setState({
             picLink: e,
         })
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const data = {
+            file: this.state.picLink
+        }
+        if (this.state.picLink.length !== null) {
+            axios.post('/api/accounts/student/add_photo', data, headers)
+                .then((res) => {
+                    if(res.data.status===201){
+                        alert("Photo Added Successfully");
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
+
     }
 
     render() {
         return (
-            <div className="container-fluid main-container" style={{marginTop:"60px"}}>
+            <div className="container-fluid main-container" style={{ marginTop: "80px" }}>
                 <br />
                 <div className="container-fluid inner-container" data-aos="fade-up" data-aos-easing="linear"
                     data-aos-duration="2500">
@@ -110,7 +132,7 @@ export default class Form extends React.Component {
                             <h3 className="student-name"><strong>{this.state.name}</strong></h3>
                             {this.state.email}<br />
                             {this.state.mobile_number}<br />
-                         {this.state.city}({this.state.state})<br />
+                            {this.state.city}({this.state.state})<br />
                             <hr></hr>
                         </div>
                     </div>
@@ -126,7 +148,7 @@ export default class Form extends React.Component {
                     </div>
 
                     <hr />
-                   
+
                     <div className="row">
                         <div className="col-md-3 col-lg-3 col-12">
                             <label className="labels label-education ">Past Experience:</label>
@@ -142,7 +164,7 @@ export default class Form extends React.Component {
                             <label className="labels label-education">Skills:</label>
                         </div>
                         <div className="col-md-9 col-lg-9 col-12">
-                            <p className="education-pt"><Skills/></p>
+                            <p className="education-pt"><Skills /></p>
                         </div>
                     </div>
 
@@ -154,11 +176,11 @@ export default class Form extends React.Component {
                         </div>
 
                         <div className="col-md-9 col-lg-9 col-12">
-                            <p className="education-pt"><Potfolio/></p>
+                            <p className="education-pt"><Potfolio /></p>
                         </div>
                     </div>
 
-                    
+
                     <br />
                     <hr />
                     <div className="row">
@@ -167,7 +189,7 @@ export default class Form extends React.Component {
                         </div>
 
                         <div className="col-md-9 col-lg-9 col-12">
-                            <p className="education-pt"><Additonal/></p>
+                            <p className="education-pt"><Additonal /></p>
                         </div>
                     </div>
 

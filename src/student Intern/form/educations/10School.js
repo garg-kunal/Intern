@@ -1,8 +1,8 @@
 import React from 'react';
 import '../form.css';
-import High from './school'
-import remove from '../images/delete.png';
-import edit from '../images/edit.png';
+import High from './school';
+import remove from '../../../assets/images/delete.png';
+import edit from '../../../assets/images/edit.png';
 import ReactModal, { setAppElement } from 'react-modal';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -196,7 +196,7 @@ export default class SchoolX extends React.Component {
 
     // Modal Show functions 
     // 1
-    edit() {
+    edit(e) {
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt"),
@@ -204,6 +204,7 @@ export default class SchoolX extends React.Component {
                 'Content-Type': 'application/json'
             }
         }
+        e.preventDefault();
         const data = {
             school: this.state.school,
             board: this.state.board,
@@ -214,17 +215,17 @@ export default class SchoolX extends React.Component {
         axios.post('/api/accounts/student/education/10', data, headers)
             .then((res) => {
                 alert(res.data.status_message.message);
-
+                this.print();
                 this.setState({
                     editShow: false,
                     dataShow: true,
                     showModal: false,
 
                 })
-                this.print();
+               
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
                 alert("Try Again After SomeTime")
             });
 
@@ -348,7 +349,7 @@ export default class SchoolX extends React.Component {
 
                                         </div>
                                         <div style={{ padding: "10px", float: "right", display: "flex" }}>
-                                            <button className="btn btnedit" onClick={() => { this.edit() }}>
+                                            <button className="btn btnedit" onClick={(e) => { this.edit(e) }}>
                                                 Update
                                         </button>&nbsp;&nbsp;
                                         <button className="btn btnedit"

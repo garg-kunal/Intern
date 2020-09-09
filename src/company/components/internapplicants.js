@@ -1,6 +1,6 @@
 import React from 'react';
-import arrow from "../assets/titleArrow.png"
-import '../css/companyDashBoard.css';
+import arrow from "../../assets/images/baseline-arrow.png"
+import '../../assets/css/companyDashBoard.css';
 import { NavLink } from 'react-router-dom';
 import axios from '../../setup';
 

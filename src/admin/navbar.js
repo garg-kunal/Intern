@@ -1,8 +1,6 @@
 import React from 'react';
-//import './top.css';
-import user from '../student Intern/assets/images/user.png';
+import user from '../assets/images/user.png';
 import { NavLink, Redirect, withRouter } from 'react-router-dom';
-// import user from '../form/images/user.png';
 
 const navbar = () => {
     
@@ -33,12 +31,7 @@ const navbar = () => {
                         window.location.href="/login/admin"
                     }
                     } style={{ float: "right", background: "transparent" }}>
-                    <img src={user}
-
-                        title="Logout"
-                        className="img img-fluid userpng"
-                        style={{ height: "40px", width: "40px", float: "right" }}
-                        alt="user" />
+                   Logout
                 </button>
             </div>
         </nav >

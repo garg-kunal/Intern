@@ -1,14 +1,11 @@
 import React from "react"
-import "../css/postInternship.css"
-import arrow from "../assets/arrow.png";
+import "../../assets/css/postInternship.css"
 import axios from '../../setup'
 import InternshipType from "./postInternship/internshipType"
 import Openings from "./postInternship/openings"
 import Questions from "./postInternship/questions"
-import Responsibility from "./postInternship/responsibility"
 import StartDate from "./postInternship/startDate"
 import Stipend from "./postInternship/stipend";
-import { Redirect } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 class PostInternship extends React.Component {
     constructor() {
@@ -23,7 +20,7 @@ class PostInternship extends React.Component {
             startDate: "",
             exactDate: "",
             skills: [false, false, false],
-            otherSkills: "",
+            otherSkills: [],
             benefits: [],
             stipend: "",
             currency: "",
@@ -58,17 +55,17 @@ class PostInternship extends React.Component {
             this.state.startDate.length === 0 ||
             this.state.stipend.length === 0 ||
             this.state.responsibility.length === 0 ||
-            this.state.otherSkills.length === 0){
-                this.state.messages.push('Fields Required..');
-                this.setState({
-                    show:true
-                })
+            this.state.otherSkills.length === 0) {
+            this.state.messages.push('Fields Required..');
+            this.setState({
+                show: true
+            })
 
-            }
-            else{
-                this.setState({
-                    messages:[]
-                })
+        }
+        else {
+            this.setState({
+                messages: []
+            })
 
             const data = {
                 profile: this.state.profile,
@@ -89,40 +86,40 @@ class PostInternship extends React.Component {
                 skills: this.state.otherSkills,
                 id: this.props.location.id.key
             }
-        const headers = {
-            headers: {
-                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }
-
-        axios.post('/api/accounts/company/add_internship', data, headers)
-            .then((res) => {
-                this.setState({
-                    messages: []
-                });
-                console.log(res.data);
-
-                if (res.data.status === 200) {
-                    this.state.messages.push("Internship Added");
-                    this.props.history.push("/company/intern/save_intern");
+            const headers = {
+                headers: {
+                    'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
-                else {
-                    this.state.messages.push(res.data.status_message.message);
+            }
+
+            axios.post('/api/accounts/company/add_internship', data, headers)
+                .then((res) => {
+                    this.setState({
+                        messages: []
+                    });
+                    console.log(res.data);
+
+                    if (res.data.status === 200) {
+                        this.state.messages.push("Internship Added");
+                        this.props.history.push("/company/intern/save_intern");
+                    }
+                    else {
+                        this.state.messages.push(res.data.status_message.message);
+                        this.setState({
+                            show: true
+                        })
+                    }
+
+                })
+                .catch((err) => {
+                    this.state.messages.push("Try Again After Sometime..");
                     this.setState({
                         show: true
                     })
-                }
 
-            })
-            .catch((err) => {
-                this.state.messages.push("Try Again After Sometime..");
-                this.setState({
-                    show: true
-                })
-
-            });
+                });
         }
 
     }
@@ -141,7 +138,7 @@ class PostInternship extends React.Component {
             }
             axios.get('/api/accounts/company/view_internship/' + this.props.location.id.key, headers)
                 .then((res) => {
-                    console.log(res.data.data)
+                    // console.log(res.data.data)
                     this.setState({
                         profile: res.data.data.profile,
                         city: res.data.data.location,
@@ -149,10 +146,10 @@ class PostInternship extends React.Component {
                         openings: res.data.data.openings,
                         days: res.data.data.duration,
                         responsibility: res.data.data.description,
-                        internshipPlace:res.data.data.place
+                        internshipPlace: res.data.data.place
 
                     }, () => {
-                        
+
                     })
                 })
                 .catch((err) => console.log(err))
@@ -179,7 +176,7 @@ class PostInternship extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid postInternship" style={{ paddingTop: "120px" }}>
+            <div className="container-fluid postInternship">
                 <p className="heading">Post Internships</p>
                 <p className="head head2">Internship Details :</p>
                 <p className="head head3">Profile :</p>
@@ -245,10 +242,12 @@ class PostInternship extends React.Component {
                 </div>
                 {/* <Benefits methodFromParent={this.parentCollector} /> */}
                 <p className="head head3">Skills Required :</p>
-                <input type="text"
-                    value={this.state.otherSkills}
-                    onChange={(e) => { this.setState({ otherSkills: e.target.value }) }}
-                    className="form-control city" required placeholder="Add Hardware, Software, etc." />
+
+                <div className="container-fluid skillsReq d-flex flex-row flex-wrap">
+                    {this.state.otherSkills.map((item, key) =>
+                        <p className="col-4  col-md-2" >{item}</p>
+                    )}
+                </div>
 
                 {/* <Skills methodFromParent={this.parentCollector} domain={this.state.profile} /> */}
                 <p className="head head3">Evaluation Questions :</p>

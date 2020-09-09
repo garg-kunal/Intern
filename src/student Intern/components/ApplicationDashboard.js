@@ -1,8 +1,7 @@
 import React from 'react';
-import '../assets/css/ApplicationDashboard.css';
-// import arrow from '../assets'
-import arrow from '../assets/images/baseline-arrow.png';
-import docs from '../assets/images/docs.png';
+import '../../assets/css/ApplicationDashboard.css';
+import arrow from '../../assets/images/baseline-arrow.png';
+import docs from '../../assets/images/docs.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { NavLink } from 'react-router-dom';
@@ -198,9 +197,9 @@ export default class Dashboard extends React.Component {
 
                 </div>
                 <div className="container row mx-auto">
-                    <button className="btn mx-auto btn-sm btn-primary" onClick={() => { this.prev() }}>Prev</button>
+                    <button className="btn mx-auto mt-2 mb-2 btn-sm btn-primary" onClick={() => { this.prev() }}>Prev</button>
 
-                    <button className="btn mx-auto btn-sm btn-primary" onClick={() => { this.next() }}>Next</button>
+                    <button className="btn mx-auto mt-2 mb-2 btn-sm btn-primary" onClick={() => { this.next() }}>Next</button>
 
                 </div>
                 <Modal

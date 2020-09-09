@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-import merge from './assets/Merge..png';
-import './assets/css/student_form.css';
+import '../assets/css/student_form.css';
 
 export class Welcome extends Component {
   render() {

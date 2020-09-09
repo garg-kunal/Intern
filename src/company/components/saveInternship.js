@@ -1,7 +1,6 @@
 import React from "react";
-import logo from "../assets/Merge..png";
-import checkImg from "../assets/Group 2881.png";
-import "../css/saveInternship.css";
+import checkImg from "../../assets/images/Group 2881.png";
+import "../../assets/css/saveInternship.css";
 
 class SaveInternship extends React.Component {
     move(){

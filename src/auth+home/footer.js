@@ -1,9 +1,5 @@
 import React from 'react';
-import insta from './assets/Path 369.png';
-import youtube1 from './assets/youtube.png';
-import linkedin from './assets/linkedin.png';
-import twitter from './assets/twitter.png';
-import tele from './assets/telegram.png'
+
 export default function Footer() {
     return (
         <div className="container-fluid card-main-footer">
@@ -26,16 +22,16 @@ export default function Footer() {
                             <i class="fa fa-youtube" aria-hidden="true" style={{ fontSize: "48px", marginLeft: "25px" }}></i>
                         </a>
                         <br />
-                       
+
                     </p>
                 </div>
                 <div className="col-md-4 col-lg-4">
                     <br /><br />
-                    <p style={{fontSize:"18px !important"}}>
+                    <p style={{ fontSize: "18px !important" }}>
                         <p className="home-footer-main-heading" >Resources:</p>
                         <h5 className="home-footer-main">Contact Us</h5>
-                        <h5 className="home-footer-main">Terms & Conditions</h5>
-                        <h5 className="home-footer-main">Privacy Policy</h5>
+                        <a style={{color:"black",textDecoration:"none"}} href="/terms" target="_blank"> <h5 className="home-footer-main">Terms & Conditions</h5></a>
+                        <a style={{color:"black",textDecoration:"none"}} href="/privacy_policy" target="_blank"><h5 className="home-footer-main">Privacy Policy</h5></a>
                         <h5 className="home-footer-main">Security</h5>
                         <h5 className="home-footer-main">FAQs</h5>
                     </p>

@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../assets/images/Merge..png";
-import checkImg from "../assets/images/Group 2881.png";
-import "../assets/css/Screen4.css";
+import logo from "../../assets/images/Merge..png";
+import checkImg from "../../assets/images/Group 2881.png";
+import '../../assets/css/Screen4.css';
 import { NavLink } from "react-router-dom";
 
 class Screen3 extends React.Component {

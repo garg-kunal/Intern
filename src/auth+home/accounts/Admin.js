@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import cookie from "react-cookies";
 import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
-import '../assets/css/student_form.css';
+import '../../assets/css/student_form.css';
 import axios from '../../setup';
 export class AdminLogin extends Component {
     constructor(props) {
@@ -64,7 +62,7 @@ export class AdminLogin extends Component {
         })
         axios.post('/api/accounts/admin/secret_login', data)
             .then((res) => {
-                console.log(res.data)
+                
                 if (res.data.status === 200){
                     localStorage.setItem("admin_jwt",res.data.jwt);
                     this.props.history.push('/admin');

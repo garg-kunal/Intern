@@ -1,8 +1,7 @@
 import React from "react";
-import user from '../../student Intern/assets/images/user.png';
-import '../../company/css/companyNavBar.css';
-// import ProfileBox from "./profileBox"
+import '../../assets/css/companyNavBar.css';
 import { NavLink } from "react-router-dom";
+
 class CompanyNavBar extends React.Component {
     constructor() {
         super()

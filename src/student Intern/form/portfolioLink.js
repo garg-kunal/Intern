@@ -1,7 +1,7 @@
 import React from 'react';
 import './form.css';
-import remove from './images/delete.png';
-import edit from './images/edit.png';
+import remove from '../../assets/images/delete.png';
+import edit from '../../assets/images/edit.png';
 import ReactModal, { setAppElement } from 'react-modal';
 import AOS from 'aos';
 import 'aos/dist/aos.css';

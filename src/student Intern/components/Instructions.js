@@ -1,7 +1,7 @@
 import React from "react";
 import Mobile from '../quiz/Mobilequiz';
-import logo from "../assets/images/Merge.-1.png";
-import "../assets/css/Screen2.css";
+import logo from "../../assets/images/Merge.-1.png";
+import "../../assets/css/Screen2.css";
 import { NavLink, Redirect, withRouter } from 'react-router-dom';
 class Screen2 extends React.Component {
     constructor() {

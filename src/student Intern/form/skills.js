@@ -2,8 +2,8 @@ import React from 'react';
 import './form.css';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import remove from './images/delete.png'
-import edit from './images/edit.png';
+import remove from '../../assets/images/delete.png'
+import edit from '../../assets/images/edit.png';
 import axios from '../../setup';
 import ReactModal, { setAppElement } from 'react-modal';
 
@@ -120,7 +120,7 @@ export default class Skills extends React.Component {
             }
         }
         axios.post('/api/accounts/student/add_skill', data, headers)
-            .then((res) => console.log(res.data))
+            .then((res) => this.print())
             .catch((err) => console.log(err))
         // this.state.skillsOut.push(data);
         this.setState({

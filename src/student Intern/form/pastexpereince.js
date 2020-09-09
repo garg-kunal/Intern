@@ -1,7 +1,7 @@
 import React from 'react';
 import './form.css';
-import remove from './images/delete.png'
-import edit from './images/edit.png';
+import remove from '../../assets/images/delete.png'
+import edit from '../../assets/images/edit.png';
 import ReactModal, { setAppElement } from 'react-modal';
 import DatePicker from "react-datepicker";
 import axios from '../../setup';
@@ -13,17 +13,17 @@ const customStyles = {
         // border: "2px solid #4A00E0",
         backgroundColor: "white",
         width: "80%",
-        top: '50%',
+        top: '55%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         height: '90%',
         marginRight: '-50%',
-        borderRadius:'20px',
+        borderRadius: '20px',
         transform: 'translate(-50%, -50%)',
-        boxShadow:'0 0 4px 8px lightgrey'
+        boxShadow: '0 0 4px 8px lightgrey'
     },
-   
+
 };
 
 export default class PastExpierence extends React.Component {
@@ -135,7 +135,7 @@ export default class PastExpierence extends React.Component {
         }
         axios.get('/api/accounts/student/view_experience', headers)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({
                     expierence: res.data.data
                 })
@@ -172,7 +172,7 @@ export default class PastExpierence extends React.Component {
             }
         }
         axios.post('/api/accounts/student/update_experience', data, headers)
-            .then((res) => { this.print(); console.log(res.data) })
+            .then((res) => { this.print(); })
             .catch((err) => console.log(err));
         this.setState({
             editShow: false,
@@ -226,9 +226,9 @@ export default class PastExpierence extends React.Component {
                     <div className="card skill-card border-0" style={{ paddingBottom: "15px" }}>
                         {this.state.dataShow ?
                             <div className="row no-gutters student-10-data">
-                             
+
                                 <div className="col-md-8 col-9 student-data-form">
-                                <b>{item.profile}</b><br />
+                                    <b>{item.profile}</b><br />
                                     <i>Organization: </i>{item.organization}<br />
                                     <i>Internship Type:</i> {item.internship_type}<br />
                                     <i> Start Date:</i> {item.startdate}<br />
@@ -236,16 +236,16 @@ export default class PastExpierence extends React.Component {
                                     <i> Description:</i> {item.description}<br />
                                 </div>
 
-                                <div className="col-md-3 col-3" style={{ padding: "10px",paddingTop:"0" }}>
+                                <div className="col-md-3 col-3" style={{ padding: "10px", paddingTop: "0" }}>
                                     <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.editable(key) }} >
-                                        <img src={edit} 
+                                        <img src={edit}
                                             height="30" alt="edit" className="img-fluid  btn-edit-student" />
                                     </button>
-                           
+
                                     <button className="btn border-0 btn-edit-student-main" style={{ backgroundColor: "white" }}
                                         onClick={() => { this.remove(item.id) }} >
-                                        <img src={remove} 
+                                        <img src={remove}
                                             height="30" alt="edit" className="img-fluid  btn-delete-student" />
                                     </button>
 
@@ -304,9 +304,7 @@ export default class PastExpierence extends React.Component {
                                             }
                                         </div>
                                     </div>
-
-
-                                    <br /><br />
+                                    <label style={{ fontSize: "18px" }}>Description:(optional)</label>
                                     <textarea className="form-control" rows="2" cols="4"
                                         value={this.state.describe}
                                         onChange={(e) => { this.setState({ describe: e.target.value }) }}>
@@ -352,9 +350,9 @@ export default class PastExpierence extends React.Component {
                                 placeholder="e.g. Home,Officee" />
                             <br />
                             Currently Working: <input type="checkbox"
-                            className="pt-2"
+                                className="pt-2"
                                 style={{ height: "15px" }}
-                                onChange={() => { this.checkBox() }} /> 
+                                onChange={() => { this.checkBox() }} />
                             <br /><br />
                             <div className="row no-gutters">
                                 <div className="col-md-6">
@@ -375,9 +373,10 @@ export default class PastExpierence extends React.Component {
                                             />
                                         </div> : null}
                                 </div>
-                            </div> <br /><br />
-                            <label>Description:(optional)</label>
-                            <textarea className="form-control" 
+                            </div>
+                            <br />
+                            <label style={{ fontSize: "18px" }}>Description:(optional)</label>
+                            <textarea className="form-control"
                                 value={this.state.describe}
                                 onChange={(e) => { this.setState({ describe: e.target.value }) }}>
                             </textarea>

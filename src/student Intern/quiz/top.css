@@ -23,7 +23,7 @@ user-select: none;
 .top{
     background-color: #4A00E0;
     height: 250px;
-    background-image: url('../form/images/bg.png');
+    background-image: url('../../assets/images/bg.png');
     background-position: 0%;
     background-size: initial;
 }

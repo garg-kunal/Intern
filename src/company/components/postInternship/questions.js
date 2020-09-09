@@ -13,10 +13,11 @@ class Questions extends React.Component {
     }
     InputField() {
         return (
-            <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;
-                     <input type="text" name="extraQ" placeholder="Enter the question here..." className="form-control" /></span>
-            </button>
+            <div className="alert alert-success alert-dismissible">
+                this.sis alert
+                {/* <input type="text" name="extraQ" placeholder="Enter the question here..." className="form-control" /> */}
+                <button type="button" className="close" data-dismiss="alert">&times;</button>
+            </div>
 
         )
     }
@@ -34,16 +35,20 @@ class Questions extends React.Component {
         })
     }
     addInputField() {
-        var z = document.createElement('textarea')
-        z.name = "extraQ" + this.state.questionNo
-        z.placeholder = "Enter text..."
-        z.className = "extra city"
-        z.addEventListener('change', this.addQuestion)
-        var parent = document.getElementsByClassName("questions")[0]
-        parent.insertBefore(z, parent.children[parent.children.length - 1])
-        this.setState((prevState) => ({
-            questionNo: prevState.questionNo + 1
-        }))
+        if (window.confirm("Are you sure To add question..")) {
+            var z = document.createElement('input');
+            z.name = "extraQ" + this.state.questionNo
+            z.placeholder = "Enter text..."
+            z.className = "extra city"
+            z.addEventListener('change', this.addQuestion)
+            var parent = document.getElementsByClassName("questions")[0]
+            parent.insertBefore(z, parent.children[parent.children.length - 1])
+            this.setState((prevState) => ({
+                questionNo: prevState.questionNo + 1
+            }))
+        } else {
+
+        }
     }
     render() {
         return (
@@ -56,7 +61,7 @@ class Questions extends React.Component {
                     <b >Question 1.</b> Why we should hire you?
                 </p>
 
-                <button className="addMore" onClick={this.addInputField}><b>+</b> Add questions</button>
+                <button className="addMore mb-2" onClick={this.addInputField}><b>+</b> Add questions</button>
             </div>
         )
     }

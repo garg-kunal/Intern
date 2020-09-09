@@ -1,10 +1,10 @@
 import React from "react";
-import '../../company/css/viewInternship.css';
-import home from '../assets/images/sydney-opera-house.png';
-import start from '../assets/images/start.png';
-import calendar from '../assets/images/calender.png';
-import rupee from '../assets/images/rupee.png';
-import applyBy from '../assets/images/unlimited.png';
+import '../../assets/css/viewInternship.css';
+import home from '../../assets/images/sydney-opera-house.png';
+import start from '../../assets/images/start.png';
+import calendar from '../../assets/images/calender.png';
+import rupee from '../../assets/images/rupee.png';
+import applyBy from '../../assets/images/unlimited.png';
 import Axios from '../../setup';
 
 
@@ -23,7 +23,7 @@ class InternshipDetails extends React.Component {
             startDate: "",
             exactDate: "",
             skills: [false, false, false],
-            otherSkills: "",
+            otherSkills: [],
             benefits: [],
             companyAbout: "",
             stipend: "",
@@ -33,7 +33,9 @@ class InternshipDetails extends React.Component {
             responsibility: "",
             days: "",
             month: "",
-            openings: ""
+            openings: "",
+            logo:""
+
         }
     }
     componentDidMount() {
@@ -64,7 +66,8 @@ class InternshipDetails extends React.Component {
                     responsibility: res.data.data.description,
                     days: res.data.data.duration,
                     openings: res.data.data.openings,
-                    companyAbout: res.data.data.about
+                    companyAbout: res.data.data.about,
+                    logo:res.data.data.logo
                 })
 
             })
@@ -77,7 +80,7 @@ class InternshipDetails extends React.Component {
                     <span className="work col-8">{this.state.profile}
                     </span>
                     <div className="col-4 pt-3">
-                        <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fwilcity.com%2Fwp-content%2Fuploads%2F2018%2F12%2Fsample-logo-design-png-3.png&imgrefurl=https%3A%2F%2Fwilcity.com%2Fsample-logo-design-png-3%2F&tbnid=BkFMxNmdfU_vVM&vet=12ahUKEwiBxqWn67_rAhXZhUsFHYaCA9gQMygAegUIARC5AQ..i&docid=j6kTKg3npIA05M&w=707&h=355&q=logo%20sample%20png&ved=2ahUKEwiBxqWn67_rAhXZhUsFHYaCA9gQMygAegUIARC5AQ" className="complogo" alt="" />
+                        <img src={this.state.logo} className="complogo" alt="" />
                     </div>
                     <span className="company col-8">
                         <img src={home} className="workImg img-fluid"
@@ -109,7 +112,7 @@ class InternshipDetails extends React.Component {
                                 &nbsp;
                             Stipend</span><br />
 
-                        <p className="workType work2">{this.state.stipend} &nbsp;&nbsp;{this.state.amount}</p>
+                        <p className="workType work2">{this.state.stipend === 'Negotiable'?"Nego.":this.state.stipend} <br/>{this.state.amount}</p>
                     </div>
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
@@ -135,8 +138,10 @@ class InternshipDetails extends React.Component {
                 <div className="row aboutCompany">
                     <p className="about-skills about col-10">Skills Required</p>
 
-                    <div className="row container skillsReq">
-                        {this.state.otherSkills}
+                    <div className=" container skillsReq d-flex flex-row flex-wrap">
+                        {this.state.otherSkills.map((item, key) =>
+                            <p className="col-md-2 col-6" >{item}</p>
+                        )}
                     </div>
                 </div>
                 <br/>

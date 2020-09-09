@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-import User from './assets/user.png';
-import login from './assets/login.png';
 
 export class Header extends Component {
   render() {
@@ -54,7 +52,7 @@ export class Header extends Component {
           </button>
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <NavLink className="navbar-brand mobile-merge home-main-merge" style={{ color: "black" }} to="/">
+              <NavLink className="navbar-brand mobile-merge" style={{ color: "black",fontSize:"20px",marginLeft:"-50px" }} to="/">
                 Merge.
               </NavLink>
             </li>

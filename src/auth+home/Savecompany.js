@@ -1,6 +1,5 @@
 import React from "react";
-import glassHour from '../company/assets/glassHour2.png'
-// import "../css/saveInternship.css";
+import glassHour from '../assets/images/glassHour2.png'
 
 class ReviewInternship extends React.Component {
     render() {

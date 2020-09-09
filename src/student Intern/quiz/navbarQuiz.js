@@ -1,6 +1,5 @@
 import React from 'react';
-//import './top.css';
-import user from '../form/images/user.png';
+
 const navbar = () => {
     return (
         <nav className="navbar navbar-student navbar-expand-lg">

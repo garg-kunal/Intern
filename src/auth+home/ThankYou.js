@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link,NavLink } from "react-router-dom";
-import './assets/css/thank_you.css';
-import ok from './assets/Group 83.png';
-import tele from './assets/telegram.png'
+import '../assets/css/thank_you.css';
+import ok from '../assets/images/Group 83.png';
+import tele from '../assets/images/telegram.png'
 export class ThankYou extends Component {
   render() {
     return (

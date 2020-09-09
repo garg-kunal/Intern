@@ -1,19 +1,22 @@
 import React from 'react';
 
 import Select from 'react-select';
-// import { colourOptions } from '../data';
 
-// type State = {
-//   value: [{ [string]: string }],
-// };
 const colourOptions = [
     { value: 'skills', label: 'SKill', color: '#00B8D9', isFixed: true },
     { value: 'css', label: 'CSS', color: '#00B8D9' },
     { value: 'html', label: 'HTML', color: '#0052CC' },
     { value: 'python', label: 'Python', color: '#5243AA' },
-    { value: 'django', label: 'django', color: '#FF5630 ' },
-    { value: 'jquery', label: 'Jquery', color: '#FF8B00' },
-    { value: 'js', label: 'Javascript', color: '#FFC400' },
+    { value: 'django', label: 'Django', color: '#FF5630 ' },
+    { value: 'gcp', label: 'GCP', color: '#FF8B00' },
+    { value: 'js', label: 'JS', color: '#FFC400' },
+    { value: 'nodejs', label: 'NodeJS', color: '#00B8D9' },
+    { value: 'php', label: 'PHP', color: '#0052CC' },
+    { value: 'mysql', label: 'MySQL', color: '#5243AA' },
+    { value: 'mongodb', label: 'MongoDB', color: '#FF5630 ' },
+    { value: 'firestore', label: 'FireStore', color: '#FF8B00' },
+    { value: 'aws', label: 'AWS', color: '#FFC400' },
+    { value: 'azure', label: 'Azure', color: '#FFC400' },
 
 ];
 

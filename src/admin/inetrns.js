@@ -1,6 +1,6 @@
 import React from 'react';
-import arrow from '../student Intern/assets/images/baseline-arrow.png';
-import docs from '../student Intern/assets/images/docs.png';
+import arrow from '../assets/images/baseline-arrow.png';
+import docs from '../assets/images/docs.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Axios from '../setup';

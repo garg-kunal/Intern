@@ -1,7 +1,6 @@
 import React from 'react';
 import './top.css';
-import iconic from '../form/images/Group 250.png';
-import Navbar from './navbar';
+import iconic from '../../assets/images/Group 250.png';
 const Top = () => {
     return (
         <div className="container-fluid top">

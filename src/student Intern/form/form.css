@@ -64,6 +64,9 @@ hr{
     color: #4A00E0;
     background-color: white;
 }
+.btns-add-image:hover{
+    cursor: pointer;
+}
 
 .btn-primary{
     font-size: 22px;

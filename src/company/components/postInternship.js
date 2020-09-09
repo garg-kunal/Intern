@@ -1,6 +1,5 @@
 import React from "react"
-import "../css/postInternship.css"
-import arrow from "../assets/arrow.png";
+import "../../assets/css/postInternship.css"
 import axios from '../../setup'
 import InternshipType from "./postInternship/internshipType"
 import Openings from "./postInternship/openings"
@@ -8,11 +7,8 @@ import Questions from "./postInternship/questions"
 import Responsibility from "./postInternship/responsibility"
 import StartDate from "./postInternship/startDate"
 import Stipend from "./postInternship/stipend";
-import { Redirect } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import Skills from './postInternship/skills';
-// import { fluid } from 'semantic-ui-css/semantic.min.css';
-import { Dropdown } from 'semantic-ui-react'
 
 
 class PostInternship extends React.Component {
@@ -56,12 +52,15 @@ class PostInternship extends React.Component {
 
     showAll() {
        
-
+        console.log(this.state)
         if (this.state.profile.length === 0 ||
             this.state.internshipPlace.length === 0 ||
             this.state.internshipTime.length === 0 ||
             this.state.city.length === 0 ||
             this.state.days.length === 0 ||
+            // this.state.stipend_amount.length===0||
+            // this.state.currency.length===0||
+            // this.state.payDuration.length===0||
             this.state.openings.length === 0 ||
             this.state.startDate.length === 0 ||
             this.state.stipend.length === 0 ||
@@ -73,13 +72,10 @@ class PostInternship extends React.Component {
                     show: true
                 })
             })
-
-
         }
         else {
            
-            console.log(this.state)
-        
+        document.getElementById("post-intern").style.background="#4A00E0";
             const data = {
                 profile: this.state.profile,
                 place: this.state.internshipPlace,
@@ -109,7 +105,7 @@ class PostInternship extends React.Component {
 
             axios.post('/api/accounts/company/add_internship', data, headers)
                 .then((res) => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     this.setState({
                         message: ''
                     });
@@ -182,11 +178,11 @@ class PostInternship extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid  mb-5 pb-5" style={{ paddingTop: "120px" }}>
+            <div className="container-fluid  mb-3 pb-3">
 
                 <div className="container-fluid postInternship">
                     <br /><br />
-                    <p className="heading">Post Internships</p>
+                    <p className="heading mt-2">Post Internships</p>
                     <p className="head head2">Internship Details</p>
                     <p className="head head3">Profile :</p>
                     <input type="text" value={this.state.profile}
@@ -253,7 +249,7 @@ class PostInternship extends React.Component {
                     <p className="head head3">Evaluation Questions :</p>
                     <Questions methodFromParent={this.parentCollector} />
                     <div className="save container">
-                        <button type="button" onClick={this.showAll} className="proceed col-10 col-sm-6 text-center">Post Internship</button>
+                        <button id="post-intern" type="button" onClick={this.showAll} className="proceed col-10 col-sm-6 text-center">Post Internship</button>
                     </div>
                     <Modal
                         show={this.state.show}

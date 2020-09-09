@@ -1,12 +1,10 @@
 import React, { Component, useState } from "react";
-import { Link,NavLink } from "react-router-dom";
-import cookie from "react-cookies";
+import { Link, NavLink } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import merge from './assets/Merge..png';
-import otp from './assets/otp.png'
-import './assets/css/verify_otp.css'
+import otp from '../assets/images/otp.png'
+import '../assets/css/verify_otp.css'
 import Axios from "../setup";
-import {connect} from 'react-redux';
+
 export class VerifyOTP extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +33,7 @@ export class VerifyOTP extends Component {
   handleOTPChange(event) {
     const inputId = event.target.id;
     const value = event.target.value;
-    console.log(value);
+    // console.log(value);
     if (value !== "") {
       switch (inputId) {
         case "otp_dig_1":
@@ -58,77 +56,86 @@ export class VerifyOTP extends Component {
     this.setState(
       { otp: otp_dig_1 + otp_dig_2 + otp_dig_3 + otp_dig_4 },
       () => {
-        document.getElementById("submit-otp").disabled=false;
-        document.getElementById("submit-otp").style.background="#4A00E0";
+        document.getElementById("submit-otp").disabled = false;
+        document.getElementById("submit-otp").style.background = "#4A00E0";
       }
     );
   }
 
   handleSubmit(event) {
-    const data={
-      otp:this.state.otp,
-      email:this.state.email,
-      account_type:"company"
+    const data = {
+      otp: this.state.otp,
+      email: this.state.email,
+      account_type: "company"
     }
-    Axios.post('/api/accounts/verify_otp',data)
-    .then((res)=>{
-      
-      if(res.data.status===200){
-        localStorage.setItem('merge_jwt_c',res.data.jwt);
-         this.props.history.push('/company/dashboard');
-      }
-      else if(res.data.status!==200)
-         {
-           this.state.messages.push(res.data.status_message.message)
-           this.setState({
-             show:true
-           })
-         }   
+    this.setState({
+      messages: []
+    }, () => {
+      Axios.post('/api/accounts/verify_otp', data)
+        .then((res) => {
+
+          if (res.data.status === 200) {
+            localStorage.setItem('merge_jwt_c', res.data.jwt);
+            this.props.history.push('/company/dashboard');
+          }
+          else if (res.data.status !== 200) {
+            this.state.messages.push(res.data.status_message.message)
+            this.setState({
+              show: true
+            })
+          }
+        })
+        .catch((err) => console.log(err))
+
     })
-    .catch((err)=>console.log(err))
-   
+
     event.preventDefault();
   }
 
   handleResendSubmit(event) {
-    const data={
-    email:this.state.email
+    const data = {
+      email: this.state.email
     }
-    Axios.post('/api/accounts/resend_otp',data)
-    .then((res)=>{
-      this.state.messages.push(res.data.status_message.message);
-      this.setState({
-        show:true
+    this.setState({
+      messages:[]
+    },()=>{
+      Axios.post('/api/accounts/resend_otp', data)
+      .then((res) => {
+        this.state.messages.push(res.data.status_message.message);
+        this.setState({
+          show: true
+        })
       })
+      .catch((err) => console.log(err))
     })
-    .catch((err)=>console.log(err))
-   
+  
+
     event.preventDefault();
   }
 
   componentDidMount() {
     const { email } = this.props.match.params;
-    document.getElementById("submit-otp").disabled=true;
+    document.getElementById("submit-otp").disabled = true;
     this.setState({ email: email });
   }
 
   render() {
     return (
-     <div className="container-fluid body-otp " >
+      <div className="container-fluid body-otp " >
         <div className="container-fluid vh-100 violet_sq_bg">
           <div className="row px-2">
-          <h2 style={{ color: "white", paddingTop: "20px", fontFamily: "'Spartan', sans-serif" }}>
-              <NavLink to="/" className="merge-verify-otp mb-3" style={{ color: "white",fontFamily: "'Spartan', sans-serif" }}>
-              Merge.
+            <h2 style={{ color: "white", paddingTop: "20px", fontFamily: "'Spartan', sans-serif" }}>
+              <NavLink to="/" className="merge-verify-otp mb-3" style={{ color: "white", fontFamily: "'Spartan', sans-serif" }}>
+                Merge.
               </NavLink>
             </h2>
 
 
           </div>
           <div
-          className="otp-box-home bg-white col-md-8 col-lg-6 col-sm-10 col-11 verify-otp-mobile mx-auto"
-          style={{ borderRadius: "20px" }}
-        >
+            className="otp-box-home bg-white col-md-8 col-lg-6 col-sm-10 col-11 verify-otp-mobile mx-auto"
+            style={{ borderRadius: "20px" }}
+          >
             <div className="row">
               <div className="mt-3 mx-auto">
                 <img src={otp} className="img-fluid otp-image-verify" />
@@ -150,7 +157,7 @@ export class VerifyOTP extends Component {
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}
-                        style={{  textAlign: "center" }}
+                        style={{ textAlign: "center" }}
                       />
 
                     </div>
@@ -189,15 +196,15 @@ export class VerifyOTP extends Component {
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}
-                        style={{  textAlign: "center" }}
+                        style={{ textAlign: "center" }}
                       />
                     </div>
                   </div>
                   <div className="row mx-auto">
-                  <button id="submit-otp"
-                    className="btn btn-secondary btn-submit-verify mt-md-5 mx-auto text-center "
-                    type="submit"
-                  >
+                    <button id="submit-otp"
+                      className="btn btn-secondary btn-submit-verify mt-md-5 mx-auto text-center "
+                      type="submit"
+                    >
                       SUBMIT
                   </button>
                   </div>
@@ -210,7 +217,7 @@ export class VerifyOTP extends Component {
                 <form onSubmit={this.handleResendSubmit}>
                   <button
                     className="btn text-violet bg-transparent mx-auto"
-                    style={{ fontSize: "1.1em",paddingLeft:"20px", fontWeight: "800", color: "#4A00E0", marginTop: "-40px" }}
+                    style={{ fontSize: "1.1em", paddingLeft: "20px", fontWeight: "800", color: "#4A00E0", marginTop: "-40px" }}
                     type="submit"
                   >
                     Resend OTP

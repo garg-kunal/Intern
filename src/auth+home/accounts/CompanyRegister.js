@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-import cookie from "react-cookies";
 import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
-import '../assets/css/student_form.css';
+import '../../assets/css/student_form.css';
 import axios from '../../setup';
 
 export class CompanyRegister extends Component {
@@ -37,25 +36,25 @@ export class CompanyRegister extends Component {
 
   handleNameChange(event) {
     this.setState({ name: event.target.value }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 
   handleEmailChange(event) {
     this.setState({ email: event.target.value }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 
   handleNumberChange(event) {
     this.setState({ mobile_number: event.target.value }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 
   handleTypeChange(event) {
     this.setState({ company_type: event.target.value }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 
@@ -73,7 +72,7 @@ export class CompanyRegister extends Component {
 
     axios.post('/api/accounts/company/create', data)
       .then((res) => {
-        console.log(res.data.status_message.message)
+        // console.log(res.data.status_message.message)
         if (res.data.status === 201)
           this.props.history.push('/login/verify/' + this.state.email);
         else if (res.data.status !== 201)

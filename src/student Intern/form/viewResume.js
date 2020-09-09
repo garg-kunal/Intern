@@ -2,20 +2,8 @@ import React from 'react';
 import './form.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { ImagePicker } from 'react-file-picker'
-import Navbar from '../quiz/navbar';
-import userpng from './images/NoPath.png';
-import Past from './pastexpereince';
-import Phd from './educations/Phd';
-import SchoolX from './educations/10School';
-import SchoolXII from './educations/school';
-import PostGrad from './educations/postGraduation';
-import Graduation from './educations/graduation';
-import Skills from './skills';
-import Additonal from './additional';
-import Potfolio from './portfolioLink';
+import userpng from '../../assets/images/NoPath.png';
 import axios from '../../setup';
-import { Modal } from 'react-bootstrap';
 
 export default class Form extends React.Component {
 
@@ -59,8 +47,7 @@ export default class Form extends React.Component {
         }
 
         else {
-            console.log(this.props.location.id.key);
-
+           
             axios.get('/api/accounts/student/review_application/' + this.props.location.id.key)
                 .then((res) => {
 
@@ -103,7 +90,7 @@ export default class Form extends React.Component {
                     <div className="row"><h3 className="mx-auto heading">Student Information</h3></div>
                     <div className="row">
                         <div className=" col-md-2 col-lg-2 pt-4">
-                            <img src={this.state.picLink || userpng}
+                            <img src={this.state.data.photo || userpng}
                                 alt="user" className="img-fluid"
                                 Height="180" width="180"
                             /><br />
@@ -113,7 +100,7 @@ export default class Form extends React.Component {
                             <h3><strong>{this.state.data.name}</strong></h3>
                             {this.state.data.email}<br />
                             {this.state.data.mobile_number}<br />
-                            {this.state.data.city}<br />
+                            {this.state.data.city}({this.state.data.state})<br />
                             <hr></hr>
                         </div>
                     </div>
@@ -186,7 +173,7 @@ export default class Form extends React.Component {
                     <br />
                     <div className="row">
                         <div className="col-md-3">
-                            <label className="labels label-education">Past Expierence:</label>
+                            <label className="labels label-education">Past Experience:</label>
                         </div>
                         <div className="col-md-9 ">
                             {this.state.pastexperience.map((item, key) =>
@@ -280,17 +267,7 @@ export default class Form extends React.Component {
 
 
                 </div>
-                <Modal
-                    show={this.state.show}
-                    onHide={this.handleClose}
-                    backdrop="static"
-                    keyboard={false}
-                >
-                    <Modal.Header closeButton />
-                    <Modal.Body>
-                        {this.state.messages}
-                    </Modal.Body>
-                </Modal>
+                
                 <br /><br />
             </div>
         )

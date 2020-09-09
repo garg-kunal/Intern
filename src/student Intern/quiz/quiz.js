@@ -1,12 +1,11 @@
 import React from 'react';
-import msg from '../form/images/Group 251.png';
+import msg from '../../assets/images/Group 251.png';
 import './top.css';
 import Top from './top';
-import { history, Redirect, withRouter } from 'react-router-dom'
 import Navbar from './navbarQuiz';
 import axios from '../../setup';
-import Score from '../components/Screen3';
-import Mobile from './Mobilequiz';
+// import Score from '../components/Screen3';
+
 class Quiz extends React.Component {
     constructor() {
         super();
@@ -46,7 +45,7 @@ class Quiz extends React.Component {
         this.setState({
             option: e.target.value
         }, () => {
-            console.log(this.state.option)
+            // console.log(this.state.option)
         })
 
 
@@ -74,7 +73,7 @@ class Quiz extends React.Component {
                     this.setState({
                         i:0,
                     }, () => {
-                        console.log(res.data.score);
+                        // console.log(res.data.score);
                         this.setState({
                             score: res.data.score
                         })
@@ -133,7 +132,7 @@ class Quiz extends React.Component {
             }
             axios.get('/api/accounts/assessment', headers)
                 .then((res) => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     this.setState({
                         skills:res.data.skills,
                         questions: res.data.questions,
@@ -170,8 +169,6 @@ class Quiz extends React.Component {
 
         return (
             <div>
-
-                {this.state.showBtn ?
                     <div className="container-fluid container-fluid-main-quiz" style={{backgroundColor:"white"}}>
                         <Navbar />
                         {/* <p className="display-5" style={{ padding: "20px", color: "black" }}> */}
@@ -181,7 +178,7 @@ class Quiz extends React.Component {
                                 <div className="col-md-4 col-lg-4 col-6 mx-auto text-center" style={{ color: "#4A00E0", fontSize: "22px", fontWeight: "900" }}>ALL THE BEST!!!</div>
                                 <div className="col-md-4 col-lg-4 col-6  mx-auto text-center" style={{ fontSize: "22px", fontWeight: "900" }}>Question:<b>{this.state.i}/{this.state.questions.length}</b></div>
                                 <div className="col-md-4 col-lg-4 col-6  mx-auto text-center" style={{ fontSize: "22px", fontWeight: "900" }}>Timer:
-                          <b>{this.state.timer}</b>
+                          <b style={{color:"red"}}>{this.state.timer}</b>
                                 </div>
                             </div>
                         </div>
@@ -248,10 +245,8 @@ class Quiz extends React.Component {
                                 >Next</button>
                             </center>
                         </div>
-                    </div >
+                    </div>
 
-                    : <Score value={this.state.score} />
-                }
             </div>
 
         )

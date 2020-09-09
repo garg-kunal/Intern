@@ -5,9 +5,9 @@ class Stipend extends React.Component {
         super()
         this.state = {
             stipend: "",
-            currency: "",
+            currency: "Rs.",
             amount: "",
-            payDuration: ""
+            payDuration: "/month"
         }
         this.stipendType = this.stipendType.bind(this)
     }
@@ -45,6 +45,30 @@ class Stipend extends React.Component {
                     </select>
                 </div>
             </div>
+        }
+        if(this.state.stipend === 'Negotiable'){
+            payment = <div className="pay hide row">
+            <div className="col-2 pl-1 pr-1">
+                <select name="currency" value={this.state.currency} id="currency" onChange={this.stipendType}>
+                    <option selected value="Rs.">Rs.</option>
+                    <option value="$">$</option>
+
+                </select>
+            </div>
+            <div className="col-6 pl-1 pr-1">
+                <input type="number" className="amount" name="amount" placeholder="e.g. 5000" onChange={this.stipendType} />
+            </div>
+            <div className="col-4 pl-1 pr-1">
+                <select value={this.state.payDuration} name="payDuration" id="per" onChange={this.stipendType}>
+                    <option selected value="/month">/month</option>
+                    <option value="/day">/day</option>
+                    <option value="/week">/week</option>
+                    <option value="/year">/year</option>
+                    <option value="(lump-sum)">lump-sum</option>
+                </select>
+            </div>
+        </div>
+
         }
 
         return (

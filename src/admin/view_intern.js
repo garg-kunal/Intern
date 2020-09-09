@@ -1,18 +1,19 @@
-import React from "react"
-import arrow from "../company/assets/arrow.png";
-import companyLogo from "../company/assets/samsung.png"
-import home from "../company/assets/home.png"
-import start from "../company/assets/start-button.png"
-import calendar from "../company/assets/calendar.png"
-import rupee from "../company/assets/rupee.png"
-import applyBy from "../company/assets/unlimited.png";
-import Axios from '../setup'
+import React from "react";
+import arrow from "../assets/images/baseline-arrow.png";
+import companyLogo from "../assets/images/samsung.png"
+import home from "../assets/images/sydney-opera-house.png"
+import start from "../assets/images/start.png"
+import calendar from "../assets/images/calender.png"
+import rupee from "../assets/images/rupee.png"
+import applyBy from "../assets/images/unlimited.png";
+import Axios from '../setup';
 
 class InternshipDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             profile: "",
+            logo:"",
             otherProfile: "",
             internshipPlace: "",
             internshipTime: "",
@@ -61,7 +62,8 @@ class InternshipDetails extends React.Component {
                     responsibility: res.data.data.description,
                     days: res.data.data.duration,
                     openings: res.data.data.openings,
-                    website: res.data.data.website
+                    website: res.data.data.website,
+                    logo:res.data.data.logo
                 })
 
             })
@@ -74,8 +76,8 @@ class InternshipDetails extends React.Component {
                     <span className="work col-8">{this.state.profile}
                     </span>
                     <div className="col-4 pt-3">
-                        <img src={companyLogo}
-                            className="complogo" alt="" />
+                        <img src={ this.state.logo || companyLogo}
+                            className="complogo img-fluid" alt="Company Logo" />
                     </div>
                     <span className="company col-8">
                         <img src={home} className="workImg img-fluid"
@@ -108,7 +110,7 @@ class InternshipDetails extends React.Component {
                                 &nbsp;
                             Stipend</span><br />
 
-                        <p className="workType work2">{this.state.stipend} &nbsp;&nbsp;{this.state.amount}</p>
+                        <p className="workType work2">{this.state.stipend === 'Negotiable'?"Nego.":this.state.stipend} <br/>{this.state.amount}</p>
                     </div>
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
@@ -161,7 +163,7 @@ class InternshipDetails extends React.Component {
                     <p className="about about-benefit col-10">Benefits</p>
                     <div className=" container skillsReq d-flex flex-row flex-wrap">
                         {this.state.benefits.map((item, key) =>
-                            <p className="col-sm-6 col-md-5 col-12" >{item}</p>
+                            <p className="col-sm-4 col-md-4 col-12" >{item}</p>
                         )}
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import '../assets/css/question.css';
-import alert from '../assets/images/alert.png';
+import '../../assets/css/question.css';
+import alert from '../../assets/images/alert.png';
 import axios from '../../setup';
 import { Modal } from 'react-bootstrap';
 
@@ -99,10 +99,10 @@ export default class Question extends React.Component {
                         <div>
                             &nbsp;&nbsp; <b style={{fontSize:"18px"}}>{key + 1}. {item}</b><br /><br />
                             <textarea rows="4" cols="10" name={key} value={this.state.answers[key]}
-                                required className="form-control" placeholder="Enter your answer (150 words)"
+                                required className="form-control" style={{borderRadius:"10px"}} placeholder="Enter your answer (150 words)"
                                 onChange={(e) => { this.handle(e) }}>
                             </textarea>
-                            <br />
+                           
                             <div className="alert " style={{ color: "red" }}>
                                 <img src={alert} alt="alert" style={{ height: "20px", width: "20px" }} />
                                 &nbsp;&nbsp;<strong>This is required field.</strong>

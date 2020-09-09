@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, history } from 'react-router-dom'
 import clsx from 'clsx';
-import logo from '../assets/images/Merge.-1.png';
+import logo from '../../assets/images/Merge.-1.png';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import { makeStyles, useTheme } from '@material-ui/core/styles';

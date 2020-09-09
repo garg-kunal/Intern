@@ -1,18 +1,18 @@
 import React from 'react';
-import '../assets/css/Intern.css';
+import '../../assets/css/Intern.css';
 import $ from 'jquery';
-import date from '../assets/images/calender.png';
-import rupee from '../assets/images/rupee.png';
-import start from '../assets/images/start.png';
-import unlimited from '../assets/images/unlimited.png';
-import path from '../assets/images/Path.png'
-import house from '../assets/images/sydney-opera-house.png';
+import date from '../../assets/images/calender.png';
+import rupee from '../../assets/images/rupee.png';
+import start from '../../assets/images/start.png';
+import unlimited from '../../assets/images/unlimited.png';
+import path from '../../assets/images/Path.png'
+import house from '../../assets/images/sydney-opera-house.png';
 import { NavLink } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Navbar from '../quiz/navbar';
 import Axios from '../../setup';
 import { Modal } from 'react-bootstrap';
+
 export default class Internship extends React.Component {
     constructor() {
         super();
@@ -23,6 +23,7 @@ export default class Internship extends React.Component {
             prev: true,
             next: true,
             show: false,
+            filter: [],
             interns: [
 
                 {
@@ -39,7 +40,7 @@ export default class Internship extends React.Component {
         }
 
 
-        
+
         var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
 
         $("document").ready(function ($) {
@@ -53,7 +54,7 @@ export default class Internship extends React.Component {
                 var nav = $('#filters');
                 var intern = $('#internsAll');
                 var button = $('#buttonsAll');
-                if (newWindowWidth>1250) {
+                if (newWindowWidth > 1250) {
                     $(window).scroll(function () {
                         if ($(this).scrollTop() > 150) {
                             nav.addClass("f-nav");
@@ -68,11 +69,11 @@ export default class Internship extends React.Component {
                 }
                 else {
                     $(window).scroll(function () {
-                      
-                            nav.removeClass("f-nav");
-                            intern.removeClass("f-nav1");
-                            button.removeClass("f-nav2");
-                        
+
+                        nav.removeClass("f-nav");
+                        intern.removeClass("f-nav1");
+                        button.removeClass("f-nav2");
+
                     });
 
                 }
@@ -136,7 +137,7 @@ export default class Internship extends React.Component {
             }
             Axios.get('/api/accounts/student/view_internships', headers)
                 .then((res) => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     if (res.data.status === 200) {
                         this.setState({
                             interns: res.data.data
@@ -155,11 +156,76 @@ export default class Internship extends React.Component {
                 .catch((err) => console.log(err))
         }
     }
+    getIntern(e) {
 
+        if (e.target.checked) {
+            this.state.filter.push(e.target.value);
+        }
+
+    }
+    applyFilter() {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const data = {
+            filter: this.state.filter
+        }
+        // console.log(this.state.filter);
+        if (this.state.filter.length === 0) {
+            Axios.get('/api/accounts/student/view_internships', headers)
+                .then((res) => {
+                    // console.log(res.data)
+                    if (res.data.status === 200) {
+                        this.setState({
+                            interns: res.data.data
+                        })
+                    }
+                    else if (res.data.status !== 200) {
+                        this.state.messages.push(res.data.status_message.message);
+                        this.setState({
+                            show: true
+                        }, () => {
+                            this.props.history.push('/test_skills')
+                        })
+
+                    }
+                })
+                .catch((err) => console.log(err))
+
+
+        }
+        else {
+            Axios.post('/api/accounts/student/filter_internships', data, headers)
+                .then((res) => {
+                    // console.log(res.data)
+                    if (res.data.status === 200) {
+                        this.setState({
+                            interns: res.data.data,
+                            filter: []
+                        })
+                    }
+                    else if (res.data.status !== 200) {
+                        this.state.messages.push(res.data.status_message.message);
+                        this.setState({
+                            show: true
+                        }, () => {
+                            this.props.history.push('/test_skills')
+                        })
+
+                    }
+                })
+                .catch((err) => console.log(err));
+        }
+
+    }
 
     render() {
         return (
-            <div className="container-fluid  container-main-box-intern  pt-5" style={{marginTop:"50px"}}>
+            <div className="container-fluid  container-main-box-intern  pt-5" style={{ marginTop: "50px" }}>
                 {/* <Navbar/> */}
                 <br />
                 <div className="container-fluid">
@@ -173,24 +239,24 @@ export default class Internship extends React.Component {
                     <div className="row no-gutters">
                         <div className="col-md-3 col-lg-3  col-12 intern-filters" id="filters" >
                             <h4 className="mx-auto text-center mb-3">Filters</h4>
-                            <label className="label-filter ml-3">Category</label>
-                            <input class="form-control form-filter" type="search" placeholder="e.g. Web Developer" aria-label="Search" />
+                            {/* <label className="label-filter ml-3">Category</label> */}
+                            {/* <input class="form-control form-filter" type="search" placeholder="e.g. Web Developer" aria-label="Search" /> */}
 
                             <div className=" mx-auto mt-5">
                                 <section class="slider-checkbox mt-3 ml-3">
-                                    <input type="checkbox" value="home" onChange={(e) => { }} id="1" />
+                                    <input type="checkbox" value="Work from home" onChange={(e) => { this.getIntern(e) }} id="1" />
                                     <label class="label-filter label" for="1">Work From Home&nbsp;</label>
                                 </section>
 
                                 <section class="slider-checkbox mt-3 ml-3" >
-                                    <input type="checkbox" value="part" onChange={(e) => { }} id="1" />
+                                    <input type="checkbox" value="Part Time" onChange={(e) => { this.getIntern(e) }} id="1" />
                                     <label class="label-filter label" for="1">Part Time&nbsp;</label>
                                 </section>
                                 <section class="slider-checkbox mt-3 ml-3">
-                                    <input type="checkbox" value="full" onChange={(e) => { }} id="1" />
+                                    <input type="checkbox" value="Full Time" onChange={(e) => { this.getIntern(e) }} id="1" />
                                     <label class="label-filter label" for="1">Full Time&nbsp;</label>
                                 </section>
-                                <button className="btn btn-intern-search pull-right">Apply Filters</button>
+                                <button onClick={() => { this.applyFilter() }} className="btn btn-intern-search pull-right">Apply Filters</button>
 
                             </div>
 
@@ -209,13 +275,15 @@ export default class Internship extends React.Component {
                                                 <div className="col-md-2 col-2"></div>
                                                 <div className="col-md-4">
                                                     <img src={item.logo}
-                                                        align="right" style={{ float: "top-right" }} style={{ height: "100px", width: "100px" }}
+                                                        align="right" style={{ float: "top-right" }} style={{ height: "50px", width: "50px" }}
                                                         alt="company logo" className="img company-logo" />
                                                 </div>
                                             </div>
+                                            <br />
+                                            <br />
                                             <p className="house">
-                                            <img src={house} className="img-fluid" style={{ height: "20px", width: "20px" }} alt="Home" />
-                                            <span className="intern-type">{item.place}</span></p>
+                                                <img src={house} className="img-fluid" style={{ height: "20px", width: "20px" }} alt="Home" />
+                                                <span className="intern-type">{item.place}</span></p>
                                             <div className="row no-gutters">
                                                 <div className="col-md-3  col-lg-3 col-6  mx-auto">
                                                     <p className="intern-head ">
@@ -230,18 +298,18 @@ export default class Internship extends React.Component {
                                                     {item.duration}
                                                 </div>
                                                 <div className="col-md-3  col-lg-3 col-6  mx-auto">
-                                                    <p className="intern-head mx-auto">  <img src={rupee} className="img-fluid details-icons "  alt="Rupee" />&nbsp;
+                                                    <p className="intern-head mx-auto">  <img src={rupee} className="img-fluid details-icons " alt="Rupee" />&nbsp;
                                                         Stipend</p>
-                                                 {item.stipend_type}
+                                                    {item.stipend_type}
                                                 </div>
                                                 <div className="col-md-3  col-lg-3 col-6 mx-auto">
                                                     <p className="intern-head">
                                                         <img src={unlimited} className="img-fluid details-icons paisa" alt="Apply Date" />&nbsp;
                                                         Apply By</p>
-                                                  {item.joiningdate}
+                                                    {item.joiningdate}
                                                 </div>
                                             </div>
-            <br/>
+                                            <br />
                                             <div className="row" style={{ float: "right" }}>
                                                 <p className="intern-details"><NavLink
                                                     style={{ color: "#4A00E0" }}

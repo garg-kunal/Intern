@@ -1,14 +1,13 @@
-import React from "react"
-import "../../company/css/viewInternship.css"
-import arrow from "../../company/assets/arrow.png";
-import companyLogo from "../../company/assets/samsung.png"
-import home from "../../company/assets/home.png"
-import start from "../../company/assets/start-button.png"
-import calendar from "../../company/assets/calendar.png"
-import rupee from "../../company/assets/rupee.png"
-import applyBy from "../../company/assets/unlimited.png"
+import React from "react";
+import "../../assets/css/viewInternship.css";
+import companyLogo from "../../assets/images/samsung.png"
+import home from "../../assets/images/sydney-opera-house.png"
+import start from "../../assets/images/start.png"
+import calendar from "../../assets/images/calender.png"
+import rupee from "../../assets/images/rupee.png"
+import applyBy from "../../assets/images/unlimited.png"
 import Axios from '../../setup';
-import Navbar from '../quiz/navbar';
+
 class InternshipDetails extends React.Component {
     constructor(props) {
         super(props)

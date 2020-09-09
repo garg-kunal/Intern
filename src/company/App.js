@@ -1,7 +1,5 @@
 import React from 'react';
-
 import Companynav from "./components/companyNavBar"
-// import ProfileBox from "./components/profileBox"
 import Postintern from './components/postInternship';
 import Dashboard from './components/companyDashboard';
 import Viewintern from "./components/viewInternship"
@@ -13,7 +11,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 function App() {
     return (
         <div>
-
             <Route component={Companynav} path="/company" />
             <Route component={Viewintern} path="/company/view_internship" exact />
             <Route component={Postintern} path="/company/post_intern" exact/>
@@ -22,7 +19,6 @@ function App() {
             <Route component={Dashboard} path="/company/dashboard" exact />
             <Route component={Applicants} path="/company/applications" exact />
             <Route component={Edit} path="/company/edit_intern" exact />
-
         </div>
     )
 }

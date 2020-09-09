@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../assets/images/Merge.-1.png";
+import logo from "../../assets/images/Merge.-1.png";
 import axios from '../../setup';
-import "../assets/css/Screen2.css";
+import "../../assets/css/Screen2.css";
 import { Modal, Spinner } from 'react-bootstrap';
 class Screen2 extends React.Component {
     constructor() {
@@ -41,6 +41,15 @@ class Screen2 extends React.Component {
             element.style.backgroundColor = "rgb(74, 0, 224)";
         }
     }
+    hoveron(status) {
+        if (status == 'R') {
+            alert("Oops! You've not passed this Skill. Kindly try after One day.");
+        }
+        else {
+            alert("Voila! You have cleared this Skill. Now you can apply for Internship.")
+        }
+    }
+
     addSkill(e) {
         if (e.target.checked)
             this.state.boxes.push(e.target.value);
@@ -53,7 +62,7 @@ class Screen2 extends React.Component {
     }
     printData = e => {
         e.preventDefault();
-        console.log(this.state.boxes);
+        // console.log(this.state.boxes);
         if (this.state.boxes.length === 0) {
             this.setState({
                 message: "Please Checkout Technologies"
@@ -110,13 +119,17 @@ class Screen2 extends React.Component {
             axios.get('/api/accounts/student/tested_skills', headers)
                 .then((res) => {
                     if (res.data.status === 200) {
-                        console.log(res.data);
                         this.setState({
                             array: res.data.data,
                             frontEnd: res.data.frontend,
                             backend: res.data.backend,
                             database: res.data.database,
                             server: res.data.server
+
+                        }, () => {
+                            // this.setState({
+                            //     frontEnd: this.state.frontEnd.concat(this.state.backend)
+                            // })
 
                         })
                     }
@@ -128,6 +141,7 @@ class Screen2 extends React.Component {
                     }
                 })
                 .catch((err) => console.log(err));
+
         }
         else {
             this.props.history.push('/login/student');
@@ -162,8 +176,7 @@ class Screen2 extends React.Component {
         return (
             <div className="container-fluid main-box">
 
-                {/* <div className="row pt-4 pl-4"> */}
-                <nav className="navbar navbar-expand-lg navbar-light " style={{ background: "transparent" }}>
+                <nav className="navbar pt-2 navbar-expand-lg navbar-light " style={{ background: "transparent !important" }}>
                     <img src={logo} className="img-fluid merge-logo-all-student" />
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -173,10 +186,10 @@ class Screen2 extends React.Component {
 
                         </ul>
                         <span className="navbar-text">
-                            <button className="btn" style={{background:"transparent",color: "white" }} onClick={() => {
-                                if(window.confirm("Are you sure")){
-                                localStorage.removeItem("merge_jwt");
-                                this.props.history.push('/login/student');
+                            <button className="btn" style={{ background: "transparent", color: "white" }} onClick={() => {
+                                if (window.confirm("Are you sure")) {
+                                    localStorage.removeItem("merge_jwt");
+                                    this.props.history.push('/login/student');
                                 }
                             }}>
                                 Logout
@@ -184,9 +197,8 @@ class Screen2 extends React.Component {
                         </span>
                     </div>
                 </nav>
-                {/* </div> */}
 
-                <div className="container-fluid mx-auto  innerBox">
+                <div className="container mx-auto innerBox">
                     <h4 style={{ fontWeight: "800" }}>What tools do you use for your projects?</h4>
                     <p className="text-right step1">1/3 </p><br /><br />
                     <div className="inputs mx-auto container" >
@@ -195,22 +207,25 @@ class Screen2 extends React.Component {
                                 <h4 className="skill-name-frontend" style={{ color: "black" }}> Frontend:</h4>
                             </div>
                             <div className="col-md-9 mx-auto">
-                                <div className=" flew-wrap d-flex flex-row">
+                                <div className="flew-wrap d-flex flex-row">
                                     {this.state.frontEnd.map((item, key) =>
-                                        <div className="col-4 mx-auto">
+                                        <div className="col-4 mx-auto ">
                                             {item.status === 'R' || item.status === 'A' ?
-                                                <label className="checkLabel" title="Red for Reject And Green For Accept"
+                                                <label className="checkLabel"
+                                                    onMouseEnter={() => this.hoveron(item.status)}
+
                                                     style={{ backgroundColor: item.color }}
                                                 >
                                                     {item.skill}
                                                 </label>
                                                 :
                                                 <label className="checkLabel checkLabel1"
-                                                    title="Test Your Skill"
+
                                                     style={{ backgroundColor: item.color }}
                                                     onClick={this.changeColor}>
                                                     <input type="checkbox"
                                                         onChange={(e) => { this.addSkill(e) }}
+
                                                         className="check"
                                                         name={item.skill} value={item.skill} />
                                                     {item.skill}
@@ -223,7 +238,7 @@ class Screen2 extends React.Component {
                         </div>
                         <br />
                         <div className="row no-gutters row-cols">
-                            <div className="col-md-3 mx-auto">
+                            <div className="col-md-3 text-left">
                                 <h4 className="skill-name-frontend" style={{ color: "black" }}> Backend:</h4>
                             </div>
                             <div className="col-md-9 mx-auto">
@@ -232,14 +247,15 @@ class Screen2 extends React.Component {
                                         <div className="col-4 mx-auto">
                                             {item.status === 'R' || item.status === 'A' ?
                                                 <label className="checkLabel"
-                                                    title="Red for Reject And Green For Accept"
+                                                    onMouseEnter={() => this.hoveron(item.status)}
+
                                                     style={{ backgroundColor: item.color }}
                                                 >
                                                     {item.skill}
                                                 </label>
                                                 :
                                                 <label className="checkLabel checkLabel1"
-                                                    title="Test your Skill"
+
                                                     style={{ backgroundColor: item.color }}
                                                     onClick={this.changeColor}>
                                                     <input type="checkbox"
@@ -256,7 +272,7 @@ class Screen2 extends React.Component {
                         </div>
                         <br />
                         <div className="row no-gutters row-cols">
-                            <div className="col-md-3 mx-auto">
+                            <div className="col-md-3 text-left">
                                 <h4 className="skill-name-frontend" style={{ color: "black" }}> Database:</h4>
                             </div>
                             <div className="col-md-9  mx-auto">
@@ -265,14 +281,16 @@ class Screen2 extends React.Component {
                                         <div className="col-4 mx-auto">
                                             {item.status === 'R' || item.status === 'A' ?
                                                 <label className="checkLabel"
-                                                    title="Red for Reject And Green For Accept"
+                                                    onMouseEnter={() => this.hoveron(item.status)}
+
                                                     style={{ backgroundColor: item.color }}
                                                 >
                                                     {item.skill}
                                                 </label>
                                                 :
                                                 <label className="checkLabel checkLabel1"
-                                                    title="Test your Skill"
+
+
                                                     style={{ backgroundColor: item.color }}
                                                     onClick={this.changeColor}>
                                                     <input type="checkbox"
@@ -289,7 +307,7 @@ class Screen2 extends React.Component {
                         </div>
                         <br />
                         <div className="row no-gutters row-cols">
-                            <div className="col-md-3 mx-auto">
+                            <div className="col-md-3 text-left">
                                 <h4 className="skill-name-frontend" style={{ color: "black" }}> Server:</h4>
                             </div>
                             <div className="col-md-9">
@@ -297,16 +315,20 @@ class Screen2 extends React.Component {
                                     {this.state.server.map((item, key) =>
                                         <div className="col-4 mx-auto">
                                             {item.status === 'R' || item.status === 'A' ?
-                                                <label title="Red for Reject And Green For Accept"
+                                                <label
+                                                    onMouseEnter={() => this.hoveron(item.status)}
+
                                                     className="checkLabel" style={{ backgroundColor: item.color }}
                                                 >
                                                     {item.skill}
                                                 </label>
                                                 :
-                                                <label className="checkLabel checkLabel1" style={{ backgroundColor: item.color }}
+                                                <label
+
+                                                    className="checkLabel checkLabel1" style={{ backgroundColor: item.color }}
                                                     onClick={this.changeColor}>
                                                     <input type="checkbox"
-                                                        title="Test your Skill"
+
                                                         onChange={(e) => { this.addSkill(e) }}
                                                         className="check"
                                                         name={item.skill} value={item.skill} />
@@ -321,10 +343,9 @@ class Screen2 extends React.Component {
                     </div>
                     <div className="buttons pt-3">
                         <button type="button" onClick={this.printData} className="confirmation btn">Move To Test</button>
-                        <button type="button" onClick={() => { this.pass() }} className=" btn confirmation">Dashboard</button>
+                        <button type="button" onClick={() => { this.pass() }} className=" btn confirmation">Apply</button>
                     </div>
-                    {/* <p> Iocnns</p> */}
-
+                    {/* <label className="checkLabel checkLabel1 pt-2 text-left" >Apply Test For These Skills</label> */}
                 </div>
                 <Modal
                     show={this.state.show}
@@ -337,6 +358,7 @@ class Screen2 extends React.Component {
                         {this.state.message}
                     </Modal.Body>
                 </Modal>
+
             </div >
         );
     }

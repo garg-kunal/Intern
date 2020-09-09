@@ -3,9 +3,9 @@ import { Link,NavLink } from "react-router-dom";
 import cookie from "react-cookies";
 import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
-import '../assets/css/student_form.css';
+import '../../assets/css/student_form.css';
 import axios from '../../setup';
-import login from '../assets/draw.png';
+import login from '../../assets/images/draw.png';
 export class StudentLogin extends Component {
   constructor(props) {
     super(props);
@@ -36,19 +36,19 @@ export class StudentLogin extends Component {
 
   handleNameChange(event) {
     this.setState({ name: event.target.value }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 
   handleEmailChange(event) {
     this.setState({ email: event.target.value }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 
   handleNumberChange(event) {
     this.setState({ mobile_number: event.target.value }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     });
   }
 
@@ -63,7 +63,7 @@ export class StudentLogin extends Component {
     })
     axios.post('/api/accounts/student/login', data)
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.status === 200)
           this.props.history.push('/login/verify_otp/' + this.state.mobile_number);
         else if (res.data.status !== 200)

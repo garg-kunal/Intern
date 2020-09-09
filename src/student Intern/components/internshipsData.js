@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../assets/images/Merge.-1.png";
+import logo from "../../assets/images/Merge.-1.png";
 import axios from '../../setup';
-import "../assets/css/internshipsData.css";
+import "../../assets/css/internshipsData.css";
 import { Modal } from 'react-bootstrap';
 class InternshipsData extends React.Component {
     constructor() {
@@ -43,7 +43,7 @@ class InternshipsData extends React.Component {
         }
         axios.post('/api/accounts/student/loc_preference', data, headers)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.status === 200)
                     this.props.history.push('/quiz/instructions');
                 else if (res.data.status !== 200) {

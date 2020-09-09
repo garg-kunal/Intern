@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import cookie from "react-cookies";
 import Welcome from "../Welcome";
 import { Modal } from "react-bootstrap";
-import '../assets/css/student_form.css';
+import '../../assets/css/student_form.css';
 import axios from '../../setup';
 export class StudentRegister extends Component {
   constructor(props) {
@@ -76,7 +76,7 @@ export class StudentRegister extends Component {
         this.setState({
           messages: []
         })
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.status === 201)
           this.props.history.push('/login/verify_otp/' + this.state.mobile_number);
         else if (res.data.status !== 201) {
@@ -89,9 +89,6 @@ export class StudentRegister extends Component {
       .catch((err) => {
         console.log(err)
       })
-
-
-
   }
 
 

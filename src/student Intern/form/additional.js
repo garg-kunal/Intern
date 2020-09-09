@@ -1,7 +1,7 @@
 import React from 'react';
 import './form.css';
-import remove from './images/delete.png'
-import edit from './images/edit.png';
+import remove from '../../assets/images/delete.png'
+import edit from '../../assets/images/edit.png';
 import ReactModal, { setAppElement } from 'react-modal';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -20,7 +20,7 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         boxShadow: '0 0 4px 8px lightgrey'
     }
-     
+
 };
 
 export default class Additional extends React.Component {
@@ -48,13 +48,27 @@ export default class Additional extends React.Component {
 
     // Show Or Hide functions
     handleCloseModal() {
-        this.setState({
-            showModal: false,
-            editShow: false,
-            dataShow: true,
-            buttonShow: false,
-            addSkill: false
-        });
+        if (this.state.textArea.length === 0 || this.state.textOut.length===0) {
+            this.setState({
+                showModal: false,
+                editShow: false,
+                dataShow: false,
+                buttonShow: true,
+                addSkill: false,
+                textArea: ""
+            });
+        }
+        else{
+            this.setState({
+                showModal: false,
+                editShow: false,
+                dataShow: true,
+                buttonShow: false,
+                addSkill: false,
+                textArea:""
+            });
+        }
+
     }
     show() {
         this.setState({
@@ -77,12 +91,11 @@ export default class Additional extends React.Component {
         if (window.confirm(" Are You sure Delete? ")) {
             axios.delete('/api/accounts/student/delete_bio', headers)
                 .then((res) => {
-                    console.log(res.data);
-                    alert("Deleted Succesfully");
                     this.setState({
                         buttonShow: true,
                         dataShow: false,
-                        textArea: ''
+                        textArea: "",
+                        textOut: ""
                     })
                 })
 
@@ -116,16 +129,15 @@ export default class Additional extends React.Component {
             }
             axios.post('/api/accounts/student/add_bio', data, headers)
                 .then((res) => {
-                    console.log(res.data);
                     this.setState({
                         addSkill: false
                     })
                     this.print();
                 })
                 .catch((err) => {
-                    console.log(err);
+
                     this.setState({
-                        addSkill: false,
+                        addSkill: true,
                         buttonShow: true,
                         dataShow: false,
                     })
@@ -151,9 +163,10 @@ export default class Additional extends React.Component {
                 }
             })
             .catch((err) => {
-                console.log(err);
+
                 this.setState({
                     dataShow: false,
+                    addSkill: true,
                     buttonShow: true,
                 })
             })
@@ -177,7 +190,6 @@ export default class Additional extends React.Component {
             }
             axios.post('/api/accounts/student/add_bio', data, headers)
                 .then((res) => {
-                    console.log(res.data);
 
                     this.setState({
                         editShow: false,
@@ -223,16 +235,16 @@ export default class Additional extends React.Component {
                                 {this.state.textOut}
                             </div>
 
-                            <div className="col-md-3 col-3" style={{ padding: "10px",paddingTop:"0" }}>
+                            <div className="col-md-3 col-3" style={{ padding: "10px", paddingTop: "0" }}>
                                 <button className="btn border-0  btn-edit-student-main" style={{ backgroundColor: "white" }}
                                     onClick={() => { this.editable() }} ><img src={edit}
-                                      
+
                                         height="30" alt="edit" className="img-fluid  btn-edit-student" /></button>
 
-                          
+
                                 <button className="btn border-0  btn-edit-student-main" style={{ backgroundColor: "white" }}
                                     onClick={() => { this.remove() }} ><img src={remove}
-                                    className="img-fluid  btn-delete-student"
+                                        className="img-fluid  btn-delete-student"
                                         height="30" alt="edit" /></button>
                             </div>
 

@@ -1,6 +1,5 @@
 import React from 'react';
-
-import laptop from '../assets/images/nerd.png';
+import laptop from '../../assets/images/nerd.png';
 
 
 export default class MobileQuiz extends React.Component {
@@ -13,7 +12,7 @@ export default class MobileQuiz extends React.Component {
             <div className="container-fluid" style={{ padding: "0" }}>
                 <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#4A00E0" }}>
                     <a className="navbar-brand" href="/test_skills">
-                        <strong style={{ color: "white", paddingLeft: "20px", fontSize: "23px", fontFamily: "'Spartan', sans-serif" }}>Merge.</strong>
+                        <strong style={{ color: "white", paddingLeft: "5px", fontSize: "23px", fontFamily: "'Spartan', sans-serif" }}>Merge.</strong>
                     </a>
                 </nav>
                 <div className="text-center mt-5 mx-auto">

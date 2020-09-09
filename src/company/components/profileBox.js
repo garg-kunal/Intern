@@ -1,5 +1,5 @@
 import React from "react"
-import "../css/profileBox.css"
+import "../../assets/css/profileBox.css"
 
 class ProfileBox extends React.Component {
     constructor() {

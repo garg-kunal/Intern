@@ -1,5 +1,5 @@
 import React from 'react';
-import Error404 from '../assets/404.png';
+import Error404 from '../../assets/images/404.png';
 import WOW from 'wowjs'
 
 export default class Errorpage extends React.Component {

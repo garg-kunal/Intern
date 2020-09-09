@@ -1,10 +1,7 @@
 import React from "react"
-import "../css/companyDashBoard.css"
-import arrow from "../assets/titleArrow.png"
-import more from "../assets/more.png"
-import glassHour from "../assets/glassHour.png"
-import eye from "../assets/eye (5).png"
-import copy from "../assets/copy.png";
+import "../../assets/css/companyDashBoard.css";
+import arrow from  '../../assets/images/baseline-arrow.png';
+import glassHour from "../../assets/images/glassHour.png"
 import Axios from '../../setup';
 import { Link,NavLink } from 'react-router-dom'
 class DashboardTitle extends React.Component {

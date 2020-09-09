@@ -1,7 +1,7 @@
 import React from 'react';
-import welcome from './assets/star.png';
-import './assets/css/home.css';
-import img3 from './assets/bg-12.png';
+import welcome from '../assets/images/star.png';
+import '../assets/css/home.css';
+import { Redirect } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import WOW from 'wowjs'
@@ -28,17 +28,15 @@ export default class Main extends React.Component {
 
                         </div>
                         <div className="col-md-7 col-lg-7 col-12" >
-                           
+
                             <p className="welcome-heading">
                                 An AI-Based platform for Tech Internships </p>
                             <p className="welcome-heading-2">
-
-                                <button
-                                    className="btn btn-intern">
-                                    <Link to="/create_account/student" style={{ color: "white", textDecoration: "none" }}>
+                                <Link to="/create_account/student">
+                                    <button className="btn btn-intern">
                                         Apply Here
-                                    </Link>
                                 </button>
+                                </Link>
 
 
                             </p>

@@ -1,8 +1,8 @@
 import React from 'react';
-import ui from './assets/uiux.png';
-import front from './assets/frontend.png';
-import backend from './assets/backend.png';
-import fullstack from './assets/fullstack.png';
+import ui from '../assets/images/uiux.png';
+import front from '../assets/images/frontend.png';
+import backend from '../assets/images/backend.png';
+import fullstack from '../assets/images/fullstack.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

@@ -1,7 +1,9 @@
 import React from "react";
-import logo from "../assets/Merge..png";
-import glassHour from "../assets/glassHour2.png";
-import "../css/saveInternship.css";
+import glassHour from "../../assets/images/glassHour2.png";
+import "../../assets/css/saveInternship.css";
+
+
+
 
 class ReviewInternship extends React.Component {
     render() {

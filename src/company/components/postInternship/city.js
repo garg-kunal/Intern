@@ -41,18 +41,7 @@ class City extends React.Component {
             <div className="container">
                 <input type="text" value={this.state.city}  className="city" placeholder="e.g. Bangalore"
                  onChange={(e)=>{this.setState({city:e.target.value})}}/>
-                {/* <div className="added">
-                {   
-                    this.state.city.map((information) => {
-                        return (
-                            <div className="addedRecently">
-                                <span className="">{information}</span>
-                                <button type="button" value={information} onClick={this.removeCity} className="deleteBtn">X</button>
-                            </div>
-                        );
-                    })
-                }
-                </div> */}
+              
             </div>
         )
     }

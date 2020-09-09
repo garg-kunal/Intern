@@ -1,8 +1,8 @@
 import React from 'react';
 import '../form.css';
 import Postgrad from './postGraduation';
-import remove from '../images/delete.png';
-import edit from '../images/edit.png';
+import remove from '../../../assets/images/delete.png';
+import edit from '../../../assets/images/edit.png';
 import ReactModal, { setAppElement } from 'react-modal';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

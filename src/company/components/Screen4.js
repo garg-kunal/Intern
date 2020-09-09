@@ -1,6 +1,6 @@
 import React from "react";
-import checkImg from "../assets/Group 2881.png";
-import "../css/Screen4.css";
+import checkImg from "../../assets/images/Group 2881.png";
+import "../../assets/css/Screen4.css";
 
 class Screen4 extends React.Component{
     render() {

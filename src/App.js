@@ -1,8 +1,6 @@
-import React, { Suspense } from 'react';
-import './App.css';
-
+import React, { useState, useEffect, Suspense } from 'react';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Form from './student Intern/form/form';
-import Navbar from './student Intern/quiz/navbar';
 import Intern from './student Intern/components/Internships';
 import Postintern from './company/components/postInternship';
 import Companynav from './company/components/companyNavBar';
@@ -12,6 +10,7 @@ import Quiz from './student Intern/quiz/quiz';
 import Admin from './admin/main';
 import Admincom from './admin/company';
 import Adminintern from './admin/inetrns';
+import Terms from './auth+home/terms';
 import Studentregister from './auth+home/accounts/StudentRegister';
 import Saveintern from './company/components/saveInternship';
 import Reviewintern from './company/components/reviewScreen';
@@ -43,10 +42,11 @@ import Adminlogin from './auth+home/accounts/Admin';
 import Error404 from './auth+home/accounts/404';
 import ViewInternCom from './admin/view_intern';
 import Drawer from './student Intern/quiz/Drawer';
-
+import Privacy from './auth+home/policy'
 function Student() {
   return (
     <div>
+
       <Route path="/student" component={Drawer} />
       <Route component={Internships} path="/student/internships" exact />
       <Route component={Screen2} path="/test_skills" exact />
@@ -66,11 +66,17 @@ function Student() {
     </div>
   )
 }
+
 function App() {
+  useEffect(() => {
+    document.getElementById('load').style.display='none';
+  }, []);
+
+
   return (
-    <Suspense fallback="Loading....">
+    <div>
       <Router >
-        {/* <Switch> */}
+
         <Route component={Studentregister} path="/create_account/student" exact />
         <Route component={Companyregister} path="/create_account/company" exact />
         <Route component={Studentlogin} path="/login/student" exact />
@@ -83,26 +89,26 @@ function App() {
         <Route component={Savecompany} path="/save_company" exact />
         <Route component={comOtp} path="/verify/:email" exact />
         <Route component={Adminlogin} path="/login/admin" exact />
-        <Route component={ViewInternCom} path="/view_intern" exact/>
-
-
-          <Route component={Admincom} path="/admin/companies" exact />
-          <Route component={Admin} path="/admin" exact />
+        <Route component={ViewInternCom} path="/view_intern" exact />
+        <Route component={Admincom} path="/admin/companies" exact />
+        <Route component={Admin} path="/admin" exact />
+        <Route component={Terms} path="/terms" exact />
+        <Route component={Privacy} path="/privacy_policy" exact />
         <Route component={Adminintern} path="/admin/internship" exact />
-
-
-
         <Company />
         <Student />
         <Route path='/404' component={Error404} />
-        {/* <Redirect from='*' to='/404' /> */}
-        {/* </Switch> */}
 
       </Router>
-    </Suspense>
 
+    </div>
 
   );
 }
+
+
+
+
+
 
 export default App;

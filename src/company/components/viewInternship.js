@@ -1,13 +1,13 @@
 import React from "react"
-import "../css/viewInternship.css"
-import arrow from "../assets/arrow.png"
-import companyLogo from "../assets/samsung.png"
-import home from "../assets/home.png"
-import start from "../assets/start-button.png"
-import calendar from "../assets/calendar.png"
-import rupee from "../assets/rupee.png"
-import applyBy from "../assets/unlimited.png"
+import "../../assets/css/viewInternship.css"
+import companyLogo from "../../assets/images/samsung.png"
+import home from "../../assets/images/sydney-opera-house.png"
+import start from "../../assets/images/start.png"
+import calendar from "../../assets/images/calender.png"
+import rupee from "../../assets/images/rupee.png"
+import applyBy from "../../assets/images/unlimited.png"
 import Axios from '../../setup';
+
 
 class InternshipDetails extends React.Component {
     constructor(props) {
@@ -32,7 +32,8 @@ class InternshipDetails extends React.Component {
             responsibility: "",
             days: "",
             month: "",
-            openings: ""
+            openings: "",
+            logo:""
         }
     }
     componentDidMount() {
@@ -62,7 +63,8 @@ class InternshipDetails extends React.Component {
                     amount: res.data.data.stipend_amount,
                     responsibility: res.data.data.description,
                     days: res.data.data.duration,
-                    openings: res.data.data.openings
+                    openings: res.data.data.openings,
+                    logo:res.data.data.logo
                 })
 
             })
@@ -75,7 +77,7 @@ class InternshipDetails extends React.Component {
                     <span className="work col-8">{this.state.profile}
                     </span>
                     <div className="col-4 pt-3">
-                        <img src={companyLogo}
+                        <img src={this.state.logo || companyLogo}
                          className="complogo" alt="" />
                     </div>
                     <span className="company col-8">
@@ -108,7 +110,7 @@ class InternshipDetails extends React.Component {
                                 &nbsp;
                             Stipend</span><br />
 
-                        <p className="workType work2">{this.state.stipend} &nbsp;&nbsp;{this.state.amount}</p>
+                        <p className="workType work2">{this.state.stipend === 'Negotiable'?"Nego.":this.state.stipend}<br/>{this.state.amount}</p>
                     </div>
                     <div className="col-6 col-md-3  col-lg-3 mx-auto">
                         <span className="infoQ">
@@ -182,7 +184,7 @@ class ViewInternship extends React.Component {
     }
     render() {
         return (
-            <div className="container-fluid viewInternship pb-5" style={{ marginTop: "60px" }}>
+            <div className="container-fluid viewInternship pb-5" style={{ marginTop: "30px" }}>
                 <br /><br />
                 <p className="heading">Internship Details</p>
                 {this.props.location.id === undefined ? (this.props.history.push('/company/dashboard')) :
