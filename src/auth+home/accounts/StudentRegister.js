@@ -76,7 +76,7 @@ export class StudentRegister extends Component {
         this.setState({
           messages: []
         })
-        // console.log(res.data);
+       
         if (res.data.status === 201)
           this.props.history.push('/login/verify_otp/' + this.state.mobile_number);
         else if (res.data.status !== 201) {

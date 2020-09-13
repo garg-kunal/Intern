@@ -4,15 +4,15 @@
 
 .main-box {
      margin-top: -7px;
-     background-color: #4A00E0; 
+     /* background-color: #4A00E0;  */
     height: 100vh;
     /* padding: 0; */
-    background-image: url("../images/squarebg.jpeg");  
-     background-size: cover;
+    /* background-image: url("../images/squarebg.jpeg");   */
+     /* background-size: cover;
     background-origin: content-box;
     background-repeat: no-repeat;
     backdrop-filter: inherit;
-    background-position: right; 
+    background-position: right;  */
    
 }
 /* .navbar-shadow{
@@ -21,10 +21,10 @@
 .innerBox {
     text-align: center;
     border-radius:16px;
-    max-width: 55%;
+    /* max-width: 55%; */
     padding:20px;
     background-color: white;
-    margin-top: 20px;
+    margin-top: 40px;
     padding-bottom: 10vh;
     box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
 }
@@ -109,7 +109,7 @@ background-color: white;
     padding: 8px;
     font-size: 14px;
     font-weight: 700;
-    margin-top: -10px !important;
+    /* margin-top: -10px !important; */
     margin-left: 10px;
     color: white;
    
@@ -123,13 +123,14 @@ background-color: white;
     text-align: center;
 }
 .confirmation, .confirmation1{
-    width: 40%;
+    width: 30%;
     /* margin: auto; */
     /* padding-left: 40px; */
     border-radius: 40px;
     background-color: #4A00E0;
     color: white;
     margin: 10px;
+    margin-bottom: -20px;
     padding: 10px;
     font-size: 20px;
     font-weight: 500;
@@ -232,3 +233,63 @@ background-color: white;
     }
  }
  
+
+ /*************************************/
+ /* skill set */
+ /***************************************/
+
+ .card-skill-student-main{
+     margin-top: 70px;
+     max-width: 70% !important;
+ }
+ .card-skill-student{
+     
+     /* padding: 50px; */
+     font-size: 22px;
+     font-weight: 600;
+ }
+ .card-skill-student-min{
+     border-radius: 10px;
+    padding: 80px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 5px 8px rgba(0,0,0,0.22);
+
+}
+
+ .card-skill-student-min:hover{
+    box-shadow: 0 12px 18px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+ }
+
+ .navlink-skill{
+     /* padding: 80px; */
+     text-decoration: none;
+     color: black;
+ }
+
+ .navlink-skill:hover{
+    text-decoration: none;
+    color: black;
+
+ }
+
+ @media only screen and (max-width:768px){
+    .card-skill-student-min{
+        border-radius: 10px;
+        margin: 10;
+        margin-bottom: 15px;
+       padding: 40px !important;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 5px 8px rgba(0,0,0,0.22);
+   
+   }
+   .card-skill-student{
+    /* padding: 50px; */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.card-skill-student-main{
+    padding-top: 100px;
+    max-width: 100% !important;
+}
+
+ }

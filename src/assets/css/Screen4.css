@@ -10,23 +10,23 @@
 }
 .main-score{
     width: 100% !important;
-    background-color: #4A00E0!important;
     height: 100vh;
-    padding-top: -10px;
-    background-image: url("../images/Group\ 2892.png");
-    background-position: center;
-    background-size: cover;
+    margin-top: 50px;
+    
 }
 .logo{
     padding-top: -30px;
     padding: 20px;
     padding-bottom: 0;
 }
+.test-status-img{
+    width: 40px;
+    height:40px;
+}
 .grid {
     text-align: center;
     border-radius:12px ;
-    margin: auto;
-    width: 440px;
+    width: 100%;
     padding-top:40px;
     background-color: white;
     padding-bottom:24px;
@@ -35,6 +35,8 @@
 }
 .two {
     margin-top: 20px;
+    width: 100%;
+    
 }
 .two p{
     color: black;

@@ -1,0 +1,404 @@
+/*******************************/
+/* fonts */
+/**********************************/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,900&display=swap');
+
+.container-event{
+  
+    overflow-x: hidden !important;
+    /* background-color: #303030; */
+}
+
+
+/***********************************/
+/* Header css */
+/***********************************/
+
+
+.container-header-event{
+    background-image: url('../images/hero.png');
+    background-repeat: no-repeat;
+    height:700px;
+    background-size: cover;
+    background-position: center;
+}
+.event-name{
+    margin-top: 200px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 45px;
+}
+.event-2020{
+    font-size: 65px;
+    font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+    
+}
+.event-bracket{
+    font-size: 45px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #4a00e0 !important
+}
+@media only screen and (max-width: 768px){
+    .container-header-event{
+        background-image: url('../images/hero-bg-mobile.png');
+        background-repeat: no-repeat;
+        height:620px;
+        background-position: center;
+        background-size: cover;
+    }
+    .event-bracket{
+        display: inline;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        color: #852de2 !important;
+
+    }
+    .event-2020{
+        margin-top: -20px !important;
+        display: block;
+        font-size: 80px !important;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+        color: #d9d9d9;
+    }
+    .event-name{
+        display: inline;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        color: #e6e6e6;
+        padding-top: 150px;
+    }
+.event-toogler{
+    color: white !important;
+}
+}
+
+
+.react-rotating-text-cursor {
+    font-size: 45px !important;
+    animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
+  }
+  .rotate-text{
+    padding-top: 350px !important;
+    padding-left: 450px;
+
+  }
+   
+  @keyframes blinking-cursor {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+/***********************************/
+/* Navbar css */
+/***********************************/
+
+.navbar-event{
+    background: transparent !important;
+}
+.nav-item-event{
+    color: #4a00e0 !important;
+    padding-right: 50px;
+    font-weight: 700 !important;
+}
+
+@media only screen and (max-width:768px){
+    .navbar-event{
+        background: #737373 !important;
+        padding: 1px !important;
+    }
+    .nav-item-event{
+        color: white !important;
+        padding-left: 25px;
+        font-size: 13px;
+    }
+    .event-navbar-img{
+        height: 20px !important;
+        width: 50px !important;
+    }
+}
+
+/***********************************/
+/* Timer css */
+/***********************************/
+
+.timer-transparent{
+    background-color: #303030;
+   
+}
+.container-event-timer{
+    max-width: 70%;
+    /* background-image:url('../images/timer.png'); */
+    background-color: transparent;
+   
+}
+.location-event{
+    height: 30px;
+    color: #e6e6e6 !important;
+    width: 25px;
+}
+.event-timer-txt{
+    color:#737373;
+    font-size: 24px;
+}
+.event-time-timer{
+    font-size: 24px;
+}
+@media only screen and (max-width: 768px){
+    .container-event-timer{
+        max-width: 100%;
+       
+    }
+    .event-timer-txt{
+        color:#737373;
+        font-size: 12px;
+    }
+
+}
+
+/******************************/
+/* Mid css */
+/*****************************/
+.event-mid-image{
+    height: 550px;
+    width: 550px;
+}
+.event-mid-heading{
+    letter-spacing: 1px;
+    margin-top: 40px;
+}
+.event-mid-para{
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+/**************************************/
+/* Speaker css */
+/*************************************/
+
+.event-speaker-heading-main{
+    margin-left: 40px;
+    margin-top: 40px;
+}
+.event-speaker-il{
+    margin-top: -40px;
+margin-right: -160px;
+height: 300px;
+}
+
+/**********************************/
+/* speaker  */
+/**********************************/
+.event-speaker-image{
+    z-index: 5555;
+    height: 200px;
+    width: 200px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.event-speaker-image:hover{
+    transform: scale(1.05);
+    z-index: 9999;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.speaker-name{
+    padding-top: 15px;
+    
+}
+.about-speaker{
+    font-weight: normal;
+}
+
+/*******************************/
+/* schedule speakerc css */
+/*******************************/
+
+.event-schedule-container{
+    max-width: 60%;
+}
+.event-speaker-image-schedule{
+    height: 150px;
+    width: 150px;
+}
+.schedule-card{
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.about-speaker-schedule{
+    font-weight: normal;
+}
+.speaker-name-schedule{
+    padding-top: 25px;
+}
+.schedule-hr{
+    width: 50%;
+    margin-top: -25px !important;
+    align-self: center;
+    border:2px solid #4a00e0 !important;
+    border-radius: 15px;
+    margin-bottom: 40px;
+
+}
+@media only screen and (max-width: 768px) {
+    
+.event-schedule-container{
+    max-width: 100%;
+}
+.event-speaker-image-schedule{
+    margin-top: 15px;
+    height: 90px;
+    width: 90px;
+}
+.about-speaker-schedule{
+    font-weight: normal;
+    font-size: 13px;
+}
+.speaker-name-schedule{
+    padding-top: 15px;
+    font-size: 16px;
+}
+
+}
+
+/********************************/
+/* event-container-register  */
+/*******************************/
+
+
+
+.event-container-register-main {
+    background-image: url('../images/il-5.png');
+    background-size: cover;
+    height: 450px;
+    width: 100% !important;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+/*****************************/
+/* partners and compamies */
+/******************************/
+
+.event-speaker-image-company{
+    height: 140px;
+    width: 140px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    
+}
+.event-speaker-image-company:hover{
+transform: scale(1);
+}
+/*******************************/
+/* event-faq */
+/*******************************/
+p.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-bottom:10px;
+}
+
+/* Add a background color to the accordion if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+p.accordion.active, p.accordion:hover {
+    background-color: #ddd;
+}
+
+/* Unicode character for "plus" sign (+) */
+p.accordion:after {
+    content: '\2795'; 
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+/* Unicode character for "minus" sign (-) */
+p.accordion.active:after {
+    content: "\2796"; 
+}
+
+/* Style the element that is used for the panel class */
+
+div.panel {
+    padding: 0 18px;
+    background-color: lightgrey;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s ease-in-out;
+    opacity: 0;
+    margin-bottom:10px;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
+}
+
+/******************/
+/* contactus-event */
+/*******************/
+.contactus-event{
+    font-weight: normal;
+}
+
+
+/**************************/
+/* footer css */
+/**************************/
+
+.footer{
+    height: 30vh;
+    background: #545454;
+    /* background: linear-gradient(180deg, rgba(85,6,244,1) 33%, #8e2de2 67%); */
+}
+
+.event-footer-text{
+    color:white;
+    font-size: 25px;
+}
+.footer-event-text-sub{
+    color: white;
+    font-size: 19px;
+    font-weight: normal;
+}
+
+@media only screen and (max-width:768px){
+    .footer{
+        height: 40vh;
+        background: #545454;
+        /* background: linear-gradient(180deg, rgba(85,6,244,1) 33%, #8e2de2 67%); */
+    }
+    .event-footer-text{
+        color:white;
+        font-size: 18px;
+    }
+    .footer-event-text-sub{
+        color: white;
+        font-size: 12px !important;
+        font-weight: normal;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+}

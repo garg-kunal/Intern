@@ -1,6 +1,7 @@
 import React from 'react';
 import msg from '../../assets/images/Group 251.png';
 import './top.css';
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import Top from './top';
 import Navbar from './navbarQuiz';
 import axios from '../../setup';
@@ -11,7 +12,7 @@ class Quiz extends React.Component {
         super();
         this.state = {
             isTabActive: "",
-            skills:[],
+            skills: [],
             timer: 30,
             answer: [],
             option: "",
@@ -39,7 +40,9 @@ class Quiz extends React.Component {
 
 
     }
-
+    handle() {
+        useFullScreenHandle();
+    }
 
     answer(e) {
         this.setState({
@@ -55,11 +58,11 @@ class Quiz extends React.Component {
 
         this.state.answer.push(this.state.option);
         if (this.state.i === this.state.questions.length) {
-            
+
             const data = {
                 answers: this.state.correct_answers,
                 user_answers: this.state.answer,
-                skills:this.state.skills
+                skills: this.state.skills
             }
             const headers = {
                 headers: {
@@ -71,14 +74,19 @@ class Quiz extends React.Component {
             axios.post('/api/accounts/assessment', data, headers)
                 .then((res) => {
                     this.setState({
-                        i:0,
+                        i: 0,
                     }, () => {
-                        // console.log(res.data.score);
+                        // console.log(res);
                         this.setState({
-                            score: res.data.score
+                            score: res.data.result
+                        }, () => {
+                            localStorage.removeItem('merge_test');
+                            this.props.history.push({
+                                pathname: "/test_score",
+                                score: this.state.score
+                            });
                         })
-                        localStorage.removeItem('merge_test');
-                        this.props.history.push("test_skills");
+
                     });
 
 
@@ -134,7 +142,7 @@ class Quiz extends React.Component {
                 .then((res) => {
                     // console.log(res.data)
                     this.setState({
-                        skills:res.data.skills,
+                        skills: res.data.skills,
                         questions: res.data.questions,
                         correct_answers: res.data.answers,
                         question: res.data.questions[this.state.i].question,
@@ -168,86 +176,86 @@ class Quiz extends React.Component {
     render() {
 
         return (
-            <div>
-                    <div className="container-fluid container-fluid-main-quiz" style={{backgroundColor:"white"}}>
-                        <Navbar />
-                        {/* <p className="display-5" style={{ padding: "20px", color: "black" }}> */}
-                        {/* <strong>Your Multiple Choice Questions Are Here:</strong></p> */}
-                        <div className="container mt-4">
-                            <div className="row">
-                                <div className="col-md-4 col-lg-4 col-6 mx-auto text-center" style={{ color: "#4A00E0", fontSize: "22px", fontWeight: "900" }}>ALL THE BEST!!!</div>
-                                <div className="col-md-4 col-lg-4 col-6  mx-auto text-center" style={{ fontSize: "22px", fontWeight: "900" }}>Question:<b>{this.state.i}/{this.state.questions.length}</b></div>
-                                <div className="col-md-4 col-lg-4 col-6  mx-auto text-center" style={{ fontSize: "22px", fontWeight: "900" }}>Timer:
-                          <b style={{color:"red"}}>{this.state.timer}</b>
-                                </div>
+
+            <FullScreen handle={() => { useFullScreenHandle() }}>
+                <div className="container-fluid container-fluid-main-quiz" style={{ backgroundColor: "white" }}>
+                    <Navbar />
+                    {/* <p className="display-5" style={{ padding: "20px", color: "black" }}> */}
+                    {/* <strong>Your Multiple Choice Questions Are Here:</strong></p> */}
+                    <div className="container mt-4">
+                        <div className="row">
+                            <div className="col-md-4 col-lg-4 col-6 mx-auto text-center" style={{ color: "#4A00E0", fontSize: "22px", fontWeight: "900" }}>ALL THE BEST!!!</div>
+                            <div className="col-md-4 col-lg-4 col-6  mx-auto text-center" style={{ fontSize: "22px", fontWeight: "900" }}>Question:<b>{this.state.i}/{this.state.questions.length}</b></div>
+                            <div className="col-md-4 col-lg-4 col-6  mx-auto text-center" style={{ fontSize: "22px", fontWeight: "900" }}>Timer:
+                          <b style={{ color: "red" }}>{this.state.timer}</b>
                             </div>
-                        </div>
-                        <div className="container" style={{ marginTop: "20px" }}>
-                            <div className="card card-body-quiz">
-                                <div class="card-body">
-                                    <div className="row">&nbsp;&nbsp;&nbsp;
-                                <img src={msg} className="img-fluid" style={{ height: "35px", width: "35px" }} />
-                                        <b style={{ fontSize: "18px" }}>Question {this.state.i}</b></div>
-                                    <div className="row">
-                                        <b style={{ fontWeight: "500", fontSize: "20px" }}>
-                                            &nbsp;&nbsp;&nbsp;&nbsp; {this.state.question}
-                                        </b></div><br />
-                                    <div className="row pt-2">
-
-                                        <div class="radiobtn-quiz">
-                                            <input type="radio" id="a"
-                                                onClick={(e) => { this.answer(e) }}
-                                                name="answer" value="a" unchecked />
-                                            <label for="a">{this.state.optionA}</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="row pt-2">
-                                        <div class="radiobtn-quiz">
-                                            <input type="radio" id="b" unchecked
-                                                onClick={(e) => { this.answer(e) }}
-                                                name="answer" value="b" />
-                                            <label for="b">{this.state.optionB}</label>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="row pt-2">
-
-                                        <div class="radiobtn-quiz">
-                                            <input type="radio" id="c" unchecked
-                                                onClick={(e) => { this.answer(e) }}
-                                                name="answer" value="c" />
-                                            <label for="c">{this.state.optionC}</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="row pt-2">
-                                        <div class="radiobtn-quiz">
-                                            <input type="radio" id="d" unchecked
-                                                onClick={(e) => { this.answer(e) }}
-                                                name="answer" value="d" />
-                                            <label for="d">{this.state.optionD}</label>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <center>
-
-                                <button className="btn btn-lg btn-next"
-                                    onClick={() => { this.nextQuestion() }}
-                                >Next</button>
-                            </center>
                         </div>
                     </div>
+                    <div className="container" style={{ marginTop: "20px" }}>
+                        <div className="card card-body-quiz">
+                            <div class="card-body">
+                                <div className="row">&nbsp;&nbsp;&nbsp;
+                                <img src={msg} className="img-fluid" style={{ height: "35px", width: "35px" }} />
+                                    <b style={{ fontSize: "18px" }}>Question {this.state.i}</b></div>
+                                <div className="row">
+                                    <b style={{ fontWeight: "500", fontSize: "20px" }}>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; {this.state.question}
+                                    </b></div><br />
+                                <div className="row pt-2">
 
-            </div>
+                                    <div class="radiobtn-quiz">
+                                        <input type="radio" id="a"
+                                            onClick={(e) => { this.answer(e) }}
+                                            name="answer" value="a" unchecked />
+                                        <label for="a">{this.state.optionA}</label>
+                                    </div>
+                                </div>
+
+                                <div className="row pt-2">
+                                    <div class="radiobtn-quiz">
+                                        <input type="radio" id="b" unchecked
+                                            onClick={(e) => { this.answer(e) }}
+                                            name="answer" value="b" />
+                                        <label for="b">{this.state.optionB}</label>
+                                    </div>
+                                </div>
+
+
+
+                                <div className="row pt-2">
+
+                                    <div class="radiobtn-quiz">
+                                        <input type="radio" id="c" unchecked
+                                            onClick={(e) => { this.answer(e) }}
+                                            name="answer" value="c" />
+                                        <label for="c">{this.state.optionC}</label>
+                                    </div>
+                                </div>
+
+                                <div className="row pt-2">
+                                    <div class="radiobtn-quiz">
+                                        <input type="radio" id="d" unchecked
+                                            onClick={(e) => { this.answer(e) }}
+                                            name="answer" value="d" />
+                                        <label for="d">{this.state.optionD}</label>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <center>
+
+                            <button className="btn btn-lg btn-next"
+                                onClick={() => { this.nextQuestion() }}
+                            >Next</button>
+                        </center>
+                    </div>
+                </div>
+            </FullScreen>
 
         )
     }

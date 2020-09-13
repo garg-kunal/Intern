@@ -11,6 +11,7 @@ import Admin from './admin/main';
 import Admincom from './admin/company';
 import Adminintern from './admin/inetrns';
 import Terms from './auth+home/terms';
+import SkillSet from './student Intern/components/skillset';
 import Studentregister from './auth+home/accounts/StudentRegister';
 import Saveintern from './company/components/saveInternship';
 import Reviewintern from './company/components/reviewScreen';
@@ -42,17 +43,22 @@ import Adminlogin from './auth+home/accounts/Admin';
 import Error404 from './auth+home/accounts/404';
 import ViewInternCom from './admin/view_intern';
 import Drawer from './student Intern/quiz/Drawer';
-import Privacy from './auth+home/policy'
+import Privacy from './auth+home/policy';
+import Event from './event/components/home';
+import OuterNavbar from './student Intern/components/outerNavbar';
+
 function Student() {
   return (
     <div>
 
       <Route path="/student" component={Drawer} />
+      <Route component={OuterNavbar} path="/nav" />
       <Route component={Internships} path="/student/internships" exact />
-      <Route component={Screen2} path="/test_skills" exact />
+      <Route component={Screen2} path="/nav/test_skills" exact />
       <Route path="/student/resume_form/:bool" component={Form} exact />
-      <Route component={Screen3} path="/test_score" exact />
+      <Route component={Screen3} path="/nav/test_score" exact />
       <Route component={Screen4} path="/student/status" exact />
+
       <Route component={Studentdashboard} path="/student/dashboard" exact />
       <Route component={Cityprefs} path="/student/city_preference" exact />
       <Route component={Instructions} path="/quiz/instructions" exact />
@@ -62,7 +68,8 @@ function Student() {
       <Route component={Applyintern} path="/student/apply_intern" exact />
       <Route component={ViewResume} path="/resume" exact />
       <Route component={ViewIntern} path="/student/view_intern" exact />
-
+      <Route component={SkillSet} path="/nav/skillset" exact />
+      
     </div>
   )
 }
@@ -85,7 +92,12 @@ function App() {
         <Route component={verifyotp} path="/login/verify_otp/:mobile_number" exact />
         <Route component={verify} path="/login/verify/:email" exact />
         <Route component={Thanku} path="/login/thnku" exact />
+        
         <Route component={Home} path="/" exact />
+       
+        <Route component={Event} path="/devcon" exact />
+
+
         <Route component={Savecompany} path="/save_company" exact />
         <Route component={comOtp} path="/verify/:email" exact />
         <Route component={Adminlogin} path="/login/admin" exact />

@@ -80,7 +80,7 @@ export class StudentLogin extends Component {
 
   componentDidMount() {
     if (localStorage.getItem('merge_jwt')) {
-      this.props.history.push("/test_skills");
+      this.props.history.push("/nav/skillset");
     }
   }
 

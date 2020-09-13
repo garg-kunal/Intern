@@ -4,8 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 export class Header extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <nav className="navbar navbar-expand-lg navbar-light" >
+        <nav className="navbar navbar-home navbar-expand-lg navbar-light" >
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav navabr-nav-home  text-white">
               <li className="nav-item px-lg-4 px-md-1 d-none d-lg-block">
@@ -30,7 +29,7 @@ export class Header extends Component {
                 </NavLink>
 
               </li>
-              <li className="nav-item signup-nav">
+              <li className="nav-item nav-item-home  signup-nav md-auto">
                 <NavLink style={{ color: "black" }} className="nav-link" to="/create_account/student/">
                   Register/Login
                 </NavLink>
@@ -67,7 +66,7 @@ export class Header extends Component {
             </li>
           </ul>
         </nav>
-      </div>
+     
     );
   }
 }

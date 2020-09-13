@@ -68,9 +68,8 @@ export class CompanyRegister extends Component {
     }
     this.setState({
       messages: []
-    })
-
-    axios.post('/api/accounts/company/create', data)
+    },()=>{
+      axios.post('/api/accounts/company/create', data)
       .then((res) => {
         // console.log(res.data.status_message.message)
         if (res.data.status === 201)
@@ -86,6 +85,10 @@ export class CompanyRegister extends Component {
         console.log(err)
       })
 
+      
+    })
+
+    
 
     event.preventDefault();
   }
