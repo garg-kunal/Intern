@@ -42,8 +42,10 @@ class CompanyNavBar extends React.Component {
                             <button
                                 className="btn companny-navbar-nav-link-subitem" style={{ background: "transparent" }}
                                 onClick={() => {
-                                    localStorage.removeItem("merge_jwt_c");
-                                    this.props.history.push("/login/company");
+                                    if (window.confirm("Are you sure")) {
+                                        localStorage.removeItem("merge_jwt_c");
+                                        this.props.history.push("/login/company");
+                                    }
                                 }}
                             >Logout</button>
 

@@ -114,7 +114,7 @@ export class StudentRegister extends Component {
 
                 </li>
               </ul>
-              <ul className="navbar-nav ml-auto">
+              <ul className="navbar-nav login-bar   ml-auto">
                 <li
                   className="nav-item px-3 font-weight-bolder"
                   style={{

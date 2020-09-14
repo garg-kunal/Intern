@@ -3,9 +3,17 @@ import logo from "../../assets/images/Merge.-1.png";
 import MenuIcon from '@material-ui/icons/Menu';
 import axios from '../../setup';
 export default class OuterNavbar extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            show: false
+        }
+    }
 
 
-    
+    componentDidMount() {
+        this.pass();
+    }
 
     pass() {
         const headers = {
@@ -17,35 +25,30 @@ export default class OuterNavbar extends React.Component {
         }
         axios.get("/api/accounts/student/check_skills", headers)
             .then((res) => {
-                console.log(res.data);
+               
                 if (res.data.status === 200)
-                    this.props.history.push("/student/resume_form/false");
-                else {
                     this.setState({
-                        message: res.data.status_message.message
-                    }, () => {
-                        this.setState({
-                            show: true
-                        })
+                        show:true
                     })
-                }
             })
             .catch((err) => console.log(err));
     }
     render() {
         return (
 
-            <nav className="navbar pt-2 navbar-expand-lg " style={{ background: "#4a00e0" }}>
+            <nav className="navbar pt-2 navbar-expand-lg navbar-outer-student " style={{ background: "#4a00e0" }}>
                 <img src={logo} className="img-fluid merge-logo-all-student" />
                 <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 
                     <MenuIcon style={{ color: "white" }} />
                 </button>
                 <div className="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav ml-auto">
-                        <button onClick={()=>{this.pass()}} className="btn" >Dashbaord</button>
-                    </ul>
-                    <span className="navbar-text">
+                    <ul class="navbar-nav ml-auto outer-navbar-skill-links">
+                        <li>
+                            {this.state.show ? <button onClick={() => { this.props.history.push('/student/dashboard') }} className="btn dashboard-btn" >Dashboard</button> : null
+                            }
+                        </li>
+                        <li>
                         <button className="btn" style={{ background: "transparent", color: "white" }} onClick={() => {
                             if (window.confirm("Are you sure")) {
                                 localStorage.removeItem("merge_jwt");
@@ -54,7 +57,13 @@ export default class OuterNavbar extends React.Component {
                         }}>
                             Logout
                             </button>
-                    </span>
+                        </li>
+
+
+                    </ul>
+                    {/* <span className="navbar-text">
+                       
+                    </span> */}
                 </div>
             </nav >
         )

@@ -10,8 +10,8 @@
 }
 .main-score{
     width: 100% !important;
-    height: 100vh;
-    margin-top: 50px;
+    height: auto;
+    /* margin-top: 50px; */
     
 }
 .logo{
@@ -19,18 +19,23 @@
     padding: 20px;
     padding-bottom: 0;
 }
-.test-status-img{
-    width: 40px;
-    height:40px;
+.result-heading{
+    font-weight: 700;
+    font-size: 22px;
 }
-.grid {
+.test-status-img{
+    width: 30px;
+    height:30px;
+}
+.box-result {
     text-align: center;
     border-radius:12px ;
-    width: 100%;
+    width: 60%;
+    height: auto;
     padding-top:40px;
     background-color: white;
     padding-bottom:24px;
-    margin-top: 18vh;
+    margin-top: 10vh;
     box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
 }
 .two {
@@ -43,9 +48,13 @@
     font-size: 1.1em;
     font-weight: 600;
 }
-.two .submitted {
-    font-size: 1.2em;
-    font-weight: 700;
+.submitted {
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+.ul-test{
+    text-decoration: underline;
 }
 .three {
   width: 70%;
@@ -72,16 +81,21 @@
     margin-top: 30px;
 }
 @media (max-width : 1200px) {
-    .grid {
+    .box-result {
         margin-top: 12vh;
+        height: auto;
         width: 50vw;
     }
 }
 @media (max-width : 860px) {
-    .grid {
-        margin-top: 12vh;
+    .box-result {
+        margin-top: 6vh;
         height: auto;
         width: 60vw;
+    }
+    .submitted{
+        font-size: 0.8rem;
+        font-weight: 100;
     }
     .three {
         background-color: #1697F2;
@@ -89,12 +103,19 @@
         padding: 8px;
         border-radius: 20px;
       }
+      .outer-navbar-skill-links{
+          float: right;
+      }
 }
 @media (max-width : 750px) {
-    .grid {
-        margin-top: 12vh;
+    .box-result {
+        margin-top: 6vh;
         height: auto;
         width: 65vw;
+    }
+    .test-status-img{
+        width: 20px;
+        height:20px;
     }
     .three {
         background-color: #1697F2;
@@ -104,8 +125,8 @@
       }
 }
 @media (max-width : 630px) {
-    .grid {
-        margin-top: 12vh;
+    .box-result {
+        margin-top: 6vh;
         height: auto;
         width: 80vw;
     }
@@ -117,11 +138,11 @@
       }
 }
 @media (max-width : 570px) {
-    .grid {
-        margin-top: 14vh;
+    .box-result {
+        margin-top: 8vh;
         width: 85vw;
-        height: 60vh !important;
-        grid-template-rows: 1fr 1fr 0.8fr;
+        height: auto;
+        
     }
     .three {
         width: 90%;
@@ -138,11 +159,10 @@
     }
 }
 @media (max-width : 330px) {
-    .grid {
+    .box-result {
         margin-top: 14vh;
         width: 95vw;
-        /* height:38vh; */
-        grid-template-rows: 1fr 1fr 0.8fr;
+        height: auto;
     }
     .three {
         width: 70%;

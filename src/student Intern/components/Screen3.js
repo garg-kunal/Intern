@@ -31,34 +31,51 @@ class Screen3 extends React.Component {
             const data = {
                 data: "key"
             }
-            Axios.post('/api/accounts/assessment', data, headers)
-                .then((res) => {
-                    this.setState({
-                        result: res.data.result
-                    })
-                })
-                .catch((err) => console.log(err));
-            // console.log(this.props.location.score);
+            // Axios.post('/api/accounts/assessment', data, headers)
+            //     .then((res) => {
+            //         this.setState({
+            //             result: res.data.result
+            //         })
+            //     })
+            //     .catch((err) => console.log(err));
+            console.log(this.props.location.score);
+            this.setState({
+                result:this.props.location.score
+            })
         }
     }
     render(props) {
         return (
             <div className="container-fluid main-score">
-                <div className="container grid">
+                <div className="container box-result">
                     <div className="one text-center">
-                        <h4>ScoreCard</h4>
+                        <h4 className="result-heading">Scorecard</h4>
                     </div>
                     <br/><br/>
+                    <div className="container">
+                            <p className="row">
+                                <div className="col-md-4 col-4 text-left">
+                                    <ul className="ul-test">Skill</ul>
+                                </div>
+                                <div className="col-md-4 col-4 text-center">
+                                  <ul className="ul-test">Status</ul>
+                                </div>
+                                <div className="col-md-4 col-4 text-right">
+                                    <ul className="ul-test">Score</ul>
+                                </div>
+                            </p>
+                            {/* <p>You've scored {this.props.value}/300. Keep it up.</p> */}
+                        </div>
                     {this.state.result.map((item, key) =>
                         <div className="container">
                             <p className="submitted row">
-                                <div className="col-md-4 text-left">
+                                <div className="col-md-4 col-4 text-left">
                                     {item.skill}
                                 </div>
-                                <div className="col-md-4 text-center">
-                                    {item.status === 'Fail'?<img src={close} alt="fail" className="img-fluid test-status-img"/>:<img src={tick} alt="pass" className="img-fluid test-status-img"/> }
+                                <div className="col-md-4 col-4 text-center">
+                                    {item.status === 'Fail'?<img src={close} alt="fail" className="img-fluid text-center test-status-img"/>:<img src={tick} alt="pass" className="img-fluid text-center test-status-img"/> }
                                 </div>
-                                <div className="col-md-4 text-right">
+                                <div className="col-md-4 col-4 text-right">
                                     {item.score}
                                 </div>
 

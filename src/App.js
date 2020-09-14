@@ -61,10 +61,10 @@ function Student() {
 
       <Route component={Studentdashboard} path="/student/dashboard" exact />
       <Route component={Cityprefs} path="/student/city_preference" exact />
-      <Route component={Instructions} path="/quiz/instructions" exact />
+      <Route component={Instructions} path="/nav/quiz/instructions" exact />
       <Route component={Quiz} path="/quiz" exact />
       <Route component={Questions} path="/student/intern_questions/:id" exact />
-      <Route component={Interndata} path="/intern_data" exact />
+      <Route component={Interndata} path="/nav/intern_data" exact />
       <Route component={Applyintern} path="/student/apply_intern" exact />
       <Route component={ViewResume} path="/resume" exact />
       <Route component={ViewIntern} path="/student/view_intern" exact />
@@ -95,7 +95,7 @@ function App() {
         
         <Route component={Home} path="/" exact />
        
-        <Route component={Event} path="/devcon" exact />
+        <Route component={Event} path="/devcol" exact />
 
 
         <Route component={Savecompany} path="/save_company" exact />

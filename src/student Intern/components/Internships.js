@@ -148,7 +148,7 @@ export default class Internship extends React.Component {
                         this.setState({
                             show: true
                         }, () => {
-                            this.props.history.push('/test_skills')
+                            this.props.history.push('/nav/skillset')
                         })
 
                     }

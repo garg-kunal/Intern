@@ -34,7 +34,7 @@ class Quiz extends React.Component {
             var d = document.hidden ? "true" : "false";
             if (d == "false") {
                 localStorage.removeItem("merge_test");
-                window.location.href = "/test_skills";
+                window.location.href = "/nav/skillset";
             }
         });
 
@@ -82,7 +82,7 @@ class Quiz extends React.Component {
                         }, () => {
                             localStorage.removeItem('merge_test');
                             this.props.history.push({
-                                pathname: "/test_score",
+                                pathname: "/nav/test_score",
                                 score: this.state.score
                             });
                         })
@@ -127,7 +127,7 @@ class Quiz extends React.Component {
         }
         else if (localStorage.getItem("merge_test") === null || localStorage.getItem("merge_jwt") === undefined) {
 
-            this.props.history.push('/test_skills');
+            this.props.history.push('/nav/skillset');
         }
         else {
 
@@ -180,8 +180,6 @@ class Quiz extends React.Component {
             <FullScreen handle={() => { useFullScreenHandle() }}>
                 <div className="container-fluid container-fluid-main-quiz" style={{ backgroundColor: "white" }}>
                     <Navbar />
-                    {/* <p className="display-5" style={{ padding: "20px", color: "black" }}> */}
-                    {/* <strong>Your Multiple Choice Questions Are Here:</strong></p> */}
                     <div className="container mt-4">
                         <div className="row">
                             <div className="col-md-4 col-lg-4 col-6 mx-auto text-center" style={{ color: "#4A00E0", fontSize: "22px", fontWeight: "900" }}>ALL THE BEST!!!</div>

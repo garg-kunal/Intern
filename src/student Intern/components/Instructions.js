@@ -70,14 +70,6 @@ class Screen2 extends React.Component {
                     <Mobile />
                 </div>
 
-
-                <div className="container-fluid main-box-instructions ">
-                    <nav className="navbar navbar-expand-lg navbar-light " style={{ background: "transparent" }}>
-                        <img src={logo} className="img-fluid merge-logo-all-student" />
-
-                    </nav>
-
-
                     <div className="container-fluid instruction-box-main mx-auto">
                         <h2 className="mx-auto text-center" style={{ fontWeight: "1000" }}><b>Instructions</b></h2>
                         <p className="text-right step1">3/3 </p>
@@ -117,7 +109,7 @@ class Screen2 extends React.Component {
                         </center>
                     </div>
                 </div>
-            </div>
+            
         );
     }
 }

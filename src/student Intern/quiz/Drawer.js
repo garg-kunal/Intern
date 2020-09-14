@@ -28,8 +28,8 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        background: 'white',
-        color: 'white',
+        background: '#fff',
+        color: '#fff',
         height: '2vh',
         display: 'flex',
     },
@@ -55,22 +55,23 @@ const useStyles = makeStyles((theme) => ({
         display: 'none',
     },
     drawer: {
+        background: "#fff",
         width: drawerWidth,
         flexShrink: 0,
     },
     drawerPaper: {
+        backgroundColor: "white",
         width: drawerWidth,
     },
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'flex-start',
     },
     content: {
-        background: 'white',
+        background: '#fff',
         flexGrow: 1,
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
@@ -78,6 +79,9 @@ const useStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginRight: -drawerWidth,
+    },
+    paper: {
+        backgroundColor: "#fff"
     },
     contentShift: {
         background: 'white',
@@ -104,71 +108,72 @@ export default function PersistentDrawerRight() {
 
 
     return (
-        <div style={{ backgroundColor: "white !important" }} className={classes.root}>
-            <CssBaseline style={{ backgroundColor: "white !important" }} />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
-                <Toolbar >
-                    <Typography variant="h6" noWrap className={classes.title}>
-                        <img src={logo} className="img-fluid merge-logo-all-student" />
-                    </Typography>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="end"
-                        onClick={handleDrawerOpen}
-                        className={clsx(open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
+            <div className={classes.root}>
+                <CssBaseline style={{ backgroundColor: "white !important" }} />
+                <AppBar
+                    position="fixed"
+                    className={clsx(classes.appBar, {
+                        [classes.appBarShift]: open,
+                    })}
+                >
+                    <Toolbar >
+                        <Typography variant="h6" noWrap className={classes.title}>
+                            <img src={logo} className="img-fluid merge-logo-all-student" />
+                        </Typography>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="end"
+                            onClick={handleDrawerOpen}
+                            className={clsx(open && classes.hide)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
 
-            <Drawer style={{ backgroundColor: "white !important" }}
-                className={classes.drawer}
-                variant="persistent"
-                anchor="right"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div style={{ backgroundColor: "white !important" }} className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    {[<NavLink style={{ color: "black", decoration: "none" }} to="/student/dashboard">Dashboard</NavLink>,
-                    <NavLink style={{ color: "black", decoration: "none" }} to="/test_skills">Test Skills</NavLink>
-                        , <NavLink style={{ color: "black", decoration: "none" }} to="/student/internships">View Internships</NavLink>,
-                    <NavLink style={{ color: "black", decoration: "none" }} to="/student/resume_form/false">My Info</NavLink>,
-                    <button style={{ background: "transparent", color: "black" }} onClick={() => {
-                        if (window.confirm("Are you sure to logout")) {
-                            localStorage.removeItem("merge_jwt"); window.location.href = "/login/student";
-                        }
-                    }}>Logout</button>,].map((text, index) => (
-                        <ListItem button key={text} style={{ backgroundColor: "white" }}>
-                            <ListItemIcon>
-                                {(index === 3) ? <EmojiEmotionsTwoToneIcon /> : null}
-                                {(index === 2) ? <InboxIcon /> : null}
-                                {(index === 0) ? <MailIcon /> : null}
-                                {(index === 1) ? <AssignmentIcon /> : null}
-                                {(index === 4) ? <VpnKeyTwoToneIcon /> : null}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                {/* <Divider /> */}
+                <Drawer style={{ backgroundColor: "#fff !important" }}
+                    className={classes.drawer}
+                    variant="persistent"
+                    anchor="right"
+                    open={open}
+                    classes={{
+                        paper: classes.drawer,
+                    }}
+                >
+                    <div style={{ backgroundColor: "white !important" }} className={classes.drawerHeader}>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        {[<NavLink style={{ color: "black", decoration: "none" }} to="/student/dashboard">Dashboard</NavLink>,
+                        <NavLink style={{ color: "black", decoration: "none" }} to="/nav/skillset">Test Skills</NavLink>
+                            , <NavLink style={{ color: "black", decoration: "none" }} to="/student/internships">View Internships</NavLink>,
+                        <NavLink style={{ color: "black", decoration: "none" }} to="/student/resume_form/false">My Info</NavLink>,
+                        <button style={{ background: "transparent", color: "black" }} onClick={() => {
+                            if (window.confirm("Are you sure to logout")) {
+                                localStorage.removeItem("merge_jwt"); window.location.href = "/login/student";
+                            }
+                        }}>Logout</button>,].map((text, index) => (
+                            <ListItem button key={text} style={{ backgroundColor: "white" }}>
+                                <ListItemIcon>
+                                    {(index === 3) ? <EmojiEmotionsTwoToneIcon /> : null}
+                                    {(index === 2) ? <InboxIcon /> : null}
+                                    {(index === 0) ? <MailIcon /> : null}
+                                    {(index === 1) ? <AssignmentIcon /> : null}
+                                    {(index === 4) ? <VpnKeyTwoToneIcon /> : null}
+                                </ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        ))}
+                    </List>
+                    {/* <Divider /> */}
 
-            </Drawer>
-            {/* <br /><br /> */}
-        </div>
+                </Drawer>
+                {/* <br /><br /> */}
+            </div>
+       
     );
 }

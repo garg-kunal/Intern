@@ -88,7 +88,7 @@ class Screen2 extends React.Component {
             axios.post('/api/accounts/student/schedule_assessment', data, headers)
                 .then((res) => {
                     if (res.data.status === 200)
-                        this.props.history.push('/intern_data');
+                        this.props.history.push('/nav/intern_data');
                     else if (res.data.status !== 200) {
                         this.setState({
                             message: res.data.status_message.message,
@@ -127,8 +127,6 @@ class Screen2 extends React.Component {
     render() {
         return (
             <div className="container-fluid main-box" style={{ padding: "0" }}>
-
-             
                 <div className="container mx-auto innerBox">
                     <br />
                     <h4 style={{ fontWeight: "800" }}>What tools do you use for your {this.props.location.id === undefined ? window.location.href = '/nav/skillset' : this.props.location.id.name} projects?</h4>
@@ -147,7 +145,7 @@ class Screen2 extends React.Component {
                                             {item.skill}
                                         </label>
                                         :
-                                        <label className="checkLabel checkLabel1" style={{ minWidth: "14rem" }}
+                                        <label className="checkLabel checkLabel1" 
 
                                             style={{ backgroundColor: item.color }}
                                             onClick={this.changeColor}>
@@ -168,7 +166,7 @@ class Screen2 extends React.Component {
                         
                     </div>
                     <div className="buttons pt-3">
-                        <button type="button" onClick={() => { window.history.back() }} className=" btn confirmation">Back</button>
+                        <button type="button" onClick={() => { window.history.back() }} className=" btn confirmation1">Back</button>
                         <button type="button" onClick={this.printData} className="confirmation btn">Move To Test</button>
                     </div>
                     {/* <label className="checkLabel checkLabel1 pt-2 text-left" >Apply Test For These Skills</label> */}

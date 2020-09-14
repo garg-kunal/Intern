@@ -219,6 +219,11 @@ input, .industry {
   .welcome .logo {
     font-size: 1.7em;
   }
+  .login-bar{
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+  }
   .greetDiv {
     margin-top: 10vh;
   }
@@ -283,8 +288,8 @@ input, .industry {
     padding-top: 100px;
   }
   .login-img-main-home{
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
     padding-right: 10px;
   }
 .option-company-main{

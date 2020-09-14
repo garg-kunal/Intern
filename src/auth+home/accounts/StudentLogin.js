@@ -93,10 +93,10 @@ export class StudentLogin extends Component {
           </div>
           <div className="col-md-6 col-sm-12 mt-md-5 mt-3" style={{ padding: "10px" }}>
             <nav className="navbar navbar-expand-lg">
-              <ul className="navbar-nav">
+              <ul className="navbar-nav mr-auto">
                 <li className="nav-item px-sm-3 px-xs-2 ml-0">
                   <h3
-                    className="font-weight-bolder sign-up-heading-main"
+                    className="font-weight-bolder  sign-up-heading-main"
                     style={{
                       color: "#4A00E0",
                     }}
@@ -105,17 +105,17 @@ export class StudentLogin extends Component {
                     </h3>
                 </li>
               </ul>
-              <ul className="navbar-nav ml-auto">
+              <ul className="navbar-nav login-bar ml-auto">
                 <li
-                  className="nav-item px-3 font-weight-bolder"
+                  className="nav-item px-2  font-weight-bolder"
                   style={{
                     color: "black",
-                    borderBottom: "solid 2px #4A00E0",
+                    borderBottom:"solid 2px #4A00E0",
                   }}
                 >
                   Student
                   </li>
-                <li className="nav-item px-3 font-weight-bolder">
+                <li className="nav-item  px-2 font-weight-bolder">
                   <Link
                     to="/login/company"
                     style={{ color: "black" }}
@@ -131,7 +131,7 @@ export class StudentLogin extends Component {
             </div>
             <form onSubmit={this.handleSubmit}>
 
-              <div className="ml-md-3">
+              <div className="ml-md-1">
                 <div className="form-group form-content text-left">
                   <input
                     type="text"

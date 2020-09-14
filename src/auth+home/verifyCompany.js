@@ -95,6 +95,7 @@ export class VerifyOTP extends Component {
 
   handleResendSubmit(event) {
     const data = {
+      account_type:"company",
       email: this.state.email
     }
     this.setState({

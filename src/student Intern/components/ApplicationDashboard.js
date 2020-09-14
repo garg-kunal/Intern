@@ -34,7 +34,7 @@ export default class Dashboard extends React.Component {
             this.setState({
                 messages: []
             }, () => {
-                this.state.messages.push("No More Previous Date..");
+                this.state.messages.push("No More Previous Data..");
                 this.setState({
                     show: true
                 })
@@ -48,7 +48,7 @@ export default class Dashboard extends React.Component {
             }, () => {
                 for (var i = this.state.page * 5; i < ((this.state.page + 1) * 5 && this.state.applications.length); i++) {
                     this.state.application.push(this.state.applications[i]);
-                    console.log(this.state.application);
+                    // console.log(this.state.application);
                 }
             })
         }
@@ -61,7 +61,7 @@ export default class Dashboard extends React.Component {
             this.setState({
                 messages: []
             }, () => {
-                this.state.messages.push("No More Date..");
+                this.state.messages.push("No More Data..");
                 this.setState({
                     show: true
                 })
@@ -76,7 +76,7 @@ export default class Dashboard extends React.Component {
 
                 for (var i = this.state.page * 5; i <( (this.state.page + 1) * 5 && this.state.applications.length); i++) {
                     this.state.application.push(this.state.applications[i]);
-                    console.log(this.state.application);
+                    // console.log(this.state.application);
                     this.setState({
                         page: this.state.page + 1
                     })
@@ -117,6 +117,7 @@ export default class Dashboard extends React.Component {
     render() {
         return (
             <div className="container-fluid container-main-box" style={{marginTop:"40px"}}>
+                <br/>
                 <div className="container mt-5">
                     <div className="row">
                         <div className="col-md-4 col-lg-4 "></div>

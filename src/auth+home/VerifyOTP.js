@@ -77,7 +77,7 @@ export class VerifyOTP extends Component {
           // console.log(res.data);
           if (res.data.status === 200) {
             localStorage.setItem('merge_jwt', res.data.jwt);
-            this.props.history.push('/test_skills');
+            this.props.history.push('/nav/skillset');
           }
           else if (res.data.status !== 200) {
             this.state.messages.push(res.data.status_message.message)
@@ -95,6 +95,7 @@ export class VerifyOTP extends Component {
 
   handleResendSubmit(event) {
     const data = {
+      account_type:"student",
       mobile_number: this.state.mobile_number,
     }
     this.setState({

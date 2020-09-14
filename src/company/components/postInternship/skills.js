@@ -3,20 +3,21 @@ import React from 'react';
 import Select from 'react-select';
 
 const colourOptions = [
-    { value: 'skills', label: 'SKill', color: '#00B8D9', isFixed: true },
+    { value: 'skills', label: 'SKill', color: '#4a00e0', isFixed: true },
     { value: 'css', label: 'CSS', color: '#00B8D9' },
     { value: 'html', label: 'HTML', color: '#0052CC' },
-    { value: 'python', label: 'Python', color: '#5243AA' },
+    { value: 'bootstrap', label: 'Bootstrap', color: '#5243AA' },
     { value: 'django', label: 'Django', color: '#FF5630 ' },
-    { value: 'gcp', label: 'GCP', color: '#FF8B00' },
-    { value: 'js', label: 'JS', color: '#FFC400' },
+    { value: 'react.js', label: 'ReactJS', color: '#FF8B00' },
+    { value: 'javascript', label: 'JS', color: '#FFC400' },
     { value: 'nodejs', label: 'NodeJS', color: '#00B8D9' },
     { value: 'php', label: 'PHP', color: '#0052CC' },
-    { value: 'mysql', label: 'MySQL', color: '#5243AA' },
-    { value: 'mongodb', label: 'MongoDB', color: '#FF5630 ' },
-    { value: 'firestore', label: 'FireStore', color: '#FF8B00' },
-    { value: 'aws', label: 'AWS', color: '#FFC400' },
-    { value: 'azure', label: 'Azure', color: '#FFC400' },
+    { value: 'angularjs', label: 'AngularJS', color: '#5243AA' },
+    { value: 'vuejs',label: 'VueJS', color: '#FF5630 ' },
+    { value: 'jquery', label: 'JQuery', color: '#FF8B00' },
+    { value: 'ruby on rails', label: 'Ruby on Rails', color: '#FFC400' },
+    { value: 'spring', label: 'SpringBoot', color: '#FFC400' },
+    { value: 'ui/ux', label: 'UI/UX', color: '#5243AA' },
 
 ];
 
