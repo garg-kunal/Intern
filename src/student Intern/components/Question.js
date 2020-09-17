@@ -94,7 +94,7 @@ export default class Question extends React.Component {
                 <br />
 
                 <div className="container containerInner mb-4"><br />
-                    <div className="row"><p className="mx-auto display-5">Evalaute Questions</p></div>
+                    <div className="row"><p className="mx-auto display-5">Evaluate Questions</p></div>
                     {this.state.questions.map((item, key) =>
                         <div>
                             &nbsp;&nbsp; <b style={{fontSize:"18px"}}>{key + 1}. {item}</b><br /><br />

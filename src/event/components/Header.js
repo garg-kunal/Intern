@@ -24,7 +24,7 @@ export default function Header() {
         <div className="container-fluid  container-header-event">
             <br />
             <Navbar />
-            <div className="row">
+            <div className="row mx-auto text-center">
                 <div className="col-12 text-center event-name">
                     <span className="event-bracket">{open}</span>Dev Colloquium<span className="event-bracket">{close}</span>
                 </div>

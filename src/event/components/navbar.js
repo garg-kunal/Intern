@@ -7,7 +7,7 @@ export default function Navbar() {
             <a className="navbar-brand" href="#">
                 <img src={Merge} className="img-fluid merge-logo-all-student  event-navbar-img" />
             </a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+            <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
                 aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon event-toogler"></span>
             </button>
@@ -19,8 +19,8 @@ export default function Navbar() {
                         </a>
                     </li>
                     <li className="nav-item nav-item-event">
-                        <a className="nav-link nav-item-event" href="#">
-                            Schedules
+                        <a className="nav-link nav-item-event" href="#register">
+                           Register
                         </a>
                     </li>
                     <li className="nav-item nav-item-event">

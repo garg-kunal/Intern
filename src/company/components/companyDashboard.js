@@ -174,7 +174,7 @@ class CompanyDashBoard extends React.Component {
                     {Applications}
                 </div>
                 <br/>
-                <div className="container row  nextPage">
+                <div className="container row  text-center  nextPage">
                     <button type="button" className="left text-center" onClick={this.prevPage}> {"<"} </button>
                     <span className="currentPage text-center mt-1">{this.state.pageNo}</span>
                     <button type="button" className="right text-center" onClick={this.nextPage}> {">"} </button>

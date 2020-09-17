@@ -177,7 +177,8 @@ class PostInternship extends React.Component {
     render() {
         return (
             <div className="container-fluid postInternship">
-                <p className="heading">Post Internships</p>
+                <br/>
+                <p className="heading pt-2">Edit Internship</p>
                 <p className="head head2">Internship Details :</p>
                 <p className="head head3">Profile :</p>
                 <input type="text" value={this.state.profile}
@@ -253,7 +254,7 @@ class PostInternship extends React.Component {
                 <p className="head head3">Evaluation Questions :</p>
                 <Questions methodFromParent={this.parentCollector} />
                 <div className="save container">
-                    <button type="button" onClick={this.showAll} className="proceed col-10 col-sm-6 text-center">Post Internship</button>
+                    <button type="button" onClick={this.showAll} className="proceed col-10 col-sm-6 text-center">Edit Internship</button>
                 </div>
                 <Modal
                     show={this.state.show}

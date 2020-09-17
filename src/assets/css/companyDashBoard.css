@@ -143,6 +143,19 @@ hr {
         padding-top: 20px;
         font-size: 0.9em;
     }
+    .btn-prev-applications{
+        color: #4A00E0;
+        margin-left: 150;
+        background-color: white;
+        border:1px solid #4A00E0;
+    }
+    .btn-next-applications{
+        color: white;
+        background-color: #4A00E0;
+    }
+    .intern-text-applicants{
+        font-size: 11px !important;
+    }
     .downArrow {
         margin-left: 10px;
         height: 16px;
@@ -166,8 +179,12 @@ hr {
         font-size: 0.7em;
     }
     .downArrow {
+        display: none;
         height: 10px;
         margin-left: 10px;
+    }
+    .intern-text-applicants{
+        font-size: 10px !important;
     }
     .rowCol {
         font-size: 0.8em;
@@ -176,6 +193,17 @@ hr {
         font-size: 8px;
         padding: 3px 3px;
     }
+    .btn-prev-applications{
+        color: #4A00E0;
+        margin-left: 100;
+        background-color: white;
+        border:1px solid #4A00E0;
+    }
+    .btn-next-applications{
+        color: white;
+        background-color: #4A00E0;
+    }
+    
     .rowCol .action {
         font-size: 8px;
         padding: 3px 3px;
@@ -184,11 +212,17 @@ hr {
         margin-left: 1px;
         height: 12px;
     }
-    .left, .right {
+    .left{
+        margin-left: 140px;
+        font-size: 16px;
+        outline: none;
+    }
+    .right{
         font-size: 16px;
         outline: none;
     }
     .currentPage {
+        margin-top: -5px !important;
         font-size: 16px;
     }
 }
@@ -197,6 +231,9 @@ hr {
     .titleCol {
         padding-top: 20px;
         font-size: 0.6em;
+    }
+    .intern-text-applicants{
+        font-size: 8px !important;
     }
     .downArrow {
         height: 8px;
@@ -216,6 +253,18 @@ hr {
     .more {
         margin-left: 10px;
         height: 8px;
+    }
+    .btn-prev-applications{
+        color: #4A00E0;
+        margin-left: 70px;
+        background-color: white;
+        border:1px solid #4A00E0;
+        font-size: 10px;
+    }
+    .btn-next-applications{
+        color: white;
+        font-size: 10px;
+        background-color: #4A00E0;
     }
 }
 
@@ -231,5 +280,17 @@ hr {
     .rowCol .action {
         font-size: 8px;
         padding: 3px 2px;
+    }
+    .btn-prev-applications{
+        color: #4A00E0;
+        margin-left: 50px;
+        background-color: white;
+        border:1px solid #4A00E0;
+        font-size: 10px;
+    }
+    .btn-next-applications{
+        color: white;
+        font-size: 10px;
+        background-color: #4A00E0;
     }
 }

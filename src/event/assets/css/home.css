@@ -4,8 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,900&display=swap');
 
-.container-event{
-  
+.container-event {
+
     overflow-x: hidden !important;
     /* background-color: #303030; */
 }
@@ -16,115 +16,135 @@
 /***********************************/
 
 
-.container-header-event{
+.container-header-event {
     background-image: url('../images/hero.png');
     background-repeat: no-repeat;
-    height:700px;
+    height: 700px;
     background-size: cover;
     background-position: center;
 }
-.event-name{
-    margin-top: 200px;
+
+.event-name {
+    margin-top: 150px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 45px;
+    color: #737373;
 }
-.event-2020{
-    font-size: 65px;
+
+.event-2020 {
+    font-size: 85px;
     font-family: 'Montserrat', sans-serif;
-        font-weight: 200;
-    
+    font-weight: 300 !important;
+    color: #a6a6a6;
+    margin-top: -20px !important;
+
 }
-.event-bracket{
+
+.event-bracket {
+
     font-size: 45px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color: #4a00e0 !important
 }
-@media only screen and (max-width: 768px){
-    .container-header-event{
-        background-image: url('../images/hero-bg-mobile.png');
+
+@media only screen and (max-width: 768px) {
+    .container-header-event {
+        background-image: url('../images/hero.png');
         background-repeat: no-repeat;
-        height:620px;
+        height: 580px;
         background-position: center;
         background-size: cover;
     }
-    .event-bracket{
+
+    .event-bracket {
         display: inline;
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 28px;
-        color: #852de2 !important;
+        color: #4a00e0 !important;
 
     }
-    .event-2020{
+
+    .event-2020 {
         margin-top: -20px !important;
         display: block;
         font-size: 80px !important;
         font-family: 'Montserrat', sans-serif;
-        font-weight: 200;
-        color: #d9d9d9;
+        font-weight: 300 !important;
+        color: #a6a6a6;
     }
-    .event-name{
+
+    .event-name {
         display: inline;
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 28px;
-        color: #e6e6e6;
-        padding-top: 150px;
+        color: #737373;
+        /* padding-top: 10px; */
     }
-.event-toogler{
-    color: white !important;
-}
+
+    .event-toogler {
+        color: white !important;
+    }
 }
 
 
 .react-rotating-text-cursor {
     font-size: 45px !important;
     animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
-  }
-  .rotate-text{
+}
+
+.rotate-text {
     padding-top: 350px !important;
     padding-left: 450px;
 
-  }
-   
-  @keyframes blinking-cursor {
+}
+
+@keyframes blinking-cursor {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
+
     50% {
-      opacity: 1;
+        opacity: 1;
     }
+
     100% {
-      opacity: 0;
+        opacity: 0;
     }
-  }
+}
 
 /***********************************/
 /* Navbar css */
 /***********************************/
 
-.navbar-event{
+.navbar-event {
     background: transparent !important;
 }
-.nav-item-event{
-    color: #4a00e0 !important;
+
+.nav-item-event {
+    color: black !important;
     padding-right: 50px;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
+    font-size: 17px;
 }
 
-@media only screen and (max-width:768px){
-    .navbar-event{
-        background: #737373 !important;
+@media only screen and (max-width:768px) {
+    .navbar-event {
+        background-color: white;
         padding: 1px !important;
     }
-    .nav-item-event{
-        color: white !important;
+
+    .nav-item-event {
+        background-color: white;
+        color: black !important;
         padding-left: 25px;
         font-size: 13px;
     }
-    .event-navbar-img{
+
+    .event-navbar-img {
         height: 20px !important;
         width: 50px !important;
     }
@@ -134,35 +154,41 @@
 /* Timer css */
 /***********************************/
 
-.timer-transparent{
-    background-color: #303030;
-   
+.timer-transparent {
+    background-color: #4f3385;
+
 }
-.container-event-timer{
+
+.container-event-timer {
     max-width: 70%;
     /* background-image:url('../images/timer.png'); */
     background-color: transparent;
-   
+
 }
-.location-event{
+
+.location-event {
     height: 30px;
-    color: #e6e6e6 !important;
+    color: #4a00e0 !important;
     width: 25px;
 }
-.event-timer-txt{
-    color:#737373;
+
+.event-timer-txt {
+    color: #e6dbdb;
     font-size: 24px;
 }
-.event-time-timer{
+
+.event-time-timer {
     font-size: 24px;
 }
-@media only screen and (max-width: 768px){
-    .container-event-timer{
+
+@media only screen and (max-width: 768px) {
+    .container-event-timer {
         max-width: 100%;
-       
+
     }
-    .event-timer-txt{
-        color:#737373;
+
+    .event-timer-txt {
+        color: #e6dbdb;
         font-size: 12px;
     }
 
@@ -171,15 +197,17 @@
 /******************************/
 /* Mid css */
 /*****************************/
-.event-mid-image{
+.event-mid-image {
     height: 550px;
     width: 550px;
 }
-.event-mid-heading{
+
+.event-mid-heading {
     letter-spacing: 1px;
     margin-top: 40px;
 }
-.event-mid-para{
+
+.event-mid-para {
     font-weight: 100;
     letter-spacing: 1px;
 }
@@ -188,35 +216,39 @@
 /* Speaker css */
 /*************************************/
 
-.event-speaker-heading-main{
+.event-speaker-heading-main {
     margin-left: 40px;
     margin-top: 40px;
 }
-.event-speaker-il{
+
+.event-speaker-il {
     margin-top: -40px;
-margin-right: -160px;
-height: 300px;
+    margin-right: -160px;
+    height: 300px;
 }
 
 /**********************************/
 /* speaker  */
 /**********************************/
-.event-speaker-image{
+.event-speaker-image {
     z-index: 5555;
     height: 200px;
     width: 200px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
-.event-speaker-image:hover{
+
+.event-speaker-image:hover {
     transform: scale(1.05);
     z-index: 9999;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
-.speaker-name{
+
+.speaker-name {
     padding-top: 15px;
-    
+
 }
-.about-speaker{
+
+.about-speaker {
     font-weight: normal;
 }
 
@@ -224,51 +256,60 @@ height: 300px;
 /* schedule speakerc css */
 /*******************************/
 
-.event-schedule-container{
+.event-schedule-container {
     max-width: 60%;
 }
-.event-speaker-image-schedule{
+
+.event-speaker-image-schedule {
     height: 150px;
     width: 150px;
 }
-.schedule-card{
+
+.schedule-card {
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-.about-speaker-schedule{
+
+.about-speaker-schedule {
     font-weight: normal;
 }
-.speaker-name-schedule{
+
+.speaker-name-schedule {
     padding-top: 25px;
 }
-.schedule-hr{
+
+.schedule-hr {
     width: 50%;
     margin-top: -25px !important;
     align-self: center;
-    border:2px solid #4a00e0 !important;
+    border: 2px solid #4a00e0 !important;
     border-radius: 15px;
     margin-bottom: 40px;
 
 }
+
 @media only screen and (max-width: 768px) {
-    
-.event-schedule-container{
-    max-width: 100%;
-}
-.event-speaker-image-schedule{
-    margin-top: 15px;
-    height: 90px;
-    width: 90px;
-}
-.about-speaker-schedule{
-    font-weight: normal;
-    font-size: 13px;
-}
-.speaker-name-schedule{
-    padding-top: 15px;
-    font-size: 16px;
-}
+
+    .event-schedule-container {
+        max-width: 100%;
+    }
+
+    .event-speaker-image-schedule {
+        margin-top: 15px;
+        height: 90px;
+        width: 90px;
+    }
+
+    .about-speaker-schedule {
+        font-weight: normal;
+        font-size: 13px;
+    }
+
+    .speaker-name-schedule {
+        padding-top: 15px;
+        font-size: 16px;
+    }
 
 }
 
@@ -279,7 +320,7 @@ height: 300px;
 
 
 .event-container-register-main {
-    background-image: url('../images/il-5.png');
+    /* background-image: url('../images/il-5.png'); */
     background-size: cover;
     height: 450px;
     width: 100% !important;
@@ -292,15 +333,17 @@ height: 300px;
 /* partners and compamies */
 /******************************/
 
-.event-speaker-image-company{
+.event-speaker-image-company {
     height: 140px;
     width: 140px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
 }
-.event-speaker-image-company:hover{
-transform: scale(1);
+
+.event-speaker-image-company:hover {
+    transform: scale(1);
 }
+
 /*******************************/
 /* event-faq */
 /*******************************/
@@ -314,17 +357,18 @@ p.accordion {
     border: none;
     outline: none;
     transition: 0.4s;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 /* Add a background color to the accordion if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-p.accordion.active, p.accordion:hover {
+p.accordion.active,
+p.accordion:hover {
     background-color: #ddd;
 }
 
 /* Unicode character for "plus" sign (+) */
 p.accordion:after {
-    content: '\2795'; 
+    content: '\2795';
     font-size: 13px;
     color: #777;
     float: right;
@@ -333,7 +377,7 @@ p.accordion:after {
 
 /* Unicode character for "minus" sign (-) */
 p.accordion.active:after {
-    content: "\2796"; 
+    content: "\2796";
 }
 
 /* Style the element that is used for the panel class */
@@ -346,18 +390,19 @@ div.panel {
     overflow: hidden;
     transition: 0.4s ease-in-out;
     opacity: 0;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 div.panel.show {
     opacity: 1;
-    max-height: 500px; /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
+    max-height: 500px;
+    /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
 }
 
 /******************/
 /* contactus-event */
 /*******************/
-.contactus-event{
+.contactus-event {
     font-weight: normal;
 }
 
@@ -366,39 +411,98 @@ div.panel.show {
 /* footer css */
 /**************************/
 
-.footer{
+.footer {
     height: 30vh;
-    background: #545454;
+    background: lightgrey;
     /* background: linear-gradient(180deg, rgba(85,6,244,1) 33%, #8e2de2 67%); */
 }
 
-.event-footer-text{
-    color:white;
+.event-footer-text {
+    color: black;
     font-size: 25px;
 }
-.footer-event-text-sub{
-    color: white;
+
+.footer-event-text-sub {
+    color: black;
     font-size: 19px;
     font-weight: normal;
 }
 
-@media only screen and (max-width:768px){
-    .footer{
+@media only screen and (max-width:768px) {
+    .footer {
         height: 40vh;
-        background: #545454;
+        background: lightgrey;
         /* background: linear-gradient(180deg, rgba(85,6,244,1) 33%, #8e2de2 67%); */
     }
-    .event-footer-text{
-        color:white;
+
+    .event-footer-text {
+        color: black;
         font-size: 18px;
     }
-    .footer-event-text-sub{
-        color: white;
+
+    .footer-event-text-sub {
+        color: black;
         font-size: 12px !important;
         font-weight: normal;
         padding-left: 20px;
         padding-right: 20px;
     }
 
+
+}
+
+
+
+
+/******************************/
+/* form-register-event */
+/*******************************/
+
+.form-register-event {
+    background-color: white;
+    /* border: 1px solid #4a00e0; */
+
+}
+
+.form-event-inner {
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    max-width: 80%;
+    border-radius: 20px;
+
+}
+
+.event-form-heading {
+    color: black;
+    font-weight: 400;
+    padding-bottom: 5px;
+}
+.merge-link-event{
+    margin: auto;
+    padding-top: 10px;
+}
+.merge-link-event:hover{
+    cursor: pointer;
+    color: #4a00e0;
+    transform: scale(1.1);
+}
+
+.btn-event-register {
+    background-color: #4a00e0;
+    color: white;
+    width: 100%;
+    margin: auto;
+    border-radius: 40px;
+}
+.btn-merge-save{
+    background: transparent;
+}
+@media only screen and (max-width){
+    .form-event-inner {
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        width: 100% !important;
+        border-radius: 20px;
+    }
 
 }

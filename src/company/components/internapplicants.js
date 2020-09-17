@@ -23,7 +23,10 @@ export default class Applicants extends React.Component {
 
     }
     componentDidMount() {
+        this.load();
+    }
 
+    load() {
         const headers = {
             headers: {
                 'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
@@ -51,75 +54,77 @@ export default class Applicants extends React.Component {
         })
 
     }
-approve(id){
-    const headers = {
-        headers: {
-            'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+    approve(id) {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         }
-    }
-    const data={
-        id:id
-    }
-  axios.post('/api/accounts/company/internship/approve_applicant',data,headers)
-  .then((res)=>{
-      if(res.data.status===200){
-          alert(res.data.status_message.message);
-      }
-      else  alert(res.data.status_message.message);
-  })
-  .catch((err)=>console.log(err))
-}
-reject(id){
-    const headers = {
-        headers: {
-            'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+        const data = {
+            id: id
         }
+        axios.post('/api/accounts/company/internship/approve_applicant', data, headers)
+            .then((res) => {
+                if (res.data.status === 200) {
+                    alert(res.data.status_message.message);
+                   this.load();
+                }
+                else alert(res.data.status_message.message);
+            })
+            .catch((err) => console.log(err))
     }
-    const data={
-        id:id
+    reject(id) {
+        const headers = {
+            headers: {
+                'Authorization': "Token " + localStorage.getItem("merge_jwt_c"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        const data = {
+            id: id
+        }
+        axios.post('/api/accounts/company/internship/reject_applicant', data, headers)
+            .then((res) => {
+                if (res.data.status === 200) {
+                    alert(res.data.status_message.message);
+                    this.load();
+                }
+                else alert(res.data.status_message.message);
+            })
+            .catch((err) => console.log(err))
     }
-  axios.post('/api/accounts/company/internship/reject_applicant',data,headers)
-  .then((res)=>{
-      if(res.data.status===200){
-          alert(res.data.status_message.message);
-      }
-      else  alert(res.data.status_message.message);
-  })
-  .catch((err)=>console.log(err))
-}
     render() {
         return (
-            <div className="container-fluid" style={{marginTop:"100px"}}>
+            <div className="container-fluid" style={{ marginTop: "100px" }}>
                 <h3 className="text-center mt-4" style={{ color: "#4A00E0" }}>Intern Applicants</h3>
                 <div className="container mt-5">
                     <div className="card">
-                        <div className="row mt-3">
-                            <div className="col-md-2 col-lg-2">
-                                <p className="text-center">S.NO
+                        <div className="row mt-3 no-gutters">
+                            <div className="col-md-2 col-2 col-lg-2  intern-text-applicants">
+                                <p className="text-center intern-text-applicants">S.NO
                         <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} />
                                 </p>
                             </div>
-                            <div className="col-md-3 col-lg-3">
-                                <p className="text-center">Names
+                            <div className="col-md-3 col-3 col-lg-3  intern-text-applicants">
+                                <p className="text-center intern-text-applicants">Names
                         <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} />
                                 </p>
                             </div>
-                            <div className="col-md-3 col-lg-3">
-                                <p className="text-center">Visit Profile
+                            <div className="col-md-3 col-3 col-lg-3  intern-text-applicants">
+                                <p className="text-center intern-text-applicants">Visit Profile
                         <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} />
                                 </p>
                             </div>
-                            <div className="col-md-2 col-lg-2">
-                                <p className="text-center">Approve
+                            <div className="col-md-2  col-2 col-lg-2  intern-text-applicants">
+                                <p className="text-center intern-text-applicants">Approve
                         <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} />
                                 </p>
                             </div>
-                            <div className="col-md-2 col-lg-2">
-                                <p className="text-center">Reject
+                            <div className="col-md-2 col-2 col-lg-2  intern-text-applicants">
+                                <p className="text-center intern-text-applicants">Reject
                         <img src={arrow} alt="" className="downArrow" style={{ height: "30px", width: "30px" }} />
                                 </p>
                             </div>
@@ -137,7 +142,7 @@ reject(id){
                                 <div className="col-md-3 col-lg-3">
                                     <p className="text-center application-text">
                                         <NavLink
-                                         
+
                                             to={{
                                                 pathname: "/resume",
                                                 id: {
@@ -149,15 +154,15 @@ reject(id){
                                 </div>
                                 <div className="col-md-2 col-lg-2">
                                     <p className="text-center">
-                                        <button onClick={()=>{this.approve(item.id)}}
-                                        className="btn btn-success">Approve</button>
+                                        <button onClick={() => { this.approve(item.id) }}
+                                            className="btn btn-success">Approve</button>
                                     </p>
                                 </div>
                                 <div className="col-md-2 col-lg-2">
                                     <p className="text-center">
-                                        <button 
-                                        onClick={()=>{this.reject(item.id)}}
-                                        className="btn btn-danger">
+                                        <button
+                                            onClick={() => { this.reject(item.id) }}
+                                            className="btn btn-danger">
                                             Reject
                                         </button>
                                     </p>
@@ -169,7 +174,7 @@ reject(id){
                     </div>
                     <div className="row mt-5">
                         <button onClick={() => { this.prev() }} className="btn  btn-prev-applications">Back</button>
-                        &nbsp;&nbsp;&nbsp;<span style={{fontSize:"25px"}} >{this.state.page}</span>&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;<span style={{ fontSize: "25px" }} >{this.state.page}</span>&nbsp;&nbsp;&nbsp;
                         <button onClick={() => { this.next() }} className="btn btn-next-applications">Next</button>
                     </div>
 

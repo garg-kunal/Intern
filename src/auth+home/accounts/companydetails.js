@@ -122,11 +122,21 @@ export class CompanyRegister extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <div className="">
                             <div className="row no-gutters">
+                                
+                                <div className="col-md-7 col-lg-7 col-12">
+                                    <div className="mt-2">
+                                        <b>Company:</b>&nbsp;&nbsp;{this.state.company_name}<br />
+                                        <b>Email:</b> &nbsp;&nbsp;{this.state.email}<br />
+                                        <b>Registered Mobile No:</b> &nbsp;&nbsp;{this.state.mobile_number}<br />
+                                        <b>Company Type:</b> &nbsp;&nbsp;{this.state.company_type}<br />
+                                    </div>
+
+                                </div>
                                 <div className="col-md-3 col-lg-3 col-12 ">
                                     <div className="form-group">
                                         <img
                                             src={this.state.logo}
-                                            style={{ height: "140px", width: "150px", border: "1px solid #4A00E0" }}
+                                            style={{ height: "130px", width: "130px" }}
                                             className="img-fluid company-logo-main" alt="Company logo" />
                                         <br />
 
@@ -142,16 +152,8 @@ export class CompanyRegister extends Component {
                                         </ImagePicker>
                                     </div>
                                 </div>
-                                <div className="col-md-7 col-lg-7 col-12">
-                                    <div className="mt-2">
-                                        <b>Company:</b>&nbsp;&nbsp;{this.state.company_name}<br />
-                                        <b>Email:</b> &nbsp;&nbsp;{this.state.email}<br />
-                                        <b>Registered Mobile No:</b> &nbsp;&nbsp;{this.state.mobile_number}<br />
-                                        <b>Company Type:</b> &nbsp;&nbsp;{this.state.company_type}<br />
-                                    </div>
-
-                                </div>
                             </div>
+                            
                             <div className="form-group mt-3">
                                 <input
                                     type="text"
@@ -235,7 +237,7 @@ export class CompanyRegister extends Component {
                                     }}
                                     className="btn btn-lg col-7 mb-3"
                                 >
-                                    Save Data
+                                    Save Information
                   </button>
                             </center>
                         </div>

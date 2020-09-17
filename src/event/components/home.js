@@ -9,12 +9,14 @@ import Partners from './partners';
 import Faq from './faqs';
 import Contact from './contact';
 import Footer from './footer';
+import Form from './formRegister';
 export default function Home() {
     return (
         <div className="container-fluid  container-event" style={{ padding: "0" }}>
             <Header />
             {/* <br/> */}
             <Timer />
+            <Form/>
             {/* <br/><br/>
             <Mid/> */}
             {/* <br/><br/>

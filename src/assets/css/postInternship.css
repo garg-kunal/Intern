@@ -20,9 +20,9 @@
     margin-top: 20px;
     margin-bottom: 50px;
     font-size: 1.7em;
-    font-weight: 700;
+    font-weight: 400 !important;
     text-align: center;
-    color: #4A00E0;
+    color: black !important;
 }
 .postInternship .head {
     font-size:18px ;
@@ -38,13 +38,19 @@
 
 /* Internship Profile Section */
 .profileContainer {
-    border: solid 1px black;
+    border: 1px solid  rgb(134, 129, 129);
     margin: auto;
+    font-weight: normal !important;
     border-radius: 10px;
     padding: 2%;
 }
 .availableProfiles {
     padding-left: 5%;
+   
+}
+.availableProfiles label{
+    font-weight: normal !important;
+    /* font-size: 14px !important; */
 }
 .availableProfiles label input {
     margin-right: 30px!important;
@@ -74,18 +80,19 @@
 .profile-input-form{
     border-radius: 10px;
     padding: 10px;
-    border:1px solid black;
+    border: 1px solid  rgb(134, 129, 129);
 }
 
 
 /* Internship Type*/
 .placeTime {
-    border: solid 1px black;
+    border: 1px solid  rgb(134, 129, 129);
     border-radius: 10px;
-    padding: 20px 0;
+    padding: 10px  0;
+    padding-bottom: -10px !important;
 }
 .placeTime input {
-    margin-right: 20px;
+    margin-right: 5px;
    height: 20px;
 }
 .placeTime label {
@@ -97,17 +104,24 @@
     color: rgba(0,0,0,0.5);
     font-size: 1.3em;
     font-weight: 600;
+    padding-left: 15px;
 }
+.label-placetime{
+    font-weight: normal !important;
+   
+}
+
 
 
 
 /* Start Date */
 .city {
     width: 100%;
-    border: 1px solid  black;
-    border-radius: 10px;
+    border: 1px solid  rgb(134, 129, 129);
+    border-radius: 5px;
     height: 50px;
     font-size: 16px;
+    font-weight: normal;
     padding: 10px;
     /* outline: none; */
 }
@@ -143,7 +157,7 @@
 /* Start Date*/
 .startDate {
     margin: auto;
-    border: solid 1px black;
+    border: 1px solid  rgb(134, 129, 129);
     border-radius: 10px;
     padding-top: 20px;
 }
@@ -154,7 +168,7 @@
 .startDate label {
     margin-left: 30px!important;
     font-size: 1.3em;
-    font-weight: 600;
+    font-weight: normal;
     display: block;
     margin-bottom: 20px;
     color: rgba(0,0,0,0.7);
@@ -200,7 +214,7 @@ textarea {
 .stipendType {
     /* width: 92%; */
     margin: auto;
-    border: solid 1px black;
+    border: 1px solid  rgb(134, 129, 129);
     border-radius: 10px;
     padding: 30px;
 }
@@ -297,7 +311,7 @@ textarea {
 
 .questions {
     margin: auto;
-    border: solid 1px black;
+    border: 1px solid  rgb(134, 129, 129);
     border-radius: 10px;
     padding: 30px;
     font-size: 22px;
@@ -359,6 +373,9 @@ textarea {
         font-size: 1.4em;
         font-weight: 600;
     }
+    .postInternship{
+        width: 100%;
+    }
     .postInternship .head {
         font-size: 1em;
     }
@@ -368,6 +385,12 @@ textarea {
     }
     .availableProfiles {
         padding-left: 1%;
+    }
+    .stipendType{
+        padding-left: -15px;
+    }
+    .stipendType label{
+        font-size: 14px;
     }
     .availableProfiles label input {
         margin-right: 20px!important;
@@ -379,14 +402,21 @@ textarea {
     .placeTime {
         padding: 1% 0;
     }
+    .label-placetime{
+        font-size: 14px !important;
+        margin: auto;
+        font-weight: normal !important;
+        margin-left: 20px !important;
+    }
     .placeTime input {
-        margin-right: 20px;
-        -ms-transform: scale(1.3); 
-        -webkit-transform: scale(1.3);
-        transform: scale(1.3); 
+        /* margin-right: 10px; */
+        -ms-transform: scale(0.9); 
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9); 
     }
     .placeTime label {
-        font-size: 1.1em;
+        font-size: 1.0em;
+        align-items: flex-start;
     }
     .typeIntern {
         font-size: 1.1em;
@@ -399,7 +429,7 @@ textarea {
     }
     .startDate label {
         margin-left: 20px!important;
-        font-size: 1.0em;
+        font-size: 0.9em;
     }
     .startDate .selectDate {
         height: 40px;
@@ -418,11 +448,25 @@ textarea {
         padding-left: 10px;
         font-size: 1.1em; 
     }
+    .questions{
+        font-size: 16px;
+    }
     .pay input {
         height: 40px;
         padding: 5px;
         padding-left: 10px;
         font-size: 1.1em;
+    }
+    .addMore{
+        font-size: 16px !important;
+    }
+    
+    .save{
+        padding-bottom: 100px;
+        margin-top: 70px;
+        outline: none;
+        font-size: 15px;
+        text-align: center;
     }
 }
 
@@ -430,8 +474,16 @@ textarea {
     .heading {
         font-size: 1.2em;
     }
+    .proceed{
+        width: 70%;
+        font-size: 15px;
+    }
+    .stipendType label{
+        font-size: 14px !important;
+    }
     .availableProfiles label input {
         margin-right: 10px!important;
+        font-size: 15px;
         -ms-transform: scale(1.1);
         -webkit-transform: scale(1.1); 
         transform: scale(1.1); 
@@ -441,12 +493,17 @@ textarea {
     }   
     .placeTime input {
         margin-right: 10px;
-        -ms-transform: scale(1.1); 
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1); 
+        -ms-transform: scale(1.0); 
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0); 
     }
     .placeTime label {
-        font-size: 1em;
+        font-size: 0.8em;
+    }
+    .label-placetime{
+        font-size: 14px !important;
+        margin: auto;
+        margin-left: 20px !important;
     }
     .typeIntern {
         font-size: 1em;
@@ -460,7 +517,7 @@ textarea {
     }
     .startDate label {
         margin-left: 20px!important;
-        font-size: 1em;
+        font-size: 0.9em;
     }
     input[type="date"]::-webkit-calendar-picker-indicator {
         margin-right: 20px;
@@ -480,39 +537,49 @@ textarea {
 
 @media only screen and (max-width: 596px) {
     .availableProfiles label input {
+        margin-left: 15px;
         margin-right: 4px!important;
         -ms-transform: scale(0.9);
         -webkit-transform: scale(0.9); 
         transform: scale(0.9); 
     }
+   
     .availableProfiles label {
         font-size: 0.9em;
     }  
     .placeTime input {
         margin-right: 4px;
-        -ms-transform: scale(0.9); 
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9); 
+        -ms-transform: scale(0.7); 
+        -webkit-transform: scale(0.7);
+        transform: scale(0.7); 
     }
     .placeTime label {
-        font-size: 0.9em;
+        font-size: 15px;
+        margin-top: 4px;
+    }
+    .label-placetime{
+        font-size: 14px !important;
+        margin: auto;
+        margin-left: 20px !important;
     }
     .typeIntern {
-        font-size: 1em;
+        font-size: 1.1em;
+        margin-bottom: -10px;
+        margin-top: 5px;
     } 
     .city {
         height: 40px;
-        font-size: 16px;
-        padding-left: 20px;
+        font-size: 11px;
+        padding-left: 4px;
     }
     .startDate input[type="radio"] {
-        margin-right: 20px;
-        -ms-transform: scale(0.9); 
-        -webkit-transform: scale(0.9); 
-        transform: scale(0.9); 
+        margin-right: 5px;
+        -ms-transform: scale(0.7); 
+        -webkit-transform: scale(0.7); 
+        transform: scale(0.7); 
     }
     .startDate label {
-        font-size: 0.9em;
+        font-size: 0.7em;
     }
     .duration input {
         padding-left: 10px;
@@ -527,5 +594,17 @@ textarea {
         padding: 5px;
         padding-left: 10px;
         font-size: 0.9em;
+    }
+    .proceed{
+        width: 70%;
+        font-size: 13px;
+    }
+    .addMore{
+        margin-top: 7px;
+        font-size: 14px  !important;
+        
+    }
+    .questions{
+        font-size: 15px;
     }
 }

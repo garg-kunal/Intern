@@ -55,7 +55,9 @@ function Student() {
       <Route component={OuterNavbar} path="/nav" />
       <Route component={Internships} path="/student/internships" exact />
       <Route component={Screen2} path="/nav/test_skills" exact />
+
       <Route path="/student/resume_form/:bool" component={Form} exact />
+
       <Route component={Screen3} path="/nav/test_score" exact />
       <Route component={Screen4} path="/student/status" exact />
 

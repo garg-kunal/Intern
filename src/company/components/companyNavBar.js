@@ -26,7 +26,7 @@ class CompanyNavBar extends React.Component {
                     <img src={user} alt="Merge." className="img-fluid merge-logo-all-student" />
 
                 </NavLink>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
@@ -40,7 +40,7 @@ class CompanyNavBar extends React.Component {
                         {/* &nbsp;&nbsp;&nbsp; */}
                         <li className="nav-item">
                             <button
-                                className="btn companny-navbar-nav-link-subitem" style={{ background: "transparent" }}
+                                className="btn text-left companny-navbar-nav-link-subitem" style={{ background: "transparent" }}
                                 onClick={() => {
                                     if (window.confirm("Are you sure")) {
                                         localStorage.removeItem("merge_jwt_c");

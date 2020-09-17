@@ -61,7 +61,7 @@ class Questions extends React.Component {
                     <b >Question 1.</b> Why we should hire you?
                 </p>
 
-                <button className="addMore mb-2" onClick={this.addInputField}><b>+</b> Add questions</button>
+                <button className="addMore mb-2" onClick={this.addInputField}>+ Add questions</button>
             </div>
         )
     }
