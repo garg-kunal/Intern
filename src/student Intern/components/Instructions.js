@@ -66,36 +66,41 @@ class Screen2 extends React.Component {
 
         return (
             <div className="container-fluid" style={{ padding: "0" }}>
-                <div className="mobile-view-quiz">
+                {/* <div className="mobile-view-quiz">
                     <Mobile />
-                </div>
+                </div> */}
 
                     <div className="container-fluid instruction-box-main mx-auto">
                         <h2 className="mx-auto text-center" style={{ fontWeight: "1000" }}><b>Instructions</b></h2>
                         <p className="text-right step1">3/3 </p>
-                        <ul className="justify-content-center mx-auto text-left" style={{ listStyle: "none" }} >
-                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                        <ul className="justify-content-center mx-auto text-left instructions-mobile" style={{ listStyle: "none" }} >
+                            <li className="instructions-mobile"
+                             style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
                                 <b>1.</b> To save your answer press "NEXT" button.
                         </li>
-                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                            <li  className="instructions-mobile"
+                             style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
                                 <b>2.</b> For each question alloted time is 30 seconds.
                         </li>
-                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                            <li  className="instructions-mobile"
+                             style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
                                 <b>3.</b> Assessment test has 30 questions for every selected skill.
 
                         </li>
-                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                            <li   className="instructions-mobile"
+                            style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
                                 <b>4.</b> Switching the tab or changing the browser will lead to disqualification.
                         </li>
-                            <li style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
+                            <li   className="instructions-mobile"
+                            style={{ fontSize: "20px", fontWeight: "400", padding: "15px" }}>
                                 <b>5.</b>After clearing at least one skill, you can apply for internships.
                         </li>
                         </ul>
-                        <div className="row no-gutters">
-                            <input type="checkbox"
+                        <div className="row no-gutters instruction-check">
+                            <input type="checkbox" className="check-instruction"
                                 onClick={(e) => { this.check(e) }}
                                 style={{ height: "20px" }} id="vehicle1" name="vehicle1" value="Bike" />
-                            <label style={{ fontSize: "16px", marginLeft: "-50px" }} className="text-left" for="vehicle1"> I agree mentioned above all Instructions. </label>
+                            <label  style={{ fontSize: "16px", marginLeft: "-50px" }} className="text-left instructions-mobile-accept" for="vehicle1"> I agree mentioned above all Instructions. </label>
 
                         </div>
                         <br />

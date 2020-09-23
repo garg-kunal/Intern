@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import '../assets/css/thank_you.css';
 import ok from '../assets/images/Group 83.png';
 import tele from '../assets/images/telegram.png'
@@ -7,10 +7,13 @@ export class ThankYou extends Component {
   render() {
     return (
       <div className="ThankYou vh-100 body-thanku ">
+        <br/>
         <div className="container-fluid vh-100 violet_sq_bg">
           <div className="row px-3">
             <h2 >
-              <NavLink to="/" style={{ color: "white" }}>Merge.</NavLink>
+              <NavLink to="/" className="merge-verify-otp mb-3" style={{ color: "white", fontFamily: "'Spartan', sans-serif" }}>
+                Merge.
+              </NavLink>
             </h2>
           </div>
           <div
@@ -19,14 +22,13 @@ export class ThankYou extends Component {
           >
             <div className="row">
               <div className="mt-2 mx-auto">
-                <img src={ok} className="img-fluid mt-2" style={{ height: "100px",width:"100px" }} />
+                <img src={ok} className="img-fluid mt-2" style={{ height: "100px", width: "100px" }} />
               </div>
             </div>
             <div className="row">
               <div className="mt-2 mx-auto text-center text-dark font-weight-bolder">
-                <p>Thank You For Subscribing</p>
-                <br />
-                <p>We Are Launching Very Soon</p>
+                <p>Thank You For Registering</p>
+                <p>See you at event</p>
                 <p>Check Your Mailbox For Further Updates</p>
                 <br />
               </div>
@@ -84,7 +86,7 @@ export class ThankYou extends Component {
                       src={tele}
                       className="img-fluid ml-3"
                       alt=""
-                      style={{height:"40px",width:"40px"}}
+                      style={{ height: "40px", width: "40px" }}
                     ></img>
                   </span>
                 </a>

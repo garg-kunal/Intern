@@ -3,8 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import otp from '../../assets/images/otp.png';
 import '../../assets/css/verify_otp.css'
-import Axios from "../setup";
-
+import Axios from "../../setup";
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 export class VerifyOTP extends Component {
   constructor(props) {
@@ -15,8 +15,9 @@ export class VerifyOTP extends Component {
       name: "",
       messages: [],
       show: false,
+      pro: false,
     };
-    this.handleResendSubmit = this.handleResendSubmit.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOTPChange = this.handleOTPChange.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -67,17 +68,20 @@ export class VerifyOTP extends Component {
     const data = {
       otp: this.state.otp,
       mobile_number: this.state.mobile_number,
-      account_type: "student"
+      // account_type: "student"
     }
     this.setState({
+      pro: true,
       message: []
     }, () => {
-      Axios.post('/api/accounts/verify_otp', data)
+      var c = document.getElementById("submit-otp");
+      c.disabled = true;
+      Axios.post('/api/accounts/colloquium/verify_otp', data)
         .then((res) => {
-          // console.log(res.data);
+          console.log(res.data);
           if (res.data.status === 200) {
-            localStorage.setItem('merge_jwt', res.data.jwt);
-            this.props.history.push('/nav/skillset');
+            // localStorage.setItem('merge_jwt', res.data.jwt);
+            this.props.history.push('/thankyou');
           }
           else if (res.data.status !== 200) {
             this.state.messages.push(res.data.status_message.message)
@@ -93,32 +97,10 @@ export class VerifyOTP extends Component {
     event.preventDefault();
   }
 
-  handleResendSubmit(event) {
-    const data = {
-      account_type:"student",
-      mobile_number: this.state.mobile_number,
-    }
-    this.setState({
-      messages: []
-    }, () => {
-      Axios.post('/api/accounts/resend_otp', data)
-        .then((res) => {
-          this.state.messages.push(res.data.status_message.message);
-          this.setState({
-            show: true
-          })
-        })
-        .catch((err) => console.log(err))
-
-    })
-
-    event.preventDefault();
-  }
-
   componentDidMount() {
-    const { mobile_number } = this.props.match.params;
+    const { phn } = this.props.match.params;
     // console.log(this.props.match.params);
-    this.setState({ mobile_number: mobile_number }, () => {
+    this.setState({ mobile_number: phn }, () => {
       // console.log(this.state);
     });
     var c = document.getElementById("submit-otp");
@@ -129,6 +111,10 @@ export class VerifyOTP extends Component {
   render() {
     return (
       <div className="container-fluid body-otp " >
+        {this.state.pro ?
+          <LinearProgress style={{ backgroundColor: "white" }} />
+          : null}
+
         <div className="container-fluid">
           <div className="row px-2">
             <h2 style={{ color: "white", paddingTop: "20px", fontFamily: "'Spartan', sans-serif" }}>
@@ -219,7 +205,7 @@ export class VerifyOTP extends Component {
             <div className="row">
               <div className="mx-auto mt-3">
                 OTP sent to: {this.state.mobile_number}
-                <form onSubmit={this.handleResendSubmit}>
+                {/* <form onSubmit={this.handleResendSubmit}>
                   <button
 
                     className="btn text-violet bg-transparent mx-auto"
@@ -228,7 +214,8 @@ export class VerifyOTP extends Component {
                   >
                     Resend OTP
                   </button>
-                </form>
+                </form> */}
+                <br /><br />
               </div>
             </div>
             <Modal

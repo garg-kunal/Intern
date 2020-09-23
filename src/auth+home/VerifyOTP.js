@@ -14,6 +14,7 @@ export class VerifyOTP extends Component {
       mobile_number: "",
       name: "",
       messages: [],
+      path: "",
       show: false,
     };
     this.handleResendSubmit = this.handleResendSubmit.bind(this);
@@ -66,15 +67,16 @@ export class VerifyOTP extends Component {
   handleSubmit(event) {
     const data = {
       otp: this.state.otp,
-      mobile_number: this.state.mobile_number,
-      account_type: "student"
+      email: this.state.mobile_number,
+      account_type: "student",
+      type: this.state.path
     }
     this.setState({
       message: []
     }, () => {
       Axios.post('/api/accounts/verify_otp', data)
         .then((res) => {
-          // console.log(res.data);
+          console.log(res.data);
           if (res.data.status === 200) {
             localStorage.setItem('merge_jwt', res.data.jwt);
             this.props.history.push('/nav/skillset');
@@ -95,8 +97,7 @@ export class VerifyOTP extends Component {
 
   handleResendSubmit(event) {
     const data = {
-      account_type:"student",
-      mobile_number: this.state.mobile_number,
+      email: this.state.mobile_number
     }
     this.setState({
       messages: []
@@ -117,8 +118,12 @@ export class VerifyOTP extends Component {
 
   componentDidMount() {
     const { mobile_number } = this.props.match.params;
+    const { path } = this.props.match.params;
     // console.log(this.props.match.params);
-    this.setState({ mobile_number: mobile_number }, () => {
+    this.setState({
+      mobile_number: mobile_number,
+      path: path
+    }, () => {
       // console.log(this.state);
     });
     var c = document.getElementById("submit-otp");
@@ -158,8 +163,8 @@ export class VerifyOTP extends Component {
                       <input
                         id="otp_dig_1"
                         className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
+                        type="number"
+                        pattern="[0-9]*"
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}
@@ -171,8 +176,8 @@ export class VerifyOTP extends Component {
                       <input
                         id="otp_dig_2"
                         className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
+                        type="number"
+                        pattern="[0-9]*"
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}
@@ -184,8 +189,8 @@ export class VerifyOTP extends Component {
                       <input
                         id="otp_dig_3"
                         className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
+                        type="number"
+                        pattern="[0-9]*"
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}
@@ -196,8 +201,8 @@ export class VerifyOTP extends Component {
                       <input
                         id="otp_dig_4"
                         className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
+                        type="number"
+                        pattern="[0-9]*"
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}
@@ -216,12 +221,11 @@ export class VerifyOTP extends Component {
                 </form>
               </div>
             </div>
-            <div className="row">
+            <div className="row text-center">
               <div className="mx-auto mt-3">
                 OTP sent to: {this.state.mobile_number}
                 <form onSubmit={this.handleResendSubmit}>
                   <button
-
                     className="btn text-violet bg-transparent mx-auto"
                     style={{ fontSize: "1.1em", paddingLeft: "40px", fontWeight: "800", color: "#4A00E0", marginTop: "-40px" }}
                     type="submit"

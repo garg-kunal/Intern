@@ -154,8 +154,8 @@ export class VerifyOTP extends Component {
                       <input
                         id="otp_dig_1"
                         className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
+                        type="number"
+                        pattern="[0-9]*"
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}
@@ -167,21 +167,23 @@ export class VerifyOTP extends Component {
                       <input
                         id="otp_dig_2"
                         className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
+                        type="number"
+                        pattern="[0-9]*"
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}
                         style={{ textAlign: "center" }}
                       />
                       {/* <span>-</span> */}
+                       {/* pattern="\d*" */}
                     </div>
                     <div style={{ display: "flex", alignItems: "center" }} className="mx-auto">
                       <input
                         id="otp_dig_3"
                         className="verify-otp-input text-center"
-                        type="text"
-                        pattern="\d*"
+                        type="number"
+                        pattern="[0-9]*"
+                       
                         maxLength="1"
                         required
                         onChange={this.handleOTPChange}

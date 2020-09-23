@@ -44,6 +44,16 @@ export default function Speaker() {
             image: "https://cdn.vectorstock.com/i/1000x1000/22/39/construction-company-logo-samples-vector-2222239.jpg",
             para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
         },
+         {
+            name: "Test",
+            image: "https://cdn.vectorstock.com/i/1000x1000/22/39/construction-company-logo-samples-vector-2222239.jpg",
+            para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+        },
+        {
+            name: "Test",
+            image: "https://cdn.vectorstock.com/i/1000x1000/22/39/construction-company-logo-samples-vector-2222239.jpg",
+            para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+        },
     ])
     return (
         <section className="container-fluid">

@@ -6,8 +6,8 @@ export default function Contactus() {
             <h4 className="text-center">
                 Contact Us
             </h4>
-            <p className="contactus-event">
-                If you have any queries,reach out to us at www.mergeintern.com
+            <p className="contactus-event text-center">
+                If you have any queries,reach out to us at team@mergeintern.com
             </p>
         </section>
     )

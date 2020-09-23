@@ -1,10 +1,12 @@
 import React from 'react';
-
+import logo from '../../assets/images/Merge.-1.png';
 const navbar = () => {
     return (
-        <nav className="navbar navbar-student navbar-expand-lg">
-            <a className="navbar-brand navbar-brand-student" href="#">
-                <strong style={{ color: "white", paddingLeft: "20px", fontSize: "25px", fontFamily: "'Spartan', sans-serif" }}>Merge.</strong>
+        <nav className="navbar  navbar-expand-lg" style={{backgroundColor:"#4a00e0",height:"70px"}}>
+          
+            <a className="navbar-brand " href="#">
+            <img src={logo} className="img-fluid merge-logo-all-student" style={{float:"left"}} />
+              
             </a>
         </nav>
     )

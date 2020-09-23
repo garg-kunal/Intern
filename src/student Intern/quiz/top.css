@@ -30,7 +30,7 @@ user-select: none;
 
 @media only screen and (max-width: 1200px) {
     .card-body-quiz{
-        display: none;
+        /* display: none; */
     }
     .top{
         display:none;
@@ -39,7 +39,7 @@ user-select: none;
         display:none;
     }
     .container-fluid-main-quiz{
-        display: none;
+        /* display: none; */
     }
     
 }
@@ -175,8 +175,9 @@ user-select: none;
 
 @media only screen and (max-width: 768px) {
     .card-body-quiz{
-        display: none;
+       height: auto;
     }
+    
 .top{
     display:none;
 }
@@ -203,8 +204,11 @@ user-select: none;
     .group{
         display:none;
     }
-    .card-body-quiz{
-        display: none;
+    .quiz-text-main{
+      font-size: 14px !important;
+    }
+    .quiz-text-question{
+      font-size: 14px !important;
     }
 }
 .btn-quiz{

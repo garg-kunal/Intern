@@ -165,6 +165,9 @@ background-color: white;
 .skill-name-frontend{
     font-size: 20px;
 }
+.instruction-check{
+    display: inline;
+}
 
 @media only screen and  (max-width : 768px) {
     .innerBox{
@@ -184,10 +187,23 @@ background-color: white;
         height: 180vh;
     }
     .instruction-box-main{
-        display: none;
+       min-width: 90% !important;
+        /* display: none; */
+    }
+    .instructions-mobile{
+        font-size: 14px !important;
+    }
+    .instructions-mobile-accept{
+        font-size: 14px;
+    display: inline;
+    padding-left: 25px;
+    padding-bottom: 15px;
+    }
+    .check-instruction{
+        height: 15px !important;
     }
     .mobile-view-quiz{
-        display: contents;
+        display:none;
     }
     .main-box-location{
         height: 110vh!important;

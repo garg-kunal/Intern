@@ -46,7 +46,7 @@ import Drawer from './student Intern/quiz/Drawer';
 import Privacy from './auth+home/policy';
 import Event from './event/components/home';
 import OuterNavbar from './student Intern/components/outerNavbar';
-
+import OtpEvent from './event/components/otpVerify';
 function Student() {
   return (
     <div>
@@ -91,13 +91,14 @@ function App() {
         <Route component={Studentlogin} path="/login/student" exact />
         <Route component={Companylogin} path="/login/company" exact />
         <Route component={Companydetail} path="/create/company_detail/:email" exact />
-        <Route component={verifyotp} path="/login/verify_otp/:mobile_number" exact />
+        <Route component={verifyotp} path="/login/verify_otp/:mobile_number/:path" exact />
         <Route component={verify} path="/login/verify/:email" exact />
-        <Route component={Thanku} path="/login/thnku" exact />
+        <Route component={Thanku} path="/thankyou" exact />
         
         <Route component={Home} path="/" exact />
        
         <Route component={Event} path="/devcol" exact />
+        <Route component={OtpEvent} path="/verify_otp_event/:phn" exact />
 
 
         <Route component={Savecompany} path="/save_company" exact />

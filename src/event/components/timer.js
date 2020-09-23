@@ -53,16 +53,16 @@ export default class Timer extends React.Component {
                 <br />
                 <section className="container container-event-timer mx-auto">
                     <div className="row no-gutters pt-4 pb-3">
-                        <div className="col-md-4 col-4 mx-auto text-center">
+                        <div className="col-md-6 col-6 mx-auto text-center">
                             <img src={loc} className="img-fluid location-event" /><br /><br />
                             <p className="event-timer-txt">Online</p>
                         </div>
-                        <div className="col-md-4 col-4 mx-auto text-center">
-                            <img src={time} className="img-fluid location-event" /><br /><br />
-                            <p className="event-timer-txt  event-time-timer" id="time-js-event">{this.state.value}</p>
+                        {/* <div className="col-md-4 col-4 mx-auto text-center">
+                            {/* <img src={time} className="img-fluid location-event" /><br /><br /> */}
+                            {/* <p className="event-timer-txt  event-time-timer" id="time-js-event">{this.state.value}</p> */}
 
-                        </div>
-                        <div className="col-md-4 col-4 text-center mx-auto">
+                        {/* </div> */} 
+                        <div className="col-md-6 col-6 text-center mx-auto">
                             <img src={cal} className="img-fluid location-event" /><br /><br />
                             <p className="event-timer-txt">16-17 Oct</p>
 

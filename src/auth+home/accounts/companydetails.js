@@ -119,10 +119,10 @@ export class CompanyRegister extends Component {
                 <Navbar />
                 <div className="container mt-3 mx-auto company-detail-main" >
 
-                    <form onSubmit={this.handleSubmit}>
+                    <form >
                         <div className="">
                             <div className="row no-gutters">
-                                
+
                                 <div className="col-md-7 col-lg-7 col-12">
                                     <div className="mt-2">
                                         <b>Company:</b>&nbsp;&nbsp;{this.state.company_name}<br />
@@ -143,17 +143,17 @@ export class CompanyRegister extends Component {
                                         <ImagePicker
                                             extensions={['jpg', 'jpeg', 'png']}
                                             dims={{ minWidth: 100, maxWidth: 5000, minHeight: 100, maxHeight: 5000 }}
-                                            onChange={(base64) => { this.setState({ logo: decodeURI(base64) }, () => { console.log("WELoxme" + this.state.logo); }) }}
+                                            onChange={(base64) => { this.setState({ logo: base64 }, () => { console.log("Welcome" + this.state.logo); }) }}
                                             onError={errMsg => (alert(errMsg))}
                                         >
-                                            <button className="btn btns text-center mx-auto">
+                                            <p className="btn btns text-center mx-auto">
                                                 + Add Image
-                                                </button>
+                                                </p>
                                         </ImagePicker>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div className="form-group mt-3">
                                 <input
                                     type="text"
@@ -226,9 +226,10 @@ export class CompanyRegister extends Component {
                                     onChange={(e) => { this.setState({ contact_person: e.target.value }) }}
                                     value={this.state.contact_person}
                                 />
-                            </div>
+                            </div> 
                             <center>
                                 <button
+                                    onClick={(e) => { this.handleSubmit(e) }}
                                     type="submit"
                                     style={{
                                         backgroundColor: "#89EA91",

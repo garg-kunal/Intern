@@ -205,7 +205,7 @@ export class CompanyRegister extends Component {
                     className="form-control"
                     placeholder="Office Number"
                     pattern="^\d{10}$"
-                    maxLength="16"
+                    maxLength="10"
                     required
                     style={{ borderRadius: "0", color: "black", fontWeight: "200", border: "1px solid lightgrey" }}
                     id="id_mobile_number"
