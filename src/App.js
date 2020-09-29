@@ -47,6 +47,10 @@ import Privacy from './auth+home/policy';
 import Event from './event/components/home';
 import OuterNavbar from './student Intern/components/outerNavbar';
 import OtpEvent from './event/components/otpVerify';
+
+import Test from './company/components/postInternship/NewQuestions';
+
+
 function Student() {
   return (
     <div>
@@ -96,6 +100,7 @@ function App() {
         <Route component={Thanku} path="/thankyou" exact />
         
         <Route component={Home} path="/" exact />
+        <Route component={Test} path="/test" exact />
        
         <Route component={Event} path="/devcol" exact />
         <Route component={OtpEvent} path="/verify_otp_event/:phn" exact />

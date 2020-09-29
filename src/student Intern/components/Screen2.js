@@ -146,7 +146,7 @@ class Screen2 extends React.Component {
                                         </label>
                                         :
                                         <label className="checkLabel checkLabel1" 
-
+                                  title={item.title || " " }
                                             style={{ backgroundColor: item.color }}
                                             onClick={this.changeColor}>
                                             <input type="checkbox"

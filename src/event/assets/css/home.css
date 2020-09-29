@@ -137,6 +137,9 @@
     background-color: white;
     color: black !important;
     padding-left: 25px;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
     font-size: 13px;
   }
 
@@ -228,8 +231,10 @@
 /*************************************/
 
 .event-speaker-heading-main {
-  margin-left: 40px;
+  /* margin-left: 40px; */
   margin-top: 40px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
 }
 
 .event-speaker-il {
@@ -282,6 +287,7 @@
 }
 
 .about-speaker-schedule {
+  font-family: "Montserrat", sans-serif;
   font-weight: normal;
 }
 
@@ -302,15 +308,25 @@
   .event-schedule-container {
     max-width: 100%;
   }
+  .schedule-hr{
+    display: none;
+  }
 
   .event-speaker-image-schedule {
     margin-top: 15px;
     height: 90px;
     width: 90px;
   }
+  .event-speaker-heading-main{
+    margin-top: -10px;
+  }
+  .event-speaker-heading-main-2{
+    margin-top: 20px !important;
+  }
 
   .about-speaker-schedule {
     font-weight: normal;
+   
     font-size: 13px;
   }
 
@@ -533,6 +549,7 @@ div.panel.show {
   .form-register-event {
     margin-top: -15px;
     padding: 0;
+    margin-right: auto;
     width: 90%;
   }
 

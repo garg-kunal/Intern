@@ -16,6 +16,17 @@
     margin-top: 30px;
     height: 16px;
 }
+.select-skill-postIntern {
+    font-weight: normal;
+    background-color: transparent;
+    border: solid 1px black;
+    cursor: pointer;
+}
+.btn-change-skillset{
+background-color: rgb(236, 127, 127);
+color:white;
+
+}
 .heading {
     margin-top: 20px;
     margin-bottom: 50px;
@@ -201,12 +212,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 /* Responsibility */
-textarea {
+/* textarea {
     resize: vertical;
     min-height: 300px;
     padding-top: 20px;
     resize: none;
-}
+} */
 
 
 
@@ -467,6 +478,15 @@ textarea {
         outline: none;
         font-size: 15px;
         text-align: center;
+    }
+    .select-skill-postIntern {
+        margin: 10px;
+        font-size: 14px;
+    }
+    .btn-change-skillset{
+    background-color: rgb(236, 127, 127);
+    color:white;
+    border: solid 1px black;
     }
 }
 

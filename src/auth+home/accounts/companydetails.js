@@ -43,7 +43,7 @@ export class CompanyRegister extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.logo.length === 0 ||
+        if (
             this.state.logo.address === 0 ||
             this.state.logo.about === 0 ||
             this.state.logo.contact_person === 0 ||

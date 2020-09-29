@@ -295,11 +295,10 @@ export default class Additional extends React.Component {
 
                             style={customStyles}>
                             <label className="date-label-resume-descp">Description:(optional)</label>
-                            <textarea rows="2" cols="5" className="form-control"
+                            <textarea rows="2" className="form-control"
                                 value={this.state.textArea}
                                 placeholder="Don't More than 500 words"
-                                onChange={(e) => { this.setState({ textArea: e.target.value }) }}
-                            >Additonal Information</textarea>
+                                onChange={(e) => { this.setState({ textArea: e.target.value }) }}/>
                             <br />
                             <div style={{ padding: "10px", float: "right", display: "flex" }}>
                                 <button className="btn btnedit" style={{ borderRadius: "15px" }}

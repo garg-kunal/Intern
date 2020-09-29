@@ -305,7 +305,7 @@ export default class PastExpierence extends React.Component {
                                         </div>
                                     </div>
                                     <label style={{ fontSize: "18px" }}>Description:(optional)</label>
-                                    <textarea className="form-control" rows="2" cols="4"
+                                    <textarea className="form-control" rows="3" 
                                         value={this.state.describe}
                                         onChange={(e) => { this.setState({ describe: e.target.value }) }}>
                                     </textarea>
@@ -377,6 +377,7 @@ export default class PastExpierence extends React.Component {
                             <br />
                             <label style={{ fontSize: "18px" }}>Description:(optional)</label>
                             <textarea className="form-control"
+                            rows="3"
                                 value={this.state.describe}
                                 onChange={(e) => { this.setState({ describe: e.target.value }) }}>
                             </textarea>

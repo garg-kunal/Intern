@@ -1,93 +1,100 @@
-import React from 'react';
+import React, { useState } from 'react'
 
-import Select from 'react-select';
+import Front from './FrontSkills'
+import Back from './backSkills'
+import Ui from './UISkills'
+import Full from './FullSkills'
 
-const colourOptions = [
-    { value: 'skills', label: 'SKill', color: '#4a00e0', isFixed: true },
-    { value: 'css', label: 'CSS', color: '#00B8D9' },
-    { value: 'html', label: 'HTML', color: '#0052CC' },
-    { value: 'bootstrap', label: 'Bootstrap', color: '#5243AA' },
-    { value: 'django', label: 'Django', color: '#FF5630 ' },
-    { value: 'react.js', label: 'ReactJS', color: '#FF8B00' },
-    { value: 'javascript', label: 'JS', color: '#FFC400' },
-    { value: 'nodejs', label: 'NodeJS', color: '#00B8D9' },
-    { value: 'php', label: 'PHP', color: '#0052CC' },
-    { value: 'angularjs', label: 'AngularJS', color: '#5243AA' },
-    { value: 'vuejs',label: 'VueJS', color: '#FF5630 ' },
-    { value: 'jquery', label: 'JQuery', color: '#FF8B00' },
-    { value: 'ruby on rails', label: 'Ruby on Rails', color: '#FFC400' },
-    { value: 'spring', label: 'SpringBoot', color: '#FFC400' },
-    { value: 'ui/ux', label: 'UI/UX', color: '#5243AA' },
+export default function Skill (props) {
+  const [show, setShow] = useState(true)
+  const [drop, setdrop] = useState(<Front />)
+  const [otherSkills,setSkils]=useState([]);
 
-];
+  const getValue=(e)=>{
+    setSkils(e);
+    props.methodFromParent("otherSkills", e);
+  }
 
-const styles = {
-    multiValue: (base, state) => {
-        return state.data.isFixed ? { ...base, backgroundColor: 'gray' } : base;
-    },
-    multiValueLabel: (base, state) => {
-        return state.data.isFixed
-            ? { ...base, fontWeight: 'bold', color: 'white', paddingRight: 6 }
-            : base;
-    },
-    multiValueRemove: (base, state) => {
-        return state.data.isFixed ? { ...base, display: 'none' } : base;
-    },
-};
+  const Shuffle = v => {
 
-const orderOptions = values => {
-
-    return values.filter(v => v.isFixed).concat(values.filter(v => !v.isFixed));
-};
-
-export default class FixedOptions extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: [colourOptions[0]]
-        }
-
-
-        this.onChange = this.onChange.bind(this);
+    if (v === '1') {
+      setdrop(<Front props={otherSkills} onChangeValue={(e)=>{getValue(e)}} />)
+      setShow(false)
+    } else if (v === '2') {
+      setdrop(<Back props={otherSkills} onChangeValue={(e)=>{getValue(e)}} />)
+      setShow(false)
+    } else if (v === '3') {
+      setdrop(<Full props={otherSkills} onChangeValue={(e)=>{getValue(e)}} />)
+      setShow(false)
+    } else if (v === '4') {
+      setdrop(<Ui  props={otherSkills} onChangeValue={(e)=>{getValue(e)}} />)
+      setShow(false)
     }
+   
+  }
+ 
 
-    onChange(value, { action, removedValue }) {
-        switch (action) {
-            case 'remove-value':
-            case 'pop-value':
-                if (removedValue.isFixed) {
-                    return;
-                }
-                break;
-            case 'clear':
-                value = colourOptions.filter(v => v.isFixed);
-                break;
-        }
-        value = orderOptions(value);
 
-        this.setState({
-            value: value,
-        },
-            () => {
-
-                this.props.methodFromParent("otherSkills", this.state.value)
-            });
-    }
-
-    render() {
-        return (
-            <Select
-                value={this.state.value}
-                isMulti
-                styles={styles}
-                isClearable={this.state.value.some(v => !v.isFixed)}
-                name="colors"
-                className="basic-multi-select"
-                classNamePrefix="select"
-                onChange={this.onChange}
-                options={colourOptions}
-            />
-        );
-    }
+  return (
+    <section className='container-fluid'>
+      {show ? (
+        <div className='row mx-auto '>
+          <div className='col-md-3 col-6 '>
+            <button
+              className='mx-auto  btn select-skill-postIntern'
+              onClick={() => {
+                Shuffle('1')
+              }}
+            >
+              Frontend
+            </button>
+          </div>
+          <div className='col-md-3 col-6 '>
+            <button
+              className='mx-auto  btn select-skill-postIntern '
+              onClick={() => {
+                Shuffle('2')
+              }}
+            >
+              Backend
+            </button>
+          </div>
+          <div className='col-md-3 col-6 '>
+            <button
+              className='mx-auto   btn select-skill-postIntern '
+              onClick={() => {
+                Shuffle('3')
+              }}
+            >
+              Full Stack
+            </button>
+          </div>
+          <div className='col-md-3 col-6 '>
+            <button
+              className='mx-auto   btn select-skill-postIntern '
+              onClick={() => {
+                Shuffle('4')
+              }}
+            >
+              UI/UX
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className=''>
+          {drop}
+          <br />{' '}
+          <button
+            className='btn btn-change-skillset'
+            onClick={() => {
+              setShow(true)
+            }}
+          >
+            Change SkillSet
+          </button>
+        </div>
+      )}
+      {/* <button onClick={()=>{ console.log(otherSkills);}}>Print</button> */}
+    </section>
+  )
 }

@@ -192,7 +192,7 @@ class PostInternship extends React.Component {
                         required placeholder="e.g. Web Developer" />
                     <p className="head head3">Internship type :</p>
                     <InternshipType methodFromParent={this.parentCollector} />
-                    <p className="head head3">City / Cities :</p>
+                    <p className="head head3">Internship Location :</p>
                     <input type="text" value={this.state.city} className="city form-control" placeholder="e.g. Bangalore"
                         onChange={(e) => { this.setState({ city: e.target.value }) }} />
                     <p className="head head3">Number Of Openings :</p>
@@ -246,6 +246,7 @@ class PostInternship extends React.Component {
 
                     {/* <Dropdown id="val" placeholder='Skills' className="form-control city"  multiple selection options={options} /> */}
                     <Skills methodFromParent={this.parentCollector} />
+                    {/* <button onClick={()=>{console.log(this.state.otherSkills)}}>Print</button> */}
                     <p className="head head3">Evaluation Questions :</p>
                     <Questions methodFromParent={this.parentCollector} />
                     <div className="save container">

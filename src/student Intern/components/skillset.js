@@ -30,7 +30,7 @@ export default function Skillset() {
                 .then((res) => {
 
                     if (res.data.status === 200) {
-                        // console.log(res.data)
+                        console.log(res)
                         setData(true);
                         setfrontend(res.data.frontend);
                         setbackend(res.data.backend);
